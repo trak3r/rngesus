@@ -65,6 +65,6 @@ class RandomizersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def randomizer_params
-      params.fetch(:randomizer, {})
+      params.require(:randomizer).permit(:name)
     end
 end
