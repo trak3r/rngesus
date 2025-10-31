@@ -5,32 +5,23 @@ class RollsController < ApplicationController
   # POST /randomizers/:randomizer_id/rolls
   def create
     # Accept roll params (name) and sides (optional); default sides to 6
-    sides = if params.dig(:roll, :sides).present?
-              params.dig(:roll, :sides).to_i
-            elsif params[:sides].present?
-              params[:sides].to_i
-            else
-              6
-            end
-
-    value = rand(1..[sides, 1].max)
-
+    # Accept roll params (name). We no longer store a numeric value on Roll.
     roll_params = params.fetch(:roll, {}).permit(:name)
-    @roll = @randomizer.rolls.build(roll_params.merge(value: value))
+    @roll = @randomizer.rolls.build(roll_params)
 
     if @roll.save
       respond_to do |format|
         format.turbo_stream do
           render turbo_stream: [
             turbo_stream.append(dom_id(@randomizer, :rolls), partial: "rolls/roll", locals: { roll: @roll }),
-            turbo_stream.update(:notice, "Rolled #{ @roll.value }")
+            turbo_stream.update(:notice, "Created roll: #{ @roll.name }")
           ]
         end
-        format.html { redirect_to @randomizer, notice: "Rolled #{@roll.value}." }
+        format.html { redirect_to @randomizer, notice: "Created roll #{@roll.name}." }
       end
     else
       respond_to do |format|
-        format.html { redirect_to @randomizer, alert: "Could not roll: #{ @roll.errors.full_messages.join(', ') }" }
+        format.html { redirect_to @randomizer, alert: "Could not create roll: #{ @roll.errors.full_messages.join(', ') }" }
       end
     end
   end

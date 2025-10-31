@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_10_31_160902) do
+ActiveRecord::Schema[8.1].define(version: 2025_10_31_162200) do
   create_table "randomizers", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "name"
@@ -22,7 +22,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_31_160902) do
     t.string "name"
     t.integer "randomizer_id", null: false
     t.datetime "updated_at", null: false
-    t.integer "value"
     t.index ["randomizer_id"], name: "index_rolls_on_randomizer_id"
   end
 

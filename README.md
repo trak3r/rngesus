@@ -1,24 +1,11 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# TODO
+- Dice Types
+- Special Dice Types (2d6, with-advantage, etc.)
+- Results
+- Registration
+- Tests (once there's complicated enough logic to warrant)
+- Re-enable GitHub CI workflow
+# Done
+- rails new
+- Randomizers
+- Rolls
