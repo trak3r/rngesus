@@ -1,12 +1,12 @@
 class RandomizersController < ApplicationController
   before_action :set_randomizer, only: %i[ show edit update destroy ]
 
-  # GET /randomizers or /randomizers.json
+  # GET /randomizers
   def index
     @randomizers = Randomizer.all
   end
 
-  # GET /randomizers/1 or /randomizers/1.json
+  # GET /randomizers/1
   def show
   end
 
@@ -19,42 +19,30 @@ class RandomizersController < ApplicationController
   def edit
   end
 
-  # POST /randomizers or /randomizers.json
+  # POST /randomizers
   def create
     @randomizer = Randomizer.new(randomizer_params)
 
-    respond_to do |format|
-      if @randomizer.save
-        format.html { redirect_to @randomizer, notice: "Randomizer was successfully created." }
-        format.json { render :show, status: :created, location: @randomizer }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @randomizer.errors, status: :unprocessable_entity }
-      end
+    if @randomizer.save
+      redirect_to @randomizer, notice: "Randomizer was successfully created."
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /randomizers/1 or /randomizers/1.json
+  # PATCH/PUT /randomizers/1
   def update
-    respond_to do |format|
-      if @randomizer.update(randomizer_params)
-        format.html { redirect_to @randomizer, notice: "Randomizer was successfully updated.", status: :see_other }
-        format.json { render :show, status: :ok, location: @randomizer }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @randomizer.errors, status: :unprocessable_entity }
-      end
+    if @randomizer.update(randomizer_params)
+      redirect_to @randomizer, notice: "Randomizer was successfully updated.", status: :see_other
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
-  # DELETE /randomizers/1 or /randomizers/1.json
+  # DELETE /randomizers/1
   def destroy
     @randomizer.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to randomizers_path, notice: "Randomizer was successfully destroyed.", status: :see_other }
-      format.json { head :no_content }
-    end
+    redirect_to randomizers_path, notice: "Randomizer was successfully destroyed.", status: :see_other
   end
 
   private
