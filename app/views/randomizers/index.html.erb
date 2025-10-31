@@ -4,13 +4,21 @@
 
 <h1>Randomizers</h1>
 
+<%= turbo_stream_from :randomizers %>
+
 <div id="randomizers">
   <% @randomizers.each do |randomizer| %>
-    <%= render randomizer %>
-    <p>
-      <%= link_to "Show this randomizer", randomizer %>
-    </p>
+    <%= turbo_frame_tag dom_id(randomizer) do %>
+      <%= render randomizer %>
+      <div class="actions">
+        <%= link_to "Show", randomizer, data: { turbo_frame: "_top" } %>
+        <%= link_to "Edit", edit_randomizer_path(randomizer), data: { turbo_frame: dom_id(randomizer, :edit) } %>
+        <%= link_to "Delete", randomizer, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+      </div>
+    <% end %>
   <% end %>
 </div>
 
-<%= link_to "New randomizer", new_randomizer_path %>
+<%= turbo_frame_tag :new_randomizer do %>
+  <%= link_to "New randomizer", new_randomizer_path, class: "btn" %>
+<% end %>

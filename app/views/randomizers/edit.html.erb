@@ -1,12 +1,13 @@
 <% content_for :title, "Editing randomizer" %>
 
-<h1>Editing randomizer</h1>
+<%= turbo_frame_tag dom_id(@randomizer, :edit) do %>
+  <div class="edit-form">
+    <h1>Editing randomizer</h1>
 
-<%= render "form", randomizer: @randomizer %>
+    <%= render "form", randomizer: @randomizer %>
 
-<br>
-
-<div>
-  <%= link_to "Show this randomizer", @randomizer %> |
-  <%= link_to "Back to randomizers", randomizers_path %>
-</div>
+    <div class="actions">
+      <%= link_to "Cancel", randomizer_path(@randomizer), data: { turbo_frame: dom_id(@randomizer) } %>
+    </div>
+  </div>
+<% end %>

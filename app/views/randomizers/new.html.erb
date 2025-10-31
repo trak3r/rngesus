@@ -1,11 +1,13 @@
 <% content_for :title, "New randomizer" %>
 
-<h1>New randomizer</h1>
+<%= turbo_frame_tag :new_randomizer do %>
+  <div class="new-form">
+    <h1>New randomizer</h1>
 
-<%= render "form", randomizer: @randomizer %>
+    <%= render "form", randomizer: @randomizer %>
 
-<br>
-
-<div>
-  <%= link_to "Back to randomizers", randomizers_path %>
-</div>
+    <div class="actions">
+      <%= link_to "Cancel", randomizers_path, data: { turbo_frame: :new_randomizer } %>
+    </div>
+  </div>
+<% end %>
