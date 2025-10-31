@@ -30,3 +30,20 @@
     </div>
   <% end %>
 </div>
+ 
+ <div class="mt-8 space-y-4">
+   <h2 class="text-xl font-semibold text-gray-900">Rolls</h2>
+
+   <div id="<%= dom_id(@randomizer, :rolls) %>" class="space-y-3">
+     <% @randomizer.rolls.order(created_at: :desc).each do |roll| %>
+       <%= render partial: "rolls/roll", locals: { roll: roll } %>
+     <% end %>
+   </div>
+
+   <div class="pt-4">
+     <%= form_with url: randomizer_rolls_path(@randomizer), method: :post, data: { turbo: true }, class: "inline" do |f| %>
+       <%= hidden_field_tag :sides, 6 %>
+       <%= f.submit "Roll (1-6)", class: "rounded-md bg-blue-600 px-3.5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500" %>
+     <% end %>
+   </div>
+ </div>
