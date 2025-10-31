@@ -13,21 +13,8 @@
 <div id="randomizers" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
   <% @randomizers.each do |randomizer| %>
     <%= turbo_frame_tag dom_id(randomizer) do %>
-      <%= turbo_frame_tag dom_id(randomizer, :edit) do %>
-        <div class="rounded-lg bg-white p-6 shadow-sm ring-1 ring-gray-900/5">
-          <%= render randomizer %>
-          <div class="mt-4 flex items-center space-x-4">
-            <%= link_to "Show", randomizer, 
-                data: { turbo_frame: "_top" },
-                class: "text-sm font-medium text-blue-600 hover:text-blue-500" %>
-            <%= link_to "Edit", edit_randomizer_path(randomizer), 
-                data: { turbo_frame: dom_id(randomizer, :edit) },
-                class: "text-sm font-medium text-blue-600 hover:text-blue-500" %>
-            <%= link_to "Delete", randomizer, 
-                data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-                class: "text-sm font-medium text-red-600 hover:text-red-500" %>
-          </div>
-        </div>
+      <%= link_to randomizer, data: { turbo_frame: "_top" }, class: "block rounded-lg bg-white p-6 shadow-sm ring-1 ring-gray-900/5 hover:shadow-md" do %>
+        <%= render randomizer %>
       <% end %>
     <% end %>
   <% end %>
