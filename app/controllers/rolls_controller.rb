@@ -4,9 +4,19 @@ class RollsController < ApplicationController
 
   # POST /randomizers/:randomizer_id/rolls
   def create
-    # Simple dice roll: default 1..6
-    value = params[:sides].present? ? rand(1..params[:sides].to_i) : rand(1..6)
-    @roll = @randomizer.rolls.build(value: value)
+    # Accept roll params (name) and sides (optional); default sides to 6
+    sides = if params.dig(:roll, :sides).present?
+              params.dig(:roll, :sides).to_i
+            elsif params[:sides].present?
+              params[:sides].to_i
+            else
+              6
+            end
+
+    value = rand(1..[sides, 1].max)
+
+    roll_params = params.fetch(:roll, {}).permit(:name)
+    @roll = @randomizer.rolls.build(roll_params.merge(value: value))
 
     if @roll.save
       respond_to do |format|
@@ -20,7 +30,7 @@ class RollsController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { redirect_to @randomizer, alert: "Could not roll." }
+        format.html { redirect_to @randomizer, alert: "Could not roll: #{ @roll.errors.full_messages.join(', ') }" }
       end
     end
   end

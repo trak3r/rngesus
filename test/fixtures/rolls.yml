@@ -3,7 +3,9 @@
 one:
   value: 1
   randomizer: one
+  name: "First roll"
 
 two:
   value: 1
   randomizer: two
+  name: "Second roll"

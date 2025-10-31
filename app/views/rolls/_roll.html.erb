@@ -1,7 +1,7 @@
 <div id="<%= dom_id roll %>" class="flex items-center justify-between rounded-md border p-3 bg-gray-50">
   <div class="text-sm text-gray-900">
-    <strong>Value:</strong> <%= roll.value %>
-    <span class="text-xs text-gray-500">&middot; <%= time_ago_in_words(roll.created_at) %> ago</span>
+    <div class="font-medium"><%= roll.name %></div>
+    <div class="text-xs text-gray-600"><strong>Value:</strong> <%= roll.value %> <span class="text-xs text-gray-500">&middot; <%= time_ago_in_words(roll.created_at) %> ago</span></div>
   </div>
 
   <div class="text-right">
