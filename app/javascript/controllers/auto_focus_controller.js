@@ -2,7 +2,6 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   connect() {
-    console.log("Auto-focus controller connected to", this.element);
     // Try to focus immediately (useful when controller is initialized on inserted content)
     requestAnimationFrame(() => this.focusFirst());
 
@@ -13,7 +12,6 @@ export default class extends Controller {
       const target = event.target;
       // If this controller's element is the frame that loaded (or contains the frame), focus
       if (target.id === this.element.id || this.element.contains(target)) {
-        console.log("Turbo frame loaded, attempting to focus in", target);
         // focus on the next tick to ensure content is ready
         requestAnimationFrame(() => this.focusFirst());
       }
