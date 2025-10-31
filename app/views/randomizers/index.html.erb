@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Randomizers" %>
+
+<h1>Randomizers</h1>
+
+<div id="randomizers">
+  <% @randomizers.each do |randomizer| %>
+    <%= render randomizer %>
+    <p>
+      <%= link_to "Show this randomizer", randomizer %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New randomizer", new_randomizer_path %>

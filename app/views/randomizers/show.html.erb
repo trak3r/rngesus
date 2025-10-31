@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @randomizer %>
+
+<div>
+  <%= link_to "Edit this randomizer", edit_randomizer_path(@randomizer) %> |
+  <%= link_to "Back to randomizers", randomizers_path %>
+
+  <%= button_to "Destroy this randomizer", @randomizer, method: :delete %>
+</div>

@@ -1,0 +1,2 @@
+class Randomizer < ApplicationRecord
+end

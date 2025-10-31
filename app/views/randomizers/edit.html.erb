@@ -1,0 +1,12 @@
+<% content_for :title, "Editing randomizer" %>
+
+<h1>Editing randomizer</h1>
+
+<%= render "form", randomizer: @randomizer %>
+
+<br>
+
+<div>
+  <%= link_to "Show this randomizer", @randomizer %> |
+  <%= link_to "Back to randomizers", randomizers_path %>
+</div>
