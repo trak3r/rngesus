@@ -1,14 +1,32 @@
 <p style="color: green"><%= notice %></p>
 
-<%= turbo_frame_tag dom_id(@randomizer) do %>
-  <%= render @randomizer %>
-
-  <div class="actions">
-    <%= link_to "Edit", edit_randomizer_path(@randomizer), data: { turbo_frame: dom_id(@randomizer, :edit) } %>
-    <%= link_to "Back", randomizers_path, data: { turbo_frame: "_top" } %>
-    <%= button_to "Delete", @randomizer, 
-          method: :delete, 
-          data: { turbo_confirm: "Are you sure?" },
-          class: "delete-button" %>
+<div class="space-y-8">
+  <div class="flex items-center justify-between">
+    <h1 class="text-3xl font-bold text-gray-900">Randomizer Details</h1>
+    <%= link_to randomizers_path, data: { turbo_frame: "_top" },
+        class: "rounded-md bg-white px-3.5 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" do %>
+      Back to list
+    <% end %>
   </div>
-<% end %>
+
+  <%= turbo_frame_tag dom_id(@randomizer) do %>
+    <div class="rounded-lg bg-white p-6 shadow-sm ring-1 ring-gray-900/5">
+      <%= render @randomizer %>
+
+      <div class="mt-6 flex items-center space-x-4">
+        <%= link_to edit_randomizer_path(@randomizer),
+            data: { turbo_frame: dom_id(@randomizer, :edit) },
+            class: "rounded-md bg-blue-600 px-3.5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" do %>
+          Edit
+        <% end %>
+
+        <%= button_to @randomizer,
+            method: :delete,
+            data: { turbo_confirm: "Are you sure?" },
+            class: "rounded-md bg-red-600 px-3.5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600" do %>
+          Delete
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
