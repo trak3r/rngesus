@@ -3,5 +3,5 @@ class Randomizer < ApplicationRecord
 
   has_many :rolls, dependent: :destroy
 
-  broadcasts_to ->(randomizer) { :randomizers }, inserts_by: :prepend
+  broadcasts_to ->(randomizer) { :randomizers }, inserts_by: :append
 end

@@ -2,22 +2,24 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   connect() {
+    console.log("Auto-focus controller connected to", this.element);
     // Try to focus immediately (useful when controller is initialized on inserted content)
-    requestAnimationFrame(() => this.focusFirst())
+    requestAnimationFrame(() => this.focusFirst());
 
     // Also listen for turbo:frame-load in case the frame is replaced by Turbo after connect
     this._frameLoadHandler = (event) => {
       // event.target is the turbo-frame element that just loaded
-      if (!event || !event.target) return
-      const target = event.target
+      if (!event || !event.target) return;
+      const target = event.target;
       // If this controller's element is the frame that loaded (or contains the frame), focus
       if (target.id === this.element.id || this.element.contains(target)) {
+        console.log("Turbo frame loaded, attempting to focus in", target);
         // focus on the next tick to ensure content is ready
-        requestAnimationFrame(() => this.focusFirst())
+        requestAnimationFrame(() => this.focusFirst());
       }
-    }
+    };
 
-    window.addEventListener('turbo:frame-load', this._frameLoadHandler)
+    window.addEventListener('turbo:frame-load', this._frameLoadHandler);
   }
 
   disconnect() {

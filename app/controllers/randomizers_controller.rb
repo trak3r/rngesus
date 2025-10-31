@@ -27,7 +27,7 @@ class RandomizersController < ApplicationController
       if @randomizer.save
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.append("randomizers", partial: "randomizer", locals: { randomizer: @randomizer }),
+            turbo_stream.append("randomizers", partial: "randomizer_card", locals: { randomizer: @randomizer }),
             turbo_stream.update(:new_randomizer, partial: "form", locals: { randomizer: Randomizer.new }),
             turbo_stream.update(:notice, "Randomizer was successfully created.")
           ]
