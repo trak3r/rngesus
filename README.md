@@ -5,6 +5,8 @@
 - Registration
 - Ownership of Randomizers
 - Share via links with GUID not raw ID
+- Tagging / Categories
+- Search
 - Cool 3D dice roll on screen
 - Spin results like a slot machine
 - Responsive screens
@@ -13,6 +15,10 @@
 - Accessibility
 - Tests (once there's complicated enough logic to warrant)
 - Re-enable GitHub CI workflow
+- Donations / Patreon
+- Affiliate links to buy real dice
+- Sponsors
+- Upload screenshot of printed table automatically built (OCR)
 # Done
 - rails new
 - Randomizers
