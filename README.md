@@ -1,6 +1,7 @@
 # TODO
 - Dice Types
 - Special Dice Types (2d6, with-advantage, etc.)
+- Favicon dice icon
 - Results
 - Registration
 - Ownership of Randomizers
