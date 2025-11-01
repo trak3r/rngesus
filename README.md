@@ -1,7 +1,6 @@
 # TODO
 - Dice Types
 - Special Dice Types (2d6, with-advantage, etc.)
-- Favicon dice icon
 - Results
 - Registration
 - Ownership of Randomizers
@@ -24,3 +23,7 @@
 - rails new
 - Randomizers
 - Rolls
+- Favicon dice icon
+    - https://fontawesome.com/icons/dice?f=duotone&s=solid
+    - https://game-icons.net/1x1/delapouite/dice-twenty-faces-twenty.html#download
+    - https://favicon.io/favicon-converter/
