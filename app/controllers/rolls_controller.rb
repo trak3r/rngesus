@@ -2,6 +2,11 @@ class RollsController < ApplicationController
   before_action :set_randomizer
   before_action :set_roll, only: [ :destroy ]
 
+  # GET /randomizers/:randomizer_id/rolls/new
+  def new
+    @roll = @randomizer.rolls.build
+  end
+
   # POST /randomizers/:randomizer_id/rolls
   def create
     # Accept roll params (name) and sides (optional); default sides to 6
