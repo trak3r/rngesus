@@ -1,6 +1,6 @@
 class RollsController < ApplicationController
   before_action :set_randomizer
-  before_action :set_roll, only: [ :destroy ]
+  before_action :set_roll, only: [ :destroy, :show ]
 
   # GET /randomizers/:randomizer_id/rolls/new
   def new
@@ -22,13 +22,17 @@ class RollsController < ApplicationController
             turbo_stream.update(:notice, "Created roll: #{ @roll.name }")
           ]
         end
-        format.html { redirect_to @randomizer, notice: "Created roll #{@roll.name}." }
+        format.html { redirect_to [@randomizer, @roll], notice: "Created roll #{@roll.name}." }
       end
     else
       respond_to do |format|
         format.html { redirect_to @randomizer, alert: "Could not create roll: #{ @roll.errors.full_messages.join(', ') }" }
       end
     end
+  end
+
+  # GET /randomizers/:randomizer_id/rolls/:id
+  def show
   end
 
   # DELETE /randomizers/:randomizer_id/rolls/:id
