@@ -1,5 +1,3 @@
-<% if notice %>
-  <div id="notice" class="mb-8 rounded-lg bg-green-50 p-4 text-sm text-green-800 shadow-sm">
-    <%= notice %>
-  </div>
-<% end %>
+<div id="notice" class="mb-8 rounded-lg bg-green-50 p-4 text-sm text-green-800 shadow-sm <%= "hidden" if notice.blank? %>">
+  <%= notice %>
+</div>
