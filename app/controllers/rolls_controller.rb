@@ -1,6 +1,6 @@
 class RollsController < ApplicationController
   before_action :set_randomizer
-  before_action :set_roll, only: [:destroy]
+  before_action :set_roll, only: [ :destroy ]
 
   # POST /randomizers/:randomizer_id/rolls
   def create
