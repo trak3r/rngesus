@@ -25,7 +25,7 @@ class RollsController < ApplicationController
     @roll = @randomizer.rolls.build(roll_params)
 
     if @roll.save
-      redirect_to @roll, notice: "Roll was successfully created."
+      redirect_to randomizer_roll_path(@roll.randomizer, @roll), notice: "Roll was successfully created."
     else
       render :new, status: :unprocessable_content
     end
@@ -34,7 +34,7 @@ class RollsController < ApplicationController
   # PATCH/PUT /rolls/1
   def update
     if @roll.update(roll_params)
-      redirect_to @roll, notice: "Roll was successfully updated.", status: :see_other
+      redirect_to randomizer_roll_path(@roll.randomizer, @roll), notice: "Roll was successfully updated.", status: :see_other
     else
       render :edit, status: :unprocessable_content
     end
@@ -43,7 +43,7 @@ class RollsController < ApplicationController
   # DELETE /rolls/1
   def destroy
     @roll.destroy!
-    redirect_to rolls_path, notice: "Roll was successfully destroyed.", status: :see_other
+    redirect_to randomizer_rolls_path(@randomizer), notice: "Roll was successfully destroyed.", status: :see_other
   end
 
   private
