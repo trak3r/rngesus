@@ -26,7 +26,7 @@ class ResultsController < ApplicationController
     @result = @roll.results.build(result_params)
 
     if @result.save
-      redirect_to @result, notice: "Result was successfully created."
+      redirect_to randomizer_roll_result_path(@result.roll.randomizer, @result.roll, @result), notice: "Result was successfully created."
     else
       render :new, status: :unprocessable_content
     end
@@ -35,7 +35,7 @@ class ResultsController < ApplicationController
   # PATCH/PUT /results/1
   def update
     if @result.update(result_params)
-      redirect_to @result, notice: "Result was successfully updated.", status: :see_other
+      redirect_to randomizer_roll_result_path(@result.roll.randomizer, @result.roll, @result), notice: "Result was successfully updated.", status: :see_other
     else
       render :edit, status: :unprocessable_content
     end
