@@ -58,6 +58,6 @@ class RollsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def roll_params
-      params.expect(roll: [ :name, :value ])
+      params.expect(roll: [ :name, :dice ])
     end
 end
