@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :examples
   resources :randomizers do
     resources :rolls, only: [ :new, :create, :destroy, :show ]
   end
