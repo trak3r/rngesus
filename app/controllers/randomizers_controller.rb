@@ -23,52 +23,26 @@ class RandomizersController < ApplicationController
   def create
     @randomizer = Randomizer.new(randomizer_params)
 
-    respond_to do |format|
-      if @randomizer.save
-        format.turbo_stream do
-          render turbo_stream: [
-            turbo_stream.append("randomizers", partial: "randomizer_card", locals: { randomizer: @randomizer }),
-            turbo_stream.update(:new_randomizer, partial: "form", locals: { randomizer: Randomizer.new }),
-            turbo_stream.update(:notice, "Randomizer was successfully created.")
-          ]
-        end
-        format.html { redirect_to @randomizer, notice: "Randomizer was successfully created." }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-      end
+    if @randomizer.save
+      redirect_to @randomizer, notice: "Randomizer was successfully created."
+    else
+      render :new, status: :unprocessable_content
     end
   end
 
   # PATCH/PUT /randomizers/1
   def update
-    respond_to do |format|
-      if @randomizer.update(randomizer_params)
-        format.turbo_stream do
-          render turbo_stream: [
-            turbo_stream.replace(@randomizer),
-            turbo_stream.update(:notice, "Randomizer was successfully updated.")
-          ]
-        end
-        format.html { redirect_to @randomizer, notice: "Randomizer was successfully updated.", status: :see_other }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-      end
+    if @randomizer.update(randomizer_params)
+      redirect_to @randomizer, notice: "Randomizer was successfully updated.", status: :see_other
+    else
+      render :edit, status: :unprocessable_content
     end
   end
 
   # DELETE /randomizers/1
   def destroy
     @randomizer.destroy!
-
-    respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: [
-          turbo_stream.remove(@randomizer),
-          turbo_stream.update(:notice, "Randomizer was successfully destroyed.")
-        ]
-      end
-      format.html { redirect_to randomizers_path, notice: "Randomizer was successfully destroyed.", status: :see_other }
-    end
+    redirect_to randomizers_path, notice: "Randomizer was successfully destroyed.", status: :see_other
   end
 
   private
@@ -79,6 +53,6 @@ class RandomizersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def randomizer_params
-      params.require(:randomizer).permit(:name)
+      params.expect(randomizer: [ :name ])
     end
 end

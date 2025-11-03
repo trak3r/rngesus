@@ -1,19 +1,10 @@
 <% content_for :title, "Editing randomizer" %>
 
-<%= turbo_frame_tag dom_id(@randomizer, :edit) do %>
-  <div class="rounded-lg bg-white p-6 shadow-sm ring-1 ring-gray-900/5">
-    <div class="space-y-6">
-      <div class="border-b border-gray-200 pb-4">
-        <h2 class="text-lg font-medium text-gray-900">Edit Randomizer</h2>
-      </div>
+<div class="md:w-2/3 w-full">
+  <h1 class="font-bold text-4xl">Editing randomizer</h1>
 
-      <%= render "form", randomizer: @randomizer %>
+  <%= render "form", randomizer: @randomizer %>
 
-      <div class="flex justify-end">
-        <%= link_to "Cancel", randomizer_path(@randomizer),
-            data: { turbo_frame: dom_id(@randomizer) },
-            class: "rounded-md bg-white px-3.5 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" %>
-      </div>
-    </div>
-  </div>
-<% end %>
+  <%= link_to "Show this randomizer", @randomizer, class: "w-full sm:w-auto text-center mt-2 sm:mt-0 sm:ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
+  <%= link_to "Back to randomizers", randomizers_path, class: "w-full sm:w-auto text-center mt-2 sm:mt-0 sm:ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
+</div>

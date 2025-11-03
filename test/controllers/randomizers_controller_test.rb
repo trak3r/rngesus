@@ -17,7 +17,7 @@ class RandomizersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create randomizer" do
     assert_difference("Randomizer.count") do
-      post randomizers_url, params: { randomizer: {} }
+      post randomizers_url, params: { randomizer: { name: @randomizer.name } }
     end
 
     assert_redirected_to randomizer_url(Randomizer.last)
@@ -34,7 +34,7 @@ class RandomizersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update randomizer" do
-    patch randomizer_url(@randomizer), params: { randomizer: {} }
+    patch randomizer_url(@randomizer), params: { randomizer: { name: @randomizer.name } }
     assert_redirected_to randomizer_url(@randomizer)
   end
 
