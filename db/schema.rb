@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_11_03_203238) do
+ActiveRecord::Schema[8.1].define(version: 2025_11_03_204414) do
   create_table "examples", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "name"
@@ -27,8 +27,10 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_03_203238) do
   create_table "results", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "name"
+    t.integer "roll_id", null: false
     t.datetime "updated_at", null: false
     t.integer "value"
+    t.index ["roll_id"], name: "index_results_on_roll_id"
   end
 
   create_table "rolls", force: :cascade do |t|
@@ -40,5 +42,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_03_203238) do
     t.index ["randomizer_id"], name: "index_rolls_on_randomizer_id"
   end
 
+  add_foreign_key "results", "rolls"
   add_foreign_key "rolls", "randomizers"
 end
