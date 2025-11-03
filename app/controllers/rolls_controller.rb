@@ -48,12 +48,12 @@ class RollsController < ApplicationController
 
   private
     def set_randomizer
-      @randomizer = Randomizer.find(params[:randomizer_id])
+      @randomizer = Randomizer.find(params.expect(:randomizer_id))
     end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_roll
-      @roll = @randomizer.rolls.find(params.expect[:id])
+      @roll = @randomizer.rolls.find(params.expect(:id))
     end
 
     # Only allow a list of trusted parameters through.
