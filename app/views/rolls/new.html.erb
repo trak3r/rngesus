@@ -1,7 +1,9 @@
-<div class="mx-auto md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">New roll for <%= @randomizer.name %></h1>
+<% content_for :title, "New roll" %>
 
-  <%= render "form", randomizer: @randomizer, roll: @roll %>
+<div class="md:w-2/3 w-full">
+  <h1 class="font-bold text-4xl">New roll</h1>
 
-  <%= link_to "Back to randomizer", @randomizer, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  <%= render "form", roll: @roll %>
+
+  <%= link_to "Back to rolls", rolls_path, class: "w-full sm:w-auto text-center mt-2 sm:mt-0 sm:ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
 </div>
