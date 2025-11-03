@@ -1,53 +1,49 @@
 class RollsController < ApplicationController
   before_action :set_randomizer
-  before_action :set_roll, only: [ :destroy, :show ]
+  before_action :set_roll, only: %i[ show edit update destroy ]
 
-  # GET /randomizers/:randomizer_id/rolls/new
+  # GET /rolls
+  def index
+    @rolls = @randomizer.rolls
+  end
+
+  # GET /rolls/1
+  def show
+  end
+
+  # GET /rolls/new
   def new
     @roll = @randomizer.rolls.build
   end
 
-  # POST /randomizers/:randomizer_id/rolls
+  # GET /rolls/1/edit
+  def edit
+  end
+
+  # POST /rolls
   def create
-    # Accept roll params (name) and sides (optional); default sides to 6
-    # Accept roll params (name). We no longer store a numeric value on Roll.
-    roll_params = params.fetch(:roll, {}).permit(:name)
     @roll = @randomizer.rolls.build(roll_params)
 
     if @roll.save
-      respond_to do |format|
-        format.turbo_stream do
-          render turbo_stream: [
-            turbo_stream.append(dom_id(@randomizer, :rolls), partial: "rolls/roll", locals: { roll: @roll }),
-            turbo_stream.update(:notice, "Created roll: #{ @roll.name }")
-          ]
-        end
-        format.html { redirect_to [@randomizer, @roll], notice: "Created roll #{@roll.name}." }
-      end
+      redirect_to @roll, notice: "Roll was successfully created."
     else
-      respond_to do |format|
-        format.html { redirect_to @randomizer, alert: "Could not create roll: #{ @roll.errors.full_messages.join(', ') }" }
-      end
+      render :new, status: :unprocessable_content
     end
   end
 
-  # GET /randomizers/:randomizer_id/rolls/:id
-  def show
+  # PATCH/PUT /rolls/1
+  def update
+    if @roll.update(roll_params)
+      redirect_to @roll, notice: "Roll was successfully updated.", status: :see_other
+    else
+      render :edit, status: :unprocessable_content
+    end
   end
 
-  # DELETE /randomizers/:randomizer_id/rolls/:id
+  # DELETE /rolls/1
   def destroy
-    @roll.destroy
-
-    respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: [
-          turbo_stream.remove(@roll),
-          turbo_stream.update(:notice, "Roll removed")
-        ]
-      end
-      format.html { redirect_to @randomizer, notice: "Roll destroyed." }
-    end
+    @roll.destroy!
+    redirect_to rolls_path, notice: "Roll was successfully destroyed.", status: :see_other
   end
 
   private
@@ -55,7 +51,13 @@ class RollsController < ApplicationController
       @randomizer = Randomizer.find(params[:randomizer_id])
     end
 
+    # Use callbacks to share common setup or constraints between actions.
     def set_roll
-      @roll = @randomizer.rolls.find(params[:id])
+      @roll = @randomizer.rolls.find(params.expect[:id])
+    end
+
+    # Only allow a list of trusted parameters through.
+    def roll_params
+      params.expect(roll: [ :name, :value ])
     end
 end
