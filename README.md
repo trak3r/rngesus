@@ -2,7 +2,7 @@
 - Dice Types
 - Special Dice Types (2d6, with-advantage, etc.)
 - Results
-- audit for vestigal scaffold files
+- audit for vestigal scaffold files (and controller actions)
 - Registration
 - Ownership of Randomizers
 - Share via links with GUID not raw ID
