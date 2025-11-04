@@ -43,7 +43,14 @@ class RollsController < ApplicationController
   # DELETE /rolls/1
   def destroy
     @roll.destroy!
-    redirect_to randomizer_rolls_path(@randomizer), notice: "Roll was successfully destroyed.", status: :see_other
+    respond_to do |format|
+      format.turbo_stream
+      format.html {
+        redirect_to randomizer_rolls_path(@roll.randomizer),
+          notice: "Roll was successfully destroyed.",
+          status: :see_other
+      }
+    end
   end
 
   private
