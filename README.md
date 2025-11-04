@@ -1,8 +1,8 @@
 # TODO
 - Dice Types
 - Special Dice Types (2d6, with-advantage, etc.)
-- Results
 - audit for vestigal scaffold files (and controller actions)
+- better styling with DaisyUI https://daisyui.com/components/list/
 - Registration
 - Ownership of Randomizers
 - Share via links with GUID not raw ID
@@ -28,3 +28,4 @@
     - https://fontawesome.com/icons/dice?f=duotone&s=solid
     - https://game-icons.net/1x1/delapouite/dice-twenty-faces-twenty.html#download
     - https://favicon.io/favicon-converter/
+- Results
