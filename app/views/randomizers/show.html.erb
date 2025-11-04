@@ -9,7 +9,10 @@
 
   <%= render @randomizer %>
 
-  <%= render 'rolls/index' %>
+  <div class="rounded-lg border border-gray-300 bg-white p-4 shadow-sm">
+    <h2 class="text-lg font-semibold mb-2">Rolls</h2>
+    <%= render 'rolls/index' %>
+  </div>
 
   <%= link_to "Manage rolls", randomizer_rolls_path(@randomizer), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-blue-100 hover:bg-blue-50 inline-block font-medium" %>
   <%= link_to "Edit this randomizer", edit_randomizer_path(@randomizer), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
