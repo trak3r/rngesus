@@ -1,10 +1,10 @@
 <li id="<%= dom_id result %>" class="list-row">
   <div class="size-12 text-4xl font-thin opacity-30 tabular-nums text-center">
-    <%= result.value %>
+    <%= result.value || '?' %>
   </div>
   <div class="list-col-grow">
     <div>
-      <%= result.name %>
+      <%= result.name || 'Missing' %>
     </div>
     <div class="text-xs uppercase font-semibold opacity-60">
       Future subtext

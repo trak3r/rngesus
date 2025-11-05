@@ -3,4 +3,17 @@ class Roll < ApplicationRecord
   has_many :results
   validates :name, presence: true
   attribute :dice, :json, default: []
+
+  def combinations
+    # placeholder
+    4
+  end
+
+  def results_with_placeholders
+    temp = results
+    while temp.size < combinations
+      temp << results.build
+    end
+    return temp
+  end
 end
