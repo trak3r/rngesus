@@ -7,4 +7,23 @@
     <strong class="block font-medium mb-1">Dice:</strong>
     <%= roll.dice %>
   </div>
+
+
+<div class="flex space-x-2">
+  <!-- Coin button -->
+  <%= button_to "#", method: :get, class: "btn btn-square btn-ghost" do %>
+    <%= icon("circle-stack") %>
+  <% end %>
+
+  <!-- Triangle / Pyramid button -->
+  <%= button_to "#", method: :get, class: "btn btn-square btn-ghost" do %>
+    <%= icon("exclamation-triangle") %>
+  <% end %>
+
+  <!-- Square / Cube button -->
+  <%= button_to "#", method: :get, class: "btn btn-square btn-ghost" do %>
+    <%= icon("cube") %>
+  <% end %>
+</div>
+
 </div>
