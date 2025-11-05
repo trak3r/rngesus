@@ -68,3 +68,5 @@ group :test do
 end
 
 gem "rails_icons"
+
+gem "erb-formatter", "~> 0.7.3"

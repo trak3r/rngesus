@@ -110,6 +110,8 @@ GEM
     drb (2.2.3)
     ed25519 (1.4.0)
     erb (5.1.3)
+    erb-formatter (0.7.3)
+      syntax_tree (~> 6.0)
     erubi (1.13.1)
     et-orbi (1.4.0)
       tzinfo
@@ -206,6 +208,7 @@ GEM
       racc
     pp (0.6.3)
       prettyprint
+    prettier_print (1.2.1)
     prettyprint (0.2.0)
     prism (1.6.0)
     propshaft (1.3.1)
@@ -344,6 +347,8 @@ GEM
     stimulus-rails (1.3.4)
       railties (>= 6.0.0)
     stringio (3.1.7)
+    syntax_tree (6.3.0)
+      prettier_print (>= 1.2.0)
     tailwindcss-rails (4.4.0)
       railties (>= 7.0.0)
       tailwindcss-ruby (~> 4.0)
@@ -401,6 +406,7 @@ DEPENDENCIES
   bundler-audit
   capybara
   debug
+  erb-formatter (~> 0.7.3)
   image_processing (~> 1.2)
   importmap-rails
   kamal

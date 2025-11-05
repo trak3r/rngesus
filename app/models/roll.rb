@@ -8,6 +8,6 @@ class Roll < ApplicationRecord
     while temp.size < (dice || 2)
       temp << results.build
     end
-    return temp
+    temp
   end
 end

@@ -1,5 +1,10 @@
 <%= turbo_frame_tag dom_id(randomizer) do %>
-    <div class="block rounded-lg bg-white p-6 shadow-sm ring-1 ring-gray-900/5 hover:shadow-md group">
+  <div
+    class="
+      block rounded-lg bg-white p-6 shadow-sm ring-1 ring-gray-900/5 hover:shadow-md
+      group
+    "
+  >
     <div class="flex justify-between items-center">
       <%= link_to randomizer, data: { turbo_frame: "_top" }, class: "flex-grow" do %>
         <%= render randomizer %>

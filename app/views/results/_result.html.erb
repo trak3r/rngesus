@@ -1,19 +1,19 @@
 <li id="<%= dom_id result %>" class="list-row">
   <div class="size-12 text-4xl font-thin opacity-30 tabular-nums text-center">
-    <%= result.value || '?' %>
+    <%= result.value || "?" %>
   </div>
   <div class="list-col-grow">
     <div>
-      <%= result.name || 'Missing' %>
+      <%= result.name || "Missing" %>
     </div>
     <div class="text-xs uppercase font-semibold opacity-60">
       Future subtext
     </div>
   </div>
-<%= button_to new_randomizer_roll_result_path(result.roll.randomizer, result.roll, result),
+  <%= button_to new_randomizer_roll_result_path(result.roll.randomizer, result.roll, result),
               method: :delete,
               class: "btn btn-square btn-ghost",
               data: { turbo_confirm: "Are you sure?" } do %>
-  <%= icon("trash") %>
-<% end %>
+    <%= icon("trash") %>
+  <% end %>
 </li>

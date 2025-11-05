@@ -1,33 +1,33 @@
 <div id="<%= dom_id roll %>" class="w-full sm:w-auto my-5 space-y-5">
-<div class="flex items-center justify-between mb-1">
-  <strong class="font-medium">
-    <%= roll.name %>
-  </strong>
+  <div class="flex items-center justify-between mb-1">
+    <strong class="font-medium">
+      <%= roll.name %>
+    </strong>
 
-  <div class="flex gap-2">
-    <%= link_to edit_randomizer_roll_path(roll.randomizer, roll),
+    <div class="flex gap-2">
+      <%= link_to edit_randomizer_roll_path(roll.randomizer, roll),
       class: "btn btn-ghost btn-sm" do %>
-      <%= icon("pencil-square") %>
-    <% end %>
+        <%= icon("pencil-square") %>
+      <% end %>
 
-    <%= button_to randomizer_roll_path(roll.randomizer, roll),
+      <%= button_to randomizer_roll_path(roll.randomizer, roll),
       method: :delete,
       data: { turbo_confirm: "Are you sure?" },
       class: "btn btn-ghost btn-sm text-red-600 hover:text-red-800" do %>
-      <%= icon("trash") %>
-    <% end %>
+        <%= icon("trash") %>
+      <% end %>
+    </div>
   </div>
-</div>
 
-<% dice_options = [
-  { value: 2, icon: "circle-stack" },
-  { value: 4, icon: "exclamation-triangle" },
-  { value: 6, icon: "cube" }
-] %>
+  <% dice_options = [
+    { value: 2, icon: "circle-stack" },
+    { value: 4, icon: "exclamation-triangle" },
+    { value: 6, icon: "cube" },
+  ] %>
 
-<div class="flex space-x-2">
-  <% dice_options.each do |opt| %>
-    <%= button_to randomizer_roll_path(roll.randomizer, roll),
+  <div class="flex space-x-2">
+    <% dice_options.each do |opt| %>
+      <%= button_to randomizer_roll_path(roll.randomizer, roll),
       method: :patch,
       params: { roll: { name: roll.name, dice: opt[:value] }},
       class: [
@@ -35,10 +35,10 @@
         (roll.dice == opt[:value] ? "btn-primary" : "btn-ghost")
       ].join(" "),
       data: { turbo: true } do %>
-      <%= icon(opt[:icon]) %>
+        <%= icon(opt[:icon]) %>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
+  </div>
 
-      <%= render 'results/index', roll: roll %>
+  <%= render "results/index", roll: roll %>
 </div>
