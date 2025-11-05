@@ -60,8 +60,7 @@ class RollsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def roll_params
-      # params.expect(roll: [ :name, :dice ])
-      # FIXME: revisit this later apparently it's too loose
-      params.require(:roll).permit(:name, :dice)
+      # FIXME: can't update one param without all params
+      params.expect(roll: [ :name, :dice ])
     end
 end
