@@ -1,39 +1,29 @@
 <div id="<%= dom_id roll %>" class="w-full sm:w-auto my-5 space-y-5">
   <div>
-    <strong class="block font-medium mb-1">Name:</strong>
+    <strong class="block font-medium mb-1">
     <%= roll.name %>
-  </div>
-  <div>
-    <strong class="block font-medium mb-1">Dice:</strong>
-    <%= roll.dice %>
+    </strong>
   </div>
 
+<% dice_options = [
+  { value: 2, icon: "circle-stack" },
+  { value: 4, icon: "exclamation-triangle" },
+  { value: 6, icon: "cube" }
+] %>
 
 <div class="flex space-x-2">
-  <!-- Coin button: dice = 2 -->
-  <%= button_to randomizer_roll_path(roll.randomizer, roll),
-    method: :patch,
-    params: { roll: { name: roll.name, dice: 2 }},
-    class: "btn btn-square btn-ghost", data: { turbo: true } do %>
-    <%= icon("circle-stack") %>
-  <% end %>
-
-  <!-- Triangle / Pyramid button: dice = 4 -->
-  <%= button_to randomizer_roll_path(roll.randomizer, roll),
-    method: :patch,
-    params: { roll: { name: roll.name, dice: 4 }},
-    class: "btn btn-square btn-ghost", data: { turbo: true } do %>
-    <%= icon("exclamation-triangle") %>
-  <% end %>
-
-  <!-- Square / Cube button: dice = 6 -->
-  <%= button_to randomizer_roll_path(roll.randomizer, roll),
-    method: :patch,
-    params: { roll: { name: roll.name, dice: 6 }},
-    class: "btn btn-square btn-ghost", data: { turbo: true } do %>
-    <%= icon("cube") %>
+  <% dice_options.each do |opt| %>
+    <%= button_to randomizer_roll_path(roll.randomizer, roll),
+      method: :patch,
+      params: { roll: { name: roll.name, dice: opt[:value] }},
+      class: [
+        "btn btn-square",
+        (roll.dice == opt[:value] ? "btn-primary" : "btn-ghost")
+      ].join(" "),
+      data: { turbo: true } do %>
+      <%= icon(opt[:icon]) %>
+    <% end %>
   <% end %>
 </div>
-
 
 </div>
