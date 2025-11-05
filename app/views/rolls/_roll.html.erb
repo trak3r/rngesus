@@ -10,20 +10,30 @@
 
 
 <div class="flex space-x-2">
-  <!-- Coin button -->
-  <%= button_to "#", method: :get, class: "btn btn-square btn-ghost" do %>
+  <!-- Coin button: dice = 2 -->
+  <%= button_to randomizer_roll_path(roll.randomizer, roll),
+    method: :patch,
+    params: { dice: [2] },
+    class: "btn btn-square btn-ghost", data: { turbo: true } do %>
     <%= icon("circle-stack") %>
   <% end %>
 
-  <!-- Triangle / Pyramid button -->
-  <%= button_to "#", method: :get, class: "btn btn-square btn-ghost" do %>
+  <!-- Triangle / Pyramid button: dice = 4 -->
+  <%= button_to randomizer_roll_path(roll.randomizer, roll),
+    method: :patch,
+    params: { dice: [4] },
+    class: "btn btn-square btn-ghost", data: { turbo: true } do %>
     <%= icon("exclamation-triangle") %>
   <% end %>
 
-  <!-- Square / Cube button -->
-  <%= button_to "#", method: :get, class: "btn btn-square btn-ghost" do %>
+  <!-- Square / Cube button: dice = 6 -->
+  <%= button_to randomizer_roll_path(roll.randomizer, roll),
+    method: :patch,
+    params: { dice: [6] },
+    class: "btn btn-square btn-ghost", data: { turbo: true } do %>
     <%= icon("cube") %>
   <% end %>
 </div>
+
 
 </div>
