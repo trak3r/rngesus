@@ -3,6 +3,8 @@
 - Special Dice Types (2d6, with-advantage, etc.)
 - audit for vestigal scaffold files (and controller actions)
 - better styling with DaisyUI https://daisyui.com/components/list/
+- too many rubocop rules disabled; not cleaning up code
+- erb-format app/views/**/*.html.erb --write
 - Registration
 - Ownership of Randomizers
 - Share via links with GUID not raw ID
