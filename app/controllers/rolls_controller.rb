@@ -33,10 +33,10 @@ class RollsController < ApplicationController
 
   # PATCH/PUT /rolls/1
   def update
-    if @roll.update(roll_params)
-      redirect_to randomizer_roll_path(@roll.randomizer, @roll), notice: "Roll was successfully updated.", status: :see_other
-    else
-      render :edit, status: :unprocessable_content
+    @roll.update(roll_params)
+    # FIXME: error status
+    respond_to do |format|
+      format.turbo_stream
     end
   end
 
@@ -45,11 +45,6 @@ class RollsController < ApplicationController
     @roll.destroy!
     respond_to do |format|
       format.turbo_stream
-      format.html {
-        redirect_to randomizer_rolls_path(@roll.randomizer),
-          notice: "Roll was successfully destroyed.",
-          status: :see_other
-      }
     end
   end
 
@@ -65,6 +60,8 @@ class RollsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def roll_params
-      params.expect(roll: [ :name, :dice ])
+      # params.expect(roll: [ :name, :dice ])
+      # FIXME: revisit this later apparently it's too loose
+      params.require(:roll).permit(:name, :dice)
     end
 end
