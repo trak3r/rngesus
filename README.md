@@ -1,4 +1,6 @@
 # TODO
+- is this the proper way to do edit-in-place?
+    - https://nts.strzibny.name/single-attribute-in-place-editing-turbo/
 - Special Dice Types (2d6, with-advantage, etc.)
 - audit for vestigal scaffold files (and controller actions)
 - better styling with DaisyUI https://daisyui.com/components/list/

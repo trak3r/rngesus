@@ -9,7 +9,14 @@
 
     <!-- Left: Name -->
     <div class="flex-1">
-      <strong class="font-medium"><%= roll.name %></strong>
+
+
+      <%= turbo_frame_tag :roll_name do %>
+      <strong class="font-medium">
+        <%= link_to roll.name, edit_name_roll_path(roll) %>
+      </strong>
+      <% end %>
+
     </div>
 
     <!-- Center: Dice -->

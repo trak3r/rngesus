@@ -1,6 +1,6 @@
 class RollsController < ApplicationController
   before_action :set_randomizer, only: %i[ index new create ]
-  before_action :set_roll, only: %i[ show edit update destroy ]
+  before_action :set_roll, only: %i[ show edit edit_name update destroy ]
 
   # GET /rolls
   def index
@@ -18,6 +18,11 @@ class RollsController < ApplicationController
 
   # GET /rolls/1/edit
   def edit
+  end
+
+
+  # for edit-in-place gimmick
+  def edit_name
   end
 
   # POST /rolls
