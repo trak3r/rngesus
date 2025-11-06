@@ -1,5 +1,5 @@
 class RollsController < ApplicationController
-  before_action :set_randomizer
+  before_action :set_randomizer, only: %i[ index new create ]
   before_action :set_roll, only: %i[ show edit update destroy ]
 
   # GET /rolls
@@ -55,7 +55,7 @@ class RollsController < ApplicationController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_roll
-      @roll = @randomizer.rolls.find(params.expect(:id))
+      @roll = Roll.find(params.expect(:id))
     end
 
     # Only allow a list of trusted parameters through.
