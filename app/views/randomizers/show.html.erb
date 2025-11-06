@@ -14,10 +14,7 @@
 
   <%= render @randomizer %>
 
-  <div class="rounded-lg border border-gray-300 bg-white p-4 shadow-sm">
-    <h2 class="text-lg font-semibold mb-2">Rolls</h2>
-    <%= render "rolls/index", rolls: @randomizer.rolls %>
-  </div>
+  <%= render "rolls/index", rolls: @randomizer.rolls %>
 
   <%= link_to "Edit this randomizer",
   edit_randomizer_path(@randomizer),
