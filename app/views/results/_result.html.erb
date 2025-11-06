@@ -10,7 +10,7 @@
       Future subtext
     </div>
   </div>
-  <%= button_to new_randomizer_roll_result_path(result.roll.randomizer, result.roll, result),
+  <%= button_to new_roll_result_path(result.roll.randomizer, result.roll, result),
               method: :delete,
               class: "btn btn-square btn-ghost",
               data: { turbo_confirm: "Are you sure?" } do %>

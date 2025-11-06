@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   resources :examples
   resources :randomizers do
-    resources :rolls do
-      resources :results
+    resources :rolls, shallow: true do
+      resources :results, shallow: true
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

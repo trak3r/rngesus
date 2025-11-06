@@ -1,5 +1,4 @@
 # TODO
-- switch to "shallow" nesting for routes
 - Dice Types
 - Special Dice Types (2d6, with-advantage, etc.)
 - audit for vestigal scaffold files (and controller actions)

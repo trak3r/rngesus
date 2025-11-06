@@ -5,12 +5,12 @@
     </strong>
 
     <div class="flex gap-2">
-      <%= link_to edit_randomizer_roll_path(roll.randomizer, roll),
+      <%= link_to edit_roll_path(roll.randomizer, roll),
       class: "btn btn-ghost btn-sm" do %>
         <%= icon("pencil-square") %>
       <% end %>
 
-      <%= button_to randomizer_roll_path(roll.randomizer, roll),
+      <%= button_to roll_path(roll.randomizer, roll),
       method: :delete,
       data: { turbo_confirm: "Are you sure?" },
       class: "btn btn-ghost btn-sm text-red-600 hover:text-red-800" do %>
@@ -27,7 +27,7 @@
 
   <div class="flex space-x-2">
     <% dice_options.each do |opt| %>
-      <%= button_to randomizer_roll_path(roll.randomizer, roll),
+      <%= button_to roll_path(roll.randomizer, roll),
       method: :patch,
       params: { roll: { name: roll.name, dice: opt[:value] }},
       class: [
