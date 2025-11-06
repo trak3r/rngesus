@@ -2,10 +2,7 @@
   <% if rolls.any? %>
     <% rolls.each do |roll| %>
       <div
-        class="
-          flex flex-col sm:flex-row justify-between items-center pb-5 sm:pb-0
-        "
-      >
+        class="flex flex-col sm:flex-row justify-between items-center pb-5 sm:pb-0" >
         <%= render roll %>
       </div>
     <% end %>
