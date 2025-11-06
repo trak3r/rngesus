@@ -1,4 +1,4 @@
-<%= turbo_frame_tag :roll_name do %>
+<%= turbo_frame_tag dom_id(@roll, :name) do %>
   <%= form_with model: @roll, url: roll_path(@roll) do |form| %>
     <%= form.text_field :name %>
     <%= form.submit "Save" %>
