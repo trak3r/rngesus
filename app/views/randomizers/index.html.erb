@@ -1,28 +1,21 @@
 <% content_for :title, "Randomizers" %>
 
-<div class="w-full">
+<div class="w-full max-w-5xl mx-auto py-8 px-4">
   <% if notice.present? %>
     <p
-      class="
-        py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block
-      "
       id="notice"
+      class="py-2 px-4 mb-6 bg-green-100 text-green-700 font-medium rounded-lg shadow-sm"
     ><%= notice %></p>
   <% end %>
 
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Randomizers</h1>
-    <%= link_to "New randomizer",
-    new_randomizer_path,
-    class:
-      "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="font-extrabold text-4xl text-gray-900">Randomizers</h1>
+    <%= link_to "New Randomizer", new_randomizer_path, class: "btn btn-primary btn-sm px-4 py-2" %>
   </div>
 
-  <div id="randomizers" class="min-w-full divide-y divide-gray-200 space-y-5">
-    <ul id="randomizers" class="list bg-base-100 rounded-box shadow-md">
-      <% @randomizers.each do |randomizer| %>
-        <%= render randomizer %>
-      <% end %>
-    </ul>
-  </div>
+  <ul id="randomizers" class="space-y-4">
+    <% @randomizers.each do |randomizer| %>
+      <%= render randomizer %>
+    <% end %>
+  </ul>
 </div>
