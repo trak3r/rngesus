@@ -15,11 +15,7 @@
   <%= render @result %>
 
   <%= link_to "Edit this result",
-  edit_result_path(
-    @result.roll.randomizer,
-    @result.roll,
-    @result,
-  ),
+  edit_result_path(@result.roll.randomizer, @result.roll, @result),
   class:
     "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
   <%= link_to "Back to results",

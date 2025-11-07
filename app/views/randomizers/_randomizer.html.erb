@@ -1,4 +1,7 @@
-<div id="<%= dom_id randomizer %>" class="w-full flex items-center justify-between py-4 border-b">
+<div
+  id="<%= dom_id randomizer %>"
+  class="w-full flex items-center justify-between py-4 border-b"
+>
   <%= link_to randomizer_path(randomizer), class: "text-2xl font-semibold text-blue-600 hover:underline" do %>
     <%= randomizer.name %>
   <% end %>

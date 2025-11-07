@@ -6,19 +6,16 @@
 
 <div id="<%= dom_id roll %>" class="w-full my-5">
   <div class="flex items-center justify-between w-full">
-
     <!-- Left: Name -->
     <div class="flex-1">
 
-
       <%= turbo_frame_tag dom_id(roll, :name) do %>
-      <strong class="font-medium">
-        <%= link_to roll.name, edit_name_roll_path(roll) %>
-      </strong>
+        <strong class="font-medium">
+          <%= link_to roll.name, edit_name_roll_path(roll) %>
+        </strong>
       <% end %>
 
     </div>
-
     <!-- Center: Dice -->
     <div class="flex justify-center flex-1 space-x-2">
       <% dice_options.each do |opt| %>
@@ -34,7 +31,6 @@
         <% end %>
       <% end %>
     </div>
-
     <!-- Right: Edit/Delete -->
     <div class="flex justify-end flex-1 gap-2">
       <%= link_to edit_roll_path(roll),
@@ -51,7 +47,6 @@
     </div>
 
   </div>
-
   <!-- Results below -->
   <%= render "results/index", roll: roll %>
 </div>
