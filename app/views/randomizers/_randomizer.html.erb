@@ -1,7 +1,12 @@
-<div id="<%= dom_id randomizer %>" class="w-full sm:w-auto my-5 space-y-5">
-  <div>
-    <strong class="block font-medium mb-1 text-4xl">
+<div id="<%= dom_id randomizer %>" class="w-full flex items-center justify-between py-4 border-b">
+  <%= link_to randomizer_path(randomizer), class: "text-2xl font-semibold text-blue-600 hover:underline" do %>
     <%= randomizer.name %>
-    </strong>
-  </div>
+  <% end %>
+
+  <%= button_to randomizer,
+      method: :delete,
+      data: { turbo_confirm: "Are you sure?" },
+      class: "btn btn-ghost text-red-600 hover:text-red-500" do %>
+    <%= icon "trash", class: "w-6 h-6" %>
+  <% end %>
 </div>
