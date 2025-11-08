@@ -1,3 +1,10 @@
 <div id="<%= dom_id roll %>" class="w-full sm:w-auto my-5 space-y-5">
-  <h2><%= roll.name || "?" %></h2>
+  <div>
+    <strong class="block font-medium mb-1">Name:</strong>
+    <%= roll.name %>
+  </div>
+  <div>
+    <strong class="block font-medium mb-1">Dice:</strong>
+    <%= roll.dice %>
+  </div>
 </div>
