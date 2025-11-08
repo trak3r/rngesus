@@ -53,6 +53,6 @@ class ResultsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def result_params
-      params.fetch(:result, {})
+      params.expect(result: [ :name ])
     end
 end
