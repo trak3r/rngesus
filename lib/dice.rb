@@ -1,0 +1,44 @@
+# FIXME: should this be in value_objects ?
+class Dice
+  # Define the attributes as readable only (immutable after initialization)
+  attr_reader :name, :value, :icon
+
+  # Private initialization ensures instances are only created internally
+  private_class_method :new
+
+  # The @@all class variable holds the immutable, pre-defined instances
+  @@all = []
+
+  # Internal factory method to create and store instances
+  def self.register(name, value, icon)
+    instance = new(name, value, icon)
+    @@all << instance
+    instance
+  end
+
+  # Public method to retrieve all pre-defined instances
+  def self.all
+    @@all.freeze # Optional: Ensures the array of instances can't be modified externally
+  end
+
+  # The private constructor for internal use
+  private
+
+  def initialize(name, value, icon)
+    @name = name.freeze  # Freeze string to ensure immutability
+    @value = value
+    @icon = icon
+  end
+end
+
+# --- Define the Immutable Instances ---
+
+# Register the pre-defined dice instances
+Dice.register("Coin", 2, 'circle-stack')
+Dice.register("D4", 4, 'exclamation-triangle')
+Dice.register("D6", 6, 'cube')
+Dice.register("D8", 8, 'beaker')
+Dice.register("D10", 10, 'square-3-stack-3d')
+Dice.register("D12", 12, 'stop-circle')
+Dice.register("D20", 20, 'variable')
+Dice.register("D100", 100, 'trophy') # Could be useful for a percentile system

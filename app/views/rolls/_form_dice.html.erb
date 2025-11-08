@@ -1,22 +1,13 @@
   <div class="flex items-center gap-4">
-    <% [
-      [2,"circle-stack"],
-      [4,"exclamation-triangle"],
-      [6,"cube"],
-      [8,"beaker"],
-      [10,"square-3-stack-3d"],
-      [12,"stop-circle"],
-      [20,"variable"],
-      [100,"trophy"],
-    ].each do |value, icon_name| %>
+    <% Dice.all.each do |dice| %>
       <label class="cursor-pointer flex flex-col items-center">
-        <%= form.radio_button :dice, value, checked: roll.dice == value %>
-        <% is_selected = roll.dice == value %>
+        <%= form.radio_button :dice, dice.value, checked: roll.dice == dice.value %>
+        <% is_selected = roll.dice == dice.value %>
         <div class="p-2 rounded-md border-2
                     <%= is_selected ? 'border-blue-600' : 'border-gray-300 hover:border-blue-500' %>">
-          <%= icon icon_name %>
+          <%= icon dice.icon %>
         </div>
-        <span class="text-sm mt-1"><%= value %></span>
+        <span class="text-sm mt-1"><%= dice.value %></span>
       </label>
     <% end %>
   </div>
