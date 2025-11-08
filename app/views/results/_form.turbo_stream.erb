@@ -1,5 +1,10 @@
 <%= turbo_frame_tag dom_id(result) do %>
-  <%= form_with(model: result, class: "flex items-center gap-2 w-full") do |form| %>
+  <%= form_with(
+        model: result,
+        url: result.persisted? ? result_path(result.roll, result) : roll_results_path(result.roll),
+        method: result.persisted? ? :patch : :post,
+        class: "flex items-center gap-2 w-full"
+      ) do |form| %>
 
     <!-- Value (2-digit number) -->
     <div class="w-16 flex-shrink-0">
@@ -34,16 +39,16 @@
     <!-- Save (icon only) -->
     <%= form.button type: "submit",
       class: "btn btn-ghost text-blue-600 hover:text-blue-800" do %>
-      <%= icon("bookmark") %>
+      <%= icon "bookmark" %>
     <% end %>
 
-    <!-- Delete -->
+    <!-- Delete (only if persisted) -->
     <% if result.persisted? %>
       <%= link_to result_path(result),
         method: :delete,
         data: { turbo_confirm: "Are you sure?" },
         class: "btn btn-ghost text-red-600 hover:text-red-800" do %>
-        <%= icon("trash") %>
+        <%= icon "trash" %>
       <% end %>
     <% end %>
 

@@ -1,5 +1,4 @@
 class ResultsController < ApplicationController
-  before_action :set_randomizer
   before_action :set_roll
   before_action :set_result, only: %i[ show edit update destroy ]
 
@@ -52,12 +51,8 @@ class ResultsController < ApplicationController
   end
 
   private
-    def set_randomizer
-      @randomizer = Randomizer.find(params.expect(:randomizer_id))
-    end
-
     def set_roll
-      @roll = @randomizer.rolls.find(params.expect(:roll_id))
+      @roll = Roll.find(params.expect(:roll_id))
     end
 
     # Use callbacks to share common setup or constraints between actions.
