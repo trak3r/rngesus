@@ -21,6 +21,12 @@ class Dice
     @@all.freeze # Optional: Ensures the array of instances can't be modified externally
   end
 
+  def self.find(target_value)
+    # Enumerable#find iterates over the array and returns the *first*
+    # element for which the block evaluates to true.
+    @@all.find { |dice_instance| dice_instance.value == target_value }
+  end
+
   # The private constructor for internal use
   private
 
