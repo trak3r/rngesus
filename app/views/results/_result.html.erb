@@ -4,10 +4,7 @@
   </div>
   <div class="list-col-grow">
     <div>
-      <%= result.name || "Missing" %>
-    </div>
-    <div class="text-xs uppercase font-semibold opacity-60">
-      Future subtext
+      <%= result.name %>
     </div>
   </div>
   <%= button_to new_roll_result_path(result.roll.randomizer, result.roll, result),

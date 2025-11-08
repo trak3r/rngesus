@@ -24,20 +24,24 @@ class ResultsController < ApplicationController
   # POST /results
   def create
     @result = @roll.results.build(result_params)
-
-    if @result.save
-      redirect_to randomizer_roll_result_path(@result.roll.randomizer, @result.roll, @result), notice: "Result was successfully created."
-    else
-      render :new, status: :unprocessable_content
+    @result.save
+    # FIXME: error status
+    respond_to do |format|
+      format.turbo_stream do
+        render 'form'
+      end
     end
   end
 
   # PATCH/PUT /results/1
   def update
-    if @result.update(result_params)
-      redirect_to randomizer_roll_result_path(@result.roll.randomizer, @result.roll, @result), notice: "Result was successfully updated.", status: :see_other
-    else
-      render :edit, status: :unprocessable_content
+    @result.update(result_params)
+    @result.save
+    # FIXME: error status
+    respond_to do |format|
+      format.turbo_stream do
+        render 'form'
+      end
     end
   end
 

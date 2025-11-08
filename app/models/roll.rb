@@ -6,7 +6,7 @@ class Roll < ApplicationRecord
   def results_with_placeholders
     temp = results
     while temp.size < (dice || 2)
-      temp << results.build
+      temp << results.build(name: "Placeholder")
     end
     temp
   end
