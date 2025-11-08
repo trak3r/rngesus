@@ -42,7 +42,8 @@ class ResultsController < ApplicationController
   # DELETE /results/1
   def destroy
     @result.destroy!
-    redirect_to results_path, notice: "Result was successfully destroyed.", status: :see_other
+    # redirect_to results_path, notice: "Result was successfully destroyed.", status: :see_other
+    redirect_to roll_path(@result.roll), notice: "Result was successfully destroyed.", status: :see_other
   end
 
   private
