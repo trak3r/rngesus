@@ -1,5 +1,14 @@
   <div class="flex items-center gap-4">
-    <% [[2,"circle-stack"], [4,"exclamation-triangle"], [6,"cube"]].each do |value, icon_name| %>
+    <% [
+      [2,"circle-stack"],
+      [4,"exclamation-triangle"],
+      [6,"cube"],
+      [8,"beaker"],
+      [10,"square-3-stack-3d"],
+      [12,"stop-circle"],
+      [20,"variable"],
+      [100,"trophy"],
+    ].each do |value, icon_name| %>
       <label class="cursor-pointer flex flex-col items-center">
         <%= form.radio_button :dice, value, class: "hidden", checked: roll.dice == value %>
         <div class="p-2 rounded-md border-2 border-gray-300 hover:border-blue-500
