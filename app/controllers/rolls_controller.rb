@@ -53,6 +53,6 @@ class RollsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def roll_params
-      params.fetch(:roll, {})
+      params.expect(roll: [ :name ])
     end
 end
