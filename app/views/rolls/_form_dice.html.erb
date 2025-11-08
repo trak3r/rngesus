@@ -9,14 +9,14 @@
       [20,"variable"],
       [100,"trophy"],
     ].each do |value, icon_name| %>
-      <label class="cursor-pointer flex flex-col items-center">
-        <%= form.radio_button :dice, value, class: "hidden", checked: roll.dice == value %>
-        <div class="p-2 rounded-md border-2 border-gray-300 hover:border-blue-500
-                    <%= "border-blue-600" if roll.dice == value %>">
-          <%= icon icon_name %>
-        </div>
-        <span class="text-sm mt-1"><%= value %></span>
-      </label>
-    <% end %>
+  <label class="cursor-pointer flex flex-col items-center">
+    <%= form.radio_button :dice, value, checked: roll.dice == value %>
+    <% is_selected = roll.dice == value %>
+    <div class="p-2 rounded-md border-2
+                <%= is_selected ? 'border-blue-600' : 'border-gray-300 hover:border-blue-500' %>">
+      <%= icon icon_name %>
+    </div>
+    <span class="text-sm mt-1"><%= value %></span>
+  </label>    <% end %>
   </div>
 
