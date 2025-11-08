@@ -17,7 +17,7 @@ class RollsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create roll" do
     assert_difference("Roll.count") do
-      post rolls_url, params: { roll: { dice: @roll.dice, name: @roll.name } }
+      post rolls_url, params: { roll: {} }
     end
 
     assert_redirected_to roll_url(Roll.last)
@@ -34,7 +34,7 @@ class RollsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update roll" do
-    patch roll_url(@roll), params: { roll: { dice: @roll.dice, name: @roll.name } }
+    patch roll_url(@roll), params: { roll: {} }
     assert_redirected_to roll_url(@roll)
   end
 
