@@ -1,10 +1,9 @@
 class ResultsController < ApplicationController
-  before_action :set_roll
   before_action :set_result, only: %i[ show edit update destroy ]
 
   # GET /results
   def index
-    @results = @roll.results
+    @results = Result.all
   end
 
   # GET /results/1
@@ -13,7 +12,7 @@ class ResultsController < ApplicationController
 
   # GET /results/new
   def new
-    @result = @roll.results.build
+    @result = Result.new
   end
 
   # GET /results/1/edit
@@ -22,46 +21,39 @@ class ResultsController < ApplicationController
 
   # POST /results
   def create
-    @result = @roll.results.build(result_params)
-    @result.save
-    # FIXME: error status
-    respond_to do |format|
-      format.turbo_stream do
-        render 'form'
-      end
+    @result = Result.new(result_params)
+
+    if @result.save
+      redirect_to @result, notice: "Result was successfully created."
+    else
+      render :new, status: :unprocessable_content
     end
   end
 
   # PATCH/PUT /results/1
   def update
-    @result.update(result_params)
-    @result.save
-    # FIXME: error status
-    respond_to do |format|
-      format.turbo_stream do
-        render 'form'
-      end
+    if @result.update(result_params)
+      redirect_to @result, notice: "Result was successfully updated.", status: :see_other
+    else
+      render :edit, status: :unprocessable_content
     end
   end
 
   # DELETE /results/1
   def destroy
     @result.destroy!
-    redirect_to results_path, notice: "Result was successfully destroyed.", status: :see_other
+    # redirect_to results_path, notice: "Result was successfully destroyed.", status: :see_other
+    redirect_to roll_path(@result.roll), notice: "Result was successfully destroyed.", status: :see_other
   end
 
   private
-    def set_roll
-      @roll = Roll.find(params.expect(:roll_id))
-    end
-
     # Use callbacks to share common setup or constraints between actions.
     def set_result
-      @result = @roll.results.find(params.expect(:id))
+      @result = Result.find(params.expect(:id))
     end
 
     # Only allow a list of trusted parameters through.
     def result_params
-      params.expect(result: [ :name, :value ])
+      params.expect(result: [ :name ])
     end
 end

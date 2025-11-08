@@ -1,16 +1,10 @@
-<li id="<%= dom_id result %>" class="list-row">
-  <div class="size-12 text-4xl font-thin opacity-30 tabular-nums text-center">
-    <%= result.value || "?" %>
+<div id="<%= dom_id result %>" class="w-full sm:w-auto my-5 space-y-5">
+  <div>
+    <strong class="block font-medium mb-1">Name:</strong>
+    <%= result.name %>
   </div>
-  <div class="list-col-grow">
-    <div>
-      <%= result.name %>
-    </div>
+  <div>
+    <strong class="block font-medium mb-1">Value:</strong>
+    <%= result.value %>
   </div>
-  <%= button_to new_roll_result_path(result.roll.randomizer, result.roll, result),
-              method: :delete,
-              class: "btn btn-square btn-ghost",
-              data: { turbo_confirm: "Are you sure?" } do %>
-    <%= icon("trash") %>
-  <% end %>
-</li>
+</div>

@@ -1,52 +1,10 @@
-<% dice_options = [
-  { value: 2, icon: "circle-stack" },
-  { value: 4, icon: "exclamation-triangle" },
-  { value: 6, icon: "cube" },
-] %>
-
-<div id="<%= dom_id roll %>" class="w-full my-5">
-  <div class="flex items-center justify-between w-full">
-    <!-- Left: Name -->
-    <div class="flex-1">
-
-      <%= turbo_frame_tag dom_id(roll, :name) do %>
-        <strong class="font-medium">
-          <%= link_to roll.name, edit_name_roll_path(roll) %>
-        </strong>
-      <% end %>
-
-    </div>
-    <!-- Center: Dice -->
-    <div class="flex justify-center flex-1 space-x-2">
-      <% dice_options.each do |opt| %>
-        <%= button_to roll_path(roll.randomizer, roll),
-          method: :patch,
-          params: { roll: { name: roll.name, dice: opt[:value] }},
-          class: [
-            "btn btn-square",
-            (roll.dice == opt[:value] ? "btn-primary" : "btn-ghost")
-          ].join(" "),
-          data: { turbo: true } do %>
-          <%= icon(opt[:icon]) %>
-        <% end %>
-      <% end %>
-    </div>
-    <!-- Right: Edit/Delete -->
-    <div class="flex justify-end flex-1 gap-2">
-      <%= link_to edit_roll_path(roll),
-        class: "btn btn-ghost btn-sm" do %>
-        <%= icon("pencil-square") %>
-      <% end %>
-
-      <%= button_to roll_path(roll),
-        method: :delete,
-        data: { turbo_confirm: "Are you sure?" },
-        class: "btn btn-ghost btn-sm text-red-600 hover:text-red-800" do %>
-        <%= icon("trash") %>
-      <% end %>
-    </div>
-
+<div id="<%= dom_id roll %>" class="w-full sm:w-auto my-5 space-y-5">
+  <div>
+    <strong class="block font-medium mb-1">Name:</strong>
+    <%= roll.name %>
   </div>
-  <!-- Results below -->
-  <%= render "results/index", roll: roll %>
+  <div>
+    <strong class="block font-medium mb-1">Dice:</strong>
+    <%= roll.dice %>
+  </div>
 </div>

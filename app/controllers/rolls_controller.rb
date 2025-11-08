@@ -1,10 +1,9 @@
 class RollsController < ApplicationController
-  before_action :set_randomizer, only: %i[ index new create ]
-  before_action :set_roll, only: %i[ show edit edit_name update destroy ]
+  before_action :set_roll, only: %i[ show edit update destroy ]
 
   # GET /rolls
   def index
-    @rolls = @randomizer.rolls
+    @rolls = Roll.all
   end
 
   # GET /rolls/1
@@ -13,24 +12,19 @@ class RollsController < ApplicationController
 
   # GET /rolls/new
   def new
-    @roll = @randomizer.rolls.build
+    @roll = Roll.new
   end
 
   # GET /rolls/1/edit
   def edit
   end
 
-
-  # for edit-in-place gimmick
-  def edit_name
-  end
-
   # POST /rolls
   def create
-    @roll = @randomizer.rolls.build(roll_params)
+    @roll = Roll.new(roll_params)
 
     if @roll.save
-      redirect_to randomizer_roll_path(@roll.randomizer, @roll), notice: "Roll was successfully created."
+      redirect_to @roll, notice: "Roll was successfully created."
     else
       render :new, status: :unprocessable_content
     end
@@ -38,26 +32,20 @@ class RollsController < ApplicationController
 
   # PATCH/PUT /rolls/1
   def update
-    @roll.update(roll_params)
-    # FIXME: error status
-    respond_to do |format|
-      format.turbo_stream
+    if @roll.update(roll_params)
+      redirect_to @roll, notice: "Roll was successfully updated.", status: :see_other
+    else
+      render :edit, status: :unprocessable_content
     end
   end
 
   # DELETE /rolls/1
   def destroy
     @roll.destroy!
-    respond_to do |format|
-      format.turbo_stream
-    end
+    redirect_to rolls_path, notice: "Roll was successfully destroyed.", status: :see_other
   end
 
   private
-    def set_randomizer
-      @randomizer = Randomizer.find(params.expect(:randomizer_id))
-    end
-
     # Use callbacks to share common setup or constraints between actions.
     def set_roll
       @roll = Roll.find(params.expect(:id))
@@ -65,7 +53,6 @@ class RollsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def roll_params
-      # FIXME: can't update one param without all params
-      params.expect(roll: [ :name, :dice ])
+      params.expect(roll: [ :name ])
     end
 end
