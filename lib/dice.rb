@@ -30,11 +30,11 @@ class Dice
   # The private constructor for internal use
   private
 
-  def initialize(name, value, icon)
-    @name = name.freeze  # Freeze string to ensure immutability
-    @value = value
-    @icon = icon
-  end
+    def initialize(name, value, icon)
+      @name = name.freeze  # Freeze string to ensure immutability
+      @value = value
+      @icon = icon
+    end
 end
 
 # --- Define the Immutable Instances ---

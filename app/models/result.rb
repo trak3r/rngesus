@@ -7,13 +7,13 @@ class Result < ApplicationRecord
 
   private
 
-  def value_within_dice_range
-    return if value.blank? || roll.blank?
+    def value_within_dice_range
+      return if value.blank? || roll.blank?
 
-    if value <= 0
-      errors.add(:value, "must be greater than 0")
-    elsif roll.dice && value > roll.dice
-      errors.add(:value, "must be less than or equal to #{roll.dice}")
+      if value <= 0
+        errors.add(:value, "must be greater than 0")
+      elsif roll.dice && value > roll.dice
+        errors.add(:value, "must be less than or equal to #{roll.dice}")
+      end
     end
-  end
 end
