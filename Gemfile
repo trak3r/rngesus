@@ -65,6 +65,8 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+  gem "guard" # so we can auto-run tests when the files change
+  gem 'guard-minitest', require: false
 end
 
 gem "rails_icons"
