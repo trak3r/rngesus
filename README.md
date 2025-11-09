@@ -1,10 +1,7 @@
 # TODO
-- is this the proper way to do edit-in-place?
-    - https://nts.strzibny.name/single-attribute-in-place-editing-turbo/
 - Special Dice Types (2d6, with-advantage, etc.)
-- audit for vestigal scaffold files (and controller actions)
+- easy way to combine randomizer and roll together (e.g. forest encounter monster and reaction tables)
 - better styling with DaisyUI https://daisyui.com/components/list/
-- too many rubocop rules disabled; not cleaning up code
 - erb-format app/views/**/*.html.erb --write
 - Registration
 - Ownership of Randomizers
@@ -33,3 +30,7 @@
     - https://favicon.io/favicon-converter/
 - Results
 - Dice Types
+- is this the proper way to do edit-in-place?
+    - https://nts.strzibny.name/single-attribute-in-place-editing-turbo/
+- audit for vestigal scaffold files (and controller actions)
+- too many rubocop rules disabled; not cleaning up code
