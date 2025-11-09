@@ -19,7 +19,7 @@ class ResultsControllerTest < ActionDispatch::IntegrationTest
     assert_difference("Result.count") do
       post roll_results_url(@result.roll), params: { result: {
         name: "far",
-      value: 2
+        value: 2
       } }
     end
 
