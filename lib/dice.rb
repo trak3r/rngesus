@@ -21,14 +21,20 @@ class Dice
   # --- Public API ---
 
   def min
-    values.map { |v| zero_based?(v) ? 0 : 1 }.sum
+    if percentile_d100?
+      1
+    elsif strategy == :position
+      values.map { |v| zero_based?(v) ? 0 : 1 }.join.to_i
+    else
+      values.sum { |v| zero_based?(v) ? 0 : 1 }
+    end
   end
 
   def max
-    if strategy == :position
-      # For each die, take max possible value for this die
-      max_digits = values.map { |v| zero_based?(v) ? v - 1 : v }
-      max_digits.join.to_i
+    if percentile_d100?
+      100
+    elsif strategy == :position
+      values.map { |v| zero_based?(v) ? v - 1 : v }.join.to_i
     else
       values.sum { |v| zero_based?(v) ? v - 1 : v }
     end
@@ -37,7 +43,13 @@ class Dice
   def roll
     if strategy == :position
       digits = values.map { |v| rand(die_range(v)) }
-      digits.join.to_i
+
+      # Special case: D100 percentile
+      if percentile_d100? && digits.all?(&:zero?)
+        100
+      else
+        digits.join.to_i
+      end
     else
       values.sum { |v| rand(die_range(v)) }
     end
@@ -52,14 +64,19 @@ class Dice
     @strategy = strategy
   end
 
-  # Returns true if this die should be zero-based (d10)
+  # Returns true if the die is zero-based (d10)
   def zero_based?(faces)
     faces == 10
   end
 
-  # Returns the correct range for a die: 0..9 for d10, 1..faces otherwise
+  # Returns the correct range for a die
   def die_range(faces)
     zero_based?(faces) ? (0..9) : (1..faces)
+  end
+
+  # True if this is a D100 percentile die (two d10s)
+  def percentile_d100?
+    values == [10, 10] && strategy == :position
   end
 end
 
