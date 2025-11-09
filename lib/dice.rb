@@ -43,6 +43,7 @@ end
 Dice.register("Coin", 2, "coins")
 Dice.register("D4", 4, "triangle")
 Dice.register("D6", 6, "cube")
+Dice.register("2D6", 6, "cube-plus")
 Dice.register("D8", 8, "pentagon-number-8")
 Dice.register("D10", 10, "square-rounded-percentage")
 Dice.register("D12", 12, "clock")
