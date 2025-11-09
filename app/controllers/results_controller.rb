@@ -4,7 +4,7 @@ class ResultsController < ApplicationController
 
   # GET /results
   def index
-    @results = @roll.results
+    # @results = Result.all
   end
 
   # GET /results/1

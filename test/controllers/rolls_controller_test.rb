@@ -18,8 +18,8 @@ class RollsControllerTest < ActionDispatch::IntegrationTest
   test "should create roll" do
     assert_difference("Roll.count") do
       post randomizer_rolls_url(@roll.randomizer), params: { roll: {
-      name: 'Mood',
-      dice: '2D6'
+        name: "Mood",
+      dice: "2D6"
       } }
     end
 
@@ -38,8 +38,8 @@ class RollsControllerTest < ActionDispatch::IntegrationTest
 
   test "should update roll" do
     patch roll_url(@roll), params: { roll: {
-      name: 'Mood',
-      dice: '2D6'
+      name: "Mood",
+      dice: "2D6"
     } }
     assert_redirected_to roll_url(@roll)
   end
