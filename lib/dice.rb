@@ -1,77 +1,76 @@
-# FIXME: should this be in values_objects ?
 class Dice
-  # Define the attributes as readable only (immutable after initialization)
-  # FIXME: rename values to sides
   attr_reader :name, :values, :icon, :strategy
 
-  # Private initialization ensures instances are only created internally
   private_class_method :new
-
-  # The @@all class variable holds the immutable, pre-defined instances
   @@all = []
 
-  # Internal factory method to create and store instances
   def self.register(name, values, icon, strategy = :sum)
     instance = new(name, values, icon, strategy)
     @@all << instance
     instance
   end
 
-  # Public method to retrieve all pre-defined instances
   def self.all
-    @@all.freeze # Optional: Ensures the array of instances can't be modified externally
+    @@all.freeze
   end
 
   def self.find(name)
-    # Enumerable#find iterates over the array and returns the *first*
-    # element for which the block evaluates to true.
     @@all.find { |dice_instance| dice_instance.name == name }
   end
 
+  # --- Public API ---
+
   def min
-    values.size
+    values.map { |v| zero_based?(v) ? 0 : 1 }.sum
   end
 
   def max
-    if @strategy == :position
-      # For each die, take the highest possible roll and concatenate
-      max_digits = values.map(&:to_i).map { |faces| faces }
-    max_digits.join.to_i
+    if strategy == :position
+      # For each die, take max possible value for this die
+      max_digits = values.map { |v| zero_based?(v) ? v - 1 : v }
+      max_digits.join.to_i
     else
-      values.sum
+      values.sum { |v| zero_based?(v) ? v - 1 : v }
     end
   end
 
   def roll
-    if @strategy == :position
-      # Roll each die in order and concatenate the results into a number
-      digits = values.map { |highest_face| rand(1..highest_face) }
-    digits.join.to_i
-    else # assume :sum
-      values.sum { |highest_face| rand(1..highest_face) }
+    if strategy == :position
+      digits = values.map { |v| rand(die_range(v)) }
+      digits.join.to_i
+    else
+      values.sum { |v| rand(die_range(v)) }
     end
   end
 
-  # The private constructor for internal use
   private
 
-    def initialize(name, values, icon, strategy)
-      @name = name.freeze  # Freeze string to ensure immutability
-      @values = [ values ].flatten
-      @icon = icon
-      @strategy = strategy
-    end
+  def initialize(name, values, icon, strategy)
+    @name = name.freeze
+    @values = [values].flatten
+    @icon = icon
+    @strategy = strategy
+  end
+
+  # Returns true if this die should be zero-based (d10)
+  def zero_based?(faces)
+    faces == 10
+  end
+
+  # Returns the correct range for a die: 0..9 for d10, 1..faces otherwise
+  def die_range(faces)
+    zero_based?(faces) ? (0..9) : (1..faces)
+  end
 end
 
-# --- Define the Immutable Instances ---
-
-# Register the pre-defined dice instances
+# --- Register Dice ---
 Dice.register("Coin", 2, "coins")
 Dice.register("D4", 4, "triangle")
 Dice.register("D6", 6, "cube")
-Dice.register("2D6", [ 6, 6 ], "cube-plus")
+Dice.register("2D6", [6,6], "cube-plus")
 Dice.register("D8", 8, "pentagon-number-8")
 Dice.register("D10", 10, "square-rounded-percentage")
 Dice.register("D12", 12, "clock")
 Dice.register("D20", 20, "ikosaedr")
-Dice.register("D100", [ 10, 10 ], "trophy", :position)
+Dice.register("D100", [10,10], "trophy", :position)
+
