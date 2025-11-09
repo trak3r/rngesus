@@ -7,7 +7,7 @@
   <!-- Rolls -->
   <div class="grid gap-6">
     <% @randomizer.rolls.each do |roll| %>
-      <% result = roll.outcome %>
+      <% rolled, result = roll.outcome %>
       <div class="card bg-base-100 shadow-lg border border-gray-200 p-6 hover:shadow-xl transition-shadow duration-300 flex flex-col items-center">
         <!-- Outcome Result: Primary Focus -->
         <div class="text-3xl font-extrabold text-primary mb-2">
@@ -17,6 +17,10 @@
         <!-- Roll Name: Subtle Subtext -->
         <div class="text-gray-500 text-sm">
           <%= roll.name %>
+          &middot;
+          <%= roll.dice_object.name %>
+          &middot;
+          <%= rolled %>
         </div>
       </div>
     <% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_11_05_193726) do
+ActiveRecord::Schema[8.1].define(version: 2025_11_09_162433) do
   create_table "examples", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "name"
@@ -35,7 +35,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_05_193726) do
 
   create_table "rolls", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.integer "dice"
+    t.string "dice"
     t.string "name"
     t.integer "randomizer_id", null: false
     t.datetime "updated_at", null: false
