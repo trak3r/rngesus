@@ -2,40 +2,40 @@
 - support for rolls within results like "24-25: 1d4 treants"
 - would we need to support "advantage" rolls?
 - easy way to combine randomizer and roll together (e.g. forest encounter monster and reaction tables)
-- better styling with DaisyUI https://daisyui.com/components/list/
+- better styling with daisyui https://daisyui.com/components/list/
     - are we actually using anything from daisy?
-- Registration
-- Ownership of Randomizers
-- Share via links with GUID not raw ID
-- Tagging / Categories
-- Search
-- Cool 3D dice roll on screen
-- Spin results like a slot machine
-- Responsive screens
-- Hotwire Native
-- Hardening
-- Accessibility
-- Tests (once there's complicated enough logic to warrant)
-- Re-enable GitHub CI workflow
-- Donations / Patreon
-- Affiliate links to buy real dice
-- Sponsors
-- Upload screenshot of printed table automatically built (OCR)
+- registration
+- ownership of randomizers
+- share via links with guid not raw id
+- tagging / categories
+- search, type-ahead quick find
+- cool 3d dice roll on screen
+- spin results like a slot machine
+- responsive/mobile screens
+- hotwire native
+- hardening
+- accessibility
+- tests (once there's complicated enough logic to warrant)
+- re-enable github ci workflow
+- donations / patreon
+- affiliate links to buy real dice
+- sponsors
+- upload screenshot of printed table automatically built (ocr)
 # Done
 - rails new
-- Randomizers
-- Rolls
-- Favicon dice icon
+- randomizers
+- rolls
+- favicon dice icon
     - https://fontawesome.com/icons/dice?f=duotone&s=solid
     - https://game-icons.net/1x1/delapouite/dice-twenty-faces-twenty.html#download
     - https://favicon.io/favicon-converter/
-- Results
-- Dice Types
+- results
+- dice types
 - is this the proper way to do edit-in-place?
     - https://nts.strzibny.name/single-attribute-in-place-editing-turbo/
 - audit for vestigal scaffold files (and controller actions)
 - too many rubocop rules disabled; not cleaning up code
 - https://tabler.io/icons
-- Special Dice Types (2d6, with-advantage, etc.)
+- special dice types (2d6, with-advantage, etc.)
 - erb-format app/views/**/*.html.erb --write
 - support d100 logic (digit position not sum)
