@@ -14,7 +14,7 @@ class Roll < ApplicationRecord
   def outcome
     return nil if results.empty? || dice.nil?
 
-    rolled = dice.roll
+    rolled = dice_object.roll
     # select only results whose value <= rolled
     eligible = results.select { |r| r.value <= rolled }
 
@@ -25,7 +25,7 @@ class Roll < ApplicationRecord
   private
 
     def dice_must_be_valid
-      return if Dice.find?(dice)
+      return if Dice.find(dice)
 
       errors.add(:dice, "#{dice} is not a valid die")
     end
