@@ -19,7 +19,7 @@ class Roll < ApplicationRecord
     eligible = results.select { |r| r.value <= rolled }
 
     # pick the result with the largest value among eligible, or nil if none
-    [rolled, eligible.max_by(&:value)]
+    [ rolled, eligible.max_by(&:value) ]
   end
 
   private

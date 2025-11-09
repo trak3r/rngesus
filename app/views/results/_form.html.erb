@@ -35,7 +35,7 @@
   <div class="my-5">
   <%= form.label :value %>
   <%= form.select :value,
-        options_for_select(1..result.roll.dice, result.value),
+        options_for_select(result.roll.dice_object.min..result.roll.dice_object.max, result.value),
         {},
         class: [
           "block shadow-sm rounded-md border px-3 py-2 mt-2 w-full",
