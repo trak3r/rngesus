@@ -1,10 +1,10 @@
 class ResultsController < ApplicationController
   before_action :set_result, only: %i[ show edit update destroy ]
-  before_action :set_roll, only: %i[ new create ]
+  before_action :set_roll, only: %i[ new create index ]
 
   # GET /results
   def index
-    @results = Result.all
+    @results = @roll.results
   end
 
   # GET /results/1

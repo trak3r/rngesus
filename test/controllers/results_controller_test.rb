@@ -2,22 +2,25 @@ require "test_helper"
 
 class ResultsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @result = results(:one)
+    @result = results(:encounter_distance_close)
   end
 
   test "should get index" do
-    get results_url
+    get roll_results_url(@result.roll)
     assert_response :success
   end
 
   test "should get new" do
-    get new_result_url
+    get new_roll_result_url(@result.roll)
     assert_response :success
   end
 
   test "should create result" do
     assert_difference("Result.count") do
-      post results_url, params: { result: {} }
+      post roll_results_url(@result.roll), params: { result: {
+        name: "far",
+      value: 2
+      } }
     end
 
     assert_redirected_to result_url(Result.last)
@@ -34,7 +37,10 @@ class ResultsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update result" do
-    patch result_url(@result), params: { result: {} }
+    patch result_url(@result), params: { result: {
+      name: "far",
+      value: 2
+    } }
     assert_redirected_to result_url(@result)
   end
 
@@ -43,6 +49,6 @@ class ResultsControllerTest < ActionDispatch::IntegrationTest
       delete result_url(@result)
     end
 
-    assert_redirected_to results_url
+    assert_redirected_to roll_url(@result.roll)
   end
 end
