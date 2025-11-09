@@ -37,11 +37,7 @@ class Dice
   end
 
   def roll
-    total = 0
-    values.each do |highest_face|
-      total += rand(highest_face)
-    end
-    total
+    values.sum { |highest_face| rand(1..highest_face) }
   end
 
   # The private constructor for internal use
