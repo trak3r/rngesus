@@ -1,4 +1,11 @@
-<%= form_with(model: roll, class: "contents") do |form| %>
+<%= form_with(
+      model: roll,
+      url: roll.persisted? ?
+           roll_path(roll) :
+           randomizer_rolls_path(roll.randomizer),
+      method: roll.persisted? ? :patch : :post,
+      class: "contents"
+    ) do |form| %>
   <% if roll.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
       <h2><%= pluralize(roll.errors.count, "error") %> prohibited this roll from being saved:</h2>
