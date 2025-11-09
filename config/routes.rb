@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :randomizers do
     resources :rolls, shallow: true do
       member do
-        get 'edit_name'
+        get "edit_name"
       end
       resources :results, shallow: true
     end

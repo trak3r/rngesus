@@ -40,11 +40,11 @@ end
 # --- Define the Immutable Instances ---
 
 # Register the pre-defined dice instances
-Dice.register("Coin", 2, 'circle-stack')
-Dice.register("D4", 4, 'exclamation-triangle')
-Dice.register("D6", 6, 'cube')
-Dice.register("D8", 8, 'beaker')
-Dice.register("D10", 10, 'square-3-stack-3d')
-Dice.register("D12", 12, 'stop-circle')
-Dice.register("D20", 20, 'variable')
-Dice.register("D100", 100, 'trophy') # Could be useful for a percentile system
+Dice.register("Coin", 2, "circle-stack")
+Dice.register("D4", 4, "exclamation-triangle")
+Dice.register("D6", 6, "cube")
+Dice.register("D8", 8, "beaker")
+Dice.register("D10", 10, "square-3-stack-3d")
+Dice.register("D12", 12, "stop-circle")
+Dice.register("D20", 20, "variable")
+Dice.register("D100", 100, "trophy") # Could be useful for a percentile system

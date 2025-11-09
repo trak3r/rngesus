@@ -21,4 +21,3 @@ guard :minitest, all_on_start: false do
   watch(%r{^config/routes\.rb$})      { 'test/integration' }
   watch(%r{^test/test_helper\.rb$})   { 'test' }
 end
-

@@ -17,4 +17,3 @@ class Result < ApplicationRecord
     end
   end
 end
-

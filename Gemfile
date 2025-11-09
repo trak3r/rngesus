@@ -66,7 +66,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "guard" # so we can auto-run tests when the files change
-  gem 'guard-minitest', require: false
+  gem "guard-minitest", require: false
 end
 
 gem "rails_icons"
