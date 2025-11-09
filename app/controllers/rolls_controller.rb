@@ -1,6 +1,6 @@
 class RollsController < ApplicationController
   before_action :set_roll, only: %i[ show edit update destroy ]
-  before_action :set_randomizer, only: %i[ new create ]
+  before_action :set_randomizer, only: %i[ new create index ]
 
   # GET /rolls
   def index

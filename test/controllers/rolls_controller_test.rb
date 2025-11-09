@@ -2,22 +2,25 @@ require "test_helper"
 
 class RollsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @roll = rolls(:one)
+    @roll = rolls(:encounter_distance)
   end
 
   test "should get index" do
-    get rolls_url
+    get randomizer_rolls_url(@roll.randomizer)
     assert_response :success
   end
 
   test "should get new" do
-    get new_roll_url
+    get new_randomizer_roll_url(@roll.randomizer)
     assert_response :success
   end
 
   test "should create roll" do
     assert_difference("Roll.count") do
-      post rolls_url, params: { roll: {} }
+      post randomizer_rolls_url(@roll.randomizer), params: { roll: {
+      name: 'Mood',
+      dice: '2D6'
+      } }
     end
 
     assert_redirected_to roll_url(Roll.last)
@@ -34,7 +37,10 @@ class RollsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update roll" do
-    patch roll_url(@roll), params: { roll: {} }
+    patch roll_url(@roll), params: { roll: {
+      name: 'Mood',
+      dice: '2D6'
+    } }
     assert_redirected_to roll_url(@roll)
   end
 
