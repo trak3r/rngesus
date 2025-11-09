@@ -1,6 +1,6 @@
 class Roll < ApplicationRecord
   belongs_to :randomizer
-  has_many :results
+  has_many :results, dependent: :destroy
 
   validates :name, presence: true
   validates :dice, presence: true

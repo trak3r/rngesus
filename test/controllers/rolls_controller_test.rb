@@ -49,6 +49,7 @@ class RollsControllerTest < ActionDispatch::IntegrationTest
       delete roll_url(@roll)
     end
 
-    assert_redirected_to rolls_url
+    # assert_redirected_to rolls_url
+    assert_redirected_to randomizer_rolls_url(@roll.randomizer)
   end
 end
