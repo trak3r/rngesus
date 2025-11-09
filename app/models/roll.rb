@@ -8,7 +8,7 @@ class Roll < ApplicationRecord
   def outcome
     return nil if results.empty? || dice.nil?
 
-    rolled = rand(1..dice) # random integer from 1 to dice
+    rolled = dice.roll
     # select only results whose value <= rolled
     eligible = results.select { |r| r.value <= rolled }
 
