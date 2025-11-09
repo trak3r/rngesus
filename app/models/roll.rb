@@ -4,6 +4,7 @@ class Roll < ApplicationRecord
 
   validates :name, presence: true
   validates :dice, presence: true
+    validate :dice_must_be_valid
 
   def outcome
     return nil if results.empty? || dice.nil?
@@ -15,4 +16,12 @@ class Roll < ApplicationRecord
     # pick the result with the largest value among eligible, or nil if none
     eligible.max_by(&:value)
   end
+
+  private
+
+    def dice_must_be_valid
+      return if Dice.find?(dice)
+
+      errors.add(:dice, "#{dice} is not a valid die")
+    end
 end

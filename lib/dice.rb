@@ -24,7 +24,7 @@ class Dice
   def self.find(name)
     # Enumerable#find iterates over the array and returns the *first*
     # element for which the block evaluates to true.
-    @@all.find { |dice_instance| dice_instance.name == name}
+    @@all.find { |dice_instance| dice_instance.name == name }
   end
 
   def min
@@ -40,7 +40,7 @@ class Dice
     values.each do |highest_face|
       total += rand(highest_face)
     end
-    return total
+    total
   end
 
   # The private constructor for internal use
@@ -48,7 +48,7 @@ class Dice
 
     def initialize(name, values, icon)
       @name = name.freeze  # Freeze string to ensure immutability
-      @values = [values].flatten
+      @values = [ values ].flatten
       @icon = icon
     end
 end
@@ -59,7 +59,7 @@ end
 Dice.register("Coin", 2, "coins")
 Dice.register("D4", 4, "triangle")
 Dice.register("D6", 6, "cube")
-Dice.register("2D6", [6,6], "cube-plus")
+Dice.register("2D6", [ 6, 6 ], "cube-plus")
 Dice.register("D8", 8, "pentagon-number-8")
 Dice.register("D10", 10, "square-rounded-percentage")
 Dice.register("D12", 12, "clock")

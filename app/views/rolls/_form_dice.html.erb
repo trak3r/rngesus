@@ -2,8 +2,8 @@
     <% Dice.all.each do |dice| %>
       <label class="cursor-pointer flex flex-col items-center">
         <%= form.radio_button :dice,
-          dice.value,
-          checked: roll.dice == dice.value
+          dice.name,
+          checked: roll.dice == dice.name
         %>
         <div class="p-2 rounded-md border-2 border-gray-300 hover:border-blue-500">
           <%= icon dice.icon %>
