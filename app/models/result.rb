@@ -2,7 +2,9 @@ class Result < ApplicationRecord
   belongs_to :roll
 
   validates :name, presence: true
-  validates :value, presence: true
+  validates :value, presence: true,
+    uniqueness: { scope: :roll_id,
+                  message: "has already been taken for this roll" }
   validate :value_within_dice_range
 
   private
