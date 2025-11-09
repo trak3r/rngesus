@@ -12,10 +12,10 @@ class Result < ApplicationRecord
     def value_within_dice_range
       return if value.blank? || roll.blank?
 
-      if value <= roll.dice.min
+      if value <= roll.dice_object.min
         errors.add(:value, "must be greater than 0")
-      elsif value > roll.dice.max
-        errors.add(:value, "must be less than or equal to #{roll.dice}")
+      elsif value > roll.dice_object.max
+        errors.add(:value, "must be less than or equal to #{roll.dice_object.max}")
       end
     end
 end

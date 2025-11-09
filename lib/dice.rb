@@ -1,6 +1,7 @@
 # FIXME: should this be in values_objects ?
 class Dice
   # Define the attributes as readable only (immutable after initialization)
+  # FIXME: rename values to sides
   attr_reader :name, :values, :icon
 
   # Private initialization ensures instances are only created internally
@@ -28,11 +29,11 @@ class Dice
   end
 
   def min
-    dice.size
+    values.size
   end
 
   def max
-    dice.sum
+    values.sum
   end
 
   def roll
