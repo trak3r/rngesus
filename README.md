@@ -1,9 +1,9 @@
 # TODO
-- https://tabler.io/icons
-- Special Dice Types (2d6, with-advantage, etc.)
+- support d100 logic (digit position not sum)
+- would we need to support "advantage" rolls?
 - easy way to combine randomizer and roll together (e.g. forest encounter monster and reaction tables)
 - better styling with DaisyUI https://daisyui.com/components/list/
-- erb-format app/views/**/*.html.erb --write
+    - are we actually using anything from daisy?
 - Registration
 - Ownership of Randomizers
 - Share via links with GUID not raw ID
@@ -35,3 +35,6 @@
     - https://nts.strzibny.name/single-attribute-in-place-editing-turbo/
 - audit for vestigal scaffold files (and controller actions)
 - too many rubocop rules disabled; not cleaning up code
+- https://tabler.io/icons
+- Special Dice Types (2d6, with-advantage, etc.)
+- erb-format app/views/**/*.html.erb --write
