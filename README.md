@@ -1,5 +1,5 @@
 # TODO
-- support d100 logic (digit position not sum)
+- support for rolls within results like "24-25: 1d4 treants"
 - would we need to support "advantage" rolls?
 - easy way to combine randomizer and roll together (e.g. forest encounter monster and reaction tables)
 - better styling with DaisyUI https://daisyui.com/components/list/
@@ -38,3 +38,4 @@
 - https://tabler.io/icons
 - Special Dice Types (2d6, with-advantage, etc.)
 - erb-format app/views/**/*.html.erb --write
+- support d100 logic (digit position not sum)
