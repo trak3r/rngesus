@@ -2,7 +2,7 @@ require "test_helper"
 
 class RandomizersControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @randomizer = randomizers(:one)
+    @randomizer = randomizers(:encounter)
   end
 
   test "should get index" do
@@ -17,7 +17,9 @@ class RandomizersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create randomizer" do
     assert_difference("Randomizer.count") do
-      post randomizers_url, params: { randomizer: {} }
+      post randomizers_url, params: { randomizer: {
+        name: "Forest Encounters"
+      } }
     end
 
     assert_redirected_to randomizer_url(Randomizer.last)
@@ -34,7 +36,9 @@ class RandomizersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update randomizer" do
-    patch randomizer_url(@randomizer), params: { randomizer: {} }
+    patch randomizer_url(@randomizer), params: { randomizer: {
+      name: "Forest Encounters"
+    } }
     assert_redirected_to randomizer_url(@randomizer)
   end
 
