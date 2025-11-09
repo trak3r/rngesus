@@ -43,8 +43,8 @@ end
 Dice.register("Coin", 2, "coins")
 Dice.register("D4", 4, "triangle")
 Dice.register("D6", 6, "cube")
-Dice.register("D8", 8, "hexagon-number-8")
+Dice.register("D8", 8, "pentagon-number-8")
 Dice.register("D10", 10, "square-rounded-percentage")
-Dice.register("D12", 12, "hexagon")
+Dice.register("D12", 12, "clock")
 Dice.register("D20", 20, "ikosaedr")
 Dice.register("D100", 100, "trophy") # Could be useful for a percentile system
