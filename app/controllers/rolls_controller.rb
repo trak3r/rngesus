@@ -44,8 +44,8 @@ class RollsController < ApplicationController
   def destroy
     @roll.destroy!
     redirect_to randomizer_rolls_path(@roll.randomizer),
-      notice: "Roll was successfully destroyed.",
-      status: :see_other
+                notice: "Roll was successfully destroyed.",
+                status: :see_other
   end
 
   private
