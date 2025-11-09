@@ -1,5 +1,6 @@
 class ResultsController < ApplicationController
   before_action :set_result, only: %i[ show edit update destroy ]
+  before_action :set_roll, only: %i[ new ]
 
   # GET /results
   def index
@@ -12,7 +13,7 @@ class ResultsController < ApplicationController
 
   # GET /results/new
   def new
-    @result = Result.new
+    @result = @roll.results.build
   end
 
   # GET /results/1/edit
@@ -50,6 +51,10 @@ class ResultsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_result
       @result = Result.find(params.expect(:id))
+    end
+
+    def set_roll
+      @roll = Roll.find(params.expect(:roll_id))
     end
 
     # Only allow a list of trusted parameters through.
