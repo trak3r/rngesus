@@ -5,6 +5,9 @@
   </div>
   <div>
     <strong class="block font-medium mb-1">Dice:</strong>
-    <%= roll.dice %>
+    <%= roll.dice_object.name %>
+    (<%= roll.dice_object.min %>
+  &hyphen;
+    <%= roll.dice_object.max %>)
   </div>
 </div>
