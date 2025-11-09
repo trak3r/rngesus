@@ -1,1 +1,10 @@
-<%= @randomizer.name %>
+<h1><%= @randomizer.name %></h1>
+
+<% @randomizer.rolls.each do |roll| %>
+
+  <h2><%= roll.name %></h2>
+
+  <% result = roll.outcome %>
+
+  <h3><%= result.try(:name) || 'Missing' %></h3>
+<% end %>
