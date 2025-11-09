@@ -1,4 +1,11 @@
-<%= form_with(model: result, class: "contents") do |form| %>
+<%= form_with(
+      model: result,
+      url: result.persisted? ?
+           result_path(result) :
+           roll_results_path(result.roll),
+      method: result.persisted? ? :patch : :post,
+      class: "contents"
+    ) do |form| %>
   <% if result.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
       <h2><%= pluralize(result.errors.count, "error") %> prohibited this result from being saved:</h2>
