@@ -1,6 +1,6 @@
 class ResultsController < ApplicationController
   before_action :set_result, only: %i[ show edit update destroy ]
-  before_action :set_roll, only: %i[ new ]
+  before_action :set_roll, only: %i[ new create ]
 
   # GET /results
   def index
@@ -22,7 +22,7 @@ class ResultsController < ApplicationController
 
   # POST /results
   def create
-    @result = Result.new(result_params)
+    @result = @roll.results.build(result_params)
 
     if @result.save
       redirect_to @result, notice: "Result was successfully created."
