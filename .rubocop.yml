@@ -14,8 +14,45 @@ Layout/IndentationWidth:
 Layout/FirstArgumentIndentation:
   Enabled: true
 
+Layout/ArgumentAlignment:
+  Enabled: true
+
 Layout/ClosingParenthesisIndentation:
+  Enabled: true
+
+Layout/FirstArrayElementIndentation:
+  Enabled: true
+
+Layout/FirstHashElementIndentation:
+  Enabled: true
+
+Layout/FirstMethodArgumentLineBreak:
   Enabled: true
 
 Layout/MultilineMethodCallBraceLayout:
   Enabled: true
+
+Layout/MultilineMethodCallIndentation:
+  Enabled: true
+
+Layout/MultilineHashKeyLineBreaks:
+  Enabled: true
+
+Layout/MultilineArrayLineBreaks:
+  Enabled: true
+
+Layout/ParameterAlignment:
+  Enabled: true
+
+Layout/BlockAlignment:
+  Enabled: true
+
+Layout/CaseIndentation:
+  Enabled: true
+
+Layout/ElseAlignment:
+  Enabled: true
+
+Layout/EndAlignment:
+  Enabled: true
+

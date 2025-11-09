@@ -34,28 +34,28 @@ class Dice
 
   def max
     if @strategy == :position
-          # For each die, take the highest possible roll and concatenate
-    max_digits = values.map(&:to_i).map { |faces| faces }
+      # For each die, take the highest possible roll and concatenate
+      max_digits = values.map(&:to_i).map { |faces| faces }
     max_digits.join.to_i
     else
-    values.sum
+      values.sum
     end
   end
 
   def roll
     if @strategy == :position
-    # Roll each die in order and concatenate the results into a number
-    digits = values.map { |highest_face| rand(1..highest_face) }
+      # Roll each die in order and concatenate the results into a number
+      digits = values.map { |highest_face| rand(1..highest_face) }
     digits.join.to_i
     else # assume :sum
-    values.sum { |highest_face| rand(1..highest_face) }
+      values.sum { |highest_face| rand(1..highest_face) }
     end
   end
 
   # The private constructor for internal use
   private
 
-    def initialize(name, values, icon, strategy )
+    def initialize(name, values, icon, strategy)
       @name = name.freeze  # Freeze string to ensure immutability
       @values = [ values ].flatten
       @icon = icon
@@ -74,4 +74,4 @@ Dice.register("D8", 8, "pentagon-number-8")
 Dice.register("D10", 10, "square-rounded-percentage")
 Dice.register("D12", 12, "clock")
 Dice.register("D20", 20, "ikosaedr")
-Dice.register("D100", [10, 10], "trophy", :position)
+Dice.register("D100", [ 10, 10 ], "trophy", :position)
