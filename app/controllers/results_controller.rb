@@ -54,6 +54,6 @@ class ResultsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def result_params
-      params.expect(result: [ :name ])
+      params.expect(result: [ :name, :value ])
     end
 end
