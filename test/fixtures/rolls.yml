@@ -1,4 +1,4 @@
 encounter_distance:
   randomizer: encounter
   name: Distance
-  dice: 6
+  dice: 2D6
