@@ -1,4 +1,5 @@
 # TODO
+- https://tabler.io/icons
 - Special Dice Types (2d6, with-advantage, etc.)
 - easy way to combine randomizer and roll together (e.g. forest encounter monster and reaction tables)
 - better styling with DaisyUI https://daisyui.com/components/list/
