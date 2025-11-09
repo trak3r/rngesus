@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :examples
   resources :randomizers do
+    resources :outcomes
     resources :rolls, shallow: true do
       member do
         get "edit_name"
