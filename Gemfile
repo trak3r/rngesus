@@ -75,6 +75,6 @@ gem "rails_icons"
 gem "erb-formatter", "~> 0.7.3"
 
 # for OCR processing screenshots into roll tables
-gem "rtesseract"
-gem "mini_magick" # optional but great for preprocessing
+gem "rtesseract" # REQUIRED: brew install tesseract
+gem "mini_magick" # REQUIRED: brew install imagemagick
 
