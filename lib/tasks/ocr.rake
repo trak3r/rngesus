@@ -5,12 +5,12 @@ require "tempfile"
 namespace :ocr do
   desc "Parse a dice roll table image"
   task test: :environment do
-    image_path = "./test/ocr/forest_encounters_p154.png"
+    image_path = Rails.root.join("test", "ocr", "forest_encounters_p154.png")
 
     puts "🔍 Processing #{image_path}..."
 
     # Load and preprocess the image
-    img = MiniMagick::Image.open(image_path)
+    img = MiniMagick::Image.open(image_path.to_s)
     img.colorspace "Gray"
     img.resize "200%"       # Make text bigger for OCR
     img.contrast
