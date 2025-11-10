@@ -7,19 +7,6 @@ namespace :ocr do
       "forest_encounters_p154.png"
     )
 
-    raw = RollTableOcr.new(image_file).to_s
-
-    # Parse a 2-column table:
-    #   first column = range,
-    #   second column = full remaining content
-    rows = raw.lines.map(&:strip).reject(&:empty?)
-    data = rows.drop(1).map do |line|
-      range, text = line.split(/\s+/, 2)  # split into exactly 2 parts
-      min = range.split("-").first
-      # { min: min, text: text }
-      [ min, text ]
-    end
-
-    puts data.to_csv
+    puts RollTableOcr.new(image_file).to_csv
   end
 end
