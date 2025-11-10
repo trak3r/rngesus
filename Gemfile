@@ -59,6 +59,7 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem "amazing_print" # for nice printf debugging
 end
 
 group :test do
@@ -71,4 +72,11 @@ end
 
 gem "rails_icons"
 
+# for cleaning up messy views
 gem "erb-formatter", "~> 0.7.3"
+
+# for OCR processing screenshots into roll tables
+gem "rtesseract" # REQUIRED: brew install tesseract
+gem "mini_magick" # REQUIRED: brew install imagemagick
+
+gem "csv" # not part of Ruby standard library as of 3.4
