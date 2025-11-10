@@ -1,4 +1,4 @@
-class RollTableOCR
+class RollTableOcr
   attr :image_file
 
   def initialize(image_file)
