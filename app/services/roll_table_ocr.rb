@@ -9,8 +9,12 @@ class RollTableOcr
     @to_s ||= process
   end
 
+  def to_a
+    @to_a ||= parse
+  end
+
   def to_csv
-    @to_csv ||= parse.to_csv
+    @to_csv ||= to_a.to_csv
   end
 
   private
