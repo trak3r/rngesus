@@ -13,10 +13,6 @@ class RollTableOcr
     @to_a ||= parse
   end
 
-  def to_csv
-    @to_csv ||= to_a.to_csv
-  end
-
   private
 
     def process
