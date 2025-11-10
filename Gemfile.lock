@@ -307,6 +307,7 @@ GEM
     reline (0.6.2)
       io-console (~> 0.5)
     rexml (3.4.4)
+    rtesseract (3.1.4)
     rubocop (1.81.7)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
@@ -446,10 +447,12 @@ DEPENDENCIES
   image_processing (~> 1.2)
   importmap-rails
   kamal
+  mini_magick
   propshaft
   puma (>= 5.0)
   rails (~> 8.1.1)
   rails_icons
+  rtesseract
   rubocop-rails-omakase
   selenium-webdriver
   solid_cable

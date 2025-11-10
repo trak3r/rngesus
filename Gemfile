@@ -71,4 +71,10 @@ end
 
 gem "rails_icons"
 
+# for cleaning up messy views
 gem "erb-formatter", "~> 0.7.3"
+
+# for OCR processing screenshots into roll tables
+gem "rtesseract"
+gem "mini_magick" # optional but great for preprocessing
+

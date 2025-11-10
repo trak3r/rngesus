@@ -1,5 +1,7 @@
 # TODO
 - support for rolls within results like "24-25: 1d4 treants"
+    - recognize patterns like "XdY" and link them to impromptu roller
+- upload screenshot of printed table automatically built (ocr)
 - would we need to support "advantage" rolls?
 - easy way to combine randomizer and roll together (e.g. forest encounter monster and reaction tables)
 - better styling with daisyui https://daisyui.com/components/list/
@@ -20,7 +22,6 @@
 - donations / patreon
 - affiliate links to buy real dice
 - sponsors
-- upload screenshot of printed table automatically built (ocr)
 # Done
 - rails new
 - randomizers
