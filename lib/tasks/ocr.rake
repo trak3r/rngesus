@@ -7,18 +7,19 @@ namespace :ocr do
       "forest_encounters_p154.png"
     )
 
-    text = RollTableOcr.new(image_file).to_s
+    raw = RollTableOcr.new(image_file).to_s
 
-    puts "📜 Raw OCR output:\n\n#{text}"
-
-    # Parse a 2-column table: first column = range, second column = full remaining content
-    rows = text.lines.map(&:strip).reject(&:empty?)
+    # Parse a 2-column table:
+    #   first column = range,
+    #   second column = full remaining content
+    rows = raw.lines.map(&:strip).reject(&:empty?)
     data = rows.drop(1).map do |line|
-      parts = line.split(/\s+/, 2)  # split into exactly 2 parts
-      { range: parts[0], result: parts[1] }
+      range, text = line.split(/\s+/, 2)  # split into exactly 2 parts
+      min = range.split('-').first
+      { range: range, min: min, text: text }
     end
 
     puts "\n🎲 Parsed rolls:"
-    data.each { |row| puts "#{row[:range]} => #{row[:result]}" }
+    data.each { |row| puts "#{row[:min]} => #{row[:text]}" }
   end
 end
