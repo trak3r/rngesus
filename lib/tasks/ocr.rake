@@ -1,7 +1,3 @@
-require "rtesseract"
-require "mini_magick"
-require "tempfile"
-
 namespace :ocr do
   desc "Parse a dice roll table image"
   task test: :environment do
