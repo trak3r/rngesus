@@ -12,9 +12,6 @@ class RollTableOCR
   private
 
     def process
-      puts "🔍 Processing #{image_file}..."
-
-      # Load and preprocess the image
       img = MiniMagick::Image.open(image_file.to_s)
       img.colorspace "Gray"
       img.resize "200%"        # make text bigger for OCR
@@ -25,11 +22,9 @@ class RollTableOCR
         c.flatten
       end
 
-      # Use Tempfile for safe temporary file handling
       Tempfile.create([ "processed", ".png" ]) do |f|
         img.write(f.path)
 
-        # Configure RTesseract
         ocr = RTesseract.new(
           f.path,
           lang: "eng",

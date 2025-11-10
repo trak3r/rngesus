@@ -14,16 +14,16 @@ namespace :ocr do
 
     text = RollTableOCR.new(image_file).to_s
 
-      puts "📜 Raw OCR output:\n\n#{text}"
+    puts "📜 Raw OCR output:\n\n#{text}"
 
-      # Parse a 2-column table: first column = range, second column = full remaining content
-      rows = text.lines.map(&:strip).reject(&:empty?)
-      data = rows.drop(1).map do |line|
-        parts = line.split(/\s+/, 2)  # split into exactly 2 parts
-        { range: parts[0], result: parts[1] }
-      end
+    # Parse a 2-column table: first column = range, second column = full remaining content
+    rows = text.lines.map(&:strip).reject(&:empty?)
+    data = rows.drop(1).map do |line|
+      parts = line.split(/\s+/, 2)  # split into exactly 2 parts
+      { range: parts[0], result: parts[1] }
+    end
 
-      puts "\n🎲 Parsed rolls:"
-      data.each { |row| puts "#{row[:range]} => #{row[:result]}" }
+    puts "\n🎲 Parsed rolls:"
+    data.each { |row| puts "#{row[:range]} => #{row[:result]}" }
   end
 end
