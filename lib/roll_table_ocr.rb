@@ -11,33 +11,33 @@ class RollTableOCR
 
   private
 
-  def process
-    puts "🔍 Processing #{image_file}..."
+    def process
+      puts "🔍 Processing #{image_file}..."
 
-    # Load and preprocess the image
-    img = MiniMagick::Image.open(image_file.to_s)
-    img.colorspace "Gray"
-    img.resize "200%"        # make text bigger for OCR
-    img.contrast
-    img.sharpen "0x1"        # enhance edges
-    img.combine_options do |c|
-      c.background "white"
-      c.flatten
+      # Load and preprocess the image
+      img = MiniMagick::Image.open(image_file.to_s)
+      img.colorspace "Gray"
+      img.resize "200%"        # make text bigger for OCR
+      img.contrast
+      img.sharpen "0x1"        # enhance edges
+      img.combine_options do |c|
+        c.background "white"
+        c.flatten
+      end
+
+      # Use Tempfile for safe temporary file handling
+      Tempfile.create([ "processed", ".png" ]) do |f|
+        img.write(f.path)
+
+        # Configure RTesseract
+        ocr = RTesseract.new(
+          f.path,
+          lang: "eng",
+          psm: 6,  # treat as a single uniform block of text
+          oem: 3   # LSTM OCR engine
+        )
+
+        text = ocr.to_s
+      end
     end
-
-    # Use Tempfile for safe temporary file handling
-    Tempfile.create([ "processed", ".png" ]) do |f|
-      img.write(f.path)
-
-      # Configure RTesseract
-      ocr = RTesseract.new(
-        f.path,
-        lang: "eng",
-        psm: 6,  # treat as a single uniform block of text
-        oem: 3   # LSTM OCR engine
-      )
-
-      text = ocr.to_s
-    end
-  end
 end

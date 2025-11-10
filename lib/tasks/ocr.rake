@@ -1,14 +1,16 @@
 require "rtesseract"
 require "mini_magick"
 require "tempfile"
-require './lib/roll_table_ocr'
+require "./lib/roll_table_ocr"
 
 namespace :ocr do
   desc "Parse a dice roll table image"
   task test: :environment do
-    image_file = Rails.root.join("test",
-                                 "ocr",
-                                 "forest_encounters_p154.png")
+    image_file = Rails.root.join(
+      "test",
+      "ocr",
+      "forest_encounters_p154.png"
+    )
 
     text = RollTableOCR.new(image_file).to_s
 
