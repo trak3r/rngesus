@@ -7,6 +7,6 @@ namespace :ocr do
       "forest_encounters_p154.png"
     )
 
-    puts RollTableOcr.new(image_file).to_a.inspect
+    ap RollTableOcr.new(image_file).to_a
   end
 end
