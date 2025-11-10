@@ -21,7 +21,7 @@ namespace :ocr do
     end
 
     # Use Tempfile for safe temporary file handling
-    Tempfile.create(["processed", ".png"]) do |f|
+    Tempfile.create([ "processed", ".png" ]) do |f|
       img.write(f.path)
 
       # Configure RTesseract
@@ -48,4 +48,3 @@ namespace :ocr do
     end
   end
 end
-
