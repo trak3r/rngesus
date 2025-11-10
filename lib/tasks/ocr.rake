@@ -15,25 +15,11 @@ namespace :ocr do
     rows = raw.lines.map(&:strip).reject(&:empty?)
     data = rows.drop(1).map do |line|
       range, text = line.split(/\s+/, 2)  # split into exactly 2 parts
-      min = range.split('-').first
-      { range: range, min: min, text: text }
+      min = range.split("-").first
+      # { min: min, text: text }
+      [ min, text ]
     end
 
-    puts "\n🎲 Parsed rolls:"
-    # data.each { |row| puts "#{row[:min]} => #{row[:text]}" }
-    results = data.collect do |hash|
-      value = hash[:min]
-      name = hash[:text]
-
-      if name.blank?
-        puts "Skipping #{hash.inspect}"
-        next
-      end
-
-      Result.new( value:, name: )
-    end
-
-    puts results.inspect
-    # puts results.to_yaml
+    puts data.to_csv
   end
 end
