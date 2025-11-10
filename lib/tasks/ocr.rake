@@ -20,6 +20,20 @@ namespace :ocr do
     end
 
     puts "\n🎲 Parsed rolls:"
-    data.each { |row| puts "#{row[:min]} => #{row[:text]}" }
+    # data.each { |row| puts "#{row[:min]} => #{row[:text]}" }
+    results = data.collect do |hash|
+      value = hash[:min]
+      name = hash[:text]
+
+      if name.blank?
+        puts "Skipping #{hash.inspect}"
+        next
+      end
+
+      Result.new( value:, name: )
+    end
+
+    puts results.inspect
+    # puts results.to_yaml
   end
 end
