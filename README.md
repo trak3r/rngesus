@@ -4,8 +4,9 @@
     - prompts for drag or upload file (image or csv)
     - submit uploads the file, converts it to result objects, back to Roll show
 - easy way to combine randomizer and roll together (e.g. forest encounter monster and reaction tables)
-- support for rolls within results like "24-25: 1d4 treants"
+- support for rolls within results like "1d4 treants"
     - recognize patterns like "XdY" and link them to impromptu roller
+    - a pop-up modal or just a hover tooltip might be slick (client-side JS)
 - would we need to support "advantage" rolls?
 - better styling with daisyui https://daisyui.com/components/list/
     - are we actually using anything from daisy?
