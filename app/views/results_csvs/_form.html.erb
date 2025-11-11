@@ -1,0 +1,33 @@
+<%= form_with(model: @import, url: roll_path(@roll), local: true, html: { multipart: true }) do |form| %>
+  <% if @upload.errors.any? %>
+    <div class="mb-4 text-red-500">
+      <h2><%= pluralize(@upload.errors.count, "error") %> prevented this file from uploading:</h2>
+      <ul class="list-disc ml-6">
+        <% @upload.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div
+    class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:bg-gray-50 transition"
+    data-controller="file-upload"
+    data-file-upload-target="dropzone"
+  >
+    <p class="text-gray-500 mb-2">Drag and drop a file here</p>
+    <p class="text-sm text-gray-400 mb-4">or click to select from your device</p>
+
+    <%= form.file_field :file,
+      direct_upload: true,
+      class: "hidden",
+      data: { action: "change->file-upload#showFileName", file_upload_target: "input" } %>
+
+    <p class="text-blue-500 font-medium" data-file-upload-target="filename"></p>
+  </div>
+
+  <div class="mt-4">
+    <%= form.submit "Upload", class: "bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded" %>
+  </div>
+<% end %>
+
