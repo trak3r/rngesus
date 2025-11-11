@@ -22,7 +22,7 @@ class ResultsCsvsController < ApplicationController
     end
 
   def import_params
-    params.require(:import_form).permit(:file)
+    params.require(:results_csv).permit(:file)
   end
 end
 
