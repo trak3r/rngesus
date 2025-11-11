@@ -10,7 +10,9 @@
     </div>
   <% end %>
 
-  <%= form.file_field :file, accept: ".csv" %>
+  <%= form.file_field :file,
+    accept: ".csv",
+    class: "file-input file-input-primary w-full max-w-xs" %>
   <%= form.submit "Upload CSV" %>
 <% end %>
 

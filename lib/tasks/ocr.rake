@@ -7,6 +7,8 @@ namespace :ocr do
       "forest_encounters_p154.png"
     )
 
-    ap RollTableOcr.new(image_file).to_a
+    array = RollTableOcr.new(image_file).to_a
+
+    puts CSV.generate { |csv| array.each { |row| csv << row } }
   end
 end
