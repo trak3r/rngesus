@@ -1,5 +1,8 @@
 # TODO
 - upload screenshot of printed table automatically built (ocr)
+    - add "import results" button to Roll show
+    - prompts for drag or upload file (image or csv)
+    - submit uploads the file, converts it to result objects, back to Roll show
 - easy way to combine randomizer and roll together (e.g. forest encounter monster and reaction tables)
 - support for rolls within results like "24-25: 1d4 treants"
     - recognize patterns like "XdY" and link them to impromptu roller
