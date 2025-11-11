@@ -1,0 +1,19 @@
+<%= form_with(model: @results_csv, url: roll_results_csvs_path(@roll), local: true, html: { multipart: true }) do |form| %>
+  <% if @results_csv.errors.any? %>
+    <div class="mb-4 text-red-500">
+      <h2><%= pluralize(@results_csv.errors.count, "error") %> prevented this file from uploading:</h2>
+      <ul class="list-disc ml-6">
+        <% @results_csv.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.file_field :file,
+    accept: ".csv",
+    class: "file-input file-input-primary w-full max-w-xs" %>
+  <%= form.submit "Upload CSV",
+    class: "btn btn-primary w-full max-w-xs" %>
+<% end %>
+
