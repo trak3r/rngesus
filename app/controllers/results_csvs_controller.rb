@@ -1,5 +1,5 @@
 class ResultsCsvsController < ApplicationController
-  before_action :set_roll, only: %i[ new ]
+  before_action :set_roll, only: %i[ new create ]
 
   def new
     @results_csv = ResultsCsv.new
@@ -8,8 +8,8 @@ class ResultsCsvsController < ApplicationController
   def create
     @results_csv = ResultsCsv.new(import_params)
     if @results_csv.valid?
-      CsvProcessor.new(@parent, @results_csv.file).call
-      redirect_to @parent, notice: "CSV processed successfully!"
+      ResultsCsvProcessor.new(@roll, @results_csv.file).call
+      redirect_to @roll, notice: "CSV processed successfully!"
     else
       render :new, status: :unprocessable_entity
     end
