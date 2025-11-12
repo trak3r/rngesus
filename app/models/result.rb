@@ -5,8 +5,8 @@ class Result < ApplicationRecord
 
   validates :name, presence: true
   validates :value, presence: true,
-                    uniqueness: { scope: :roll_id,
-                                  message: 'has already been taken for this roll' }
+                    uniqueness: { scope: :roll_id }
+
   validate :value_within_dice_range
 
   private

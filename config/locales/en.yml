@@ -43,4 +43,11 @@ en:
   results_csvs:
     create:
       success: "CSV was successfully processed."
+  activerecord:
+    errors:
+      models:
+        result:
+          attributes:
+            value:
+              taken: "This value has already been used for this roll."
 
