@@ -24,7 +24,8 @@ class ExamplesController < ApplicationController
     @example = Example.new(example_params)
 
     if @example.save
-      redirect_to @example, notice: 'Example was successfully created.'
+      redirect_to @example,
+                  notice: t('.success')
     else
       render :new, status: :unprocessable_content
     end
@@ -33,7 +34,9 @@ class ExamplesController < ApplicationController
   # PATCH/PUT /examples/1
   def update
     if @example.update(example_params)
-      redirect_to @example, notice: 'Example was successfully updated.', status: :see_other
+      redirect_to @example,
+                  notice: t('examples.create.success'),
+                  status: :see_other
     else
       render :edit, status: :unprocessable_content
     end
@@ -42,7 +45,9 @@ class ExamplesController < ApplicationController
   # DELETE /examples/1
   def destroy
     @example.destroy!
-    redirect_to examples_path, notice: 'Example was successfully destroyed.', status: :see_other
+    redirect_to examples_path,
+                notice: t('examples.create.success'),
+                status: :see_other
   end
 
   private
