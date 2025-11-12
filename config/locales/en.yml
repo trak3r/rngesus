@@ -40,4 +40,7 @@ en:
   results:
     create:
       success: "Result was successfully created."
+  results_csvs:
+    create:
+      success: "CSV was successfully processed."
 

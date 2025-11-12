@@ -11,7 +11,8 @@ class ResultsCsvsController < ApplicationController
     @results_csv = ResultsCsv.new(import_params)
     if @results_csv.valid?
       ResultsCsvProcessor.new(@roll, @results_csv.file).call
-      redirect_to @roll, notice: 'CSV processed successfully!'
+      redirect_to @roll,
+                  notice: t('.success')
     else
       render :new, status: :unprocessable_entity
     end

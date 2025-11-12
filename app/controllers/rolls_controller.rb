@@ -26,7 +26,7 @@ class RollsController < ApplicationController
 
     if @roll.save
       redirect_to @roll,
-                notice: t('rolls.create.success')
+                  notice: t('.success')
     else
       render :new, status: :unprocessable_content
     end
@@ -36,8 +36,8 @@ class RollsController < ApplicationController
   def update
     if @roll.update(roll_params)
       redirect_to @roll,
-                notice: t('rolls.create.success')
-        status: :see_other
+                  notice: t('rolls.create.success'),
+                  status: :see_other
     else
       render :edit, status: :unprocessable_content
     end
