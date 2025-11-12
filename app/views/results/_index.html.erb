@@ -8,23 +8,24 @@
     <%= result.value %>
   </div>
 
-  <!-- Name cell vertically centered -->
+  <!-- Name cell vertically centered, slightly larger -->
   <div class="flex-1 flex items-center">
-    <div><%= result.name %></div>
+    <div class="text-lg font-thin"><%= result.name %></div>
   </div>
 
-  <!-- Action buttons -->
-  <div class="flex flex-col sm:flex-row space-x-2 space-y-2 sm:space-y-0 w-full sm:w-auto">
-    <%= link_to "Show", result,
-      class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-    <%= link_to "Edit", edit_result_path(result),
-      class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-    <%= button_to "Destroy", result, method: :delete,
-      class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium cursor-pointer",
-      data: { turbo_confirm: "Are you sure?" } %>
+  <!-- Action buttons as icons -->
+  <div class="flex flex-row space-x-2 w-auto">
+    <!-- Edit icon (floppy / save) -->
+    <%= link_to edit_result_path(result), class: "text-gray-500 hover:text-gray-700 p-2 rounded hover:bg-gray-100" do %>
+      <%= icon(:pencil, class: "w-5 h-5") %>
+    <% end %>
+
+    <!-- Destroy icon (trash) -->
+    <%= button_to result_path(result), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "text-red-500 hover:text-red-700 p-2 rounded hover:bg-red-100" do %>
+      <%= icon(:trash, class: "w-5 h-5") %>
+    <% end %>
   </div>
 </li>
-
       <% end %>
     <% else %>
       <p class="text-center my-10">No results found.</p>
