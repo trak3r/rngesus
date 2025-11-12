@@ -10,29 +10,34 @@
     <% if @randomizers.any? %>
       <% @randomizers.each do |randomizer| %>
 
-        <div class="card bg-base-100 w-96 shadow-sm flex flex-col">
-          <!-- Card body takes up remaining space -->
-          <div class="card-body flex-1 flex flex-col">
-            <h2 class="card-title"><%= randomizer.name %></h2>
+<div class="card bg-base-100 w-96 shadow-sm flex flex-col group hover:bg-gray-50">
+  <!-- Card main content wrapped in link_to show -->
+  <%= link_to randomizer, class: "flex-1 flex flex-col p-4 no-underline text-inherit" do %>
+    <h2 class="card-title text-xl font-bold mb-2"><%= randomizer.name %></h2>
 
-            <p class="flex-1">
-              <%= randomizer.rolls.map { |r| h(r.name || 'Missing') }.join(' &middot; ').html_safe %>
-            </p>
+    <p class="flex-1 text-gray-700">
+      <%= randomizer.rolls.map { |r| h(r.name || 'Missing') }.join(' &middot; ').html_safe %>
+    </p>
+  <% end %>
 
-            <!-- Add margin-top to separate buttons from content -->
-            <div class="card-actions justify-end mt-4">
-              <%= link_to "Outcome", randomizer_outcomes_path(randomizer),
-                class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-blue-100 hover:bg-blue-50 inline-block font-medium" %>
-              <%= link_to "Show", randomizer,
-                class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-              <%= link_to "Edit", edit_randomizer_path(randomizer),
-                class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-              <%= button_to "Destroy", randomizer, method: :delete,
-                class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium cursor-pointer",
-                data: { turbo_confirm: "Are you sure?" } %>
-            </div>
-          </div>
-        </div>
+  <!-- Card actions at the bottom -->
+  <div class="card-actions justify-end mt-4 flex flex-row space-x-2">
+    <!-- Outcome icon (dice) -->
+    <%= link_to randomizer_outcomes_path(randomizer), class: "text-blue-500 hover:text-blue-700 p-2 rounded hover:bg-blue-100" do %>
+      <%= icon(:dice, class: "w-5 h-5") %>
+    <% end %>
+
+    <!-- Edit icon -->
+    <%= link_to edit_randomizer_path(randomizer), class: "text-gray-500 hover:text-gray-700 p-2 rounded hover:bg-gray-100" do %>
+      <%= icon(:pencil, class: "w-5 h-5") %>
+    <% end %>
+
+    <!-- Delete icon -->
+    <%= button_to randomizer, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "text-red-500 hover:text-red-700 p-2 rounded hover:bg-red-100" do %>
+      <%= icon(:trash, class: "w-5 h-5") %>
+    <% end %>
+  </div>
+</div>
 
       <% end %>
     <% else %>
