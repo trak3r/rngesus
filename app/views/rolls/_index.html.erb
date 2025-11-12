@@ -2,35 +2,34 @@
     <% if rolls.any? %>
       <% rolls.each do |roll| %>
 
-<li class="list-row flex items-center space-x-4 py-2">
-  <!-- Fixed width for numbers (enough for 2 digits) -->
-  <div class="w-20 text-4xl font-thin opacity-30 tabular-nums text-right">
-    <%= roll.dice_object.try(:name) || '?' %>
-  </div>
+<li class="list-row flex items-center space-x-4 py-2 hover:bg-gray-50 rounded group">
+  <!-- Main clickable content -->
+  <%= link_to roll, class: "flex-1 flex items-center space-x-4 text-inherit no-underline" do %>
+    <!-- Dice cell -->
+    <div class="w-20 text-4xl font-thin opacity-30 tabular-nums text-right">
+      <%= roll.dice_object.try(:name) || '?' %>
+    </div>
 
-  <!-- Name cell vertically centered, slightly larger -->
-  <div class="flex-1 flex items-center">
-    <div class="text-lg font-thin"><%= roll.name %></div>
-  </div>
+    <!-- Name cell -->
+    <div class="flex-1 flex items-center">
+      <div class="text-lg font-thin"><%= roll.name %></div>
+    </div>
+  <% end %>
 
-  <!-- Action buttons as icons -->
+  <!-- Action buttons (not part of the row link) -->
   <div class="flex flex-row space-x-2 w-auto">
-
-    <%= link_to roll, class: "text-gray-500 hover:text-gray-700 p-2 rounded hover:bg-gray-100" do %>
-      <%= icon(:eye, class: "w-5 h-5") %>
-    <% end %>
-
-    <!-- Edit icon (floppy / save) -->
+    <!-- Edit -->
     <%= link_to edit_roll_path(roll), class: "text-gray-500 hover:text-gray-700 p-2 rounded hover:bg-gray-100" do %>
       <%= icon(:pencil, class: "w-5 h-5") %>
     <% end %>
 
-    <!-- Destroy icon (trash) -->
+    <!-- Delete -->
     <%= button_to roll_path(roll), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "text-red-500 hover:text-red-700 p-2 rounded hover:bg-red-100" do %>
       <%= icon(:trash, class: "w-5 h-5") %>
     <% end %>
   </div>
 </li>
+
       <% end %>
     <% else %>
       <p class="text-center my-10">No rolls found.</p>
