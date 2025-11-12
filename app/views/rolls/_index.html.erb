@@ -6,7 +6,7 @@
   <!-- Main clickable content -->
   <%= link_to roll, class: "flex-1 flex items-center space-x-4 text-inherit no-underline" do %>
     <!-- Dice cell -->
-    <div class="w-20 text-4xl font-thin opacity-30 tabular-nums text-right">
+    <div class="w-24 text-4xl font-thin opacity-30 tabular-nums text-right">
       <%= roll.dice_object.try(:name) || '?' %>
     </div>
 
