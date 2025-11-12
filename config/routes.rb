@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       end
       resources :results, shallow: true
       resources :results_csvs
+      resources :results_imgs
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
