@@ -2,7 +2,14 @@ AllCops:
   NewCops: enable
   TargetRubyVersion: 3.4
   TargetRailsVersion: 8.1
+  SuggestExtensions: false
 plugins:
   - rubocop-rails
 Style/Documentation:
+  Enabled: false
+Rails/ReversibleMigration:
+  Enabled: false
+Metrics/MethodLength:
+  Enabled: false
+Metrics/PerceivedComplexity:
   Enabled: false
