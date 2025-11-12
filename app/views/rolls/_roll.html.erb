@@ -5,9 +5,9 @@
   </div>
   <div>
     <strong class="block font-medium mb-1">Dice:</strong>
-    <%= roll.dice_object.name %>
-    (<%= roll.dice_object.min %>
+    <%= roll.dice_object.try(:name) || 'Missing' %>
+    (<%= roll.dice_object.try(:min) || '?' %>
   &hyphen;
-    <%= roll.dice_object.max %>)
+    <%= roll.dice_object.try(:max) || '?' %>)
   </div>
 </div>
