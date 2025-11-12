@@ -2,3 +2,7 @@ encounter_distance:
   randomizer: encounter
   name: Distance
   dice: 2D6
+encounter_forest:
+  randomizer: encounter
+  name: Monster
+  dice: D100
