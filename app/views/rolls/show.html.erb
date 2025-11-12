@@ -1,9 +1,22 @@
-<% content_for :title, "Showing roll" %>
+<% content_for :title, "Roll: #{@roll.name || 'Missing'}" %>
 
 <div class="md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">Showing roll</h1>
 
-  <%= render @roll %>
+<div id="<%= dom_id @roll %>" class="w-full my-5 p-6 bg-base-200 rounded-xl shadow-md flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
+  <!-- Roll Name -->
+  <div class="text-2xl sm:text-3xl font-bold text-primary">
+    <%= @roll.name %>
+  </div>
+
+  <!-- Dice Info -->
+  <div class="text-lg sm:text-xl text-gray-700 flex items-center space-x-2">
+    <span class="font-medium"><%= @roll.dice_object.try(:name) || 'Missing' %></span>
+    <span class="text-gray-500">
+      (<%= @roll.dice_object.try(:min) || '?' %>&#8209;<%= @roll.dice_object.try(:max) || '?' %>)
+    </span>
+  </div>
+</div>
+
   <%= render 'results/index', results: @roll.results %>
 
   <%= link_to "New result", new_roll_result_path(@roll), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-blue-100 hover:bg-blue-50 inline-block font-medium" %>
