@@ -19,6 +19,6 @@ class ResultsCsvsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to roll_path(@roll)
     follow_redirect!
-    assert_match 'CSV processed successfully', response.body
+    assert_match 'CSV was successfully processed.', response.body
   end
 end
