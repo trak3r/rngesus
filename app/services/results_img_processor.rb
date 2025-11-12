@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
-class RollTableOcr
-  attr_reader :image_file
+class ResultsImgProcessor
+  attr_reader :roll, :image_file
 
-  def initialize(image_file)
+  def initialize(roll, image_file)
+    @roll = roll
     @image_file = image_file
   end
 
@@ -46,6 +47,14 @@ class RollTableOcr
         # { min: min, text: text }
         [min, text]
       end
+    end
+  end
+
+  def call
+    to_a.each do |line|
+      value = line[0]
+      name  = line[1]
+      roll.results.create(value: value, name: name)
     end
   end
 end
