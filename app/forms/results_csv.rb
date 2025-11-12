@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ResultsCsv
   include ActiveModel::Model          # gives you validations, errors, etc.
   include ActiveModel::Attributes     # lets you define typed attributes (optional)
@@ -8,4 +10,3 @@ class ResultsCsv
 
   validates :file, presence: true
 end
-

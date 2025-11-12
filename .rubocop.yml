@@ -1,58 +1,23 @@
-# Omakase Ruby styling for Rails
-inherit_gem: { rubocop-rails-omakase: rubocop.yml }
-
-# Overwrite or add rules to create your own house style
-#
-# # Use `[a, [b, c]]` not `[ a, [ b, c ] ]`
-# Layout/SpaceInsideArrayLiteralBrackets:
-#   Enabled: false
-
-# Re-enable layout/indentation rules
-Layout/IndentationWidth:
-  Enabled: true
-
-Layout/FirstArgumentIndentation:
-  Enabled: true
-
-Layout/ArgumentAlignment:
-  Enabled: true
-
-Layout/ClosingParenthesisIndentation:
-  Enabled: true
-
-Layout/FirstArrayElementIndentation:
-  Enabled: true
-
-Layout/FirstHashElementIndentation:
-  Enabled: true
-
-Layout/FirstMethodArgumentLineBreak:
-  Enabled: true
-
-Layout/MultilineMethodCallBraceLayout:
-  Enabled: true
-
-Layout/MultilineMethodCallIndentation:
-  Enabled: true
-
-Layout/MultilineHashKeyLineBreaks:
-  Enabled: true
-
-Layout/MultilineArrayLineBreaks:
-  Enabled: true
-
-Layout/ParameterAlignment:
-  Enabled: true
-
-Layout/BlockAlignment:
-  Enabled: true
-
-Layout/CaseIndentation:
-  Enabled: true
-
-Layout/ElseAlignment:
-  Enabled: true
-
-Layout/EndAlignment:
-  Enabled: true
-
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.4
+  TargetRailsVersion: 8.1
+  SuggestExtensions: false
+plugins:
+  - rubocop-rails
+Style/Documentation:
+  Enabled: false
+Rails/ReversibleMigration:
+  Enabled: false
+Metrics/MethodLength:
+  Enabled: false
+Metrics/PerceivedComplexity:
+  Enabled: false
+Rails/UniqueValidationWithoutIndex:
+  # keep business logic in the code not the database
+  Enabled: false
+Metrics/AbcSize:
+  Enabled: false
+Rails/NotNullColumn:
+  # suggests default values on foreign keys
+  Enabled: false

@@ -28,4 +28,28 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  examples:
+    create:
+      success: "Example was successfully created."
+  randomizers:
+    create:
+      success: "Randomizer was successfully created."
+  rolls:
+    create:
+      success: "Roll was successfully created."
+  results:
+    create:
+      success: "Result was successfully created."
+  results_csvs:
+    create:
+      success: "CSV was successfully processed."
+  activerecord:
+    errors:
+      models:
+        result:
+          attributes:
+            value:
+              taken: "This value has already been used for this roll."
+              too_small: "must be greater than or equal to %{min}"
+              too_large: "must be less than or equal to %{max}"
+

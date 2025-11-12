@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Roll < ApplicationRecord
   belongs_to :randomizer
   has_many :results, dependent: :destroy
@@ -19,14 +21,14 @@ class Roll < ApplicationRecord
     eligible = results.select { |r| r.value <= rolled }
 
     # pick the result with the largest value among eligible, or nil if none
-    [ rolled, eligible.max_by(&:value) ]
+    [rolled, eligible.max_by(&:value)]
   end
 
   private
 
-    def dice_must_be_valid
-      return if Dice.find(dice)
+  def dice_must_be_valid
+    return if Dice.find(dice)
 
-      errors.add(:dice, "#{dice} is not a valid die")
-    end
+    errors.add(:dice, :invalid)
+  end
 end
