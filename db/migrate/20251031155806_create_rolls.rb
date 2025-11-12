@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateRolls < ActiveRecord::Migration[8.1]
   def change
     create_table :rolls do |t|

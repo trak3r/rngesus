@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RemoveValueFromRolls < ActiveRecord::Migration[8.1]
   def change
     # Remove the integer value column from rolls. Use if_exists for safety.

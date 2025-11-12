@@ -1,49 +1,51 @@
-require "test_helper"
+# frozen_string_literal: true
+
+require 'test_helper'
 
 class RandomizersControllerTest < ActionDispatch::IntegrationTest
   setup do
     @randomizer = randomizers(:encounter)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get randomizers_url
     assert_response :success
   end
 
-  test "should get new" do
+  test 'should get new' do
     get new_randomizer_url
     assert_response :success
   end
 
-  test "should create randomizer" do
-    assert_difference("Randomizer.count") do
+  test 'should create randomizer' do
+    assert_difference('Randomizer.count') do
       post randomizers_url, params: { randomizer: {
-        name: "Forest Encounters"
+        name: 'Forest Encounters'
       } }
     end
 
     assert_redirected_to randomizer_url(Randomizer.last)
   end
 
-  test "should show randomizer" do
+  test 'should show randomizer' do
     get randomizer_url(@randomizer)
     assert_response :success
   end
 
-  test "should get edit" do
+  test 'should get edit' do
     get edit_randomizer_url(@randomizer)
     assert_response :success
   end
 
-  test "should update randomizer" do
+  test 'should update randomizer' do
     patch randomizer_url(@randomizer), params: { randomizer: {
-      name: "Forest Encounters"
+      name: 'Forest Encounters'
     } }
     assert_redirected_to randomizer_url(@randomizer)
   end
 
-  test "should destroy randomizer" do
-    assert_difference("Randomizer.count", -1) do
+  test 'should destroy randomizer' do
+    assert_difference('Randomizer.count', -1) do
       delete randomizer_url(@randomizer)
     end
 

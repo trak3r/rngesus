@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ResultsCsvProcessor
   attr_reader :roll, :file
 

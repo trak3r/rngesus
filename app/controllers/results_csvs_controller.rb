@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ResultsCsvsController < ApplicationController
-  before_action :set_roll, only: %i[ new create ]
+  before_action :set_roll, only: %i[new create]
 
   def new
     @results_csv = ResultsCsv.new
@@ -9,7 +11,7 @@ class ResultsCsvsController < ApplicationController
     @results_csv = ResultsCsv.new(import_params)
     if @results_csv.valid?
       ResultsCsvProcessor.new(@roll, @results_csv.file).call
-      redirect_to @roll, notice: "CSV processed successfully!"
+      redirect_to @roll, notice: 'CSV processed successfully!'
     else
       render :new, status: :unprocessable_entity
     end
@@ -17,12 +19,11 @@ class ResultsCsvsController < ApplicationController
 
   private
 
-    def set_roll
-      @roll = Roll.find(params.expect(:roll_id))
-    end
+  def set_roll
+    @roll = Roll.find(params.expect(:roll_id))
+  end
 
   def import_params
-    params.require(:results_csv).permit(:file)
+    params.expect(results_csv: [:file])
   end
 end
-

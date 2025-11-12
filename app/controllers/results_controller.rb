@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class ResultsController < ApplicationController
-  before_action :set_result, only: %i[ show edit update destroy ]
-  before_action :set_roll, only: %i[ new create index ]
+  before_action :set_result, only: %i[show edit update destroy]
+  before_action :set_roll, only: %i[new create index]
 
   # GET /results
   def index
@@ -8,8 +10,7 @@ class ResultsController < ApplicationController
   end
 
   # GET /results/1
-  def show
-  end
+  def show; end
 
   # GET /results/new
   def new
@@ -17,15 +18,14 @@ class ResultsController < ApplicationController
   end
 
   # GET /results/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /results
   def create
     @result = @roll.results.build(result_params)
 
     if @result.save
-      redirect_to @result, notice: "Result was successfully created."
+      redirect_to @result, notice: 'Result was successfully created.'
     else
       render :new, status: :unprocessable_content
     end
@@ -34,7 +34,7 @@ class ResultsController < ApplicationController
   # PATCH/PUT /results/1
   def update
     if @result.update(result_params)
-      redirect_to @result, notice: "Result was successfully updated.", status: :see_other
+      redirect_to @result, notice: 'Result was successfully updated.', status: :see_other
     else
       render :edit, status: :unprocessable_content
     end
@@ -44,21 +44,22 @@ class ResultsController < ApplicationController
   def destroy
     @result.destroy!
     # redirect_to results_path, notice: "Result was successfully destroyed.", status: :see_other
-    redirect_to roll_path(@result.roll), notice: "Result was successfully destroyed.", status: :see_other
+    redirect_to roll_path(@result.roll), notice: 'Result was successfully destroyed.', status: :see_other
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_result
-      @result = Result.find(params.expect(:id))
-    end
 
-    def set_roll
-      @roll = Roll.find(params.expect(:roll_id))
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_result
+    @result = Result.find(params.expect(:id))
+  end
 
-    # Only allow a list of trusted parameters through.
-    def result_params
-      params.expect(result: [ :name, :value ])
-    end
+  def set_roll
+    @roll = Roll.find(params.expect(:roll_id))
+  end
+
+  # Only allow a list of trusted parameters through.
+  def result_params
+    params.expect(result: %i[name value])
+  end
 end

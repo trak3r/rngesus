@@ -1,6 +1,8 @@
-require_relative "boot"
+# frozen_string_literal: true
 
-require "rails/all"
+require_relative 'boot'
+
+require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -25,9 +27,9 @@ module Rngesus
     # config.eager_load_paths << Rails.root.join("extras")
 
     # Autoload custom object types
-    config.autoload_paths << Rails.root.join("app/services")
-    config.eager_load_paths << Rails.root.join("app/services")
-    config.autoload_paths << Rails.root.join("app/forms")
-    config.eager_load_paths << Rails.root.join("app/forms")
+    config.autoload_paths << Rails.root.join('app/services')
+    config.eager_load_paths << Rails.root.join('app/services')
+    config.autoload_paths << Rails.root.join('app/forms')
+    config.eager_load_paths << Rails.root.join('app/forms')
   end
 end
