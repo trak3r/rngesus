@@ -15,9 +15,17 @@ class Result < ApplicationRecord
     return if value.blank? || roll.blank?
 
     if value.to_i < roll.dice_object.min
-      errors.add(:value, "must be greater than or equal to #{roll.dice_object.min}")
+      errors.add(
+        :value,
+        :too_small,
+        min: roll.dice_object.min
+      )
     elsif value.to_i > roll.dice_object.max
-      errors.add(:value, "must be less than or equal to #{roll.dice_object.max}")
+      errors.add(
+        :value,
+        :too_large,
+        max: roll.dice_object.max
+      )
     end
   end
 end
