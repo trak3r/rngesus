@@ -29,6 +29,6 @@ class Roll < ApplicationRecord
   def dice_must_be_valid
     return if Dice.find(dice)
 
-    errors.add(:dice, "#{dice} is not a valid die")
+    errors.add(:dice, :invalid)
   end
 end
