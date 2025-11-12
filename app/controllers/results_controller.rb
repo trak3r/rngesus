@@ -25,7 +25,8 @@ class ResultsController < ApplicationController
     @result = @roll.results.build(result_params)
 
     if @result.save
-      redirect_to @result, notice: 'Result was successfully created.'
+      redirect_to @result,
+                  notice: t('.success')
     else
       render :new, status: :unprocessable_content
     end
@@ -34,7 +35,9 @@ class ResultsController < ApplicationController
   # PATCH/PUT /results/1
   def update
     if @result.update(result_params)
-      redirect_to @result, notice: 'Result was successfully updated.', status: :see_other
+      redirect_to @result,
+                  notice: t('results.create.success'),
+                  status: :see_other
     else
       render :edit, status: :unprocessable_content
     end
@@ -43,8 +46,12 @@ class ResultsController < ApplicationController
   # DELETE /results/1
   def destroy
     @result.destroy!
-    # redirect_to results_path, notice: "Result was successfully destroyed.", status: :see_other
-    redirect_to roll_path(@result.roll), notice: 'Result was successfully destroyed.', status: :see_other
+    # redirect_to results_path,
+    # notice: "Result was successfully destroyed.",
+    # status: :see_other
+    redirect_to roll_path(@result.roll),
+                notice: t('results.create.success'),
+                status: :see_other
   end
 
   private

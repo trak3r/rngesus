@@ -31,4 +31,13 @@ en:
   examples:
     create:
       success: "Example was successfully created."
+  randomizers:
+    create:
+      success: "Randomizer was successfully created."
+  rolls:
+    create:
+      success: "Roll was successfully created."
+  results:
+    create:
+      success: "Result was successfully created."
 

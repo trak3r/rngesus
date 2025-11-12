@@ -24,7 +24,8 @@ class RandomizersController < ApplicationController
     @randomizer = Randomizer.new(randomizer_params)
 
     if @randomizer.save
-      redirect_to @randomizer, notice: 'Randomizer was successfully created.'
+      redirect_to @randomizer,
+                  notice: t('.success')
     else
       render :new, status: :unprocessable_content
     end
@@ -33,7 +34,9 @@ class RandomizersController < ApplicationController
   # PATCH/PUT /randomizers/1
   def update
     if @randomizer.update(randomizer_params)
-      redirect_to @randomizer, notice: 'Randomizer was successfully updated.', status: :see_other
+      redirect_to @randomizer,
+                  notice: t('randomizers.create.success'),
+                  status: :see_other
     else
       render :edit, status: :unprocessable_content
     end
@@ -42,7 +45,9 @@ class RandomizersController < ApplicationController
   # DELETE /randomizers/1
   def destroy
     @randomizer.destroy!
-    redirect_to randomizers_path, notice: 'Randomizer was successfully destroyed.', status: :see_other
+    redirect_to randomizers_path,
+                notice: t('randomizers.create.success'),
+                status: :see_other
   end
 
   private
