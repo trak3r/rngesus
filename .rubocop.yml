@@ -13,3 +13,11 @@ Metrics/MethodLength:
   Enabled: false
 Metrics/PerceivedComplexity:
   Enabled: false
+Rails/UniqueValidationWithoutIndex:
+  # keep business logic in the code not the database
+  Enabled: false
+Metrics/AbcSize:
+  Enabled: false
+Rails/NotNullColumn:
+  # suggests default values on foreign keys
+  Enabled: false
