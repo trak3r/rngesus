@@ -4,20 +4,20 @@ class Dice
   attr_reader :name, :values, :icon, :strategy
 
   private_class_method :new
-  @@all = []
+  @all = []
 
-  def self.register(name, values, icon, strategy = :sum)
-    instance = new(name, values, icon, strategy)
-    @@all << instance
-    instance
-  end
+  class << self
+    attr_reader :all
 
-  def self.all
-    @@all.freeze
-  end
+    def register(name, values, icon, strategy = :sum)
+      instance = new(name, values, icon, strategy)
+      @all << instance
+      instance
+    end
 
-  def self.find(name)
-    @@all.find { |dice_instance| dice_instance.name == name }
+    def find(name)
+      @all.find { |dice_instance| dice_instance.name == name }
+    end
   end
 
   # --- Public API ---
@@ -66,17 +66,14 @@ class Dice
     @strategy = strategy
   end
 
-  # Returns true if the die is zero-based (d10)
   def zero_based?(faces)
     faces == 10
   end
 
-  # Returns the correct range for a die
   def die_range(faces)
     zero_based?(faces) ? (0..9) : (1..faces)
   end
 
-  # True if this is a D100 percentile die (two d10s)
   def percentile_d100?
     values == [10, 10] && strategy == :position
   end
