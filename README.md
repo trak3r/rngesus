@@ -18,6 +18,7 @@
 - hardening (scan tools?)
 - accessibility (scan tools?)
 - re-enable github ci workflow
+- free hosting?
 - donations / patreon
 - affiliate links to buy real dice
 - sponsors
