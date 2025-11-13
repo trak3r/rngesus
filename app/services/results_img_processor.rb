@@ -10,7 +10,7 @@ class ResultsImgProcessor
 
   def to_s
     @to_s ||= begin
-      img = MiniMagick::Image.open(@image_file.to_s)
+      img = MiniMagick::Image.open(@image_file)
       img.colorspace 'Gray'
       img.resize '200%'        # make text bigger for OCR
       img.contrast
