@@ -1,27 +1,22 @@
 # TODO
-- upload screenshot of printed table automatically built (ocr)
-    - add "import results" button to Roll show
-    - prompts for drag or upload file (image or csv)
-    - submit uploads the file, converts it to result objects, back to Roll show
 - easy way to combine randomizer and roll together (e.g. forest encounter monster and reaction tables)
 - support for rolls within results like "1d4 treants"
     - recognize patterns like "XdY" and link them to impromptu roller
     - a pop-up modal or just a hover tooltip might be slick (client-side JS)
 - would we need to support "advantage" rolls?
-- better styling with daisyui https://daisyui.com/components/list/
-    - are we actually using anything from daisy?
 - registration
-- ownership of randomizers
-- share via links with guid not raw id
-- tagging / categories
+    - ownership of randomizers
+- share rollable randomizers via links with guid not raw id
+- tagging / categories, searchable and browsable
+- likes / favorites
+- promotion lists: newest, most liked, most rolled, most shared, etc.
 - search, type-ahead quick find
-- cool 3d dice roll on screen
-- spin results like a slot machine
+- animate cool 3d dice roll on screen
+- animate spin results like a slot machine
 - responsive/mobile screens
 - hotwire native
-- hardening
-- accessibility
-- tests (once there's complicated enough logic to warrant)
+- hardening (scan tools?)
+- accessibility (scan tools?)
 - re-enable github ci workflow
 - donations / patreon
 - affiliate links to buy real dice
@@ -44,3 +39,9 @@
 - special dice types (2d6, with-advantage, etc.)
 - erb-format app/views/**/*.html.erb --write
 - support d100 logic (digit position not sum)
+- upload screenshot of printed table automatically built (ocr)
+    - add "import results" button to Roll show
+    - prompts for drag or upload file (image or csv)
+    - submit uploads the file, converts it to result objects, back to Roll show
+- better styling with daisyui https://daisyui.com/components/list/
+- tests (once there's complicated enough logic to warrant)
