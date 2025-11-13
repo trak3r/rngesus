@@ -1,5 +1,6 @@
 # TODO
 - easy way to combine randomizer and roll together (e.g. forest encounter monster and reaction tables)
+- on the outcomes page of a multi-roll randomizer, allow clicking on any single roll to re-roll just that result
 - support for rolls within results like "1d4 treants"
     - recognize patterns like "XdY" and link them to impromptu roller
     - a pop-up modal or just a hover tooltip might be slick (client-side JS)
