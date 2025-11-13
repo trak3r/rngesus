@@ -43,6 +43,9 @@ en:
   results_csvs:
     create:
       success: "CSV was successfully processed."
+  results_imgs:
+    create:
+      success: "Screenshot was successfully processed."
   activerecord:
     errors:
       models:
