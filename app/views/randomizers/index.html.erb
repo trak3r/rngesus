@@ -1,7 +1,7 @@
 <% content_for :title, "Randomizers" %>
 
 <div class="w-full">
-  <div class="flex justify-between items-center">
+  <div class="flex justify-between items-center mb-4">
     <h1 class="font-bold text-4xl">Randomizers</h1>
     <%= link_to "New randomizer", new_randomizer_path, class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
   </div>
@@ -12,7 +12,7 @@
 
 <div class="card bg-base-100 w-96 shadow-sm flex flex-col group hover:bg-gray-50 p-4 min-h-[180px]">
   <!-- Card main content wrapped in link_to show -->
-  <%= link_to randomizer, class: "flex-1 flex flex-col no-underline text-inherit" do %>
+  <%= link_to randomizer_outcomes_path(randomizer), class: "flex-1 flex flex-col no-underline text-inherit" do %>
     <h2 class="card-title text-xl font-bold mb-2"><%= randomizer.name %></h2>
 
     <p class="flex-1 text-gray-700">
@@ -23,18 +23,8 @@
   <!-- Card actions at the bottom -->
   <div class="card-actions justify-end mt-4 flex flex-row space-x-3 pb-2 pr-2">
     <!-- Outcome icon (dice) -->
-    <%= link_to randomizer_outcomes_path(randomizer), class: "text-blue-500 hover:text-blue-700 p-2 rounded hover:bg-blue-100" do %>
-      <%= icon(:dice, class: "w-5 h-5") %>
-    <% end %>
-
-    <!-- Edit icon -->
-    <%= link_to edit_randomizer_path(randomizer), class: "text-gray-500 hover:text-gray-700 p-2 rounded hover:bg-gray-100" do %>
+    <%= link_to randomizer, class: "text-gray-400 hover:text-gray-700 p-2 rounded hover:bg-gray-100" do %>
       <%= icon(:pencil, class: "w-5 h-5") %>
-    <% end %>
-
-    <!-- Delete icon -->
-    <%= button_to randomizer, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "text-red-500 hover:text-red-700 p-2 rounded hover:bg-red-100" do %>
-      <%= icon(:trash, class: "w-5 h-5") %>
     <% end %>
   </div>
 </div>
