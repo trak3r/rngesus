@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-  reset_session   # wipes the whole session securely
-  redirect_to root_path, notice: "Signed out."
-end
+    reset_session # wipes the whole session securely
+    redirect_to root_path, notice: 'Signed out.'
+  end
 end

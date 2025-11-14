@@ -8,13 +8,15 @@ class ApplicationController < ActionController::Base
   stale_when_importmap_changes
 
   # for omniauth
-    helper_method :current_user
+  helper_method :current_user
   def current_user
-    @current_user ||= User.find_by(id: session[:user_id])
+    return @current_user if defined?(@current_user)
+
+    @current_user = User.find_by(id: session[:user_id])
   end
 
   def require_login
-  redirect_to "/login" unless current_user
-end
-# before_action :require_login
+    redirect_to '/login' unless current_user
+  end
+  # before_action :require_login
 end
