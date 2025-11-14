@@ -5,8 +5,12 @@
     - recognize patterns like "XdY" and link them to impromptu roller
     - a pop-up modal or just a hover tooltip might be slick (client-side JS)
 - would we need to support "advantage" rolls?
-- registration
-    - ownership of randomizers
+- user registration
+    - prefer to use third-party exclusively - no password management internally
+    - https://guides.rubyonrails.org/security.html#authentication
+    - https://github.com/heartcombo/devise
+    - https://github.com/omniauth/omniauth
+- ownership of randomizers
 - share rollable randomizers via links with guid not raw id
 - tagging / categories, searchable and browsable
 - likes / favorites
