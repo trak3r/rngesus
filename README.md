@@ -21,6 +21,7 @@
 - re-enable github ci workflow
 - free hosting?
 - donations / patreon
+    - https://buymeacoffee.com/signup
 - affiliate links to buy real dice
 - sponsors
 # Done
