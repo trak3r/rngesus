@@ -12,10 +12,10 @@
       <%= current_user.uid %>
     </span>
 
-    <%= link_to "Logout",
-                logout_path,
-                method: :delete,
-                class: "text-gray-700 hover:text-primary" %>
+<%= button_to "Logout",
+              logout_path,
+              method: :delete,
+              class: "text-gray-700 hover:text-primary" %>
   <% else %>
     <%= link_to "Log In",
                 login_path,
