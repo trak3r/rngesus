@@ -6,7 +6,18 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user_info = request.env['omniauth.auth']
-    raise user_info # Your own session management should be placed here.
+    auth = request.env['omniauth.auth']
+
+    # 1. Find or create a User
+    user = User.find_or_initialize_by(provider: auth.provider, uid: auth.uid)
+    user.name  = auth.info.name
+    user.email = auth.info.email
+    user.save!
+
+    # 2. Store the user in the session
+    session[:user_id] = user.id
+
+    # 3. Redirect to your app
+    redirect_to root_path, notice: 'Signed in!'
   end
 end
