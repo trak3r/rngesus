@@ -5,22 +5,26 @@
       class: "bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent hover:opacity-90 transition" %>
 </h1>
 
-<nav class="space-x-4">
+<nav class="flex items-center space-x-4">
   <% if current_user %>
-    <span class="text-gray-700">
-      Logged in as: <%= current_user.provider.capitalize %> /
-      <%= current_user.uid %>
-    </span>
+    <div class="flex items-center space-x-2 bg-base-200 px-4 py-2 rounded-lg shadow-sm">
+      <span class="text-sm font-medium text-gray-800">
+        <strong><%= current_user.provider.capitalize %></strong>
+        &middot;
+        <%= current_user.uid %>
+      </span>
 
-<%= button_to "Logout",
-              logout_path,
-              method: :delete,
-              class: "text-gray-700 hover:text-primary" %>
+      <%= button_to "Logout",
+                    logout_path,
+                    method: :delete,
+                    class: "btn btn-sm btn-outline btn-error ml-2" %>
+    </div>
   <% else %>
     <%= link_to "Log In",
                 login_path,
-                class: "btn btn-primary" %>
+                class: "btn btn-primary btn-sm" %>
   <% end %>
 </nav>
+
 </header>
 
