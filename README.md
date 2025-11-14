@@ -7,9 +7,10 @@
 - would we need to support "advantage" rolls?
 - user registration
     - prefer to use third-party exclusively - no password management internally
-    - https://guides.rubyonrails.org/security.html#authentication
-    - https://github.com/heartcombo/devise
+    - (x) https://guides.rubyonrails.org/security.html#authentication
+    - (x) https://github.com/heartcombo/devise
     - https://github.com/omniauth/omniauth
+        - https://github.com/omniauth/omniauth/wiki/List-of-Strategies
 - ownership of randomizers
 - share rollable randomizers via links with guid not raw id
 - tagging / categories, searchable and browsable

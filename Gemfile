@@ -82,3 +82,6 @@ gem 'mini_magick' # REQUIRED: brew install imagemagick
 gem 'rtesseract' # REQUIRED: brew install tesseract
 
 gem 'csv' # not part of Ruby standard library as of 3.4
+
+gem 'omniauth'
+gem "omniauth-rails_csrf_protection"
