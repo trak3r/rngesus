@@ -1,17 +1,13 @@
 <div class="flex flex-col items-center justify-center space-y-4 mt-8">
 
-  <%= form_tag('/auth/developer', method: 'post', data: { turbo: false }) do %>
-    <button class="btn btn-primary flex items-center justify-center w-64 h-12 space-x-2">
-      <%= icon('test-pipe', class: "w-5 h-5") %>
-      <span>Login with Developer</span>
-    </button>
+  <%= link_to '/auth/developer', class: "btn btn-primary flex items-center justify-center w-64 h-12 space-x-2" do %>
+    <%= icon('test-pipe', class: "w-5 h-5") %>
+    <span>Login with Developer</span>
   <% end %>
 
-  <%= form_tag('/auth/google_oauth2', method: 'post', data: { turbo: false }) do %>
-    <button class="btn btn-secondary flex items-center justify-center w-64 h-12 space-x-2">
-      <%= icon('brand-google', class: "w-5 h-5") %>
-      <span>Login with Google</span>
-    </button>
+  <%= link_to '/auth/google_oauth2', class: "btn btn-secondary flex items-center justify-center w-64 h-12 space-x-2" do %>
+    <%= icon('brand-google', class: "w-5 h-5") %>
+    <span>Login with Google</span>
   <% end %>
 
   <%# Dummy placeholders for Twitter and Facebook %>
