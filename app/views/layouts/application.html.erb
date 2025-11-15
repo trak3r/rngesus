@@ -24,14 +24,37 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="min-h-screen bg-base-50">
-    <%= render "shared/header" %>
+<body class="min-h-screen bg-base-50">
+  <%= render "shared/header" %>
 
-    <div class="container mx-auto px-4 py-8">
-      <%= render "shared/notice" %>
-      <%= yield %>
-    </div>
+  <div class="container mx-auto px-4 py-8">
 
-    <%= render "shared/footer" %>
-  </body>
+    <% if notice %>
+      <label class="w-full block mb-4 cursor-pointer">
+        <input type="checkbox" class="hidden peer" />
+        <div class="max-w-7xl mx-auto bg-success text-success-content px-6 py-4 rounded-lg shadow flex items-center justify-between
+                    transition-all duration-300 peer-checked:hidden">
+          <span><%= notice %></span>
+          <span class="ml-4 font-bold select-none">&times;</span>
+        </div>
+      </label>
+    <% end %>
+
+    <% if alert %>
+      <label class="w-full block mb-4 cursor-pointer">
+        <input type="checkbox" class="hidden peer" />
+        <div class="max-w-7xl mx-auto bg-error text-error-content px-6 py-4 rounded-lg shadow flex items-center justify-between
+                    transition-all duration-300 peer-checked:hidden">
+          <span><%= alert %></span>
+          <span class="ml-4 font-bold select-none">&times;</span>
+        </div>
+      </label>
+    <% end %>
+
+    <%= yield %>
+  </div>
+
+  <%= render "shared/footer" %>
+</body>
+
 </html>
