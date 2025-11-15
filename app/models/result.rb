@@ -7,7 +7,9 @@ class Result < ApplicationRecord
   validates :value, presence: true,
                     uniqueness: { scope: :roll_id }
 
-  validate :value_within_dice_range
+  # removing this constraint because some tables allow
+  # for bonuses e.g. shadowdark carousing p. 93
+  # validate :value_within_dice_range
 
   private
 
