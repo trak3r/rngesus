@@ -48,45 +48,45 @@ class ResultsImgProcessor
   #   sometimes zero prefixed (01)
   #   two hyphenated numbers (3-6)
   #   sometimes a number suffixed with a plus sign (14+)
-def parsed_list
-  @parsed_list ||= begin
-    rows = to_a # original OCR lines, stripped
-    result = []
-    last_row = nil
+  def parsed_list
+    @parsed_list ||= begin
+      rows = to_a # original OCR lines, stripped
+      result = []
+      last_row = nil
 
-    rows.each do |line|
-      line = line.strip
-      next if line.empty?
+      rows.each do |line|
+        line = line.strip
+        next if line.empty?
 
-      cols = line.split(/\s+/)
-      first_col = cols[0]
+        cols = line.split(/\s+/)
+        first_col = cols[0]
 
-# Remove any trailing period or comma from the first column
-clean_col = first_col.gsub(/[.,]$/, '')
+        # Remove any trailing period or comma from the first column
+        clean_col = first_col.gsub(/[.,]$/, '')
 
-if clean_col =~ /^\d+(-\d+)?\+?$/  # line starts with a number/range
-  # Extract minimum number from range
-  min_str = clean_col.split('-').first
-  min_str = min_str.gsub(/^0+/, '').gsub(/\+$/, '') # remove leading zeros & trailing '+'
+        if clean_col =~ /^\d+(-\d+)?\+?$/ # line starts with a number/range
+          # Extract minimum number from range
+          min_str = clean_col.split('-').first
+          min_str = min_str.gsub(/^0+/, '').gsub(/\+$/, '') # remove leading zeros & trailing '+'
 
-  next if min_str.empty? || min_str.to_i.zero?
+          next if min_str.empty? || min_str.to_i.zero?
 
-  # Rest of line as text
-  text = (cols[1..] || []).join(' ').strip
-  next if text.empty?
+          # Rest of line as text
+          text = (cols[1..] || []).join(' ').strip
+          next if text.empty?
 
-  row = [min_str.to_i, text]
-  result << row
-  last_row = row
-else
-  # continuation line: append to last row's text if available
-  last_row[1] += " " + line if last_row
-end
+          row = [min_str.to_i, text]
+          result << row
+          last_row = row
+        elsif last_row
+          # continuation line: append to last row's text if available
+          last_row[1] += " #{line}"
+        end
+      end
+
+      result
     end
-
-    result
   end
-end
 
   def call
     parsed_list.each do |line|
