@@ -1,6 +1,6 @@
 <%= form_with(model: randomizer, class: "contents") do |form| %>
   <% if randomizer.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
+    <div id="error_explanation" class="btn-error text-red-500 px-3 py-2 font-medium rounded-md mt-3">
       <h2><%= pluralize(randomizer.errors.count, "error") %> prohibited this randomizer from being saved:</h2>
 
       <ul class="list-disc ml-6">
@@ -26,6 +26,6 @@
   </div>
 
   <div class="inline">
-    <%= form.submit class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
+    <%= form.submit class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 btn-primary hover:btn-primary0 text-white inline-block font-medium cursor-pointer" %>
   </div>
 <% end %>

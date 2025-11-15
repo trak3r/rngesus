@@ -4,7 +4,7 @@
   <div class="flex flex-wrap gap-4">
 
 <div class="card bg-base-100 w-96 shadow-sm flex flex-col group
-            hover:bg-base-200 p-4 min-h-[180px]
+             p-4 min-h-[180px]
             bg-gradient-to-b from-base-100 to-base-200">
   <%= link_to new_randomizer_path,
               class: "flex-1 flex flex-col no-underline text-inherit" do %>
@@ -20,7 +20,7 @@
 
     <% @randomizers.each do |randomizer| %>
 
-<div class="card bg-base-100 w-96 shadow-sm flex flex-col group hover:bg-base-200 p-4 min-h-[180px]">
+<div class="card bg-base-100 w-96 shadow-sm flex flex-col group  p-4 min-h-[180px]">
   <%= link_to randomizer_outcomes_path(randomizer),
               class: "flex-1 flex flex-col no-underline text-inherit" do %>
 
@@ -39,7 +39,7 @@
 
   <div class="card-actions justify-end mt-4 flex flex-row space-x-3 pb-2 pr-2">
     <%= link_to randomizer,
-                class: "text-base-content/50 hover:text-base-content p-2 rounded hover:bg-base-200" do %>
+                class: "text-base-content/50 hover:text-base-content p-2 rounded " do %>
       <%= icon(:pencil, class: "w-5 h-5") %>
     <% end %>
   </div>

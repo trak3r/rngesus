@@ -12,11 +12,11 @@
   </div>
 
   <div class="flex flex-row space-x-2 w-auto">
-    <%= link_to edit_result_path(result), class: "text-gray-500 hover:text-gray-700 p-2 rounded hover:bg-gray-100" do %>
+    <%= link_to edit_result_path(result), class: "text-gray-500 hover:text-gray-700 p-2 rounded hover:btn-secondary" do %>
       <%= icon(:pencil, class: "w-5 h-5") %>
     <% end %>
 
-    <%= button_to result_path(result), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "text-red-500 hover:text-red-700 p-2 rounded hover:bg-red-100" do %>
+    <%= button_to result_path(result), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "text-red-500 hover:text-red-700 p-2 rounded hover:btn-error" do %>
       <%= icon(:trash, class: "w-5 h-5") %>
     <% end %>
   </div>
