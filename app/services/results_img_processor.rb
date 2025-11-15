@@ -61,26 +61,27 @@ def parsed_list
       cols = line.split(/\s+/)
       first_col = cols[0]
 
-      if first_col =~ /^\d+(\d+)?(-\d+)?\+?$/  # line starts with a number/range
-        # Extract minimum number from range
-        min_str = first_col.split('-').first
-        min_str = min_str.gsub(/^0+/, '').gsub(/\+$/, '')
-        next if min_str.empty? || min_str.to_i.zero?
+# Remove any trailing period or comma from the first column
+clean_col = first_col.gsub(/[.,]$/, '')
 
-        # Rest of line as text
-        text = (cols[1..] || []).join(' ').strip
-        next if text.empty?
+if clean_col =~ /^\d+(-\d+)?\+?$/  # line starts with a number/range
+  # Extract minimum number from range
+  min_str = clean_col.split('-').first
+  min_str = min_str.gsub(/^0+/, '').gsub(/\+$/, '') # remove leading zeros & trailing '+'
 
-        row = [min_str.to_i, text]
-        result << row
-        last_row = row
-      else
-        # continuation line: append to last row's text if available
-        if last_row
-          last_row[1] += " " + line
-        end
-        # else discard line
-      end
+  next if min_str.empty? || min_str.to_i.zero?
+
+  # Rest of line as text
+  text = (cols[1..] || []).join(' ').strip
+  next if text.empty?
+
+  row = [min_str.to_i, text]
+  result << row
+  last_row = row
+else
+  # continuation line: append to last row's text if available
+  last_row[1] += " " + line if last_row
+end
     end
 
     result

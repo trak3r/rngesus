@@ -24,7 +24,7 @@ class ResultsImgProcessorTest < ActiveSupport::TestCase
     assert_difference('@roll.results.count', 14) do
       processor = ResultsImgProcessor.new(@roll, image_file)
       # ap processor.to_s
-      # ap processor.to_a
+      ap processor.to_a
       ap processor.parsed_list
       processor.call
     end
