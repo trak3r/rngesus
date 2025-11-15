@@ -2,7 +2,10 @@
     <% if rolls.any? %>
       <% rolls.each do |roll| %>
 
-<li class="list-row flex items-center space-x-4 py-3 hover:btn-secondary rounded group">
+<li class="list-row flex items-center space-x-4 py-3 px-3
+           rounded-lg transition-all duration-200
+           bg-gradient-to-br from-primary/5 to-primary/10
+           hover:from-primary/10 hover:to-primary/20">
   <%= link_to roll, class: "flex-1 flex items-center space-x-4 text-inherit no-underline" do %>
     <div class="w-24 text-4xl font-thin opacity-30 tabular-nums text-right">
       <%= roll.dice_object.try(:name) || '?' %>
