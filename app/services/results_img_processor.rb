@@ -36,12 +36,16 @@ class ResultsImgProcessor
   end
 
   def to_a
-    @to_a ||= begin
+    @to_a ||= to_s.split("\n")
+  end
+
+  def parsed_list
+    @parsed_list ||= begin
       # Parse a 2-column table:
       #   first column = range,
       #   second column = description
       #   third+ column(s) discard
-      rows = to_s.lines.map(&:strip).reject(&:empty?)
+      rows = to_a # s.lines.map(&:strip).reject(&:empty?)
 
       # range will be ...
       #   a lone number (1)
@@ -71,7 +75,7 @@ class ResultsImgProcessor
   end
 
   def call
-    to_a.each do |line|
+    parsed_list.each do |line|
       value = line[0]
       name  = line[1]
       roll.results.create(value: value, name: name)

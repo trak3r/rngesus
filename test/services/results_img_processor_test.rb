@@ -13,6 +13,7 @@ class ResultsImgProcessorTest < ActiveSupport::TestCase
       processor = ResultsImgProcessor.new(@roll, image_file)
       # ap processor.to_s
       # ap processor.to_a
+      # ap processor.parsed_list
       processor.call
     end
   end
@@ -24,6 +25,7 @@ class ResultsImgProcessorTest < ActiveSupport::TestCase
       processor = ResultsImgProcessor.new(@roll, image_file)
       # ap processor.to_s
       ap processor.to_a
+      # ap processor.parsed_list
       processor.call
     end
 
