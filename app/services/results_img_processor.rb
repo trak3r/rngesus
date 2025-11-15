@@ -42,17 +42,31 @@ class ResultsImgProcessor
       #   second column = description
       #   third+ column(s) discard
       rows = to_s.lines.map(&:strip).reject(&:empty?)
+
+      # range will be ...
+      #   a lone number (1)
+      #   sometimes zero prefixed (01)
+      #   two hyphenated numbers (3-6)
+      #   sometimes a number suffixed with a plus sign (14+)
       rows.map do |line|
-        range, text, extra = line.split(/\s+/, 2) # split into exactly 2 parts
-        # range will be ...
-        #   a lone number (1)
-        #   sometimes zero prefixed (01)
-        #   two hyphenated numbers (3-6)
-        #   sometimes a number suffixed with a plus sign (14+)
-        min = range.split('-').first
-        # FIXME: skip is we don't get a valid non-zero value for min
-        [min, text]
-      end
+        # Split the line into columns; allow extra columns beyond the first two
+        cols = line.split(/\s+/)
+        range = cols[0]
+        text  = cols[1..].join(' ') # rest of line as text
+
+        next if text.empty?
+
+        next if range.blank?
+
+        # Extract minimum number from range
+        min_str = range.split('-').first
+        min_str = min_str.gsub(/^0+/, '').gsub(/\+$/, '') # remove leading zeros & trailing '+'
+
+        # Skip if min is invalid or zero
+        next if min_str.empty? || min_str.to_i.zero?
+
+        [min_str.to_i, text.strip]
+      end.compact
     end
   end
 
