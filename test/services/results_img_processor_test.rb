@@ -10,7 +10,8 @@ class ResultsImgProcessorTest < ActiveSupport::TestCase
   test 'creates results from OCR image' do
     image_file = Rails.root.join('app/assets/images/forest_encounters_p154.png')
     assert_difference('@roll.results.count', 23) do
-      ResultsImgProcessor.new(@roll, image_file).call
+      processor = ResultsImgProcessor.new(@roll, image_file)
+      processor.call
     end
   end
 
@@ -18,7 +19,10 @@ class ResultsImgProcessorTest < ActiveSupport::TestCase
     image_file = Rails.root.join('test/ocr/carousing_outcome_p93.png')
 
     assert_difference('@roll.results.count', 14) do
-      ResultsImgProcessor.new(@roll, image_file).call
+      processor = ResultsImgProcessor.new(@roll, image_file)
+      ap processor.to_s
+      # ap processor.to_a
+      processor.call
     end
 
     @roll.reload
