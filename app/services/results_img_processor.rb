@@ -39,40 +39,53 @@ class ResultsImgProcessor
     @to_a ||= to_s.split("\n")
   end
 
-  def parsed_list
-    @parsed_list ||= begin
-      # Parse a 2-column table:
-      #   first column = range,
-      #   second column = description
-      #   third+ column(s) discard
-      rows = to_a # s.lines.map(&:strip).reject(&:empty?)
+  # Parse a 2-column table:
+  #   first column = range,
+  #   second column = description
+  #   third+ column(s) discard
+  # range will be ...
+  #   a lone number (1)
+  #   sometimes zero prefixed (01)
+  #   two hyphenated numbers (3-6)
+  #   sometimes a number suffixed with a plus sign (14+)
+def parsed_list
+  @parsed_list ||= begin
+    rows = to_a # original OCR lines, stripped
+    result = []
+    last_row = nil
 
-      # range will be ...
-      #   a lone number (1)
-      #   sometimes zero prefixed (01)
-      #   two hyphenated numbers (3-6)
-      #   sometimes a number suffixed with a plus sign (14+)
-      rows.map do |line|
-        # Split the line into columns; allow extra columns beyond the first two
-        cols = line.split(/\s+/)
-        range = cols[0]
-        text  = (cols[1..] || []).join(' ') # rest of line as text
+    rows.each do |line|
+      line = line.strip
+      next if line.empty?
 
-        next if text.empty?
+      cols = line.split(/\s+/)
+      first_col = cols[0]
 
-        next if range.blank?
-
+      if first_col =~ /^\d+(\d+)?(-\d+)?\+?$/  # line starts with a number/range
         # Extract minimum number from range
-        min_str = range.split('-').first
-        min_str = min_str.gsub(/^0+/, '').gsub(/\+$/, '') # remove leading zeros & trailing '+'
-
-        # Skip if min is invalid or zero
+        min_str = first_col.split('-').first
+        min_str = min_str.gsub(/^0+/, '').gsub(/\+$/, '')
         next if min_str.empty? || min_str.to_i.zero?
 
-        [min_str.to_i, text.strip]
-      end.compact
+        # Rest of line as text
+        text = (cols[1..] || []).join(' ').strip
+        next if text.empty?
+
+        row = [min_str.to_i, text]
+        result << row
+        last_row = row
+      else
+        # continuation line: append to last row's text if available
+        if last_row
+          last_row[1] += " " + line
+        end
+        # else discard line
+      end
     end
+
+    result
   end
+end
 
   def call
     parsed_list.each do |line|
