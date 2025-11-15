@@ -85,3 +85,4 @@ gem 'csv' # not part of Ruby standard library as of 3.4
 
 gem 'omniauth'
 gem 'omniauth-rails_csrf_protection'
+gem 'omniauth-google-oauth2'

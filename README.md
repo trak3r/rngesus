@@ -1,5 +1,5 @@
 # TODO
-- discovered by accident that (a) tailwind supports OS dark mode toggle and (b) it's broken as fugg on my pages
+- add helper tips on screnshot upload for cropping and layout with example image
 - easy way to combine randomizer and roll together (e.g. forest encounter monster and reaction tables)
 - on the outcomes page of a multi-roll randomizer, allow clicking on any single roll to re-roll just that result
 - support for rolls within results like "1d4 treants"
@@ -54,3 +54,4 @@
     - submit uploads the file, converts it to result objects, back to Roll show
 - better styling with daisyui https://daisyui.com/components/list/
 - tests (once there's complicated enough logic to warrant)
+- discovered by accident that (a) tailwind supports OS dark mode toggle and (b) it's broken as fugg on my pages
