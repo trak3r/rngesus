@@ -1,4 +1,5 @@
 # TODO
+- discovered by accident that (a) tailwind supports OS dark mode toggle and (b) it's broken as fugg on my pages
 - easy way to combine randomizer and roll together (e.g. forest encounter monster and reaction tables)
 - on the outcomes page of a multi-roll randomizer, allow clicking on any single roll to re-roll just that result
 - support for rolls within results like "1d4 treants"
