@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  # for omniauth
+  get 'auth/:provider/callback', to: 'sessions#create'
+  get '/login', to: 'sessions#new'
+  delete '/logout', to: 'sessions#destroy', as: :logout
+
   resources :examples
   resources :randomizers do
     resources :outcomes
