@@ -25,6 +25,8 @@
 - accessibility (scan tools?)
 - re-enable github ci workflow
 - free hosting?
+    - database backups
+- google analytics
 - donations / patreon
     - https://buymeacoffee.com/signup
 - affiliate links to buy real dice
