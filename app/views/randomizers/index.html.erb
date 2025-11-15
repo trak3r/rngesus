@@ -20,7 +20,9 @@
 
     <% @randomizers.each do |randomizer| %>
 
-<div class="card bg-base-100 w-96 shadow-sm flex flex-col group  p-4 min-h-[180px]">
+<div class="card w-96 shadow-sm flex flex-col group p-4 min-h-[180px]
+            bg-gradient-to-br from-primary/5 to-primary/10
+            hover:from-primary/10 hover:to-primary/20 transition-all duration-200">
   <%= link_to randomizer_outcomes_path(randomizer),
               class: "flex-1 flex flex-col no-underline text-inherit" do %>
 
