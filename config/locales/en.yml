@@ -55,4 +55,7 @@ en:
               taken: "This value has already been used for this roll."
               too_small: "must be greater than or equal to %{min}"
               too_large: "must be less than or equal to %{max}"
+  flash:
+    signed_in: "Signed in!"
+    signed_out: "Signed out."
 

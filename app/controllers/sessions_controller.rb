@@ -18,11 +18,11 @@ class SessionsController < ApplicationController
     session[:user_id] = user.id
 
     # 3. Redirect to your app
-    redirect_to root_path, notice: 'Signed in!'
+    redirect_to root_path, notice: t('flash.signed_in')
   end
 
   def destroy
     reset_session # wipes the whole session securely
-    redirect_to root_path, notice: 'Signed out.'
+    redirect_to root_path, notice: t('flash.signed_out')
   end
 end
