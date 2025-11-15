@@ -16,21 +16,30 @@
 
     <% @randomizers.each do |randomizer| %>
 
-      <div class="card bg-base-100 w-96 shadow-sm flex flex-col group hover:bg-gray-50 p-4 min-h-[180px]">
-        <%= link_to randomizer_outcomes_path(randomizer), class: "flex-1 flex flex-col no-underline text-inherit" do %>
-          <h2 class="card-title text-xl font-bold mb-2"><%= randomizer.name %></h2>
+<div class="card bg-base-100 w-96 shadow-sm flex flex-col group hover:bg-base-200 p-4 min-h-[180px]">
+  <%= link_to randomizer_outcomes_path(randomizer),
+              class: "flex-1 flex flex-col no-underline text-inherit" do %>
 
-          <p class="flex-1 text-gray-700">
-            <%= randomizer.rolls.map { |r| h(r.name || 'Missing') }.join(' &middot; ').html_safe %>
-          </p>
-        <% end %>
+    <h2 class="card-title text-xl font-bold mb-2">
+      <%= randomizer.name %>
+    </h2>
 
-        <div class="card-actions justify-end mt-4 flex flex-row space-x-3 pb-2 pr-2">
-          <%= link_to randomizer, class: "text-gray-400 hover:text-gray-700 p-2 rounded hover:bg-gray-100" do %>
-            <%= icon(:pencil, class: "w-5 h-5") %>
-          <% end %>
-        </div>
-      </div>
+    <p class="flex-1 text-base-content/70">
+      <%= randomizer.rolls
+            .map { |r| h(r.name || 'Missing') }
+            .join(' &middot; ')
+            .html_safe %>
+    </p>
+
+  <% end %>
+
+  <div class="card-actions justify-end mt-4 flex flex-row space-x-3 pb-2 pr-2">
+    <%= link_to randomizer,
+                class: "text-base-content/50 hover:text-base-content p-2 rounded hover:bg-base-200" do %>
+      <%= icon(:pencil, class: "w-5 h-5") %>
+    <% end %>
+  </div>
+</div>
 
     <% end %>
   </div>
