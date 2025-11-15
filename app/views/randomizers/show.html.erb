@@ -8,6 +8,10 @@
       <%= icon('caret-left', class: "w-6 h-6 text-gray-500") %>
     <% end %>
     <%= @randomizer.name %>
+    <%= link_to edit_randomizer_path(@randomizer),
+                class: "text-base-content/50 hover:text-base-content p-2 rounded " do %>
+      <%= icon(:edit, class: "w-5 h-5") %>
+    <% end %>
   </div>
 </div>
 
@@ -15,7 +19,6 @@
 
   <div class="mt-4">
     <%= link_to "New roll", new_randomizer_roll_path(@randomizer), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 btn-primary hover:btn-primary inline-block font-medium" %>
-    <%= link_to "Edit this randomizer", edit_randomizer_path(@randomizer), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 btn-secondary hover:btn-secondary inline-block font-medium" %>
     <%= button_to "Destroy this randomizer", @randomizer, method: :delete, form_class: "sm:inline-block mt-2 sm:mt-0 sm:ml-2", class: "w-full rounded-md px-3.5 py-2.5 text-white btn-error hover:btn-error font-medium cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
   </div>
 </div>
