@@ -11,6 +11,8 @@ class ResultsImgProcessorTest < ActiveSupport::TestCase
     image_file = Rails.root.join('app/assets/images/forest_encounters_p154.png')
     assert_difference('@roll.results.count', 23) do
       processor = ResultsImgProcessor.new(@roll, image_file)
+      # ap processor.to_s
+      ap processor.to_a
       processor.call
     end
   end
@@ -20,7 +22,7 @@ class ResultsImgProcessorTest < ActiveSupport::TestCase
 
     assert_difference('@roll.results.count', 14) do
       processor = ResultsImgProcessor.new(@roll, image_file)
-      ap processor.to_s
+      # ap processor.to_s
       # ap processor.to_a
       processor.call
     end

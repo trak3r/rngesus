@@ -39,12 +39,18 @@ class ResultsImgProcessor
     @to_a ||= begin
       # Parse a 2-column table:
       #   first column = range,
-      #   second column = full remaining content
+      #   second column = description
+      #   third+ column(s) discard
       rows = to_s.lines.map(&:strip).reject(&:empty?)
-      rows.drop(1).map do |line|
-        range, text = line.split(/\s+/, 2) # split into exactly 2 parts
+      rows.map do |line|
+        range, text, extra = line.split(/\s+/, 2) # split into exactly 2 parts
+        # range will be ...
+        #   a lone number (1)
+        #   sometimes zero prefixed (01)
+        #   two hyphenated numbers (3-6)
+        #   sometimes a number suffixed with a plus sign (14+)
         min = range.split('-').first
-        # { min: min, text: text }
+        # FIXME: skip is we don't get a valid non-zero value for min
         [min, text]
       end
     end
