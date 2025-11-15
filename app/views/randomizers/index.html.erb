@@ -3,14 +3,18 @@
 <div class="w-full">
   <div class="flex flex-wrap gap-4">
 
-<div class="card w-96 shadow-sm flex flex-col group hover:bg-gray-50 p-4 min-h-[180px]
-            bg-gradient-to-b from-white to-gray-100">
-  <%= link_to new_randomizer_path, class: "flex-1 flex flex-col no-underline text-inherit" do %>
+<div class="card bg-base-100 w-96 shadow-sm flex flex-col group
+            hover:bg-base-200 p-4 min-h-[180px]
+            bg-gradient-to-b from-base-100 to-base-200">
+  <%= link_to new_randomizer_path,
+              class: "flex-1 flex flex-col no-underline text-inherit" do %>
+
     <h2 class="card-title text-xl font-bold mb-2">New Randomizer</h2>
 
-    <p class="flex-1 text-gray-700">
+    <p class="flex-1 text-base-content/70">
       Create your own!
     </p>
+
   <% end %>
 </div>
 
