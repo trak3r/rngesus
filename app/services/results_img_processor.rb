@@ -56,7 +56,7 @@ class ResultsImgProcessor
         # Split the line into columns; allow extra columns beyond the first two
         cols = line.split(/\s+/)
         range = cols[0]
-        text  = cols[1..].join(' ') # rest of line as text
+        text  = (cols[1..] || []).join(' ') # rest of line as text
 
         next if text.empty?
 
