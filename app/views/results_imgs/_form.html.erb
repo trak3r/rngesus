@@ -1,18 +1,39 @@
-<%= form_with(model: @results_img, url: roll_results_imgs_path(@roll), local: true, html: { multipart: true }) do |form| %>
-  <% if @results_img.errors.any? %>
-    <div class="mb-4 text-red-500">
-      <h2><%= pluralize(@results_img.errors.count, "error") %> prevented this file from uploading:</h2>
-      <ul class="list-disc ml-6">
-        <% @results_img.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div class="flex flex-col md:flex-row items-start justify-center gap-8 px-4 py-8">
 
-  <%= form.file_field :file,
-    accept: ".png,.jpg,.jpeg",
-    class: "file-input file-input-primary w-full max-w-xs" %>
-  <%= form.submit "Upload screenshot",
-    class: "btn btn-primary w-full max-w-xs" %>
-<% end %>
+  <div class="w-full md:w-1/2 bg-base-100 dark:bg-base-200 p-6 rounded-xl shadow-lg">
+    <%= form_with(model: @results_img, url: roll_results_imgs_path(@roll), local: true, html: { multipart: true }) do |form| %>
+
+      <% if @results_img.errors.any? %>
+        <div class="mb-4 text-error">
+          <h2 class="font-semibold mb-2"><%= pluralize(@results_img.errors.count, "error") %> prevented this file from uploading:</h2>
+          <ul class="list-disc ml-6">
+            <% @results_img.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="mb-4">
+        <%= form.file_field :file,
+          accept: ".png,.jpg,.jpeg",
+          class: "file-input file-input-primary w-full" %>
+      </div>
+
+      <%= form.submit "Upload screenshot",
+        class: "btn btn-primary w-full text-lg font-medium py-2" %>
+
+    <% end %>
+  </div>
+
+  <div class="w-full md:w-1/2 bg-base-200 dark:bg-base-300 p-6 rounded-xl shadow-lg flex flex-col items-center">
+    <h3 class="text-lg font-semibold mb-4">For Best Results</h3>
+    <p class="mb-4 text-sm text-base-content/70">
+    Crop your screenshot to show a two-column table
+    with the roll values in the left column.
+    </p>
+    <%= image_tag "forest_encounters_p154.png", alt: "Example screenshot", class: "w-full rounded-lg shadow-md" %>
+  </div>
+
+</div>
+

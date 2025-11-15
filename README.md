@@ -30,6 +30,7 @@
     - https://buymeacoffee.com/signup
 - affiliate links to buy real dice
 - sponsors
+
 # Done
 - rails new
 - randomizers
@@ -56,6 +57,7 @@
 - tests (once there's complicated enough logic to warrant)
 - discovered by accident that (a) tailwind supports OS dark mode toggle and (b) it's broken as fugg on my pages
 
+# Notes
 
 ChatGPT script to convert all basic tailwind styles to daisyui
 ```
