@@ -6,7 +6,16 @@ end
 
 OmniAuth.config.logger = Rails.logger
 
-Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET']
+
+google_client_id = ENV['GOOGLE_CLIENT_ID']
+google_client_secret = ENV['GOOGLE_CLIENT_SECRET']
+
+if google_client_id.blank? || google_client_secret.blank?
+  raise "Missing GOOGLE_CLIENT_ID or GOOGLE_CLIENT_SECRET environment variables!"
 end
+
+Rails.application.config.middleware.use OmniAuth::Builder do
+  provider :google_oauth2, google_client_id, google_client_secret
+end
+
 OmniAuth.config.allowed_request_methods = %i[get]
