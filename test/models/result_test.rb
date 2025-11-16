@@ -33,4 +33,10 @@ class ResultTest < ActiveSupport::TestCase
   #                     "must be less than or equal to #{roll.dice_object.max}",
   #                     'Validation error should mention dice limit'
   #   end
+
+  test '1d6 boars flee a hunting party of 2d4 territorial centaurs' do
+    result = Roll.new.results.build(
+      name: '1d6 boars flee a hunting party of 2d4 territorial centaurs' )
+    assert_equal 'foo', result.name_with_rolls
+  end
 end

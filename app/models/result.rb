@@ -11,6 +11,18 @@ class Result < ApplicationRecord
   # for bonuses e.g. shadowdark carousing p. 93
   # validate :value_within_dice_range
 
+def name_with_rolls
+  dices = Dice.from(name)
+  rolled = name.dup  # duplicate string so we don't mutate the original
+
+  dices.each do |dice|
+    # Replace all occurrences of dice.name with its rolled value
+    rolled.gsub!(dice.name, dice.roll.to_s)
+  end
+
+  rolled
+end
+
   private
 
   def value_within_dice_range
