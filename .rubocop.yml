@@ -5,6 +5,8 @@ AllCops:
   SuggestExtensions: false
 plugins:
   - rubocop-rails
+  - rubocop-minitest
+  - rubocop-performance
 Style/Documentation:
   Enabled: false
 Rails/ReversibleMigration:
@@ -20,4 +22,9 @@ Metrics/AbcSize:
   Enabled: false
 Rails/NotNullColumn:
   # suggests default values on foreign keys
+  Enabled: false
+Minitest/MultipleAssertions:
+  # assertions are good
+  Enabled: false
+Metrics/CyclomaticComplexity:
   Enabled: false

@@ -64,7 +64,7 @@ class ResultsImgProcessor
         # Remove any trailing period or comma from the first column
         clean_col = first_col.gsub(/[.,]$/, '')
 
-        if clean_col =~ /^\d+(-\d+)?\+?$/ # line starts with a number/range
+        if /^\d+(-\d+)?\+?$/.match?(clean_col) # line starts with a number/range
           # Extract minimum number from range
           min_str = clean_col.split('-').first
           min_str = min_str.gsub(/^0+/, '').gsub(/\+$/, '') # remove leading zeros & trailing '+'

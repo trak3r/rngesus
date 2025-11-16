@@ -17,6 +17,7 @@ class ResultTest < ActiveSupport::TestCase
     expected_message = I18n.t(
       'activerecord.errors.models.result.attributes.value.taken'
     )
+
     assert_includes dupe.errors[:value], expected_message
   end
 

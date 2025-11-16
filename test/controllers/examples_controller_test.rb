@@ -9,11 +9,13 @@ class ExamplesControllerTest < ActionDispatch::IntegrationTest
 
   test 'should get index' do
     get examples_url
+
     assert_response :success
   end
 
   test 'should get new' do
     get new_example_url
+
     assert_response :success
   end
 
@@ -27,16 +29,19 @@ class ExamplesControllerTest < ActionDispatch::IntegrationTest
 
   test 'should show example' do
     get example_url(@example)
+
     assert_response :success
   end
 
   test 'should get edit' do
     get edit_example_url(@example)
+
     assert_response :success
   end
 
   test 'should update example' do
     patch example_url(@example), params: { example: { name: @example.name, value: @example.value } }
+
     assert_redirected_to example_url(@example)
   end
 

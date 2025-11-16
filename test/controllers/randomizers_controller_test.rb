@@ -9,11 +9,13 @@ class RandomizersControllerTest < ActionDispatch::IntegrationTest
 
   test 'should get index' do
     get randomizers_url
+
     assert_response :success
   end
 
   test 'should get new' do
     get new_randomizer_url
+
     assert_response :success
   end
 
@@ -29,11 +31,13 @@ class RandomizersControllerTest < ActionDispatch::IntegrationTest
 
   test 'should show randomizer' do
     get randomizer_url(@randomizer)
+
     assert_response :success
   end
 
   test 'should get edit' do
     get edit_randomizer_url(@randomizer)
+
     assert_response :success
   end
 
@@ -41,6 +45,7 @@ class RandomizersControllerTest < ActionDispatch::IntegrationTest
     patch randomizer_url(@randomizer), params: { randomizer: {
       name: 'Forest Encounters'
     } }
+
     assert_redirected_to randomizer_url(@randomizer)
   end
 

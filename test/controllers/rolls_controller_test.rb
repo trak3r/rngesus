@@ -9,11 +9,13 @@ class RollsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should get index' do
     get randomizer_rolls_url(@roll.randomizer)
+
     assert_response :success
   end
 
   test 'should get new' do
     get new_randomizer_roll_url(@roll.randomizer)
+
     assert_response :success
   end
 
@@ -30,11 +32,13 @@ class RollsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should show roll' do
     get roll_url(@roll)
+
     assert_response :success
   end
 
   test 'should get edit' do
     get edit_roll_url(@roll)
+
     assert_response :success
   end
 
@@ -43,6 +47,7 @@ class RollsControllerTest < ActionDispatch::IntegrationTest
       name: 'Mood',
       dice: '2D6'
     } }
+
     assert_redirected_to roll_url(@roll)
   end
 

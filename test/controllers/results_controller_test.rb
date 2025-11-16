@@ -9,11 +9,13 @@ class ResultsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should get index' do
     get roll_results_url(@result.roll)
+
     assert_response :success
   end
 
   test 'should get new' do
     get new_roll_result_url(@result.roll)
+
     assert_response :success
   end
 
@@ -30,11 +32,13 @@ class ResultsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should show result' do
     get result_url(@result)
+
     assert_response :success
   end
 
   test 'should get edit' do
     get edit_result_url(@result)
+
     assert_response :success
   end
 
@@ -43,6 +47,7 @@ class ResultsControllerTest < ActionDispatch::IntegrationTest
       name: 'far',
       value: 2
     } }
+
     assert_redirected_to result_url(@result)
   end
 

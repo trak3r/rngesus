@@ -12,8 +12,8 @@ class DiceTest < ActiveSupport::TestCase
     assert_equal 5, dice.min
     assert_equal 20, dice.max
 
-    assert dice.roll >= dice.min
-    assert dice.roll <= dice.max
+    assert_operator dice.roll, :>=, dice.min
+    assert_operator dice.roll, :<=, dice.max
   end
 
   test 'd2' do
@@ -25,7 +25,7 @@ class DiceTest < ActiveSupport::TestCase
     assert_equal 1, dice.min
     assert_equal 2, dice.max
 
-    assert dice.roll >= dice.min
-    assert dice.roll <= dice.max
+    assert_operator dice.roll, :>=, dice.min
+    assert_operator dice.roll, :<=, dice.max
   end
 end
