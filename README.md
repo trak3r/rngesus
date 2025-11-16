@@ -1,5 +1,4 @@
 # TODO
-- find and disable the rubocop that effs up block comments
 - hover interpolated rolls vs raw verbiage
 - try larger zoomed test image, and if it helps add to upload tips
 - ownership of randomizers
@@ -62,3 +61,4 @@
     - recognize patterns like "XdY" and link them to impromptu roller
     - a pop-up modal or just a hover tooltip might be slick (client-side JS)
 - test with a dolmenwood table since it has different font and colors than shadowdark
+- find and disable the rubocop that effs up block comments

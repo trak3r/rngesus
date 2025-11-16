@@ -28,3 +28,6 @@ Minitest/MultipleAssertions:
   Enabled: false
 Metrics/CyclomaticComplexity:
   Enabled: false
+Style/BlockComments:
+  # block comments are fine
+  Enabled: false
