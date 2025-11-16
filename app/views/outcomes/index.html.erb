@@ -1,20 +1,22 @@
 <div class="max-w-4xl mx-auto py-10 px-4">
-  <!-- Randomizer Title -->
   <div class="text-2xl sm:text-3xl font-bold text-primary mb-4">
     <%= @randomizer.name %>
   </div>
 
-  <!-- Rolls -->
   <div class="grid gap-6">
     <% @randomizer.rolls.each do |roll| %>
       <% rolled, result = roll.outcome %>
       <div class="card bg-base-100 shadow-lg border border-gray-200 p-6 hover:shadow-xl transition-shadow duration-300 flex flex-col items-center">
-        <!-- Outcome Result: Primary Focus -->
-        <div class="text-3xl font-bold text-secondary mb-2">
-          <%= result.try(:name_with_rolls) || 'Missing' %>
-        </div>
 
-        <!-- Roll Name: Subtle Subtext -->
+<div class="relative group inline-block text-3xl font-bold text-secondary mb-2">
+  <span class="block group-hover:hidden">
+    <%= result.try(:name_with_rolls) %>
+  </span>
+  <span class="hidden group-hover:block">
+    <%= result.name %>
+  </span>
+</div>
+
         <div class="text-gray-500 text-sm font-thin">
           <%= roll.name %>
           &middot;
