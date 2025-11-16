@@ -1,8 +1,5 @@
 # TODO
 - ownership of randomizers
-- support for rolls within results like "1d4 treants"
-    - recognize patterns like "XdY" and link them to impromptu roller
-    - a pop-up modal or just a hover tooltip might be slick (client-side JS)
 - likes / favorites
 - promotion lists: newest, most liked, my favorites, my randomizers
 - easy way to combine randomizer and roll together (e.g. forest encounter monster and reaction tables)
@@ -58,6 +55,9 @@
     - (x) https://github.com/heartcombo/devise
     - https://github.com/omniauth/omniauth
         - https://github.com/omniauth/omniauth/wiki/List-of-Strategies
+- support for rolls within results like "1d4 treants"
+    - recognize patterns like "XdY" and link them to impromptu roller
+    - a pop-up modal or just a hover tooltip might be slick (client-side JS)
 
 # Notes
 
