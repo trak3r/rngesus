@@ -1,5 +1,5 @@
   <div class="flex items-center gap-4">
-    <% Dice.all.each do |dice| %>
+    <% Dice.predefined.each do |dice| %>
       <label class="cursor-pointer flex flex-col items-center">
         <%= form.radio_button :dice,
           dice.name,

@@ -3,8 +3,9 @@
 class Dice
   attr_reader :name, :multiplier, :face, :modifier, :icon
 
-  def initialize(name)
+  def initialize(name, icon = nil)
     @name = name
+    @icon = icon
 
     if @name =~ /^
 (?:(\d+))?   # multiplier (optional)
@@ -40,14 +41,18 @@ $/xi
 
     result
   end
-end
 
-# Dice.register('Coin', 2, 'coins')
-# Dice.register('D4', 4, 'triangle')
-# Dice.register('D6', 6, 'cube')
-# Dice.register('2D6', [6, 6], 'cube-plus')
-# Dice.register('D8', 8, 'pentagon-number-8')
-# Dice.register('D10', 10, '')
-# Dice.register('D12', 12, 'clock')
-# Dice.register('D20', 20, 'ikosaedr')
-# Dice.register('D100', [10, 10], 'square-rounded-percentage', :position)
+  def self.predefined
+    @predefined = [
+      Dice.new('D2', 'coins'),
+      Dice.new('D4', 'triangle'),
+      Dice.new('D6', 'cube'),
+      Dice.new('2D6', 'cube-plus'),
+      Dice.new('D8', 'pentagon-number-8'),
+      Dice.new('D10', 'diamond'),
+      Dice.new('D12', 'clock'),
+      Dice.new('D20', 'ikosaedr'),
+      Dice.new('D100', 'square-rounded-percentage')
+    ]
+  end
+end
