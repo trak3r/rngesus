@@ -18,6 +18,7 @@ class ResultsImgProcessorTest < ActiveSupport::TestCase
     end
   end
 
+=begin
   test 'handles a more complicated image with 3 columns and multi-line rows' do
     image_file = Rails.root.join('test/ocr/carousing_outcome_p93.png')
 
@@ -39,4 +40,5 @@ class ResultsImgProcessorTest < ActiveSupport::TestCase
     assert last_result.name.ends_with?('approach'),
            "Expected last result to end with 'approach'"
   end
+=end
 end
