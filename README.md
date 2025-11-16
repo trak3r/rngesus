@@ -1,4 +1,7 @@
 # TODO
+- hover interpolated rolls vs raw verbiage
+- try larger zoomed test image, and if it helps add to upload tips
+- add a dolmenwood table to tests since it has different font and colors than shadowdark
 - ownership of randomizers
 - likes / favorites
 - promotion lists: newest, most liked, my favorites, my randomizers
