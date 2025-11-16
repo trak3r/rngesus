@@ -36,7 +36,12 @@ class ResultTest < ActiveSupport::TestCase
 
   test '1d6 boars flee a hunting party of 2d4 territorial centaurs' do
     result = Roll.new.results.build(
-      name: '1d6 boars flee a hunting party of 2d4 territorial centaurs' )
-    assert_equal 'foo', result.name_with_rolls
+      name: '1d6 boars flee a hunting party of 2d4 territorial centaurs'
+    )
+
+    assert_match(
+      /\d boars flee a hunting party of \d territorial centaurs/,
+      result.name_with_rolls
+    )
   end
 end
