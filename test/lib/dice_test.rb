@@ -28,4 +28,10 @@ class DiceTest < ActiveSupport::TestCase
     assert_operator dice.roll, :>=, dice.min
     assert_operator dice.roll, :<=, dice.max
   end
+
+  test "1d6 boars flee a hunting party of 2d4 territorial centaurs" do
+    dices = Dice.from "1d6 boars flee a hunting party of 2d4 territorial centaurs"
+    assert_equal "1d6", dices.first.name
+    assert_equal "2d4", dices.last.name
+  end
 end

@@ -29,6 +29,21 @@ class Dice
     result
   end
 
+  def self.from(text)
+dice_regex = /
+  \b          # word boundary to avoid partial matches
+  (?:\d+)?    # optional multiplier
+  d
+  \d+         # die faces
+  (?:[+-]\d+)? # optional modifier
+  \b
+/ix
+
+matches = text.scan(dice_regex)
+# => ["1d6", "2d4"]
+matches.collect{|m| Dice.new(m)}
+  end
+
   def self.predefined
     @predefined = [
       Dice.new('D2', 'coins'),
