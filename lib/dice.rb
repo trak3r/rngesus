@@ -6,28 +6,15 @@ class Dice
   def initialize(name, icon = nil)
     @name = name
     @icon = icon
-
-    if @name =~ /^
-(?:(\d+))?   # multiplier (optional)
-d
-(\d+)        # die face
-(?:([+-]\d+))?  # modifier (optional)
-$/xi
-
-      @multiplier = (::Regexp.last_match(1) || '1').to_i
-      @face = ::Regexp.last_match(2).to_i
-      @modifier = (::Regexp.last_match(3) || '0').to_i
-    else
-      raise "Could not parse #{name}"
-    end
+    parse!
   end
 
   def min
-    @multiplier + @modifier
+    @min ||= @multiplier + @modifier
   end
 
   def max
-    (@multiplier * @face) + @modifier
+    @max ||= (@multiplier * @face) + @modifier
   end
 
   def roll
@@ -54,5 +41,23 @@ $/xi
       Dice.new('D20', 'ikosaedr'),
       Dice.new('D100', 'square-rounded-percentage')
     ]
+  end
+
+  private
+
+  def parse!
+    if @name =~ /^
+(?:(\d+))?   # multiplier (optional)
+d
+(\d+)        # die face
+(?:([+-]\d+))?  # modifier (optional)
+$/xi
+
+      @multiplier = (::Regexp.last_match(1) || '1').to_i
+      @face = ::Regexp.last_match(2).to_i
+      @modifier = (::Regexp.last_match(3) || '0').to_i
+    else
+      raise "Could not parse #{name}"
+    end
   end
 end
