@@ -3,8 +3,8 @@
 require 'test_helper'
 
 class DiceTest < ActiveSupport::TestCase
-  test "3d6+2" do
-    dice = Dice.new "3d6+2"
+  test '3d6+2' do
+    dice = Dice.new '3d6+2'
 
     assert_equal 3, dice.multipler
     assert_equal 6, dice.face
@@ -16,8 +16,8 @@ class DiceTest < ActiveSupport::TestCase
     assert dice.roll <= dice.max
   end
 
-  test "d2" do
-    dice = Dice.new "d2"
+  test 'd2' do
+    dice = Dice.new 'd2'
 
     assert_equal 1, dice.multipler
     assert_equal 2, dice.face
