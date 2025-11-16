@@ -1,4 +1,6 @@
 # TODO
+- add alt names for rolls (e.g. "Coin Flip" for d2)
+- add JAGS roll
 - hover interpolated rolls vs raw verbiage
 - try larger zoomed test image, and if it helps add to upload tips
 - ownership of randomizers
