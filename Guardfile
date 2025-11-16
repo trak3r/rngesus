@@ -19,8 +19,13 @@
 
 guard :minitest, all_on_start: false do
   watch(%r{^test/(.*)_test\.rb$})
-  watch(%r{^test/lib/(.*)_test\.rb$}) # <-- Added for lib tests
   watch(%r{^app/(.*)\.rb$})             { |m| "test/#{m[1]}_test.rb" }
   watch(%r{^config/routes\.rb$})        { 'test/integration' }
   watch(%r{^test/test_helper\.rb$})     { 'test' }
+
+  # Run test when its own file changes
+  watch(%r{^test/lib/(.*)_test\.rb$})
+
+  # Run test when the corresponding lib file changes
+  watch(%r{^lib/(.*)\.rb$}) { |m| "test/lib/#{m[1]}_test.rb" }
 end

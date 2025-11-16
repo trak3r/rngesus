@@ -13,7 +13,7 @@ d
 (?:([+-]\d+))?  # modifier (optional)
 $/x
 
-      @multiplier = (::Regexp.last_match(1) || '1').to_i
+      @multipler = (::Regexp.last_match(1) || '1').to_i
       @face = ::Regexp.last_match(2).to_i
       @modifier = (::Regexp.last_match(3) || '0').to_i
     else
@@ -27,6 +27,18 @@ $/x
 
   def max
     (@multipler * @face) + @modifier
+  end
+
+  def roll
+    result = 0
+
+    @multipler.times do
+      result += rand(@face)
+    end
+
+    result += @modifier
+
+    result
   end
 end
 
