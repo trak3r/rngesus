@@ -10,7 +10,7 @@ class Roll < ApplicationRecord
 
   # FIXME: this seems sloppyh leaky abstraction
   def dice_object
-    Dice.find dice
+    @dice_object = Dice.new dice
   end
 
   def outcome
@@ -27,8 +27,8 @@ class Roll < ApplicationRecord
   private
 
   def dice_must_be_valid
-    return if Dice.find(dice)
-
-    errors.add(:dice, :invalid)
+    Dice.new(dice)
+  rescue StandardError => e
+    errors.add(:dice, e.message)
   end
 end

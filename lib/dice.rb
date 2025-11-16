@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Dice
-  attr_reader :name, :multipler, :face, :modifier, :icon
+  attr_reader :name, :multiplier, :face, :modifier, :icon
 
   def initialize(name)
     @name = name
@@ -9,11 +9,11 @@ class Dice
     if @name =~ /^
 (?:(\d+))?   # multiplier (optional)
 d
-(\d+)        # die faces
+(\d+)        # die face
 (?:([+-]\d+))?  # modifier (optional)
-$/x
+$/xi
 
-      @multipler = (::Regexp.last_match(1) || '1').to_i
+      @multiplier = (::Regexp.last_match(1) || '1').to_i
       @face = ::Regexp.last_match(2).to_i
       @modifier = (::Regexp.last_match(3) || '0').to_i
     else
@@ -22,18 +22,18 @@ $/x
   end
 
   def min
-    @multipler + @modifier
+    @multiplier + @modifier
   end
 
   def max
-    (@multipler * @face) + @modifier
+    (@multiplier * @face) + @modifier
   end
 
   def roll
     result = 0
 
-    @multipler.times do
-      result += rand(@face)
+    @multiplier.times do
+      result += rand(1..@face) # inclusive 1..face
     end
 
     result += @modifier
