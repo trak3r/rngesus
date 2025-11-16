@@ -1,7 +1,7 @@
 # TODO
+- find and disable the rubocop that effs up block comments
 - hover interpolated rolls vs raw verbiage
 - try larger zoomed test image, and if it helps add to upload tips
-- add a dolmenwood table to tests since it has different font and colors than shadowdark
 - ownership of randomizers
 - likes / favorites
 - promotion lists: newest, most liked, my favorites, my randomizers
@@ -61,17 +61,4 @@
 - support for rolls within results like "1d4 treants"
     - recognize patterns like "XdY" and link them to impromptu roller
     - a pop-up modal or just a hover tooltip might be slick (client-side JS)
-
-# Notes
-
-ChatGPT script to convert all basic tailwind styles to daisyui
-```
-grep -RlZ --include="*.html.erb" 'bg-' app/views/ | xargs -0 sed -i '' \
--e 's/bg-blue-[0-9]\{2,3\}/btn-primary/g' \
--e 's/bg-gray-[0-9]\{2,3\}/btn-secondary/g' \
--e 's/bg-red-[0-9]\{2,3\}/btn-error/g' \
--e 's/bg-green-[0-9]\{2,3\}/btn-success/g' \
--e 's/bg-yellow-[0-9]\{2,3\}/btn-warning/g' \
--e 's/bg-purple-[0-9]\{2,3\}/btn-accent/g' \
--e 's/hover:bg-[a-z]\{3,6\}-[0-9]\{2,3\}//g'
-```
+- test with a dolmenwood table since it has different font and colors than shadowdark
