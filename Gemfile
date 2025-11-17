@@ -71,6 +71,7 @@ group :test do
   gem 'capybara'
   gem 'guard' # so we can auto-run tests when the files change
   gem 'guard-minitest', require: false
+  gem 'mocha' # for stubbing
   gem 'selenium-webdriver'
 end
 

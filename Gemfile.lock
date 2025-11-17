@@ -217,6 +217,8 @@ GEM
       logger
     mini_mime (1.1.5)
     minitest (5.26.1)
+    mocha (2.8.2)
+      ruby2_keywords (>= 0.0.5)
     msgpack (1.8.0)
     multi_xml (0.7.2)
       bigdecimal (~> 3.1)
@@ -398,6 +400,7 @@ GEM
     ruby-vips (2.2.5)
       ffi (~> 1.12)
       logger
+    ruby2_keywords (0.0.5)
     rubyzip (3.2.2)
     securerandom (0.4.1)
     selenium-webdriver (4.38.0)
@@ -511,6 +514,7 @@ DEPENDENCIES
   importmap-rails
   kamal
   mini_magick
+  mocha
   omniauth
   omniauth-google-oauth2
   omniauth-rails_csrf_protection

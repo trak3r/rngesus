@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class RandomizersController < ApplicationController
+  before_action :require_login
   before_action :set_randomizer, only: %i[show edit update destroy]
 
   # GET /randomizers
@@ -13,7 +14,8 @@ class RandomizersController < ApplicationController
 
   # GET /randomizers/new
   def new
-    @randomizer = Randomizer.new
+    # @randomizer = Randomizer.new
+    @randomizer = current_user.randomizers.build
   end
 
   # GET /randomizers/1/edit
@@ -21,7 +23,8 @@ class RandomizersController < ApplicationController
 
   # POST /randomizers
   def create
-    @randomizer = Randomizer.new(randomizer_params)
+    # @randomizer = Randomizer.new(randomizer_params)
+    @randomizer = current_user.randomizers.build(randomizer_params)
 
     if @randomizer.save
       redirect_to @randomizer,

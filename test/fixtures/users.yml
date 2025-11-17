@@ -1,0 +1,4 @@
+ted:
+  provider: google
+  uid: 12345
+  email: 'test@example.com'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_11_14_181755) do
+ActiveRecord::Schema[8.1].define(version: 2025_11_17_201142) do
   create_table "examples", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "name"
@@ -22,6 +22,8 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_14_181755) do
     t.datetime "created_at", null: false
     t.string "name"
     t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_randomizers_on_user_id"
   end
 
   create_table "results", force: :cascade do |t|
@@ -52,6 +54,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_14_181755) do
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
   end
 
+  add_foreign_key "randomizers", "users"
   add_foreign_key "results", "rolls"
   add_foreign_key "rolls", "randomizers"
 end

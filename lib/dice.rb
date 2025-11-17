@@ -2,11 +2,11 @@
 
 class Dice
   attr_reader :name,
-    :icon,
-    :name_alt,
-    :multiplier,
-    :face,
-    :modifier
+              :icon,
+              :name_alt,
+              :multiplier,
+              :face,
+              :modifier
 
   def initialize(name, icon = nil, name_alt = nil)
     @name = name

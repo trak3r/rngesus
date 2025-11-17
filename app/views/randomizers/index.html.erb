@@ -39,9 +39,14 @@
 
   <% end %>
 
-  <div class="card-actions justify-end mt-4 flex flex-row space-x-3 pb-2 pr-2">
+  <!-- Bottom row with email (left) and edit button (right) -->
+  <div class="card-actions justify-between items-center mt-4 flex flex-row space-x-3 pb-2 pr-2">
+    <em class="text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+      <%= randomizer.user.email %>
+    </em>
+
     <%= link_to randomizer,
-                class: "text-base-content/50 hover:text-base-content p-2 rounded " do %>
+                class: "text-base-content/50 hover:text-base-content p-2 rounded" do %>
       <%= icon(:edit, class: "w-5 h-5") %>
     <% end %>
   </div>
