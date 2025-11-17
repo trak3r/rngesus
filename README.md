@@ -1,5 +1,5 @@
 # TODO
-- `bundle exec erblint app/views`
+- `bundle exec erblint -a app/views`
 - see if we can fix the OCR smushing the first letter of sentence with second word, like "A cat" always comes through as "Acat"
 - ownership of randomizers
 - likes / favorites

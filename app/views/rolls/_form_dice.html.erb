@@ -3,8 +3,7 @@
       <label class="cursor-pointer flex flex-col items-center">
         <%= form.radio_button :dice,
           dice.name,
-          checked: roll.dice == dice.name
-        %>
+          checked: roll.dice == dice.name %>
         <div class="p-2 rounded-md border-2 border-gray-300 hover:border-blue-500 mt-4">
           <%= icon dice.icon %>
         </div>
@@ -12,4 +11,3 @@
       </label>
     <% end %>
   </div>
-
