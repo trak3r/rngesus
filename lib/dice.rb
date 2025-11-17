@@ -1,11 +1,17 @@
 # frozen_string_literal: true
 
 class Dice
-  attr_reader :name, :multiplier, :face, :modifier, :icon
+  attr_reader :name,
+    :icon,
+    :name_alt,
+    :multiplier,
+    :face,
+    :modifier
 
-  def initialize(name, icon = nil)
+  def initialize(name, icon = nil, name_alt = nil)
     @name = name
     @icon = icon
+    @name_alt = name_alt
     parse!
   end
 
@@ -46,10 +52,11 @@ class Dice
 
   def self.predefined
     @predefined = [
-      Dice.new('D2', 'coins'),
+      Dice.new('D2', 'coins', 'Coin'),
       Dice.new('D4', 'triangle'),
       Dice.new('D6', 'cube'),
       Dice.new('2D6', 'cube-plus'),
+      Dice.new('4D6-4', 'cube-plus', 'JAGS'),
       Dice.new('D8', 'pentagon-number-8'),
       Dice.new('D10', 'diamond'),
       Dice.new('D12', 'clock'),

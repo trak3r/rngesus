@@ -1,7 +1,5 @@
 # TODO
 - see if we can fix the OCR smushing the first letter of sentence with second word, like "A cat" always comes through as "Acat"
-- add alt names for rolls (e.g. "Coin Flip" for d2)
-- add JAGS roll 4d6-4
 - try larger zoomed test image, and if it helps add to upload tips
 - ownership of randomizers
 - likes / favorites
@@ -65,3 +63,5 @@
     - a pop-up modal or just a hover tooltip might be slick (client-side JS)
 - test with a dolmenwood table since it has different font and colors than shadowdark
 - find and disable the rubocop that effs up block comments
+- add alt names for rolls (e.g. "Coin Flip" for d2)
+- add JAGS roll 4d6-4
