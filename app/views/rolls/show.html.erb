@@ -1,4 +1,4 @@
-<% content_for :title, "Roll: #{@roll.name || 'Missing'}" %>
+<% content_for :title, "#{@roll.randomizer.name} > #{@roll.name}" %>
 
 <div id="<%= dom_id @roll %>" class="w-full my-5 p-6 bg-base-200 rounded-xl shadow-md flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
   <div class="flex items-center text-2xl sm:text-3xl font-bold text-primary gap-2">
