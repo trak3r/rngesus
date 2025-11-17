@@ -1,7 +1,7 @@
 # TODO
-- ownership of randomizers
 - likes / favorites
 - promotion lists: newest, most liked, my favorites, my randomizers
+- set up email exceptions so i'm notified of bugs i don't see myself
 - easy way to combine randomizer and roll together (e.g. forest encounter monster and reaction tables)
 - on the outcomes page of a multi-roll randomizer, allow clicking on any single roll to re-roll just that result
 - would we need to support "with advantage" rolls? is there a standard syntax for it?
@@ -66,3 +66,4 @@
 - try larger zoomed test image, and if it helps add to upload tips
 - `bundle exec erblint -a app/views`
 - (x) see if we can fix the OCR smushing the first letter of sentence with second word, like "A cat" always comes through as "Acat"
+- ownership of randomizers

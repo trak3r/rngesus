@@ -10,10 +10,10 @@
 
         <div class="relative group inline-block text-3xl font-bold text-secondary mb-2 text-center">
           <span class="block group-hover:hidden">
-            <%= result.try(:name_with_rolls) %>
+            <%= result.try(:name_with_rolls) || 'No match' %>
           </span>
           <span class="hidden group-hover:block">
-            <%= result.name %>
+            <%= result.try(:name) || 'No match' %>
           </span>
         </div>
 
