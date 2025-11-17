@@ -1,0 +1,4 @@
+ted:
+  provider: test
+  uid: 123
+  email: 'test@test.test'
