@@ -5,6 +5,7 @@ require 'test_helper'
 class RandomizersControllerTest < ActionDispatch::IntegrationTest
   setup do
     @randomizer = randomizers(:encounter)
+    mock_auth_hash
   end
 
   test 'should get index' do

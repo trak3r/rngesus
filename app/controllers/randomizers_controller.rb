@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class RandomizersController < ApplicationController
+  before_action :require_login
   before_action :set_randomizer, only: %i[show edit update destroy]
 
   # GET /randomizers
