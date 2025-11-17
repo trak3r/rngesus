@@ -1,4 +1,4 @@
 ted:
-  provider: test
-  uid: 123
-  email: 'test@test.test'
+  provider: google
+  uid: 12345
+  email: 'test@example.com'
