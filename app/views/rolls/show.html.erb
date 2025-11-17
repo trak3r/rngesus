@@ -1,7 +1,5 @@
 <% content_for :title, "Roll: #{@roll.name || 'Missing'}" %>
 
-<div class="md:w-2/3 w-full">
-
 <div id="<%= dom_id @roll %>" class="w-full my-5 p-6 bg-base-200 rounded-xl shadow-md flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
   <div class="flex items-center text-2xl sm:text-3xl font-bold text-primary gap-2">
     <%= link_to @roll.randomizer do %>
@@ -22,12 +20,11 @@
   </div>
 </div>
 
-  <%= render 'results/index', results: @roll.results %>
+<%= render 'results/index', results: @roll.results %>
 
-  <div class="mt-4">
-    <%= link_to "New result", new_roll_result_path(@roll), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 btn-primary hover:btn-primary inline-block font-medium" %>
-    <%= link_to "Import from Screenshot", new_roll_results_img_path(@roll), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 btn-primary hover:btn-primary inline-block font-medium" %>
-    <%= link_to "Import from CSV", new_roll_results_csv_path(@roll), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 btn-primary hover:btn-primary inline-block font-medium" %>
-    <%= button_to "Destroy this roll", @roll, method: :delete, form_class: "sm:inline-block mt-2 sm:mt-0 sm:ml-2", class: "w-full rounded-md px-3.5 py-2.5 text-white btn-error hover:btn-error font-medium cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
-  </div>
+<div class="mt-4">
+  <%= link_to "New result", new_roll_result_path(@roll), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 btn-primary hover:btn-primary inline-block font-medium" %>
+  <%= link_to "Import from Screenshot", new_roll_results_img_path(@roll), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 btn-primary hover:btn-primary inline-block font-medium" %>
+  <%= link_to "Import from CSV", new_roll_results_csv_path(@roll), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 btn-primary hover:btn-primary inline-block font-medium" %>
+  <%= button_to "Destroy this roll", @roll, method: :delete, form_class: "sm:inline-block mt-2 sm:mt-0 sm:ml-2", class: "w-full rounded-md px-3.5 py-2.5 text-white btn-error hover:btn-error font-medium cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
 </div>
