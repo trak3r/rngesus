@@ -1,4 +1,5 @@
 # TODO
+- see if we can fix the OCR smushing the first letter of sentence with second word, like "A cat" always comes through as "Acat"
 - add alt names for rolls (e.g. "Coin Flip" for d2)
 - add JAGS roll
 - try larger zoomed test image, and if it helps add to upload tips
