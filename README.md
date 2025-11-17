@@ -1,6 +1,4 @@
 # TODO
-- `bundle exec erblint -a app/views`
-- see if we can fix the OCR smushing the first letter of sentence with second word, like "A cat" always comes through as "Acat"
 - ownership of randomizers
 - likes / favorites
 - promotion lists: newest, most liked, my favorites, my randomizers
@@ -66,3 +64,5 @@
 - add alt names for rolls (e.g. "Coin Flip" for d2)
 - add JAGS roll 4d6-4
 - try larger zoomed test image, and if it helps add to upload tips
+- `bundle exec erblint -a app/views`
+- (x) see if we can fix the OCR smushing the first letter of sentence with second word, like "A cat" always comes through as "Acat"
