@@ -1,19 +1,20 @@
 # TODO
 - see if we can fix the OCR smushing the first letter of sentence with second word, like "A cat" always comes through as "Acat"
 - add alt names for rolls (e.g. "Coin Flip" for d2)
-- add JAGS roll
+- add JAGS roll 4d6-4
 - try larger zoomed test image, and if it helps add to upload tips
 - ownership of randomizers
 - likes / favorites
 - promotion lists: newest, most liked, my favorites, my randomizers
 - easy way to combine randomizer and roll together (e.g. forest encounter monster and reaction tables)
 - on the outcomes page of a multi-roll randomizer, allow clicking on any single roll to re-roll just that result
-- would we need to support "advantage" rolls?
+- would we need to support "with advantage" rolls? is there a standard syntax for it?
 - share rollable randomizers via links with guid not raw id
 - tagging / categories, searchable and browsable
 - search, type-ahead quick find
 - animate cool 3d dice roll on screen
 - animate spin results like a slot machine
+- distribution graphs for multi-dice rolls
 - responsive/mobile screens
 - hotwire native
 - hardening (scan tools?)
