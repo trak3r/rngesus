@@ -1,6 +1,5 @@
 # TODO
 - see if we can fix the OCR smushing the first letter of sentence with second word, like "A cat" always comes through as "Acat"
-- try larger zoomed test image, and if it helps add to upload tips
 - ownership of randomizers
 - likes / favorites
 - promotion lists: newest, most liked, my favorites, my randomizers
@@ -65,3 +64,4 @@
 - find and disable the rubocop that effs up block comments
 - add alt names for rolls (e.g. "Coin Flip" for d2)
 - add JAGS roll 4d6-4
+- try larger zoomed test image, and if it helps add to upload tips
