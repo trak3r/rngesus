@@ -1,4 +1,5 @@
 # TODO
+- `bundle exec erblint app/views`
 - see if we can fix the OCR smushing the first letter of sentence with second word, like "A cat" always comes through as "Acat"
 - ownership of randomizers
 - likes / favorites
@@ -41,7 +42,7 @@
 - too many rubocop rules disabled; not cleaning up code
 - https://tabler.io/icons
 - special dice types (2d6, with-advantage, etc.)
-- erb-format app/views/**/*.html.erb --write
+- `erb-format app/views/**/*.html.erb --write`
 - support d100 logic (digit position not sum)
 - upload screenshot of printed table automatically built (ocr)
     - add "import results" button to Roll show
