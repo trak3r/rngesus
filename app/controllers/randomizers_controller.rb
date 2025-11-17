@@ -14,7 +14,8 @@ class RandomizersController < ApplicationController
 
   # GET /randomizers/new
   def new
-    @randomizer = Randomizer.new
+    # @randomizer = Randomizer.new
+    @randomizer = current_user.randomizers.build
   end
 
   # GET /randomizers/1/edit
@@ -22,7 +23,8 @@ class RandomizersController < ApplicationController
 
   # POST /randomizers
   def create
-    @randomizer = Randomizer.new(randomizer_params)
+    # @randomizer = Randomizer.new(randomizer_params)
+    @randomizer = current_user.randomizers.build(randomizer_params)
 
     if @randomizer.save
       redirect_to @randomizer,
