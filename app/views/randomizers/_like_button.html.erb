@@ -1,0 +1,10 @@
+<%= button_to like_randomizer_path(randomizer),
+      method: :post,
+      data: { turbo_stream: true },
+      class: "text-primary hover:text-secondary transition flex items-center gap-1" do %>
+
+  <%= icon "thumb-up", class: "w-6 h-6" %>
+  <span><%= randomizer.votes_for.size %></span>
+
+<% end %>
+

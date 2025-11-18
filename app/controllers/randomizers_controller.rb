@@ -4,6 +4,16 @@ class RandomizersController < ApplicationController
   before_action :require_login, except: %i[index show]
   before_action :set_randomizer, only: %i[show edit update destroy]
 
+def like
+  @randomizer = Randomizer.find(params[:id])
+  @randomizer.liked_by current_user
+
+  respond_to do |format|
+    format.turbo_stream
+    format.html { redirect_to @randomizer }
+  end
+end
+
   # GET /randomizers
   def index
     @randomizers = Randomizer.all

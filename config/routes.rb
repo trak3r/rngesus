@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   resources :examples
   resources :randomizers do
+      post :like, on: :member
+
     resources :outcomes
     resources :rolls, shallow: true do
       member do
