@@ -8,14 +8,14 @@ class RandomizersController < ApplicationController
   # RandomizerLikesController.create/destroy
   def toggle_like
     if current_user.voted_for?(@randomizer)
-      @randomizer.disliked_by current_user
+      @randomizer.unliked_by current_user
     else
       @randomizer.liked_by current_user
     end
 
     respond_to do |format|
       format.turbo_stream
-      format.html { redirect_to @randomizer }
+      # format.html { redirect_to @randomizer }
     end
   end
 
