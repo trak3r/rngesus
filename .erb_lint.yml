@@ -6,6 +6,7 @@ linters:
     indent: 2
     newline_between_tags: true
     remove_trailing_whitespace: true
+    recursive: true
 
   # Ruby code indentation inside ERB
   Indentation:
