@@ -1,8 +1,46 @@
----
-EnableDefaultLinters: true
 linters:
+  # Fix HTML indentation and embedded ERB
+  HtmlBeautifier:
+    enabled: true
+    auto_correct: true
+    indent: 2           # spaces per level
+    newline_between_tags: true
+    remove_trailing_whitespace: true
+
+  # Fix Ruby code indentation inside ERB
   Indentation:
     enabled: true
     spaces: 2
-    ignore_frontmatter: true
     auto_correct: true
+
+  # Ensure single space inside ERB tags: <% ... %> and <%= ... %>
+  ErbPercentSpacing:
+    enabled: true
+    enforce_single_space: true
+    auto_correct: true
+
+  # Ensure newline after multi-line ERB blocks
+  EndNewline:
+    enabled: true
+    auto_correct: true
+
+  # Ensure file ends with a trailing newline
+  TrailingNewline:
+    enabled: true
+    auto_correct: true
+
+  # Optional: check for empty ERB tags
+  EmptyErb:
+    enabled: true
+    auto_correct: true
+
+  # Optional: enforce HTML closing tags
+  ClosingTag:
+    enabled: true
+    auto_correct: true
+
+# Exclude unnecessary directories
+exclude:
+  - "node_modules/**/*"
+  - "vendor/**/*"
+

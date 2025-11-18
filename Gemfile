@@ -64,6 +64,11 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'web-console'
+
+# for cleaning up messy views
+# gem 'erb-formatter', '~> 0.7.3'
+gem 'erb_lint', require: false
+gem 'htmlbeautifier', require: false
 end
 
 group :test do
@@ -76,10 +81,6 @@ group :test do
 end
 
 gem 'rails_icons'
-
-# for cleaning up messy views
-# gem 'erb-formatter', '~> 0.7.3'
-gem 'erb_lint', require: false
 
 # for OCR processing screenshots into roll tables
 gem 'mini_magick' # REQUIRED: brew install imagemagick
