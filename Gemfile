@@ -90,3 +90,5 @@ gem 'csv' # not part of Ruby standard library as of 3.4
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
+
+gem 'acts_as_votable' # for likes / favorites

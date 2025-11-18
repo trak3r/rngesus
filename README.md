@@ -1,5 +1,4 @@
 # TODO
-- likes / favorites
 - promotion lists: newest, most liked, my favorites, my randomizers
 - set up email exceptions so i'm notified of bugs i don't see myself
 - easy way to combine randomizer and roll together (e.g. forest encounter monster and reaction tables)
@@ -67,3 +66,4 @@
 - `bundle exec erblint -a app/views`
 - (x) see if we can fix the OCR smushing the first letter of sentence with second word, like "A cat" always comes through as "Acat"
 - ownership of randomizers
+- likes / favorites
