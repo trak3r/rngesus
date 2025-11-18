@@ -2,7 +2,7 @@
 
 class RandomizersController < ApplicationController
   before_action :require_login, except: %i[index show]
-  before_action :set_randomizer, except: %i[new create]
+  before_action :set_randomizer, except: %i[index new create]
 
   # the old man CRUD soul in me thinks this should be in
   # RandomizerLikesController.create/destroy
