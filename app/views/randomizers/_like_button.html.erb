@@ -1,3 +1,4 @@
+<div id="randomizer_like_button">
 <%= button_to toggle_like_randomizer_path(randomizer),
       method: :post,
       data: { turbo_stream: true },
@@ -6,5 +7,8 @@
   <% icon_variant = current_user.voted_for?(randomizer) ? :filled : :outline %>
   <%= icon 'thumb-up', variant: icon_variant, class: "w-6 h-6" %>
 
+  <pre><%= Time.current %></pre>
+
   <span><%= randomizer.votes_for.size %></span>
 <% end %>
+</div>
