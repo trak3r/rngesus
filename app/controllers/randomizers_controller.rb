@@ -10,9 +10,9 @@ class RandomizersController < ApplicationController
     @randomizer = Randomizer.find(params[:id])
 
     if current_user.voted_for?(@randomizer)
-      @randomizer.unliked_by(current_user)
+      current_user.likes @randomizer
     else
-      @randomizer.liked_by(current_user)
+      current_user.dislikes @randomizer
     end
 
     respond_to do |format|
