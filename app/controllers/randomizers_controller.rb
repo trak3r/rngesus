@@ -4,6 +4,8 @@ class RandomizersController < ApplicationController
   before_action :require_login, except: %i[index show]
   before_action :set_randomizer, only: %i[show edit update destroy]
 
+  # the old man CRUD soul in me thinks this should be in
+  # RandomizerLikesController.create
 def like
   @randomizer = Randomizer.find(params[:id])
   @randomizer.liked_by current_user
