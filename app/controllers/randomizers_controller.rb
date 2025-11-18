@@ -9,8 +9,10 @@ class RandomizersController < ApplicationController
   def toggle_like
     if current_user.voted_for?(@randomizer)
       @randomizer.unliked_by current_user
+      ap 'unliked'
     else
       @randomizer.liked_by current_user
+      ap 'liked'
     end
 
     respond_to do |format|
