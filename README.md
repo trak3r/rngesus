@@ -1,5 +1,4 @@
 # TODO
-- likes / favorites
 - promotion lists: newest, most liked, my favorites, my randomizers
 - set up email exceptions so i'm notified of bugs i don't see myself
 - easy way to combine randomizer and roll together (e.g. forest encounter monster and reaction tables)
@@ -64,6 +63,8 @@
 - add alt names for rolls (e.g. "Coin Flip" for d2)
 - add JAGS roll 4d6-4
 - try larger zoomed test image, and if it helps add to upload tips
-- `bundle exec erblint -a app/views`
+- `erb_lint -a app/views`
 - (x) see if we can fix the OCR smushing the first letter of sentence with second word, like "A cat" always comes through as "Acat"
 - ownership of randomizers
+- likes / favorites
+    - https://github.com/ryanto/acts_as_votable

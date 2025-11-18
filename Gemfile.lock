@@ -75,6 +75,7 @@ GEM
       securerandom (>= 0.3)
       tzinfo (~> 2.0, >= 2.0.5)
       uri (>= 0.13.1)
+    acts_as_votable (0.14.0)
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
     amazing_print (2.0.0)
@@ -166,6 +167,7 @@ GEM
       guard-compat (~> 1.2)
       minitest (>= 3.0)
     hashie (5.0.0)
+    htmlbeautifier (1.4.3)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
     image_processing (1.14.0)
@@ -500,6 +502,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
+  acts_as_votable
   amazing_print
   bootsnap
   brakeman
@@ -510,6 +513,7 @@ DEPENDENCIES
   erb_lint
   guard
   guard-minitest
+  htmlbeautifier
   image_processing (~> 1.2)
   importmap-rails
   kamal

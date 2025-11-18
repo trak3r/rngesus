@@ -1,0 +1,8 @@
+<turbo-stream action="replace" target="randomizer_like_button">
+  <template>
+    <%= render partial: "randomizers/like_button",
+               formats: [:html],
+               locals: { randomizer: @randomizer } %>
+  </template>
+</turbo-stream>
+

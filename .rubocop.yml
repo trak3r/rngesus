@@ -31,3 +31,6 @@ Metrics/CyclomaticComplexity:
 Style/BlockComments:
   # block comments are fine
   Enabled: false
+Rails/ThreeStateBooleanColumn:
+  # default database values are bad IMHO
+  Enabled: false
