@@ -1,19 +1,19 @@
 linters:
-  # Fix HTML indentation and embedded ERB
+  # HTML + ERB formatting
   HtmlBeautifier:
     enabled: true
     auto_correct: true
-    indent: 2           # spaces per level
+    indent: 2
     newline_between_tags: true
     remove_trailing_whitespace: true
 
-  # Fix Ruby code indentation inside ERB
+  # Ruby code indentation inside ERB
   Indentation:
     enabled: true
     spaces: 2
     auto_correct: true
 
-  # Ensure single space inside ERB tags: <% ... %> and <%= ... %>
+  # Single space inside ERB tags
   ErbPercentSpacing:
     enabled: true
     enforce_single_space: true
@@ -29,15 +29,19 @@ linters:
     enabled: true
     auto_correct: true
 
-  # Optional: check for empty ERB tags
-  EmptyErb:
-    enabled: true
-    auto_correct: true
-
   # Optional: enforce HTML closing tags
   ClosingTag:
     enabled: true
     auto_correct: true
+
+  # Optional: detect empty ERB tags
+  EmptyErb:
+    enabled: true
+    auto_correct: true
+
+# Treat .turbo_stream.erb files as ERB
+file_patterns:
+  "**/*.turbo_stream.erb": {}
 
 # Exclude unnecessary directories
 exclude:
