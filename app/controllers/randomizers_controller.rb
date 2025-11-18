@@ -5,16 +5,21 @@ class RandomizersController < ApplicationController
   before_action :set_randomizer, only: %i[show edit update destroy]
 
   # the old man CRUD soul in me thinks this should be in
-  # RandomizerLikesController.create
-def like
-  @randomizer = Randomizer.find(params[:id])
-  @randomizer.liked_by current_user
+  # RandomizerLikesController.create/destroy
+  def toggle_like
+    @randomizer = Randomizer.find(params[:id])
 
-  respond_to do |format|
-    format.turbo_stream
-    format.html { redirect_to @randomizer }
+    if current_user.voted_for?(@randomizer)
+      @randomizer.unliked_by(current_user)
+    else
+      @randomizer.liked_by(current_user)
+    end
+
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to @randomizer }
+    end
   end
-end
 
   # GET /randomizers
   def index
