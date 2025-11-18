@@ -1,11 +1,8 @@
 ---
 EnableDefaultLinters: true
 linters:
-  ErbSafety:
-    enabled: false
-    better_html_config: .better-html.yml
-  Rubocop:
-    enabled: false
-    rubocop_config:
-      inherit_from:
-        - .rubocop.yml
+  Indentation:
+    enabled: true
+    spaces: 2
+    ignore_frontmatter: true
+    auto_correct: true
