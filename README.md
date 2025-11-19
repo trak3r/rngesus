@@ -3,7 +3,6 @@
 - pagination
 - set up email exceptions so i'm notified of bugs i don't see myself
 - easy way to combine randomizer and roll together (e.g. forest encounter monster and reaction tables)
-- on the outcomes page of a multi-roll randomizer, allow clicking on any single roll to re-roll just that result
 - would we need to support "with advantage" rolls? is there a standard syntax for it?
 - share rollable randomizers via links with guid not raw id
 - tagging / categories, searchable and browsable
@@ -70,3 +69,4 @@
 - likes / favorites
     - https://github.com/ryanto/acts_as_votable
 - search, type-ahead quick find
+- on the outcomes page of a multi-roll randomizer, allow clicking on any single roll to re-roll just that result

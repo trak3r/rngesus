@@ -10,7 +10,11 @@ Rails.application.routes.draw do
   resources :randomizers do
     post :toggle_like, on: :member
 
-    resources :outcomes
+    resources :outcomes, only: [:index] do
+      member do
+        post :reroll
+      end
+    end
     resources :rolls, shallow: true do
       member do
         get 'edit_name'
