@@ -21,7 +21,7 @@ class RandomizersController < ApplicationController
 
   # GET /randomizers
   def index
-    @randomizers = Randomizer.all
+    @randomizers = Randomizer.search(params[:query]).all
   end
 
   # GET /randomizers/1
