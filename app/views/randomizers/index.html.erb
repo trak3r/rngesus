@@ -2,6 +2,23 @@
 
 <div class="w-full">
   <div class="flex flex-wrap gap-4">
+    <div class="w-full mb-4" data-controller="search">
+      <%= form_with url: randomizers_path, method: :get, 
+          data: { search_target: "form", turbo_frame: "randomizers", turbo_action: "advance" } do |f| %>
+        <%= f.text_field :query, 
+            placeholder: "Search randomizers...", 
+            class: "input input-bordered w-full max-w-xs",
+            value: params[:query],
+            data: { action: "input->search#submit", search_target: "input" } %>
+      <% end %>
+    </div>
+
+    <%= turbo_frame_tag "randomizers", class: "contents" do %>
+      <% if @randomizers.empty? %>
+        <div class="w-full text-center p-8 text-base-content/50">
+          No randomizers found matching "<%= params[:query] %>"
+        </div>
+      <% end %>
 
 <div class="card bg-base-100 w-96 shadow-sm flex flex-col group
              p-4 min-h-[180px]
@@ -52,6 +69,7 @@
   </div>
 </div>
 
+    <% end %>
     <% end %>
   </div>
 </div>

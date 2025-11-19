@@ -6,7 +6,7 @@
 
     <span><%= randomizer.votes_for.size %></span>
 
-    <% icon_variant = current_user.voted_for?(randomizer) ? :filled : :outline %>
+    <% icon_variant = current_user&.voted_for?(randomizer) ? :filled : :outline %>
     <%= icon 'thumb-up', variant: icon_variant, class: "w-6 h-6" %>
   <% end %>
 </div>

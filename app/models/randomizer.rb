@@ -5,4 +5,6 @@ class Randomizer < ApplicationRecord
 
   belongs_to :user
   has_many :rolls, dependent: :destroy
+
+  scope :search, ->(query) { where('name LIKE ?', "%#{query}%") if query.present? }
 end
