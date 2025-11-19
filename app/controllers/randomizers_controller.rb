@@ -84,6 +84,6 @@ class RandomizersController < ApplicationController
   def check_ownership
     return if @randomizer.user == current_user
 
-    redirect_to randomizers_path, alert: "You don't have permission to do that."
+    redirect_to randomizers_path, alert: t('errors.unauthorized')
   end
 end

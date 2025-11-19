@@ -28,6 +28,8 @@
 #       enabled: "ON"
 
 en:
+  errors:
+    unauthorized: "You don't have permission to do that."
   examples:
     create:
       success: "Example was successfully created."
