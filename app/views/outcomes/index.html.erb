@@ -13,7 +13,7 @@
   <div class="grid gap-6">
     <% @randomizer.rolls.each do |roll| %>
       <% rolled, result = roll.outcome %>
-      <div class="card bg-base-100 shadow-lg border border-gray-200 p-6 hover:shadow-xl transition-shadow duration-300 flex flex-col items-center">
+      <div class="card bg-base-100 shadow-lg border border-base-300 p-6 hover:shadow-xl transition-shadow duration-300 flex flex-col items-center">
 
         <div class="relative group inline-block text-3xl font-bold text-secondary mb-2 text-center">
           <span class="block group-hover:hidden">
@@ -24,7 +24,7 @@
           </span>
         </div>
 
-        <div class="text-gray-500 text-sm font-thin">
+        <div class="text-base-content/60 text-sm font-thin">
           <%= roll.name %>
           &middot;
           <%= roll.dice_object.name %>

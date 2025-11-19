@@ -7,47 +7,44 @@
       class: "contents"
     ) do |form| %>
   <% if result.errors.any? %>
-    <div id="error_explanation" class="btn-error text-red-500 px-3 py-2 font-medium rounded-md mt-3">
-      <h2><%= pluralize(result.errors.count, "error") %> prohibited this result from being saved:</h2>
+    <div id="error_explanation" class="alert alert-error">
+      <div>
+        <h2><%= pluralize(result.errors.count, "error") %> prohibited this result from being saved:</h2>
 
-      <ul class="list-disc ml-6">
-        <% result.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+        <ul class="list-disc ml-6 mt-2">
+          <% result.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
   <div class="my-5">
-    <%= form.label :name %>
+    <%= form.label :name, class: "label" %>
     <%= form.text_field :name,
                     class: [
-                      "block shadow-sm rounded-md border px-3 py-2 mt-2 w-full",
+                      "input input-bordered w-full",
                       {
-                        "border-gray-400 focus:outline-blue-600":
-                          result.errors[:name].none?,
-                        "border-red-400 focus:outline-red-600":
-                          result.errors[:name].any?,
+                        "input-error": result.errors[:name].any?,
                       },
                     ] %>
   </div>
 
   <div class="my-5">
-  <%= form.label :value %>
-  <%= form.select :value,
-        options_for_select(result.roll.dice_object.min..result.roll.dice_object.max, result.value),
-        {},
-        class: [
-          "block shadow-sm rounded-md border px-3 py-2 mt-2 w-full",
-          {
-            "border-gray-400 focus:outline-blue-600": result.errors[:value].none?,
-            "border-red-400 focus:outline-red-600": result.errors[:value].any?,
-          },
-        ] %>
+    <%= form.label :value, class: "label" %>
+    <%= form.select :value,
+          options_for_select(result.roll.dice_object.min..result.roll.dice_object.max, result.value),
+          {},
+          class: [
+            "select select-bordered w-full",
+            {
+              "select-error": result.errors[:value].any?,
+            },
+          ] %>
   </div>
 
   <div class="inline">
-<%= form.submit "Submit",
-      class: "btn btn-primary w-full sm:w-auto text-white rounded-md px-4 py-2 font-medium cursor-pointer" %>
+    <%= form.submit "Submit", class: "btn btn-primary" %>
   </div>
 <% end %>
