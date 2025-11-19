@@ -1,0 +1,37 @@
+/* Slot Machine Animations */
+@keyframes slot-slide {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-20px);
+        opacity: 0.3;
+    }
+}
+
+@keyframes slot-bounce {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.slot-spinning {
+    animation: slot-slide 0.15s ease-out infinite;
+    filter: brightness(0.6);
+    transition: filter 0.1s ease-out;
+}
+
+.slot-reveal {
+    animation: slot-bounce 0.5s ease-out;
+    filter: brightness(1);
+}
