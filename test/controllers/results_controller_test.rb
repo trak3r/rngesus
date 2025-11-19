@@ -64,8 +64,9 @@ class ResultsControllerTest < ActionDispatch::IntegrationTest
   test 'non-owner cannot edit result' do
     other_user = User.create!(provider: 'google', uid: '77777', email: 'yetanother@example.com')
     ResultsController.any_instance.stubs(:current_user).returns(other_user)
-    
+
     get edit_result_url(@result)
+
     assert_redirected_to randomizers_path
     assert_equal "You don't have permission to do that.", flash[:alert]
   end
@@ -73,8 +74,9 @@ class ResultsControllerTest < ActionDispatch::IntegrationTest
   test 'non-owner cannot update result' do
     other_user = User.create!(provider: 'google', uid: '77776', email: 'otheragain@example.com')
     ResultsController.any_instance.stubs(:current_user).returns(other_user)
-    
+
     patch result_url(@result), params: { result: { name: 'Updated Result' } }
+
     assert_redirected_to randomizers_path
     assert_equal "You don't have permission to do that.", flash[:alert]
   end
@@ -82,7 +84,7 @@ class ResultsControllerTest < ActionDispatch::IntegrationTest
   test 'non-owner cannot destroy result' do
     other_user = User.create!(provider: 'google', uid: '77775', email: 'andanother@example.com')
     ResultsController.any_instance.stubs(:current_user).returns(other_user)
-    
+
     assert_no_difference('Result.count') do
       delete result_url(@result)
     end
