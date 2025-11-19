@@ -3,7 +3,8 @@
                      data: { 
                        controller: "slot-machine",
                        slot_machine_final_result_value: result.try(:name_with_rolls) || 'No match',
-                       slot_machine_all_results_value: roll.results.map(&:name).to_json
+                       slot_machine_all_results_value: roll.results.map(&:name).to_json,
+                       slot_machine_index_value: index
                      } do %>
   <%= button_to reroll_randomizer_outcome_path(randomizer, roll),
                 method: :post,

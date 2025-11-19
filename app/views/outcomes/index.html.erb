@@ -11,9 +11,9 @@
   </div>
 
   <div class="grid gap-6">
-    <% @randomizer.rolls.each do |roll| %>
+    <% @randomizer.rolls.each_with_index do |roll, index| %>
       <% rolled, result = roll.outcome %>
-      <%= render "outcome_card", roll: roll, rolled: rolled, result: result, randomizer: @randomizer %>
+      <%= render "outcome_card", roll: roll, rolled: rolled, result: result, randomizer: @randomizer, index: index %>
     <% end %>
   </div>
 </div>

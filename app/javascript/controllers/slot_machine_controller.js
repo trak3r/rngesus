@@ -6,13 +6,15 @@ import { Controller } from "@hotwired/stimulus"
  * Creates a slot machine-style spinning animation for result reveals.
  * Results scroll vertically from top to bottom, gradually slow down,
  * and lock in the final result with a bounce effect.
+ * Multiple results stagger their completion for a cascading effect.
  */
 export default class extends Controller {
   static targets = ["result"]
   static values = {
     finalResult: String,
     allResults: Array,
-    duration: { type: Number, default: 1000 } // Reduced from 2000ms to 1000ms
+    duration: { type: Number, default: 1500 }, // Medium duration: 1.5 seconds
+    index: { type: Number, default: 0 } // Position in the list for staggering
   }
 
   connect() {
@@ -25,6 +27,15 @@ export default class extends Controller {
       return
     }
 
+    // Stagger start time based on index (each result starts 200ms after the previous)
+    const staggerDelay = this.indexValue * 200
+
+    setTimeout(() => {
+      this.startSpin()
+    }, staggerDelay)
+  }
+
+  startSpin() {
     const startTime = Date.now()
     const duration = this.durationValue
     const results = this.allResultsValue
@@ -40,14 +51,14 @@ export default class extends Controller {
       const elapsed = Date.now() - startTime
       const progress = Math.min(elapsed / duration, 1)
 
-      // Easing function: starts fast, slows down exponentially
-      // This creates the slot machine "slowing down" effect
-      const easeOut = 1 - Math.pow(1 - progress, 4)
+      // More dramatic easing function: very fast at start, very slow at end
+      // Using power of 5 for even more dramatic slowdown
+      const easeOut = 1 - Math.pow(1 - progress, 5)
 
       if (progress < 1) {
-        // Calculate delay between changes - increases as we slow down
-        // Starts at ~50ms, ends at ~300ms
-        const changeDelay = 50 + (easeOut * 250)
+        // Calculate delay between changes - increases dramatically as we slow down
+        // Starts at ~30ms (very fast), ends at ~500ms (slow tick)
+        const changeDelay = 30 + (easeOut * 470)
 
         if (Date.now() - lastChangeTime > changeDelay) {
           // Cycle through results in order for smooth scrolling effect
