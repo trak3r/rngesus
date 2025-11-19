@@ -1,7 +1,7 @@
-<%= turbo_frame_tag dom_id(roll, :outcome) do %>
+<%= turbo_frame_tag dom_id(roll, :outcome), class: "w-full" do %>
   <%= button_to reroll_randomizer_outcome_path(randomizer, roll),
                 method: :post,
-                class: "card bg-base-100 shadow-lg border border-base-300 p-6 hover:shadow-xl transition-all duration-300 flex flex-col items-center cursor-pointer hover:scale-[1.02] active:scale-[0.98]",
+                class: "card bg-base-100 shadow-lg border border-base-300 p-6 hover:shadow-xl transition-all duration-300 flex flex-col items-center cursor-pointer hover:scale-[1.02] active:scale-[0.98] w-full",
                 form: { class: "w-full" } do %>
 
     <div class="relative group inline-block text-3xl font-bold text-secondary mb-2 text-center">
