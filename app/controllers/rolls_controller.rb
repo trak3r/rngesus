@@ -69,8 +69,8 @@ class RollsController < ApplicationController
   end
 
   def check_ownership
-    unless @roll.randomizer.user == current_user
-      redirect_to randomizers_path, alert: "You don't have permission to do that."
-    end
+    return if @roll.randomizer.user == current_user
+
+    redirect_to randomizers_path, alert: "You don't have permission to do that."
   end
 end
