@@ -22,7 +22,26 @@ class RandomizersController < ApplicationController
 
   # GET /randomizers
   def index
-    @randomizers = Randomizer.search(params[:query]).all
+    @tab = params[:tab] || 'newest'
+    
+    # Redirect to login for user-specific tabs if not authenticated
+    if ['your_likes', 'your_randomizers'].include?(@tab) && !current_user
+      redirect_to '/login' and return
+    end
+    
+    # Query based on active tab
+    @randomizers = case @tab
+                   when 'newest'
+                     Randomizer.search(params[:query]).newest
+                   when 'most_liked'
+                     Randomizer.search(params[:query]).where('cached_votes_total > 0').most_liked
+                   when 'your_likes'
+                     current_user.get_voted(Randomizer).search(params[:query]).newest
+                   when 'your_randomizers'
+                     current_user.randomizers.search(params[:query]).newest
+                   else
+                     Randomizer.search(params[:query]).newest
+                   end
   end
 
   # GET /randomizers/1
