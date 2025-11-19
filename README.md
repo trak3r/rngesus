@@ -1,5 +1,4 @@
 # TODO
-- promotion lists: newest, most liked, my favorites, my randomizers
 - pagination
 - set up email exceptions so i'm notified of bugs i don't see myself
 - easy way to combine randomizer and roll together (e.g. forest encounter monster and reaction tables)
@@ -70,3 +69,4 @@
 - search, type-ahead quick find
 - on the outcomes page of a multi-roll randomizer, allow clicking on any single roll to re-roll just that result
 - animate spin results like a slot machine
+- promotion lists: newest, most liked, my favorites, my randomizers

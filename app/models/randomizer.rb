@@ -7,4 +7,6 @@ class Randomizer < ApplicationRecord
   has_many :rolls, dependent: :destroy
 
   scope :search, ->(query) { where('name LIKE ?', "%#{query}%") if query.present? }
+  scope :newest, -> { order(created_at: :desc) }
+  scope :most_liked, -> { order(cached_votes_total: :desc) }
 end

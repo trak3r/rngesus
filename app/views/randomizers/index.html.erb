@@ -1,75 +1,107 @@
 <% content_for :title, "Randomizers" %>
 
 <div class="w-full">
-  <div class="flex flex-wrap gap-4">
-    <div class="w-full mb-4" data-controller="search">
-      <%= form_with url: randomizers_path, method: :get, 
-          data: { search_target: "form", turbo_frame: "randomizers", turbo_action: "advance" } do |f| %>
-        <%= f.text_field :query, 
-            placeholder: "Search randomizers...", 
-            class: "input input-bordered w-full max-w-xs",
-            value: params[:query],
-            data: { action: "input->search#submit", search_target: "input" } %>
-      <% end %>
-    </div>
+  <!-- Tab Navigation -->
+  <div role="tablist" class="tabs tabs-bordered mb-6">
+    <%= link_to randomizers_path(tab: 'newest', query: params[:query]), 
+        class: "tab #{@tab == 'newest' ? 'tab-active' : ''}", 
+        data: { turbo_frame: "randomizers" } do %>
+      Newest
+    <% end %>
+    
+    <%= link_to randomizers_path(tab: 'most_liked', query: params[:query]), 
+        class: "tab #{@tab == 'most_liked' ? 'tab-active' : ''}", 
+        data: { turbo_frame: "randomizers" } do %>
+      Most Liked
+    <% end %>
+    
+    <%= link_to randomizers_path(tab: 'your_likes', query: params[:query]), 
+        class: "tab #{@tab == 'your_likes' ? 'tab-active' : ''}", 
+        data: { turbo_frame: current_user ? "randomizers" : "_top" } do %>
+      Your Likes
+    <% end %>
+    
+    <%= link_to randomizers_path(tab: 'your_randomizers', query: params[:query]), 
+        class: "tab #{@tab == 'your_randomizers' ? 'tab-active' : ''}", 
+        data: { turbo_frame: current_user ? "randomizers" : "_top" } do %>
+      Your Randomizers
+    <% end %>
+  </div>
 
-    <%= turbo_frame_tag "randomizers", class: "contents" do %>
+  <!-- Search Bar -->
+  <div class="w-full mb-4" data-controller="search">
+    <%= form_with url: randomizers_path, method: :get, 
+        data: { search_target: "form", turbo_frame: "randomizers", turbo_action: "advance" } do |f| %>
+      <%= f.hidden_field :tab, value: @tab %>
+      <%= f.text_field :query, 
+          placeholder: "Search randomizers...", 
+          class: "input input-bordered w-full max-w-xs",
+          value: params[:query],
+          data: { action: "input->search#submit", search_target: "input" } %>
+    <% end %>
+  </div>
+
+  <!-- Tab Content -->
+  <%= turbo_frame_tag "randomizers" do %>
+    <div class="flex flex-wrap gap-4">
       <% if @randomizers.empty? %>
         <div class="w-full text-center p-8 text-base-content/50">
-          No randomizers found matching "<%= params[:query] %>"
+          No randomizers found<%= " matching \"#{params[:query]}\"" if params[:query].present? %>
         </div>
       <% end %>
 
-<div class="card bg-base-100 w-96 shadow-sm flex flex-col group
-             p-4 min-h-[180px]
-            bg-gradient-to-b from-base-100 to-base-200">
-  <%= link_to new_randomizer_path,
-              class: "flex-1 flex flex-col no-underline text-inherit",
-              data: { turbo_frame: "_top" } do %>
+      <!-- New Randomizer Card (appears on all tabs) -->
+      <div class="card bg-base-100 w-96 shadow-sm flex flex-col group
+                   p-4 min-h-[180px]
+                  bg-gradient-to-b from-base-100 to-base-200">
+        <%= link_to new_randomizer_path,
+                    class: "flex-1 flex flex-col no-underline text-inherit",
+                    data: { turbo_frame: "_top" } do %>
 
-    <h2 class="card-title text-xl font-bold mb-2">New Randomizer</h2>
+          <h2 class="card-title text-xl font-bold mb-2">New Randomizer</h2>
 
-    <p class="flex-1 text-base-content/70">
-      Create your own!
-    </p>
+          <p class="flex-1 text-base-content/70">
+            Create your own!
+          </p>
 
-  <% end %>
-</div>
+        <% end %>
+      </div>
 
-    <% @randomizers.each do |randomizer| %>
+      <!-- Randomizer Cards -->
+      <% @randomizers.each do |randomizer| %>
 
-<div class="card w-96 shadow-sm flex flex-col group p-4 min-h-[180px]
-            bg-gradient-to-br from-primary/5 to-primary/10
-            hover:from-primary/10 hover:to-primary/20 transition-all duration-200">
-  <%= link_to randomizer_outcomes_path(randomizer),
-              class: "flex-1 flex flex-col no-underline text-inherit",
-              data: { turbo_frame: "_top" } do %>
+      <div class="card w-96 shadow-sm flex flex-col group p-4 min-h-[180px]
+                  bg-gradient-to-br from-primary/5 to-primary/10
+                  hover:from-primary/10 hover:to-primary/20 transition-all duration-200">
+        <%= link_to randomizer_outcomes_path(randomizer),
+                    class: "flex-1 flex flex-col no-underline text-inherit",
+                    data: { turbo_frame: "_top" } do %>
 
-    <h2 class="card-title text-xl font-bold mb-2">
-      <%= randomizer.name %>
-    </h2>
+          <h2 class="card-title text-xl font-bold mb-2">
+            <%= randomizer.name %>
+          </h2>
 
-    <p class="flex-1 text-base-content/70">
-      <%= randomizer.rolls
-            .map { |r| h(r.name || 'Missing') }
-            .join(' &middot; ')
-            .html_safe %>
-    </p>
+          <p class="flex-1 text-base-content/70">
+            <%= randomizer.rolls
+                  .map { |r| h(r.name || 'Missing') }
+                  .join(' &middot; ')
+                  .html_safe %>
+          </p>
 
-  <% end %>
+        <% end %>
 
-  <div class="card-actions justify-between items-center mt-4 flex flex-row space-x-3 pb-2 pr-2">
-    <% if current_user == randomizer.user %>
-      <%= link_to randomizer,
-                  class: "text-base-content/50 hover:text-base-content p-2 rounded",
-                  data: { turbo_frame: "_top" } do %>
-        <%= icon(:edit, class: "w-5 h-5") %>
+        <div class="card-actions justify-between items-center mt-4 flex flex-row space-x-3 pb-2 pr-2">
+          <% if current_user == randomizer.user %>
+            <%= link_to randomizer,
+                        class: "text-base-content/50 hover:text-base-content p-2 rounded",
+                        data: { turbo_frame: "_top" } do %>
+              <%= icon(:edit, class: "w-5 h-5") %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+
       <% end %>
-    <% end %>
-  </div>
-</div>
-
-    <% end %>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 </div>
