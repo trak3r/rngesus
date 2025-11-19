@@ -6,9 +6,11 @@
       <%= icon('caret-left', class: "w-6 h-6 text-gray-500") %>
     <% end %>
     <%= @roll.name %>
-    <%= link_to edit_roll_path(@roll),
-                class: "text-base-content/50 hover:text-base-content p-2 rounded " do %>
-      <%= icon(:edit, class: "w-5 h-5") %>
+    <% if current_user == @roll.randomizer.user %>
+      <%= link_to edit_roll_path(@roll),
+                  class: "text-base-content/50 hover:text-base-content p-2 rounded " do %>
+        <%= icon(:edit, class: "w-5 h-5") %>
+      <% end %>
     <% end %>
   </div>
 
@@ -22,9 +24,11 @@
 
 <%= render 'results/index', results: @roll.results %>
 
-<div class="mt-4">
-  <%= link_to "New result", new_roll_result_path(@roll), class: "btn btn-primary" %>
-  <%= link_to "Import from Screenshot", new_roll_results_img_path(@roll), class: "btn btn-primary" %>
-  <%= link_to "Import from CSV", new_roll_results_csv_path(@roll), class: "btn btn-primary" %>
-  <%= button_to "Destroy this roll", @roll, method: :delete, form_class: "inline-block", class: "btn btn-error", data: { turbo_confirm: "Are you sure?" } %>
-</div>
+<% if current_user == @roll.randomizer.user %>
+  <div class="mt-4">
+    <%= link_to "New result", new_roll_result_path(@roll), class: "btn btn-primary" %>
+    <%= link_to "Import from Screenshot", new_roll_results_img_path(@roll), class: "btn btn-primary" %>
+    <%= link_to "Import from CSV", new_roll_results_csv_path(@roll), class: "btn btn-primary" %>
+    <%= button_to "Destroy this roll", @roll, method: :delete, form_class: "inline-block", class: "btn btn-error", data: { turbo_confirm: "Are you sure?" } %>
+  </div>
+<% end %>

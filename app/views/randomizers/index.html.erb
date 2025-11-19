@@ -24,7 +24,8 @@
              p-4 min-h-[180px]
             bg-gradient-to-b from-base-100 to-base-200">
   <%= link_to new_randomizer_path,
-              class: "flex-1 flex flex-col no-underline text-inherit" do %>
+              class: "flex-1 flex flex-col no-underline text-inherit",
+              data: { turbo_frame: "_top" } do %>
 
     <h2 class="card-title text-xl font-bold mb-2">New Randomizer</h2>
 
@@ -63,10 +64,12 @@
       <%= randomizer.user.email %>
     </em>
 
-    <%= link_to randomizer,
-                class: "text-base-content/50 hover:text-base-content p-2 rounded",
-                data: { turbo_frame: "_top" } do %>
-      <%= icon(:edit, class: "w-5 h-5") %>
+    <% if current_user == randomizer.user %>
+      <%= link_to randomizer,
+                  class: "text-base-content/50 hover:text-base-content p-2 rounded",
+                  data: { turbo_frame: "_top" } do %>
+        <%= icon(:edit, class: "w-5 h-5") %>
+      <% end %>
     <% end %>
   </div>
 </div>

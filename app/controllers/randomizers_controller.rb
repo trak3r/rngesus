@@ -3,6 +3,7 @@
 class RandomizersController < ApplicationController
   before_action :require_login, except: %i[index show]
   before_action :set_randomizer, except: %i[index new create]
+  before_action :check_ownership, only: %i[edit update destroy]
 
   # the old man CRUD soul in me thinks this should be in
   # RandomizerLikesController.create/destroy
@@ -78,5 +79,11 @@ class RandomizersController < ApplicationController
   # Only allow a list of trusted parameters through.
   def randomizer_params
     params.expect(randomizer: [:name])
+  end
+
+  def check_ownership
+    unless @randomizer.user == current_user
+      redirect_to randomizers_path, alert: "You don't have permission to do that."
+    end
   end
 end

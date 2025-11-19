@@ -3,6 +3,7 @@
 class ResultsController < ApplicationController
   before_action :set_result, only: %i[show edit update destroy]
   before_action :set_roll, only: %i[new create index]
+  before_action :check_ownership, only: %i[edit update destroy]
 
   # GET /results
   def index
@@ -68,5 +69,11 @@ class ResultsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def result_params
     params.expect(result: %i[name value])
+  end
+
+  def check_ownership
+    unless @result.roll.randomizer.user == current_user
+      redirect_to randomizers_path, alert: "You don't have permission to do that."
+    end
   end
 end

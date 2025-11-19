@@ -3,6 +3,7 @@
 class RollsController < ApplicationController
   before_action :set_roll, only: %i[show edit update destroy]
   before_action :set_randomizer, only: %i[new create index]
+  before_action :check_ownership, only: %i[edit update destroy]
 
   # GET /rolls
   def index
@@ -65,5 +66,11 @@ class RollsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def roll_params
     params.expect(roll: %i[name dice])
+  end
+
+  def check_ownership
+    unless @roll.randomizer.user == current_user
+      redirect_to randomizers_path, alert: "You don't have permission to do that."
+    end
   end
 end

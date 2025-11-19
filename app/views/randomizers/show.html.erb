@@ -6,16 +6,20 @@
       <%= icon('caret-left', class: "w-6 h-6 text-gray-500") %>
     <% end %>
     <%= @randomizer.name %>
-    <%= link_to edit_randomizer_path(@randomizer),
-                class: "text-base-content/50 hover:text-base-content p-2 rounded " do %>
-      <%= icon(:edit, class: "w-5 h-5") %>
+    <% if current_user == @randomizer.user %>
+      <%= link_to edit_randomizer_path(@randomizer),
+                  class: "text-base-content/50 hover:text-base-content p-2 rounded " do %>
+        <%= icon(:edit, class: "w-5 h-5") %>
+      <% end %>
     <% end %>
   </div>
 </div>
 
 <%= render 'rolls/index', rolls: @randomizer.rolls %>
 
-<div class="mt-4">
-  <%= link_to "New roll", new_randomizer_roll_path(@randomizer), class: "btn btn-primary" %>
-  <%= button_to "Destroy this randomizer", @randomizer, method: :delete, form_class: "inline-block", class: "btn btn-error", data: { turbo_confirm: "Are you sure?" } %>
-</div>
+<% if current_user == @randomizer.user %>
+  <div class="mt-4">
+    <%= link_to "New roll", new_randomizer_roll_path(@randomizer), class: "btn btn-primary" %>
+    <%= button_to "Destroy this randomizer", @randomizer, method: :delete, form_class: "inline-block", class: "btn btn-error", data: { turbo_confirm: "Are you sure?" } %>
+  </div>
+<% end %>

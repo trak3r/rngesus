@@ -16,15 +16,17 @@
     </div>
   <% end %>
 
-  <div class="flex flex-row space-x-2 w-auto">
-    <%= link_to edit_roll_path(roll), class: "text-gray-500 hover:text-gray-700 p-2 rounded hover:btn-secondary" do %>
-      <%= icon(:edit, class: "w-5 h-5") %>
-    <% end %>
+  <% if current_user == roll.randomizer.user %>
+    <div class="flex flex-row space-x-2 w-auto">
+      <%= link_to edit_roll_path(roll), class: "text-gray-500 hover:text-gray-700 p-2 rounded hover:btn-secondary" do %>
+        <%= icon(:edit, class: "w-5 h-5") %>
+      <% end %>
 
-    <%= button_to roll_path(roll), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "text-red-500 hover:text-red-700 p-2 rounded hover:btn-error" do %>
-      <%= icon(:trash, class: "w-5 h-5") %>
-    <% end %>
-  </div>
+      <%= button_to roll_path(roll), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "text-red-500 hover:text-red-700 p-2 rounded hover:btn-error" do %>
+        <%= icon(:trash, class: "w-5 h-5") %>
+      <% end %>
+    </div>
+  <% end %>
 </li>
 
       <% end %>
