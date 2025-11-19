@@ -1,15 +1,18 @@
-<%= turbo_frame_tag dom_id(roll, :outcome), class: "w-full" do %>
+<%= turbo_frame_tag dom_id(roll, :outcome), 
+                     class: "w-full",
+                     data: { 
+                       controller: "slot-machine",
+                       slot_machine_final_result_value: result.try(:name_with_rolls) || 'No match',
+                       slot_machine_all_results_value: roll.results.map(&:name).to_json
+                     } do %>
   <%= button_to reroll_randomizer_outcome_path(randomizer, roll),
                 method: :post,
                 class: "card bg-base-100 shadow-lg border border-base-300 p-6 hover:shadow-xl transition-all duration-300 flex flex-col items-center cursor-pointer hover:scale-[1.02] active:scale-[0.98] w-full",
                 form: { class: "w-full" } do %>
 
     <div class="relative group inline-block text-3xl font-bold text-secondary mb-2 text-center">
-      <span class="block group-hover:hidden">
+      <span class="block" data-slot-machine-target="result">
         <%= result.try(:name_with_rolls) || 'No match' %>
-      </span>
-      <span class="hidden group-hover:block text-secondary/70">
-        <%= result.try(:name) || 'No match' %>
       </span>
     </div>
 

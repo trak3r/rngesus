@@ -1,3 +1,24 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+/* Slot Machine Animations */
+@keyframes slot-blur {
+  0%, 100% { filter: blur(0px); }
+  50% { filter: blur(4px); }
+}
+
+@keyframes slot-bounce {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.slot-spinning {
+  animation: slot-blur 0.15s ease-in-out infinite;
+  color: hsl(var(--s) / 0.7);
+}
+
+.slot-reveal {
+  animation: slot-bounce 0.5s ease-out;
+}
