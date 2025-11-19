@@ -18,6 +18,7 @@
 - free hosting?
     - database backups
 - google analytics
+- SEO
 - donations / patreon
     - https://buymeacoffee.com/signup
 - affiliate links to buy real dice
