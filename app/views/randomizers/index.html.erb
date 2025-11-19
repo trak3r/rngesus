@@ -58,12 +58,7 @@
 
   <% end %>
 
-  <!-- Bottom row with email (left) and edit button (right) -->
   <div class="card-actions justify-between items-center mt-4 flex flex-row space-x-3 pb-2 pr-2">
-    <em class="text-base-content/50 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-      <%= randomizer.user.email %>
-    </em>
-
     <% if current_user == randomizer.user %>
       <%= link_to randomizer,
                   class: "text-base-content/50 hover:text-base-content p-2 rounded",
