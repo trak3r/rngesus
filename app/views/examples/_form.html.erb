@@ -20,7 +20,7 @@
                     class: [
                       "input input-bordered w-full",
                       {
-                        "input-error": example.errors[:name].any(),
+                        "input-error": example.errors[:name].any?,
                       },
                     ] %>
   </div>
@@ -31,7 +31,7 @@
                       class: [
                         "input input-bordered w-full",
                         {
-                          "input-error": example.errors[:value].any(),
+                          "input-error": example.errors[:value].any?,
                         },
                       ] %>
   </div>

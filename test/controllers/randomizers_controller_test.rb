@@ -60,4 +60,39 @@ class RandomizersControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to randomizers_url
   end
+
+  # Authorization tests
+  test 'owner can edit their randomizer' do
+    get edit_randomizer_url(@randomizer)
+    assert_response :success
+  end
+
+  test 'non-owner cannot edit randomizer' do
+    other_user = User.create!(provider: 'google', uid: '99999', email: 'other@example.com')
+    RandomizersController.any_instance.stubs(:current_user).returns(other_user)
+    
+    get edit_randomizer_url(@randomizer)
+    assert_redirected_to randomizers_path
+    assert_equal "You don't have permission to do that.", flash[:alert]
+  end
+
+  test 'non-owner cannot update randomizer' do
+    other_user = User.create!(provider: 'google', uid: '99998', email: 'another@example.com')
+    RandomizersController.any_instance.stubs(:current_user).returns(other_user)
+    
+    patch randomizer_url(@randomizer), params: { randomizer: { name: 'Updated Name' } }
+    assert_redirected_to randomizers_path
+    assert_equal "You don't have permission to do that.", flash[:alert]
+  end
+
+  test 'non-owner cannot destroy randomizer' do
+    other_user = User.create!(provider: 'google', uid: '99997', email: 'yetanother@example.com')
+    RandomizersController.any_instance.stubs(:current_user).returns(other_user)
+    
+    assert_no_difference('Randomizer.count') do
+      delete randomizer_url(@randomizer)
+    end
+    assert_redirected_to randomizers_path
+    assert_equal "You don't have permission to do that.", flash[:alert]
+  end
 end

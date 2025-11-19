@@ -5,6 +5,7 @@ require 'test_helper'
 class ResultsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @result = results(:encounter_distance_close)
+    login_as(@result.roll.randomizer.user)
   end
 
   test 'should get index' do
@@ -57,5 +58,35 @@ class ResultsControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to roll_url(@result.roll)
+  end
+
+  # Authorization tests
+  test 'non-owner cannot edit result' do
+    other_user = User.create!(provider: 'google', uid: '77777', email: 'yetanother@example.com')
+    ResultsController.any_instance.stubs(:current_user).returns(other_user)
+    
+    get edit_result_url(@result)
+    assert_redirected_to randomizers_path
+    assert_equal "You don't have permission to do that.", flash[:alert]
+  end
+
+  test 'non-owner cannot update result' do
+    other_user = User.create!(provider: 'google', uid: '77776', email: 'otheragain@example.com')
+    ResultsController.any_instance.stubs(:current_user).returns(other_user)
+    
+    patch result_url(@result), params: { result: { name: 'Updated Result' } }
+    assert_redirected_to randomizers_path
+    assert_equal "You don't have permission to do that.", flash[:alert]
+  end
+
+  test 'non-owner cannot destroy result' do
+    other_user = User.create!(provider: 'google', uid: '77775', email: 'andanother@example.com')
+    ResultsController.any_instance.stubs(:current_user).returns(other_user)
+    
+    assert_no_difference('Result.count') do
+      delete result_url(@result)
+    end
+    assert_redirected_to randomizers_path
+    assert_equal "You don't have permission to do that.", flash[:alert]
   end
 end

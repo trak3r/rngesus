@@ -15,3 +15,11 @@ module ActiveSupport
     fixtures :all
   end
 end
+
+module ActionDispatch
+  class IntegrationTest
+    def login_as(user)
+      ApplicationController.any_instance.stubs(:current_user).returns(user)
+    end
+  end
+end
