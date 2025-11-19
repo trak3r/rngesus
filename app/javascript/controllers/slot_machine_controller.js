@@ -13,7 +13,7 @@ export default class extends Controller {
   static values = {
     finalResult: String,
     allResults: Array,
-    duration: { type: Number, default: 1500 }, // Medium duration: 1.5 seconds
+    duration: { type: Number, default: 1000 }, // Base duration: 1.2 seconds
     index: { type: Number, default: 0 } // Position in the list for staggering
   }
 
@@ -27,17 +27,16 @@ export default class extends Controller {
       return
     }
 
-    // Stagger start time based on index (each result starts 200ms after the previous)
-    const staggerDelay = this.indexValue * 200
-
-    setTimeout(() => {
-      this.startSpin()
-    }, staggerDelay)
+    // All start at the same time, but duration increases for each subsequent result
+    // This creates staggered completion while starting simultaneously
+    this.startSpin()
   }
 
   startSpin() {
     const startTime = Date.now()
-    const duration = this.durationValue
+    // Add 300ms to duration for each index position
+    // First result: 1200ms, second: 1500ms, third: 1800ms, etc.
+    const duration = this.durationValue + (this.indexValue * 600)
     const results = this.allResultsValue
     const finalResult = this.finalResultValue
 

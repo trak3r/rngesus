@@ -7,7 +7,6 @@
 - share rollable randomizers via links with guid not raw id
 - tagging / categories, searchable and browsable
 - animate cool 3d dice roll on screen
-- animate spin results like a slot machine
 - distribution graphs for multi-dice rolls
 - responsive/mobile screens
 - hotwire native
@@ -70,3 +69,4 @@
     - https://github.com/ryanto/acts_as_votable
 - search, type-ahead quick find
 - on the outcomes page of a multi-roll randomizer, allow clicking on any single roll to re-roll just that result
+- animate spin results like a slot machine
