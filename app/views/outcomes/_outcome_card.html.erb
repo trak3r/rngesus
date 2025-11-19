@@ -1,0 +1,28 @@
+<%= turbo_frame_tag dom_id(roll, :outcome) do %>
+  <%= button_to reroll_randomizer_outcome_path(randomizer, roll),
+                method: :post,
+                class: "card bg-base-100 shadow-lg border border-base-300 p-6 hover:shadow-xl transition-all duration-300 flex flex-col items-center cursor-pointer hover:scale-[1.02] active:scale-[0.98]",
+                form: { class: "w-full" } do %>
+
+    <div class="relative group inline-block text-3xl font-bold text-secondary mb-2 text-center">
+      <span class="block group-hover:hidden">
+        <%= result.try(:name_with_rolls) || 'No match' %>
+      </span>
+      <span class="hidden group-hover:block text-secondary/70">
+        <%= result.try(:name) || 'No match' %>
+      </span>
+    </div>
+
+    <div class="text-base-content/60 text-sm font-thin">
+      <%= roll.name %>
+      &middot;
+      <%= roll.dice_object.name %>
+      &rarr;
+      <%= rolled %>
+    </div>
+
+    <div class="text-xs text-base-content/40 mt-2">
+      Click to re-roll
+    </div>
+  <% end %>
+<% end %>
