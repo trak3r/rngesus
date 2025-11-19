@@ -34,37 +34,25 @@ export default class extends Controller {
 
   startSpin() {
     const startTime = Date.now()
-    // Add 300ms to duration for each index position
-    // First result: 1200ms, second: 1500ms, third: 1800ms, etc.
+    // Add 600ms to duration for each index position for staggered completion
+    // First result: 1000ms, second: 1600ms, third: 2200ms, etc.
     const duration = this.durationValue + (this.indexValue * 600)
     const results = this.allResultsValue
     const finalResult = this.finalResultValue
 
-    // Add spinning class for visual effect
+    // Add spinning class for visual effect (CSS controls animation speed)
     this.resultTarget.classList.add('slot-spinning')
 
-    let lastChangeTime = startTime
     let currentIndex = 0
 
     const animate = () => {
       const elapsed = Date.now() - startTime
       const progress = Math.min(elapsed / duration, 1)
 
-      // More dramatic easing function: very fast at start, very slow at end
-      // Using power of 5 for even more dramatic slowdown
-      const easeOut = 1 - Math.pow(1 - progress, 5)
-
       if (progress < 1) {
-        // Calculate delay between changes - increases dramatically as we slow down
-        // Starts at ~30ms (very fast), ends at ~500ms (slow tick)
-        const changeDelay = 30 + (easeOut * 470)
-
-        if (Date.now() - lastChangeTime > changeDelay) {
-          // Cycle through results in order for smooth scrolling effect
-          currentIndex = (currentIndex + 1) % results.length
-          this.resultTarget.textContent = results[currentIndex]
-          lastChangeTime = Date.now()
-        }
+        // Cycle through results for variety during spin
+        currentIndex = (currentIndex + 1) % results.length
+        this.resultTarget.textContent = results[currentIndex]
 
         requestAnimationFrame(animate)
       } else {
