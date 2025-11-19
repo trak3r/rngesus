@@ -34,7 +34,7 @@ class RandomizersController < ApplicationController
                    when 'newest'
                      Randomizer.search(params[:query]).newest
                    when 'most_liked'
-                     Randomizer.search(params[:query]).most_liked
+                     Randomizer.search(params[:query]).where('cached_votes_total > 0').most_liked
                    when 'your_likes'
                      current_user.get_voted(Randomizer).search(params[:query]).newest
                    when 'your_randomizers'

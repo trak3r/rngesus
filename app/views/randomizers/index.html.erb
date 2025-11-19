@@ -1,33 +1,6 @@
 <% content_for :title, "Randomizers" %>
 
 <div class="w-full">
-  <!-- Tab Navigation -->
-  <div role="tablist" class="tabs tabs-bordered mb-6">
-    <%= link_to randomizers_path(tab: 'newest', query: params[:query]), 
-        class: "tab #{@tab == 'newest' ? 'tab-active' : ''}", 
-        data: { turbo_frame: "randomizers" } do %>
-      Newest
-    <% end %>
-    
-    <%= link_to randomizers_path(tab: 'most_liked', query: params[:query]), 
-        class: "tab #{@tab == 'most_liked' ? 'tab-active' : ''}", 
-        data: { turbo_frame: "randomizers" } do %>
-      Most Liked
-    <% end %>
-    
-    <%= link_to randomizers_path(tab: 'your_likes', query: params[:query]), 
-        class: "tab #{@tab == 'your_likes' ? 'tab-active' : ''}", 
-        data: { turbo_frame: current_user ? "randomizers" : "_top" } do %>
-      Your Likes
-    <% end %>
-    
-    <%= link_to randomizers_path(tab: 'your_randomizers', query: params[:query]), 
-        class: "tab #{@tab == 'your_randomizers' ? 'tab-active' : ''}", 
-        data: { turbo_frame: current_user ? "randomizers" : "_top" } do %>
-      Your Randomizers
-    <% end %>
-  </div>
-
   <!-- Search Bar -->
   <div class="w-full mb-4" data-controller="search">
     <%= form_with url: randomizers_path, method: :get, 
@@ -43,6 +16,33 @@
 
   <!-- Tab Content -->
   <%= turbo_frame_tag "randomizers" do %>
+    <!-- Tab Navigation -->
+    <div role="tablist" class="tabs tabs-boxed mb-6 bg-base-200 p-1">
+      <%= link_to randomizers_path(tab: 'newest', query: params[:query]), 
+          class: "tab #{@tab == 'newest' ? 'tab-active' : ''}", 
+          data: { turbo_frame: "randomizers", turbo_action: "advance" } do %>
+        Newest
+      <% end %>
+      
+      <%= link_to randomizers_path(tab: 'most_liked', query: params[:query]), 
+          class: "tab #{@tab == 'most_liked' ? 'tab-active' : ''}", 
+          data: { turbo_frame: "randomizers", turbo_action: "advance" } do %>
+        Most Liked
+      <% end %>
+      
+      <%= link_to randomizers_path(tab: 'your_likes', query: params[:query]), 
+          class: "tab #{@tab == 'your_likes' ? 'tab-active' : ''}", 
+          data: { turbo_frame: current_user ? "randomizers" : "_top", turbo_action: current_user ? "advance" : "replace" } do %>
+        Your Likes
+      <% end %>
+      
+      <%= link_to randomizers_path(tab: 'your_randomizers', query: params[:query]), 
+          class: "tab #{@tab == 'your_randomizers' ? 'tab-active' : ''}", 
+          data: { turbo_frame: current_user ? "randomizers" : "_top", turbo_action: current_user ? "advance" : "replace" } do %>
+        Your Randomizers
+      <% end %>
+    </div>
+
     <div class="flex flex-wrap gap-4">
       <% if @randomizers.empty? %>
         <div class="w-full text-center p-8 text-base-content/50">
