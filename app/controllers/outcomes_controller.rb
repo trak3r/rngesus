@@ -7,7 +7,11 @@ class OutcomesController < ApplicationController
   def index; end
 
   def reroll
+    @roll = @randomizer.rolls.find(params[:id])
     @rolled, @result = @roll.outcome
+    
+    # Calculate index for staggered animation timing
+    @index = @randomizer.rolls.order(:id).index(@roll) || 0
 
     respond_to do |format|
       format.turbo_stream
