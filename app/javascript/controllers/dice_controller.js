@@ -17,20 +17,14 @@ export default class extends Controller {
     async connect() {
         console.log("Dice controller connected", this.element)
 
-        // DEBUG: Remove red border, use alerts for flow tracking
-        // document.body.style.border = "5px solid red"
-
-        // DEBUG: Alert to check animate value
-        alert("Connected. Animate: " + this.animateValue)
-
         if (!this.constructor.box && !this.constructor.isInitializing) {
             this.constructor.isInitializing = true
-            this.initBox().catch(e => alert("Init Error: " + e))
+            this.initBox().catch(e => console.error("Init Error:", e))
         }
 
         if (this.animateValue) {
             if (this.constructor.box) {
-                this.roll().catch(e => alert("Roll Error: " + e))
+                this.roll().catch(e => console.error("Roll Error:", e))
             } else {
                 console.log("Queueing roll")
                 this.constructor.pendingRolls.push(this)
@@ -58,36 +52,30 @@ export default class extends Controller {
             const box = new DiceBox("#dice-box-container", {
                 assetPath: "/assets/dice-box/",
                 theme: "default",
-                scale: 6,
+                scale: 25, // Increased scale ~3x
                 gravity: 1,
                 mass: 1,
                 friction: 0.8
             })
 
-            alert("Starting box.init()")
             await box.init()
-            alert("box.init() finished")
-
             console.log("Box initialized")
             this.constructor.box = box
             this.constructor.isInitializing = false
 
             // Process pending
-            alert("Processing " + this.constructor.pendingRolls.length + " pending rolls")
             while (this.constructor.pendingRolls.length > 0) {
                 const controller = this.constructor.pendingRolls.shift()
-                controller.roll().catch(e => alert("Pending Roll Error: " + e))
+                controller.roll().catch(e => console.error("Pending Roll Error:", e))
             }
         } catch (error) {
             console.error("DiceBox Init Failed:", error)
-            alert("DiceBox Init Failed: " + error)
             this.constructor.isInitializing = false
         }
     }
 
     async roll() {
         console.log("Rolling dice:", this.diceValue, "Result:", this.rolledValue)
-        // alert("Rolling: " + this.diceValue) 
 
         // Normalize dice string (e.g. "D100" -> "d100")
         let diceNotation = this.diceValue.toLowerCase()
