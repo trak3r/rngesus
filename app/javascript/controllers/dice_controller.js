@@ -7,7 +7,7 @@ export default class extends Controller {
         result: String,
         dice: String,
         rolled: Number,
-        animate: { type: Boolean, default: false }
+        animate: { type: Boolean, default: true }
     }
 
     static box = null
@@ -55,7 +55,8 @@ export default class extends Controller {
                 scale: 25, // Increased scale ~3x
                 gravity: 1,
                 mass: 1,
-                friction: 0.8
+                friction: 0.8,
+                offscreen: true
             })
 
             await box.init()
@@ -67,6 +68,8 @@ export default class extends Controller {
             while (this.constructor.pendingRolls.length > 0) {
                 const controller = this.constructor.pendingRolls.shift()
                 controller.roll().catch(e => console.error("Pending Roll Error:", e))
+                // Add small delay to stagger rolls
+                await new Promise(r => setTimeout(r, 300))
             }
         } catch (error) {
             console.error("DiceBox Init Failed:", error)
@@ -113,7 +116,7 @@ export default class extends Controller {
 
         if (isNaN(targetSum)) {
             // If we can't parse the result, just roll random
-            this.constructor.box.roll(explicitNotation)
+            this.constructor.box.roll(explicitNotation, { newStartPoint: true })
             return
         }
 
@@ -127,10 +130,10 @@ export default class extends Controller {
             // dice-box expects an array of results matching the dice count
             // We need to construct the roll notation or object for dice-box
             // box.roll("2d6", [3, 4])
-            this.constructor.box.roll(explicitNotation, results)
+            this.constructor.box.roll(explicitNotation, results, { newStartPoint: true })
         } else {
             console.warn("Could not find matching dice values for", sumToFind)
-            this.constructor.box.roll(explicitNotation)
+            this.constructor.box.roll(explicitNotation, { newStartPoint: true })
         }
     }
 
