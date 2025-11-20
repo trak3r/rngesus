@@ -1,17 +1,18 @@
 # TODO
-- pagination
-- set up email exceptions so i'm notified of bugs i don't see myself
-- easy way to combine randomizer and roll together (e.g. forest encounter monster and reaction tables)
-- would we need to support "with advantage" rolls? is there a standard syntax for it?
-- share rollable randomizers via links with guid not raw id
 - tagging / categories, searchable and browsable
 - animate cool 3d dice roll on screen
+- share rollable randomizers via links with guid not raw id
+- pagination
+- combine randomizers (e.g. forest encounters + reaction rolls)
+- would we need to support "with advantage" rolls?
+    - is there a standard syntax for it?
 - distribution graphs for multi-dice rolls
 - responsive/mobile screens
 - hotwire native
 - hardening (scan tools?)
 - accessibility (scan tools?)
 - re-enable github ci workflow
+- set up email exceptions so i'm notified of bugs i don't see myself
 - free hosting?
     - database backups
 - google analytics
