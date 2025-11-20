@@ -2,6 +2,7 @@
 - animate cool 3d dice roll on screen
     - aren't showing every time; never on initial roll, sometimes on re-roll
     - some dice types (d100) aren't showing at all
+    - the result hover raw stopped working
 - tagging / categories, searchable and browsable
 - share rollable randomizers via links with guid not raw id
 - pagination
