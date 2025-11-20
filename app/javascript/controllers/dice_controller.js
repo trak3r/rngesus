@@ -64,7 +64,7 @@ export default class extends Controller {
             const box = new DiceBox("#dice-box-container", {
                 assetPath: "/assets/dice-box/",
                 theme: "default",
-                scale: 25, // Increased scale ~3x
+                scale: 8, // Reduced scale to ~75% of previous
                 gravity: 1,
                 mass: 1,
                 friction: 0.8
