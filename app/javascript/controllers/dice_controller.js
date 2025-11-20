@@ -45,6 +45,18 @@ export default class extends Controller {
             container.style.height = '100vh'
             container.style.zIndex = '1000'
             container.style.pointerEvents = 'none'
+
+            // Force canvas to fill container
+            const style = document.createElement('style')
+            style.innerHTML = `
+                #dice-box-container canvas {
+                    width: 100% !important;
+                    height: 100% !important;
+                    display: block;
+                }
+            `
+            document.head.appendChild(style)
+
             document.body.appendChild(container)
         }
 
@@ -55,8 +67,7 @@ export default class extends Controller {
                 scale: 25, // Increased scale ~3x
                 gravity: 1,
                 mass: 1,
-                friction: 0.8,
-                offscreen: true
+                friction: 0.8
             })
 
             await box.init()
