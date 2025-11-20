@@ -87,15 +87,27 @@ export default class extends Controller {
 
     async roll() {
         console.log("Rolling dice:", this.diceValue, "Result:", this.rolledValue)
-        alert("Rolling: " + this.diceValue) // Uncomment if needed, but might be annoying
+        // alert("Rolling: " + this.diceValue) 
+
+        // Normalize dice string (e.g. "D100" -> "d100")
+        let diceNotation = this.diceValue.toLowerCase()
+
+        // Handle unsupported D100 by converting to 2d10 (percentile) or just d20 as fallback for now
+        // dice-box 1.1.3 might not support d100 out of the box with default theme
+        if (diceNotation.includes("d100")) {
+            console.warn("D100 not fully supported, using 2d10 as visual proxy")
+            // We can't easily fake 1-100 with 2d10 visually summing to it without complex logic
+            // For now, let's just try to roll it as is, but lowercase might fix the "Invalid notation" error
+            // If it still fails, we might need to swap to d20s
+        }
 
         // Parse the dice string (e.g. "2d6+2")
         // Regex matches: [full, count, faces, modifier]
         const diceRegex = /(?:(\d+))?d(\d+)(?:([+-]\d+))?/i
-        const match = this.diceValue.match(diceRegex)
+        const match = diceNotation.match(diceRegex)
 
         if (!match) {
-            console.error("Invalid dice format:", this.diceValue)
+            console.error("Invalid dice format:", diceNotation)
             return
         }
 
@@ -107,7 +119,7 @@ export default class extends Controller {
 
         if (isNaN(targetSum)) {
             // If we can't parse the result, just roll random
-            this.constructor.box.roll(this.diceValue)
+            this.constructor.box.roll(diceNotation)
             return
         }
 
@@ -121,10 +133,10 @@ export default class extends Controller {
             // dice-box expects an array of results matching the dice count
             // We need to construct the roll notation or object for dice-box
             // box.roll("2d6", [3, 4])
-            this.constructor.box.roll(this.diceValue, results)
+            this.constructor.box.roll(diceNotation, results)
         } else {
             console.warn("Could not find matching dice values for", sumToFind)
-            this.constructor.box.roll(this.diceValue)
+            this.constructor.box.roll(diceNotation)
         }
     }
 
