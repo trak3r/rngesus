@@ -115,11 +115,17 @@ export default class extends Controller {
         const faces = parseInt(match[2], 10)
         const modifier = parseInt(match[3] || "0", 10)
 
+        // Reconstruct notation to ensure count is present (e.g. "d12" -> "1d12")
+        // dice-box might require the count explicitly
+        const explicitNotation = `${count}d${faces}`
+
+        // alert("Explicit Notation: " + explicitNotation)
+
         let targetSum = parseInt(this.rolledValue, 10)
 
         if (isNaN(targetSum)) {
             // If we can't parse the result, just roll random
-            this.constructor.box.roll(diceNotation)
+            this.constructor.box.roll(explicitNotation)
             return
         }
 
@@ -133,10 +139,10 @@ export default class extends Controller {
             // dice-box expects an array of results matching the dice count
             // We need to construct the roll notation or object for dice-box
             // box.roll("2d6", [3, 4])
-            this.constructor.box.roll(diceNotation, results)
+            this.constructor.box.roll(explicitNotation, results)
         } else {
             console.warn("Could not find matching dice values for", sumToFind)
-            this.constructor.box.roll(diceNotation)
+            this.constructor.box.roll(explicitNotation)
         }
     }
 
