@@ -1,7 +1,9 @@
 # TODO
 - animate cool 3d dice roll on screen
     - you often have to hard-reload a page to see the dice; seems navigating around causes them to stop working
+    - what are our options for dice themes?
 - tagging / categories, searchable and browsable
+- private flag for randomizers, or published_at timestamp
 - share rollable randomizers via links with guid not raw id
 - pagination
 - combine randomizers (e.g. forest encounters + reaction rolls)
