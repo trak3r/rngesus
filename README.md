@@ -1,8 +1,6 @@
 # TODO
 - animate cool 3d dice roll on screen
     - you often have to hard-reload a page to see the dice; seems navigating around causes them to stop working
-    - some dice types (d100) aren't showing at all
-    - the feature where hovering over a result shows the raw roll stopped working
 - tagging / categories, searchable and browsable
 - share rollable randomizers via links with guid not raw id
 - pagination
