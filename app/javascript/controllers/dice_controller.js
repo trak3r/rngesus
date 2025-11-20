@@ -61,7 +61,8 @@ export default class extends Controller {
         }
 
         try {
-            const box = new DiceBox("#dice-box-container", {
+            const box = new DiceBox({
+                container: "#dice-box-container",
                 assetPath: "/assets/dice-box/",
                 theme: "default",
                 scale: 8, // Reduced scale to ~75% of previous
