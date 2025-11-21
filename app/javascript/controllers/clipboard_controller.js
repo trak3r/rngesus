@@ -19,13 +19,22 @@ export default class extends Controller {
         const notification = this.notificationTarget
 
         // Show notification
-        notification.classList.remove('opacity-0', 'invisible', 'pointer-events-none')
+        notification.classList.remove('hidden')
+        // Force reflow to enable transition
+        void notification.offsetWidth
+
+        notification.classList.remove('opacity-0', 'pointer-events-none')
         notification.classList.add('opacity-100')
 
         // Hide after 2 seconds
         setTimeout(() => {
             notification.classList.remove('opacity-100')
-            notification.classList.add('opacity-0', 'invisible', 'pointer-events-none')
+            notification.classList.add('opacity-0', 'pointer-events-none')
+
+            // Wait for transition to finish before hiding
+            setTimeout(() => {
+                notification.classList.add('hidden')
+            }, 200)
         }, 2000)
     }
 }
