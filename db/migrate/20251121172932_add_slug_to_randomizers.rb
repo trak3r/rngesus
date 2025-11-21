@@ -30,8 +30,6 @@ class AddSlugToRandomizers < ActiveRecord::Migration[8.1]
   private
 
   def generate_slug
-    # Generate 5-character alphanumeric string (a-z, A-Z, 0-9)
-    chars = [*'a'..'z', *'A'..'Z', *'0'..'9']
-    5.times.map { chars.sample }.join
+    SecureRandom.alphanumeric(5)
   end
 end
