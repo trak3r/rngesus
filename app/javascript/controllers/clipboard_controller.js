@@ -19,13 +19,13 @@ export default class extends Controller {
         const notification = this.notificationTarget
 
         // Show notification
-        notification.classList.remove('opacity-0', 'pointer-events-none')
+        notification.classList.remove('opacity-0', 'invisible', 'pointer-events-none')
         notification.classList.add('opacity-100')
 
         // Hide after 2 seconds
         setTimeout(() => {
             notification.classList.remove('opacity-100')
-            notification.classList.add('opacity-0', 'pointer-events-none')
+            notification.classList.add('opacity-0', 'invisible', 'pointer-events-none')
         }, 2000)
     }
 }

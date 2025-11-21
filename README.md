@@ -10,7 +10,6 @@
 - upload multiple screenshots at once; the carousing benefits is 4 pages
 - tagging / categories, searchable and browsable
 - private flag for randomizers, or published_at timestamp
-- share buttons, link, social media
 - pagination
 - avatar; is gravatar still a thing?
 - settings page (nickname, avatar, disable animations)
@@ -86,3 +85,4 @@
 - animate spin results like a slot machine
 - promotion lists: newest, most liked, my favorites, my randomizers
 - share rollable randomizers via links with guid not raw id
+- share buttons, link, social media
