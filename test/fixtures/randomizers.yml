@@ -1,3 +1,4 @@
 encounter:
   name: Random Encounter
   user: ted
+  slug: abc12

@@ -92,7 +92,7 @@ class RandomizersController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_randomizer
-    @randomizer = Randomizer.find(params.expect(:id))
+    @randomizer = Randomizer.find_by!(slug: params.expect(:id))
   end
 
   # Only allow a list of trusted parameters through.

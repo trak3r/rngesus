@@ -21,7 +21,7 @@ class OutcomesController < ApplicationController
   private
 
   def set_randomizer
-    @randomizer = Randomizer.find(params.expect(:randomizer_id))
+    @randomizer = Randomizer.find_by!(slug: params.expect(:randomizer_id))
   end
 
   def set_roll
