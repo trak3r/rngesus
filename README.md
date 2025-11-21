@@ -1,8 +1,19 @@
 # TODO
-- tagging / categories, searchable and browsable
 - animate cool 3d dice roll on screen
+    - only showing on the reroll, not the initial roll
+    - often have to hard-reload a page to see the dice; seems navigating around causes them to stop working
+    - 3d dice don't roll to same result as returned from server
+    - what are our options for dice colors and textures?
+- d40 NPCs in the City of Masks
+    - does not OCR and parse
+    - weird roll type:  d4 + d10 as digit positions
+- upload multiple screenshots at once; the carousing benefits is 4 pages
+- tagging / categories, searchable and browsable
+- private flag for randomizers, or published_at timestamp
 - share rollable randomizers via links with guid not raw id
 - pagination
+- avatar; is gravatar still a thing?
+- settings page (nickname, avatar, disable animations)
 - combine randomizers (e.g. forest encounters + reaction rolls)
 - would we need to support "with advantage" rolls?
     - is there a standard syntax for it?
