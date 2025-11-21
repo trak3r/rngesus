@@ -1,18 +1,19 @@
 # frozen_string_literal: true
 
 class Randomizer < ApplicationRecord
+  include ImmutableAttributes
+
   acts_as_votable
 
   belongs_to :user
   has_many :rolls, dependent: :destroy
 
   # Make slug immutable after creation
-  attr_readonly :slug
+  attr_immutable :slug
 
   before_validation :generate_slug_if_blank
 
   validates :slug, presence: true, uniqueness: true, format: { with: /\A[a-zA-Z0-9]{5}\z/ }
-  validate :slug_cannot_be_changed, on: :update
 
   scope :search, ->(query) { where('name LIKE ?', "%#{query}%") if query.present? }
   scope :newest, -> { order(created_at: :desc) }
@@ -23,12 +24,6 @@ class Randomizer < ApplicationRecord
   end
 
   private
-
-  def slug_cannot_be_changed
-    if slug_changed? && persisted?
-      errors.add(:slug, "cannot be changed once set")
-    end
-  end
 
   def generate_slug_if_blank
     return if slug.present?
