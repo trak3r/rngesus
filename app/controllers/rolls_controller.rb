@@ -60,7 +60,7 @@ class RollsController < ApplicationController
   end
 
   def set_randomizer
-    @randomizer = Randomizer.find(params.expect(:randomizer_id))
+    @randomizer = Randomizer.find_by!(slug: params.expect(:randomizer_id))
   end
 
   # Only allow a list of trusted parameters through.

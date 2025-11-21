@@ -7,7 +7,9 @@
       <%= @randomizer.name %>
     </div>
 
-    <%= render "randomizers/like_button", randomizer: @randomizer %>
+    <div class="relative">
+      <%= render "randomizers/like_button", randomizer: @randomizer %>
+    </div>
   </div>
 
   <div class="grid gap-6">

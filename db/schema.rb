@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_11_19_204905) do
+ActiveRecord::Schema[8.1].define(version: 2025_11_21_172932) do
   create_table "examples", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "name"
@@ -25,8 +25,10 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_19_204905) do
     t.integer "cached_votes_up", default: 0
     t.datetime "created_at", null: false
     t.string "name"
+    t.string "slug", limit: 5, null: false
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
+    t.index ["slug"], name: "index_randomizers_on_slug", unique: true
     t.index ["user_id"], name: "index_randomizers_on_user_id"
   end
 
