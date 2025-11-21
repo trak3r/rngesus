@@ -15,6 +15,7 @@
 - avatar; is gravatar still a thing?
 - settings page (nickname, avatar, disable animations)
 - combine randomizers (e.g. forest encounters + reaction rolls)
+    - copy rather than link?
 - would we need to support "with advantage" rolls?
     - is there a standard syntax for it?
 - distribution graphs for multi-dice rolls
@@ -23,6 +24,8 @@
 - hardening (scan tools?)
 - accessibility (scan tools?)
 - re-enable github ci workflow
+- profanity / vulgarity detector
+- hide / report offensive items
 - set up email exceptions so i'm notified of bugs i don't see myself
 - free hosting?
     - database backups
