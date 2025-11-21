@@ -3,6 +3,9 @@
     - you often have to hard-reload a page to see the dice; seems navigating around causes them to stop working
     - 3d dice don't roll to same result as returned from server
     - what are our options for dice themes?
+- d40 NPCs in the City of Masks
+    - does not OCR and parse
+    - weird roll type:  d4 + d10 as digit positions
 - tagging / categories, searchable and browsable
 - private flag for randomizers, or published_at timestamp
 - share rollable randomizers via links with guid not raw id
