@@ -94,7 +94,7 @@
         <% end %>
 
         <div class="card-actions justify-between items-center mt-4 flex flex-row space-x-3 pb-2 pr-2">
-          <div class="flex items-center gap-2">
+          <div class="flex items-center gap-2 relative" data-controller="clipboard" data-clipboard-url-value="<%= randomizer_url(randomizer) %>">
             <!-- Like Button -->
             <div id="<%= dom_id(randomizer, :like_button) %>">
               <%= button_to toggle_like_randomizer_path(randomizer),
@@ -105,6 +105,19 @@
                 <% icon_variant = current_user&.voted_for?(randomizer) ? :filled : :outline %>
                 <%= icon 'thumb-up', variant: icon_variant, class: "w-5 h-5" %>
               <% end %>
+            </div>
+
+            <!-- Share Button -->
+            <button data-action="click->clipboard#copy"
+                    class="text-primary hover:text-secondary transition flex items-center gap-1"
+                    title="Copy link to clipboard">
+              <%= icon 'share', variant: :outline, class: "w-5 h-5" %>
+            </button>
+
+            <!-- Copied Notification -->
+            <div data-clipboard-target="notification"
+                 class="absolute -top-8 left-1/2 -translate-x-1/2 bg-success text-success-content px-3 py-1 rounded text-sm whitespace-nowrap opacity-0 pointer-events-none transition-opacity duration-200 z-10">
+              Copied to clipboard
             </div>
           </div>
 

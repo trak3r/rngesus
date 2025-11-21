@@ -1,13 +1,28 @@
-<div id="randomizer_like_button">
-  <%= button_to toggle_like_randomizer_path(randomizer),
-        method: :post,
-        data: { turbo_stream: true },
-        class: "text-primary hover:text-secondary transition flex items-center gap-1" do %>
+<div class="flex items-center gap-2" data-controller="clipboard" data-clipboard-url-value="<%= randomizer_url(randomizer) %>">
+  <!-- Like Button -->
+  <div id="randomizer_like_button">
+    <%= button_to toggle_like_randomizer_path(randomizer),
+          method: :post,
+          data: { turbo_stream: true },
+          class: "text-primary hover:text-secondary transition flex items-center gap-1" do %>
 
-    <span><%= randomizer.votes_for.size %></span>
+      <span><%= randomizer.votes_for.size %></span>
 
-    <% icon_variant = current_user&.voted_for?(randomizer) ? :filled : :outline %>
-    <%= icon 'thumb-up', variant: icon_variant, class: "w-6 h-6" %>
-  <% end %>
+      <% icon_variant = current_user&.voted_for?(randomizer) ? :filled : :outline %>
+      <%= icon 'thumb-up', variant: icon_variant, class: "w-6 h-6" %>
+    <% end %>
+  </div>
+
+  <!-- Share Button -->
+  <button data-action="click->clipboard#copy"
+          class="text-primary hover:text-secondary transition flex items-center gap-1"
+          title="Copy link to clipboard">
+    <%= icon 'share', variant: :outline, class: "w-6 h-6" %>
+  </button>
+
+  <!-- Copied Notification -->
+  <div data-clipboard-target="notification"
+       class="absolute -top-8 left-1/2 -translate-x-1/2 bg-success text-success-content px-3 py-1 rounded text-sm whitespace-nowrap opacity-0 pointer-events-none transition-opacity duration-200">
+    Copied to clipboard
+  </div>
 </div>
-
