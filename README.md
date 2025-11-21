@@ -6,6 +6,7 @@
 - d40 NPCs in the City of Masks
     - does not OCR and parse
     - weird roll type:  d4 + d10 as digit positions
+- upload multiple screenshots at once; the carousing benefits is 4 pages
 - tagging / categories, searchable and browsable
 - private flag for randomizers, or published_at timestamp
 - share rollable randomizers via links with guid not raw id
