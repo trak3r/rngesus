@@ -1,8 +1,3 @@
-let's add avatars to users.
+clicking the avatar in the header should take the user to the place to edit it - gravatar site?
 
-we don't want to manage images ourselves, so we'll use a service like gravatar.
-
-is gravatar still the best option?
-
-add the avatar to the header, next to the user's name.
-use a placeholder avatar if the user doesn't have one.
+show the owner avatar on the randomizer card if they have one.

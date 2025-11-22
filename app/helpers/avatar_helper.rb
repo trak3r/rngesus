@@ -17,4 +17,14 @@ module AvatarHelper
     # s=size sets the image size
     "https://www.gravatar.com/avatar/#{email_hash}?d=identicon&s=#{size}"
   end
+
+  # Generate a Gravatar profile URL for editing
+  # @param user [User] the user object
+  # @return [String] the Gravatar profile URL
+  def gravatar_profile_url(user)
+    return nil unless user&.email.present?
+
+    email_hash = Digest::MD5.hexdigest(user.email.downcase.strip)
+    "https://www.gravatar.com/#{email_hash}"
+  end
 end
