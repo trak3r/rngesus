@@ -8,9 +8,19 @@ class UserTest < ActiveSupport::TestCase
     assert_equal 'CoolUser', user.display_name
   end
 
-  test 'display_name returns name if nickname is blank' do
+  test 'display_name returns name as initials if nickname is blank' do
     user = User.new(nickname: '', name: 'John Doe', uid: '12345')
-    assert_equal 'John Doe', user.display_name
+    assert_equal 'JD', user.display_name
+  end
+
+  test 'display_name handles single name' do
+    user = User.new(nickname: '', name: 'Madonna', uid: '12345')
+    assert_equal 'M', user.display_name
+  end
+
+  test 'display_name handles multiple names' do
+    user = User.new(nickname: '', name: 'John Paul Jones', uid: '12345')
+    assert_equal 'JPJ', user.display_name
   end
 
   test 'display_name returns uid if nickname and name are blank' do
