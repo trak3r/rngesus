@@ -13,6 +13,7 @@ class RandomizersSearchTest < ActionDispatch::IntegrationTest
   test 'searching for randomizers filters the list' do
     # All randomizers should be visible initially
     get randomizers_path
+
     assert_response :success
     assert_select 'body', text: /Dice Roller/
     assert_select 'body', text: /Card Deck/
@@ -20,6 +21,7 @@ class RandomizersSearchTest < ActionDispatch::IntegrationTest
 
     # Search for "dice"
     get randomizers_path(query: 'dice')
+
     assert_response :success
     assert_select 'body', text: /Dice Roller/
     assert_select 'body', text: /Card Deck/, count: 0
@@ -27,6 +29,7 @@ class RandomizersSearchTest < ActionDispatch::IntegrationTest
 
     # Search for "card"
     get randomizers_path(query: 'card')
+
     assert_response :success
     assert_select 'body', text: /Dice Roller/, count: 0
     assert_select 'body', text: /Card Deck/
@@ -34,6 +37,7 @@ class RandomizersSearchTest < ActionDispatch::IntegrationTest
 
     # Empty search returns all
     get randomizers_path(query: '')
+
     assert_response :success
     assert_select 'body', text: /Dice Roller/
     assert_select 'body', text: /Card Deck/
@@ -42,6 +46,7 @@ class RandomizersSearchTest < ActionDispatch::IntegrationTest
 
   test 'shows no results message when no matches found' do
     get randomizers_path(query: 'nonexistent')
+
     assert_response :success
     assert_select 'body', text: /No randomizers found matching "nonexistent"/
     assert_select 'body', text: /Dice Roller/, count: 0

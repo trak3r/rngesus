@@ -6,7 +6,7 @@ class ProfanityValidator < ActiveModel::EachValidator
     return if value.blank?
 
     filter = LanguageFilter::Filter.new(matchlist: :profanity)
-    
+
     return unless filter.match?(value)
 
     matched_words = filter.matched(value).join(', ')

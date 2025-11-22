@@ -20,7 +20,7 @@ class ResultsImgProcessorTest < ActiveSupport::TestCase
 
   test 'OCR and parse table with colon-separated results' do
     image_file = Rails.root.join('test/ocr/d40 NPCs in the City of Masks.png')
-    # Note: Expecting 9 instead of 10 because one result contains "bastard son"
+    # NOTE: Expecting 9 instead of 10 because one result contains "bastard son"
     # which is flagged by profanity filter (false positive in this historical/fantasy context)
     assert_difference('@roll.results.count', 9) do
       processor = ResultsImgProcessor.new(@roll, image_file)

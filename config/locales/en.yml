@@ -47,7 +47,9 @@ en:
       success: "CSV was successfully processed."
   results_imgs:
     create:
-      success: "Screenshot was successfully processed."
+      success:
+        one: "Screenshot was successfully processed."
+        other: "%{count} screenshots were successfully processed."
   users:
     update:
       success: "Settings updated successfully."

@@ -1,3 +1,1 @@
-let's add a profanity/vulgarity filter for all user input.
-i think the best way to handle this is a validation on the model attribute.
-we want to use a third-party gem for this, and i'm not sure which one is best.
+let's allow uploading multiple screenshots at once for roll results http://localhost:3000/rolls/35/results_imgs/new

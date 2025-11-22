@@ -6,6 +6,7 @@ class ProfanityValidatorTest < ActiveSupport::TestCase
   # Create a simple test model to use the validator
   class TestModel
     include ActiveModel::Validations
+
     attr_accessor :content
 
     validates :content, profanity: true
