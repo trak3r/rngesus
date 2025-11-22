@@ -1,4 +1,3 @@
-http://localhost:3000/randomizers/0dyit/outcomes
-
-- the like button isn't in line with the ranomizer name - it's shifted down and overlapping the first result.
-- the "click to re-roll" line seems a waste of horizontal space; could it insteade be a tooltip that reveals when the result is hovered?
+let's add a profanity/vulgarity filter for all user input.
+i think the best way to handle this is a validation on the model attribute.
+we want to use a third-party gem for this, and i'm not sure which one is best.

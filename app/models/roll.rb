@@ -4,7 +4,7 @@ class Roll < ApplicationRecord
   belongs_to :randomizer
   has_many :results, dependent: :destroy
 
-  validates :name, presence: true
+  validates :name, presence: true, profanity: true
   validates :dice, presence: true
   validate :dice_must_be_valid
 
