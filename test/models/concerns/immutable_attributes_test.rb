@@ -29,7 +29,7 @@ class ImmutableAttributesTest < ActiveSupport::TestCase
     model = TestModel.first
 
     # attr_readonly raises an error when trying to assign via update
-    assert_raises(ActiveRecord::ReadonlyAttributeError) do
+    assert_raises(ActiveRecord::ReadonlyAttributeError) do # rubocop:disable Minitest/AssertRaisesCompoundBody
       model.slug = 'XXXXX'
       model.save!
     end

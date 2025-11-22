@@ -27,10 +27,10 @@ class ResultsImgProcessorTest < ActiveSupport::TestCase
       # ap processor.parsed_list
 
       # Verify that the parsing logic handles the OCR anomaly (Tl -> 11)
-      parsed_11 = processor.parsed_list.find { |row| row[0] == 11 }
+      result_eleven = processor.parsed_list.find { |row| row[0] == 11 }
 
-      assert_not_nil parsed_11, 'Expected to parse result 11 despite OCR error'
-      assert parsed_11[1].starts_with?('Mistress Savoy'), 'Expected correct text for result 11'
+      assert_not_nil result_eleven, 'Expected to parse result 11 despite OCR error'
+      assert result_eleven[1].starts_with?('Mistress Savoy'), 'Expected correct text for result 11'
 
       processor.call
     end

@@ -37,7 +37,7 @@ class RandomizersController < ApplicationController
                      current_user.get_voted(Randomizer).search(params[:query]).newest
                    when 'your_randomizers'
                      current_user.randomizers.search(params[:query]).newest
-                   else
+                   else # rubocop:disable Lint/DuplicateBranch
                      Randomizer.search(params[:query]).newest
                    end
   end

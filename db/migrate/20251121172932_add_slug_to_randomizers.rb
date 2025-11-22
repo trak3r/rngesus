@@ -12,7 +12,7 @@ class AddSlugToRandomizers < ActiveRecord::Migration[8.1]
       loop do
         slug = generate_slug
         begin
-          randomizer.update_column(:slug, slug)
+          randomizer.update_column(:slug, slug) # rubocop:disable Rails/SkipsModelValidations
           break
         rescue ActiveRecord::RecordNotUnique
           # Collision detected, try again
