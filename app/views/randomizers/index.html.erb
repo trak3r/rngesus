@@ -113,8 +113,8 @@
           <div class="flex items-center gap-2">
             <% if randomizer.user&.email.present? %>
               <%= image_tag gravatar_url(randomizer.user, size: 32),
-                            alt: "#{randomizer.user.name || randomizer.user.uid}'s avatar",
-                            title: "Created by #{randomizer.user.name || randomizer.user.uid}",
+                            alt: "#{randomizer.user.display_name}'s avatar",
+                            title: "Created by #{randomizer.user.display_name}",
                             class: "w-8 h-8 rounded-full border border-base-content/20" %>
             <% end %>
             

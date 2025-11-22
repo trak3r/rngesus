@@ -8,7 +8,7 @@
 - tagging / categories, searchable and browsable
 - private flag for randomizers, or published_at timestamp
 - pagination
-- settings page (nickname, avatar, disable animations)
+- toggle to disable animations on settings page
 - combine randomizers (e.g. forest encounters + reaction rolls)
     - copy rather than link?
 - would we need to support "with advantage" rolls?
@@ -86,3 +86,4 @@
 - d40 NPCs in the City of Masks
     - does not OCR and parse
 - avatar; is gravatar still a thing?
+- settings page (nickname, avatar)
