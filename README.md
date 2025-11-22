@@ -7,7 +7,7 @@
 - upload multiple screenshots at once; the carousing benefits is 4 pages
 - tagging / categories, searchable and browsable
 - private flag for randomizers, or published_at timestamp
-- pagination
+- pagination of randomizers
 - toggle to disable animations on settings page
 - combine randomizers (e.g. forest encounters + reaction rolls)
     - copy rather than link?
