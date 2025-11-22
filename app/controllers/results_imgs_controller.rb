@@ -9,7 +9,7 @@ class ResultsImgsController < ApplicationController
 
   def create
     files = Array(import_params[:file]).reject { |f| f.is_a?(String) && f.blank? }
-    
+
     if files.empty?
       @results_img = ResultsImg.new
       @results_img.errors.add(:file, "can't be blank")
