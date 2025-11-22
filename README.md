@@ -6,7 +6,6 @@
     - what are our options for dice colors and textures?
 - d40 NPCs in the City of Masks
     - does not OCR and parse
-    - weird roll type: d4 + d10 as digit positions
 - upload multiple screenshots at once; the carousing benefits is 4 pages
 - tagging / categories, searchable and browsable
 - private flag for randomizers, or published_at timestamp
@@ -86,3 +85,4 @@
 - promotion lists: newest, most liked, my favorites, my randomizers
 - share rollable randomizers via links with guid not raw id
 - share buttons, link, social media
+- weird roll type: d4 + d10 as digit positions
