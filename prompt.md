@@ -1,4 +1,4 @@
-never show the users email on the site.
-let's add a user settings page.
-on this settings page let them set a nickname.
-in the header, create a dropdown menu for the settings page and logout.
+http://localhost:3000/randomizers/0dyit/outcomes
+
+- the like button isn't in line with the ranomizer name - it's shifted down and overlapping the first result.
+- the "click to re-roll" line seems a waste of horizontal space; could it insteade be a tooltip that reveals when the result is hovered?
