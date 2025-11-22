@@ -40,32 +40,35 @@ class DiceTest < ActiveSupport::TestCase
 
   test 'd66 sequence dice' do
     dice = Dice.new 'd66'
-    
+
     assert_kind_of SequenceDiceNotation, dice
     assert_equal 11, dice.min
     assert_equal 66, dice.max
-    
+
     roll = dice.roll
+
     assert_operator roll, :>=, 11
     assert_operator roll, :<=, 66
   end
 
   test 'd40 sequence dice' do
     dice = Dice.new 'd40'
-    
+
     assert_kind_of SequenceDiceNotation, dice
     # d4 (1-4) and d10 (0-9)
     # Min: 10. Max: 49.
     assert_equal 10, dice.min
     assert_equal 49, dice.max
-    
+
     roll = dice.roll
+
     assert_operator roll, :>=, 10
     assert_operator roll, :<=, 49
   end
 
   test 'd100 remains summed dice' do
     dice = Dice.new 'd100'
+
     assert_kind_of SummedDiceNotation, dice
     assert_equal 1, dice.min
     assert_equal 100, dice.max
@@ -73,11 +76,13 @@ class DiceTest < ActiveSupport::TestCase
 
   test 'd20 remains summed dice' do
     dice = Dice.new 'd20'
+
     assert_kind_of SummedDiceNotation, dice
   end
 
   test 'd12 remains summed dice' do
     dice = Dice.new 'd12'
+
     assert_kind_of SummedDiceNotation, dice
   end
 end

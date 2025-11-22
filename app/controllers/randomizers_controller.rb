@@ -23,12 +23,10 @@ class RandomizersController < ApplicationController
   # GET /randomizers
   def index
     @tab = params[:tab] || 'newest'
-    
+
     # Redirect to login for user-specific tabs if not authenticated
-    if ['your_likes', 'your_randomizers'].include?(@tab) && !current_user
-      redirect_to '/login' and return
-    end
-    
+    redirect_to '/login' and return if %w[your_likes your_randomizers].include?(@tab) && !current_user
+
     # Query based on active tab
     @randomizers = case @tab
                    when 'newest'
@@ -39,7 +37,7 @@ class RandomizersController < ApplicationController
                      current_user.get_voted(Randomizer).search(params[:query]).newest
                    when 'your_randomizers'
                      current_user.randomizers.search(params[:query]).newest
-                   else
+                   else # rubocop:disable Lint/DuplicateBranch
                      Randomizer.search(params[:query]).newest
                    end
   end

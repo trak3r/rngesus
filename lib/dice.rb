@@ -10,14 +10,12 @@ class Dice
     # Heuristic: If name is just "d" + number > 10 (and not standard), use Sequence.
     # Standard exceptions: 12, 20, 100.
     # Also check for multiplier or modifier. Sequence dice usually don't have them.
-    
+
     if name =~ /^d(\d+)$/i
       face = ::Regexp.last_match(1).to_i
-      if face > 10 && ![12, 20, 100].include?(face)
-        return SequenceDiceNotation.new(name, icon, name_alt)
-      end
+      return SequenceDiceNotation.new(name, icon, name_alt) if face > 10 && [12, 20, 100].exclude?(face)
     end
-    
+
     SummedDiceNotation.new(name, icon, name_alt)
   end
 
@@ -50,7 +48,7 @@ class Dice
       SummedDiceNotation.new('D12', 'hexagon'),
       SummedDiceNotation.new('D20', 'hexagon'),
       # FIXME: d100 should be a special case sequence notation even though it works as summed
-      SummedDiceNotation.new('D100', 'percentage'),
+      SummedDiceNotation.new('D100', 'percentage')
     ]
   end
 end
