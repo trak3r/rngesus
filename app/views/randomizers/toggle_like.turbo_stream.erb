@@ -1,14 +1,5 @@
 <turbo-stream action="replace" target="<%= dom_id(@randomizer, :like_button) %>">
   <template>
-    <div id="<%= dom_id(@randomizer, :like_button) %>">
-      <%= button_to toggle_like_randomizer_path(@randomizer),
-            method: :post,
-            data: { turbo_stream: true },
-            class: "text-primary hover:text-secondary transition flex items-center gap-1" do %>
-        <span><%= @randomizer.cached_votes_total %></span>
-        <% icon_variant = current_user&.voted_for?(@randomizer) ? :filled : :outline %>
-        <%= icon 'thumb-up', variant: icon_variant, class: "w-5 h-5" %>
-      <% end %>
-    </div>
+    <%= render partial: "like_button", locals: { randomizer: @randomizer } %>
   </template>
 </turbo-stream>
