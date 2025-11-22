@@ -93,3 +93,4 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
 
 gem 'acts_as_votable' # for likes / favorites
+gem 'language_filter' # for profanity detection

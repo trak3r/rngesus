@@ -3,7 +3,7 @@
 class Result < ApplicationRecord
   belongs_to :roll
 
-  validates :name, presence: true
+  validates :name, presence: true, profanity: true
   validates :value, presence: true,
                     uniqueness: { scope: :roll_id }
 

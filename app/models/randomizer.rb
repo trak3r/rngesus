@@ -13,6 +13,7 @@ class Randomizer < ApplicationRecord
 
   before_validation :generate_slug_if_blank
 
+  validates :name, presence: true, profanity: true
   validates :slug, presence: true, uniqueness: true, format: { with: /\A[a-zA-Z0-9]{5}\z/ }
 
   scope :search, ->(query) { where('name LIKE ?', "%#{query}%") if query.present? }

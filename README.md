@@ -19,7 +19,6 @@
 - hardening (scan tools?)
 - accessibility (scan tools?)
 - re-enable github ci workflow
-- profanity / vulgarity detector
 - hide / report offensive items
 - set up email exceptions so i'm notified of bugs i don't see myself
 - free hosting?
@@ -87,3 +86,4 @@
     - does not OCR and parse
 - avatar; is gravatar still a thing?
 - settings page (nickname, avatar)
+- profanity / vulgarity detector
