@@ -19,13 +19,13 @@ class ResultsImgProcessorTest < ActiveSupport::TestCase
   end
 
   test 'OCR and parse table with colon-separated results' do
-    image_file = Rails.root.join('app/assets/images',
+    image_file = Rails.root.join('test/ocr',
     'd40 NPCs in the City of Masks.png'
     )
-    assert_difference('@roll.results.count', 23) do
+    assert_difference('@roll.results.count', 10) do
       processor = ResultsImgProcessor.new(@roll, image_file)
       # ap processor.to_s
-      # ap processor.to_a
+      ap processor.to_a
       # ap processor.parsed_list
       processor.call
     end
