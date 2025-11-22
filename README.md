@@ -13,7 +13,7 @@
 - combine randomizers (e.g. forest encounters + reaction rolls)
     - copy rather than link?
 - would we need to support "with advantage" rolls?
-    - is there a standard syntax for it?
+    - is there a standard syntax for it? 2d20kh1
 - distribution graphs for multi-dice rolls
 - responsive/mobile screens
 - hotwire native
