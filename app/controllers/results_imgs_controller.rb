@@ -8,7 +8,7 @@ class ResultsImgsController < ApplicationController
   end
 
   def create
-    files = Array(import_params[:file])
+    files = Array(import_params[:file]).reject { |f| f.is_a?(String) && f.blank? }
     
     if files.empty?
       @results_img = ResultsImg.new
