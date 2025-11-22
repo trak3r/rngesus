@@ -1,0 +1,57 @@
+<% content_for :title, "Settings" %>
+
+<div class="max-w-2xl mx-auto p-6">
+  <h1 class="text-3xl font-bold mb-6">Settings</h1>
+
+  <div class="card bg-base-100 shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title mb-4">Profile</h2>
+
+      <!-- Avatar Section -->
+      <div class="flex items-center gap-4 mb-6 p-4 bg-base-200 rounded-lg">
+        <%= image_tag gravatar_url(@user, size: 80),
+                      alt: "#{@user.display_name}'s avatar",
+                      class: "w-20 h-20 rounded-full border-2 border-primary" %>
+        <div>
+          <p class="font-semibold"><%= @user.display_name %></p>
+          <p class="text-sm text-base-content/70">
+            <%= link_to "Edit avatar on Gravatar.com",
+                        gravatar_profile_url(@user),
+                        target: "_blank",
+                        rel: "noopener noreferrer",
+                        class: "link link-primary" %>
+          </p>
+        </div>
+      </div>
+
+      <!-- Nickname Form -->
+      <%= form_with model: @user, url: user_path, method: :patch, class: "space-y-4" do |f| %>
+        <div class="form-control">
+          <%= f.label :nickname, class: "label" do %>
+            <span class="label-text font-semibold">Nickname</span>
+          <% end %>
+          <%= f.text_field :nickname,
+                          class: "input input-bordered w-full",
+                          placeholder: "Enter a nickname (optional)",
+                          maxlength: 50 %>
+          <label class="label">
+            <span class="label-text-alt text-base-content/60">
+              This will be displayed instead of your <%= @user.provider %> username
+            </span>
+          </label>
+          <% if @user.errors[:nickname].any? %>
+            <label class="label">
+              <span class="label-text-alt text-error">
+                <%= @user.errors[:nickname].first %>
+              </span>
+            </label>
+          <% end %>
+        </div>
+
+        <div class="card-actions justify-end">
+          <%= f.submit "Save Settings", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

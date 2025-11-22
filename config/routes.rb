@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   delete '/logout', to: 'sessions#destroy', as: :logout
 
+  resource :user, only: %i[edit update]
+
   resources :examples
   resources :randomizers do
     post :toggle_like, on: :member
