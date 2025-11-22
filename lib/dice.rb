@@ -1,38 +1,24 @@
 # frozen_string_literal: true
 
+require_relative 'dice_notations/dice_notation'
+require_relative 'dice_notations/summed_dice_notation'
+require_relative 'dice_notations/sequence_dice_notation'
+
 class Dice
-  attr_reader :name,
-              :icon,
-              :name_alt,
-              :multiplier,
-              :face,
-              :modifier
-
-  def initialize(name, icon = nil, name_alt = nil)
-    @name = name
-    @icon = icon
-    @name_alt = name_alt
-    parse!
-  end
-
-  def min
-    @min ||= @multiplier + @modifier
-  end
-
-  def max
-    @max ||= (@multiplier * @face) + @modifier
-  end
-
-  def roll
-    result = 0
-
-    @multiplier.times do
-      result += rand(1..@face) # inclusive 1..face
+  # Factory method to create appropriate DiceNotation instance
+  def self.new(name, icon = nil, name_alt = nil)
+    # Heuristic: If name is just "d" + number > 10 (and not standard), use Sequence.
+    # Standard exceptions: 12, 20, 100.
+    # Also check for multiplier or modifier. Sequence dice usually don't have them.
+    
+    if name =~ /^d(\d+)$/i
+      face = ::Regexp.last_match(1).to_i
+      if face > 10 && ![12, 20, 100].include?(face)
+        return SequenceDiceNotation.new(name, icon, name_alt)
+      end
     end
-
-    result += @modifier
-
-    result
+    
+    SummedDiceNotation.new(name, icon, name_alt)
   end
 
   def self.from(text)
@@ -52,34 +38,17 @@ class Dice
 
   def self.predefined
     @predefined = [
-      Dice.new('D2', 'coins', 'Coin'),
-      Dice.new('D4', 'triangle'),
-      Dice.new('D6', 'cube'),
-      Dice.new('2D6', 'cube-plus'),
-      Dice.new('4D6-4', 'cube-plus', 'JAGS'),
-      Dice.new('D8', 'pentagon-number-8'),
-      Dice.new('D10', 'diamond'),
-      Dice.new('D12', 'clock'),
-      Dice.new('D20', 'ikosaedr'),
-      Dice.new('D100', 'square-rounded-percentage')
+      SummedDiceNotation.new('D2', 'coins', 'Coin'),
+      SummedDiceNotation.new('D4', 'triangle'),
+      SummedDiceNotation.new('D6', 'cube'),
+      SummedDiceNotation.new('2D6', 'cube-plus'),
+      SummedDiceNotation.new('4D6-4', 'cube-plus', 'JAGS'),
+      SummedDiceNotation.new('D8', 'pentagon-number-8'),
+      SummedDiceNotation.new('D10', 'diamond'),
+      SummedDiceNotation.new('D12', 'clock'),
+      SummedDiceNotation.new('D20', 'ikosaedr'),
+      SummedDiceNotation.new('D100', 'square-rounded-percentage'),
+      SequenceDiceNotation.new('D66', 'pentagon-number-6')
     ]
-  end
-
-  private
-
-  def parse!
-    if @name =~ /^
-(?:(\d+))?   # multiplier (optional)
-d
-(\d+)        # die face
-(?:([+-]\d+))?  # modifier (optional)
-$/xi
-
-      @multiplier = (::Regexp.last_match(1) || '1').to_i
-      @face = ::Regexp.last_match(2).to_i
-      @modifier = (::Regexp.last_match(3) || '0').to_i
-    else
-      raise "Could not parse #{name}"
-    end
   end
 end

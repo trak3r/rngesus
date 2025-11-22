@@ -8,7 +8,6 @@ class Roll < ApplicationRecord
   validates :dice, presence: true
   validate :dice_must_be_valid
 
-  # FIXME: this seems sloppyh leaky abstraction
   def dice_object
     @dice_object = Dice.new dice
   end
