@@ -43,12 +43,14 @@ class Dice
       SummedDiceNotation.new('D6', 'cube'),
       SummedDiceNotation.new('2D6', 'cube-plus'),
       SummedDiceNotation.new('4D6-4', 'cube-plus', 'JAGS'),
+      SequenceDiceNotation.new('D40', 'number-40-small'),
+      SequenceDiceNotation.new('D66', 'pentagon-number-6'),
       SummedDiceNotation.new('D8', 'pentagon-number-8'),
       SummedDiceNotation.new('D10', 'diamond'),
       SummedDiceNotation.new('D12', 'clock'),
       SummedDiceNotation.new('D20', 'ikosaedr'),
+      # FIXME: d100 should be a special case sequence notation even though it works as summed
       SummedDiceNotation.new('D100', 'square-rounded-percentage'),
-      SequenceDiceNotation.new('D66', 'pentagon-number-6')
     ]
   end
 end
