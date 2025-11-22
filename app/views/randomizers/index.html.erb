@@ -109,8 +109,15 @@
         <% end %>
 
         <div class="card-actions justify-between items-end mt-4 flex flex-row border-t border-base-content/5 pt-3">
-          <!-- Edit Button (Bottom Left) -->
-          <div>
+          <!-- Owner Avatar and Edit Button (Bottom Left) -->
+          <div class="flex items-center gap-2">
+            <% if randomizer.user&.email.present? %>
+              <%= image_tag gravatar_url(randomizer.user, size: 32),
+                            alt: "#{randomizer.user.name || randomizer.user.uid}'s avatar",
+                            title: "Created by #{randomizer.user.name || randomizer.user.uid}",
+                            class: "w-8 h-8 rounded-full border border-base-content/20" %>
+            <% end %>
+            
             <% if current_user == randomizer.user %>
               <%= link_to randomizer,
                           class: "text-base-content/50 hover:text-base-content p-1 rounded flex items-center gap-1 transition-colors",
