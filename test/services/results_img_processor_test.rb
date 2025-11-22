@@ -25,6 +25,12 @@ class ResultsImgProcessorTest < ActiveSupport::TestCase
       # ap processor.to_s
       # ap processor.to_a
       # ap processor.parsed_list
+
+      array = processor.to_a
+
+      assert array.second.starts_with?('11'),
+             "OCR is interpreting 11 and T1: #{array.second}"
+
       processor.call
     end
   end
