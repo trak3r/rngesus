@@ -9,9 +9,9 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    
+
     if @user.update(user_params)
-      redirect_to edit_user_path, notice: 'Settings updated successfully.'
+      redirect_to edit_user_path, notice: t('.success')
     else
       render :edit, status: :unprocessable_content
     end

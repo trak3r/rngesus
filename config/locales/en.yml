@@ -48,6 +48,9 @@ en:
   results_imgs:
     create:
       success: "Screenshot was successfully processed."
+  users:
+    update:
+      success: "Settings updated successfully."
   activerecord:
     errors:
       models:

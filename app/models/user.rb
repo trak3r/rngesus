@@ -12,6 +12,7 @@ class User < ApplicationRecord
   def display_name
     return nickname if nickname.present?
     return name_to_initials if name.present?
+
     uid
   end
 
@@ -19,11 +20,10 @@ class User < ApplicationRecord
 
   # Converts a full name to initials (e.g., "John Doe" -> "JD")
   def name_to_initials
-    return nil unless name.present?
-    
+    return nil if name.blank?
+
     name.split(/\s+/)
-        .map { |word| word[0]&.upcase }
-        .compact
+        .filter_map { |word| word[0]&.upcase }
         .join
   end
 end
