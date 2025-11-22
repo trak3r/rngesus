@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddSlugToRandomizers < ActiveRecord::Migration[8.1]
   def up
     # Add the slug column (nullable initially for backfill)

@@ -15,9 +15,9 @@ module ImmutableAttributes
         validate :"#{attribute}_cannot_be_changed", on: :update
 
         define_method :"#{attribute}_cannot_be_changed" do
-          if send(:"#{attribute}_changed?") && persisted?
-            errors.add(attribute, "cannot be changed once set")
-          end
+          return unless send(:"#{attribute}_changed?") && persisted?
+
+          errors.add(attribute, 'cannot be changed once set')
         end
         private :"#{attribute}_cannot_be_changed"
       end
