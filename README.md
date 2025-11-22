@@ -8,7 +8,6 @@
 - tagging / categories, searchable and browsable
 - private flag for randomizers, or published_at timestamp
 - pagination
-- avatar; is gravatar still a thing?
 - settings page (nickname, avatar, disable animations)
 - combine randomizers (e.g. forest encounters + reaction rolls)
     - copy rather than link?
@@ -86,3 +85,4 @@
 - weird roll type: d4 + d10 as digit positions
 - d40 NPCs in the City of Masks
     - does not OCR and parse
+- avatar; is gravatar still a thing?
