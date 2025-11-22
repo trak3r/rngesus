@@ -4,7 +4,6 @@
     - often have to hard-reload a page to see the dice; seems navigating around causes them to stop working
     - 3d dice don't roll to same result as returned from server
     - what are our options for dice colors and textures?
-- upload multiple screenshots at once; the carousing benefits is 4 pages
 - tagging / categories, searchable and browsable
 - private flag for randomizers, or published_at timestamp
 - pagination of randomizers
@@ -87,3 +86,4 @@
 - avatar; is gravatar still a thing?
 - settings page (nickname, avatar)
 - profanity / vulgarity detector
+- upload multiple screenshots at once; the carousing benefits is 4 pages

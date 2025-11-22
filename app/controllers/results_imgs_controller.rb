@@ -8,14 +8,23 @@ class ResultsImgsController < ApplicationController
   end
 
   def create
-    @results_img = ResultsImg.new(import_params)
-    if @results_img.valid?
-      ResultsImgProcessor.new(@roll, @results_img.file).call
-      redirect_to @roll,
-                  notice: t('.success')
-    else
+    files = Array(import_params[:file])
+    
+    if files.empty?
+      @results_img = ResultsImg.new
+      @results_img.errors.add(:file, "can't be blank")
       render :new, status: :unprocessable_entity
+      return
     end
+
+    processed_count = 0
+    files.each do |file|
+      ResultsImgProcessor.new(@roll, file).call
+      processed_count += 1
+    end
+
+    redirect_to @roll,
+                notice: t('.success', count: processed_count)
   end
 
   private
@@ -25,6 +34,6 @@ class ResultsImgsController < ApplicationController
   end
 
   def import_params
-    params.expect(results_img: [:file])
+    params.expect(results_img: [file: []])
   end
 end

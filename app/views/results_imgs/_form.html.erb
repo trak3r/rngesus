@@ -18,10 +18,16 @@
       <div class="mb-3">
         <%= form.file_field :file,
           accept: ".png,.jpg,.jpeg",
+          multiple: true,
           class: "file-input file-input-primary w-full" %>
+        <label class="label">
+          <span class="label-text-alt text-base-content/60">
+            You can select multiple screenshots to upload at once
+          </span>
+        </label>
       </div>
 
-      <%= form.submit "Upload screenshot",
+      <%= form.submit "Upload screenshot(s)",
         class: "btn btn-primary w-full text-base font-medium py-2" %>
 
     <% end %>
