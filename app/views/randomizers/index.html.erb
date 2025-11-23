@@ -83,10 +83,18 @@
         <% end %>
       </div>
 
-      <!-- Randomizer Cards -->
+      <!-- Existing Randomizer Cards -->
       <% @randomizers.each do |randomizer| %>
-
-      <div class="card-index w-96 flex flex-col group p-4 min-h-[180px] transition-transform hover:-rotate-1">
+        <div class="card-index w-96 flex flex-col group p-4 min-h-[180px] transition-transform hover:-rotate-1 relative">
+        
+        <!-- Tag Badge (Push Pin Style) -->
+        <% if randomizer.primary_tag %>
+          <%= link_to randomizer.primary_tag.name,
+              randomizers_path(tag: randomizer.primary_tag.name),
+              class: "absolute -top-3 left-1/2 -translate-x-1/2 z-20 badge badge-lg badge-primary text-white hover:badge-accent transition-all font-handwriting text-sm shadow-lg transform hover:scale-110",
+              data: { turbo_frame: "_top" },
+              onclick: "event.stopPropagation();" %>
+        <% end %>
         
         <!-- Like Button (Top Right) -->
         <div class="absolute top-4 right-4 z-10" id="<%= dom_id(randomizer, :like_button) %>">
@@ -104,15 +112,8 @@
                     class: "flex-1 flex flex-col no-underline text-inherit pt-1",
                     data: { turbo_frame: "_top" } do %>
 
-          <h2 class="card-title text-xl font-bold mb-3 pr-16 font-typewriter border-b border-red-300 pb-1 flex items-center gap-2">
+          <h2 class="card-title text-xl font-bold mb-3 pr-16 font-typewriter border-b border-red-300 pb-1">
             <%= randomizer.name %>
-            <% if randomizer.primary_tag %>
-              <%= link_to randomizer.primary_tag.name,
-                  randomizers_path(tag: randomizer.primary_tag.name),
-                  class: "badge badge-sm badge-outline text-pencil hover:badge-primary transition-colors font-handwriting text-xs",
-                  data: { turbo_frame: "_top" },
-                  onclick: "event.stopPropagation();" %>
-            <% end %>
           </h2>
 
           <div class="flex-1 text-pencil/80 flex flex-col gap-1 font-handwriting text-lg">
