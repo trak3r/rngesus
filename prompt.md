@@ -1,0 +1,3 @@
+- the delete icon should only appear when the card is on the "your randomizers" tab
+- the delete icon isn't on the same horizontal alignment as the like and share icons
+- the delete prompt is appearing and disappearing; it should ask me to confirm deletion
