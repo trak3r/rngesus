@@ -92,7 +92,7 @@ export default class extends Controller {
     }
 
     async roll() {
-        console.log("Rolling dice:", this.diceValue, "Result:", this.rolledValue)
+        console.log("Rolling dice:", this.diceValue, "Target result:", this.rolledValue)
 
         // Normalize dice string (e.g. "D100" -> "d100")
         let diceNotation = this.diceValue.toLowerCase()
@@ -100,9 +100,9 @@ export default class extends Controller {
 
         // Map unsupported dice types to visual proxies
         const diceMap = {
-            'd2': '1d6',      // Coin flip -> d6 proxy
-            'd40': '2d20',    // D40 -> 2d20 visual proxy
-            'd66': '2d6',     // Sequence notation -> 2d6
+            'd2': '1d6',        // Coin flip -> d6 proxy
+            'd40': '1d4+1d10',  // D40 -> d4 + d10 (creates 2-14 range, but we'll show target result)
+            'd66': '2d6',       // Sequence notation -> 2d6
         }
 
         // Check if we need to map this dice type
@@ -135,7 +135,8 @@ export default class extends Controller {
 
         if (isNaN(targetSum)) {
             // If we can't parse the result, just roll random
-            this.constructor.box.roll(explicitNotation, { newStartPoint: true })
+            console.warn("Cannot parse target result, rolling random")
+            this.constructor.box.roll(explicitNotation)
             return
         }
 
@@ -145,6 +146,7 @@ export default class extends Controller {
             const coinResult = targetSum === 1
                 ? [1, 2, 3][Math.floor(Math.random() * 3)]
                 : [4, 5, 6][Math.floor(Math.random() * 3)]
+            console.log(`D2 result ${targetSum} -> showing d6 value ${coinResult}`)
             this.constructor.box.roll('1d6', [coinResult])
             return
         }
@@ -152,35 +154,49 @@ export default class extends Controller {
         // Special handling for D100
         if (faces === 100) {
             // D100 result IS the final value (1-100)
-            // Try to show it directly
+            console.log(`D100 showing result: ${targetSum}`)
             this.constructor.box.roll(explicitNotation, [targetSum])
             return
         }
 
-        // Special handling for D40 and D66 (using proxies)
-        if (originalNotation.includes('d40') || originalNotation.includes('d66')) {
-            // For D40: result is 1-40, we're showing 2d20
-            // For D66: result is sequence like "12", "34", we're showing 2d6
-            // Just distribute the visual result across the proxy dice
-            const results = this.generateDieValues(count, faces, targetSum)
-            if (results) {
-                this.constructor.box.roll(explicitNotation, results)
-            } else {
-                this.constructor.box.roll(explicitNotation)
-            }
+        // Special handling for D40 (using d4+d10 proxy)
+        if (originalNotation.includes('d40')) {
+            // D40 ranges from 1-40
+            // We're showing 1d4+1d10 which gives us visual variety
+            // Actually, let's just distribute it more naturally
+            // Target is 1-40, we want d4 (1-4) + d10 (0-9)*4 to approximate it
+            const d4Result = Math.min(4, Math.max(1, (targetSum % 4) || 4))
+            const d10Result = Math.min(10, Math.max(1, Math.ceil((targetSum - d4Result + 1) / 4)))
+
+            console.log(`D40 result ${targetSum} -> showing d4=${d4Result}, d10=${d10Result}`)
+            this.constructor.box.roll('1d4+1d10', [d4Result, d10Result])
+            return
+        }
+
+        // Special handling for D66 (using 2d6 proxy)
+        if (originalNotation.includes('d66')) {
+            // D66 is sequence notation: result like "12", "34", "65"
+            // Parse as two digits
+            const resultStr = targetSum.toString().padStart(2, '1')
+            const d6_1 = Math.min(6, Math.max(1, parseInt(resultStr[0]) || 1))
+            const d6_2 = Math.min(6, Math.max(1, parseInt(resultStr[1]) || 1))
+            console.log(`D66 result ${targetSum} -> showing 2d6=[${d6_1}, ${d6_2}]`)
+            this.constructor.box.roll('2d6', [d6_1, d6_2])
             return
         }
 
         // Standard dice: adjust target sum by removing modifier
         let sumToFind = targetSum - modifier
+        console.log(`Standard dice ${explicitNotation}: target sum after modifier = ${sumToFind}`)
 
         // Generate individual die values that sum to `sumToFind`
         const results = this.generateDieValues(count, faces, sumToFind)
 
         if (results) {
+            console.log(`Generated die values:`, results, `Sum: ${results.reduce((a, b) => a + b, 0)}`)
             this.constructor.box.roll(explicitNotation, results, { newStartPoint: true })
         } else {
-            console.warn("Could not find matching dice values for", sumToFind)
+            console.warn("Could not find matching dice values for", sumToFind, "- rolling random")
             this.constructor.box.roll(explicitNotation, { newStartPoint: true })
         }
     }
