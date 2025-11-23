@@ -1,3 +1,15 @@
+/**
+ * Auto Focus Controller
+ * 
+ * Purpose: Automatically focuses on a specified input field when the controller connects.
+ * Status: RESERVED FOR FUTURE USE
+ * 
+ * Planned Usage: Will be used to auto-focus form inputs for better UX,
+ * particularly in modals and inline editing scenarios.
+ * 
+ * Example usage (when implemented):
+ *   <input data-controller="auto-focus" data-auto-focus-target="input" />
+ */
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
