@@ -17,7 +17,7 @@ class Randomizer < ApplicationRecord
   validates :name, presence: true, profanity: true
   validates :slug, presence: true, uniqueness: true, format: { with: /\A[a-zA-Z0-9]{5}\z/ }
 
-  scope :search, ->(query) { where('name LIKE ?', "%#{query}%") if query.present? }
+  scope :search, ->(query) { where('randomizers.name LIKE ?', "%#{query}%") if query.present? }
   scope :newest, -> { order(created_at: :desc) }
   scope :most_liked, -> { order(cached_votes_total: :desc) }
   scope :tagged_with, ->(tag_name) {
