@@ -1,4 +1,5 @@
 # TODO
+- imagery; would be cool if pages looked like old D&D manuals with black & white ink art filling dead space on the page
 - delete confirmation broken and AI just running in circles so we'll come back to that later
 - animate cool 3d dice roll on screen
     - only showing on the reroll, not the initial roll (not working consistently)
@@ -9,22 +10,28 @@
 - private flag for randomizers, or published_at timestamp
 - pagination of randomizers
 - toggle to disable animations on settings page
+- user option to hide / report offensive items
 - combine randomizers (e.g. forest encounters + reaction rolls)
     - copy rather than link?
 - would we need to support "with advantage" rolls?
     - is there a standard syntax for it? 2d20kh1
 - distribution graphs for multi-dice rolls
+- re-enable github ci workflow
+
+# Mobile
 - responsive/mobile screens
 - hotwire native
-- hardening (scan tools?)
-- accessibility (scan tools?)
-- re-enable github ci workflow
-- hide / report offensive items
-- set up email exceptions so i'm notified of bugs i don't see myself
+
+# Hosting
 - free hosting?
     - database backups
-- google analytics
+- set up email exceptions so i'm notified of bugs i don't see myself
 - SEO
+- google analytics
+- hardening (scan tools?)
+- accessibility (scan tools?)
+
+# Monetization
 - donations / patreon
     - https://buymeacoffee.com/signup
 - affiliate links to buy real dice
