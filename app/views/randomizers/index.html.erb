@@ -91,7 +91,7 @@
         <% if randomizer.primary_tag %>
           <%= link_to randomizer.primary_tag.name,
               randomizers_path(tag: randomizer.primary_tag.name),
-              class: "absolute -top-3 left-1/2 -translate-x-1/2 z-20 badge badge-lg badge-primary text-white hover:badge-accent transition-all font-handwriting text-sm shadow-lg transform hover:scale-110",
+              class: "absolute -top-3 left-1/2 -translate-x-1/2 z-20 badge badge-outline border-2 border-pencil bg-base-100 text-pencil hover:bg-pencil hover:text-base-100 transition-all font-handwriting text-sm shadow-md transform hover:scale-105",
               data: { turbo_frame: "_top" },
               onclick: "event.stopPropagation();" %>
         <% end %>
