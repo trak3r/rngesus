@@ -127,11 +127,10 @@
           <!-- Delete Button (Center) -->
           <div class="justify-self-center">
             <% if current_user == randomizer.user && @tab == 'your_randomizers' %>
-              <%= button_to randomizer_path(randomizer),
-                            method: :delete,
-                            class: "text-pencil/30 hover:text-red-600 p-2 transition-colors flex items-center justify-center",
-                            title: "Delete",
-                            form: { data: { turbo_confirm: "Are you sure you want to delete this randomizer?" } } do %>
+              <%= link_to randomizer_path(randomizer),
+                          data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this randomizer?" },
+                          class: "text-pencil/30 hover:text-red-600 p-2 transition-colors flex items-center justify-center",
+                          title: "Delete" do %>
                 <%= icon(:trash, class: "w-4 h-4") %>
               <% end %>
             <% end %>
