@@ -1,56 +1,56 @@
-<header class="border-b border-gray-300 bg-white/80 backdrop-blur-sm py-4 px-6 flex justify-between items-center sticky top-0 z-50">
+<header class="border-b-4 border-black bg-white py-4 px-6 sticky top-0 z-50">
+  <div class="container mx-auto flex justify-between items-center">
+    <h1 class="text-3xl font-bold font-header">
+      <%= link_to root_path,
+          class: "flex items-center space-x-2 text-black hover:text-dnd-red transition" do %>
+        <%= icon('directions', class: "w-8 h-8") %>
+        <span>RNGesus</span>
+      <% end %>
+    </h1>
 
-<h1 class="text-2xl font-bold font-typewriter">
-  <%= link_to root_path,
-      class: "flex items-center space-x-2 text-pencil hover:opacity-70 transition" do %>
-    <%= icon('directions', class: "w-6 h-6 text-pencil") %>
-    <span>RNGesus</span>
-  <% end %>
-</h1>
-
-<nav class="flex items-center space-x-4">
-  <% if current_user %>
-    <div class="dropdown dropdown-end">
-      <div tabindex="0" role="button" class="btn btn-ghost flex items-center gap-2">
-        <%= image_tag gravatar_url(current_user, size: 40),
-                      alt: "#{current_user.display_name}'s avatar",
-                      class: "w-10 h-10 rounded-full border-2 border-gray-400 grayscale hover:grayscale-0 transition-all" %>
-        <span class="text-sm font-medium"><%= current_user.display_name %></span>
-        <%= icon('chevron-down', class: "w-4 h-4") %>
-      </div>
-      <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow-lg border border-base-300 mt-3">
-        <li>
-          <%= link_to edit_user_path, class: "flex items-center gap-2" do %>
-            <%= icon('settings', class: "w-4 h-4") %>
-            <span>Settings</span>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to gravatar_profile_url(current_user),
-                      target: "_blank",
-                      rel: "noopener noreferrer",
-                      class: "flex items-center gap-2" do %>
-            <%= icon('user-circle', class: "w-4 h-4") %>
-            <span>Edit Avatar</span>
-          <% end %>
-        </li>
-        <div class="divider my-0"></div>
-        <li>
-          <%= button_to logout_path,
-                        method: :delete,
-                        class: "flex items-center gap-2 text-error hover:bg-error/10",
-                        form: { data: { turbo: "false" } } do %>
-            <%= icon('logout', class: "w-4 h-4") %>
-            <span>Logout</span>
-          <% end %>
-        </li>
-      </ul>
-    </div>
-  <% else %>
-    <%= link_to "Log In",
-                login_path,
-                class: "btn btn-primary btn-sm" %>
-  <% end %>
-</nav>
-
+    <nav class="flex items-center space-x-4">
+      <% if current_user %>
+        <div class="dropdown dropdown-end">
+          <div tabindex="0" role="button" class="btn btn-ghost flex items-center gap-2">
+            <%= image_tag gravatar_url(current_user, size: 40),
+                          alt: "#{current_user.display_name}'s avatar",
+                          class: "w-10 h-10 rounded-full border-2 border-black" %>
+            <span class="text-sm font-semibold"><%= current_user.display_name %></span>
+            <%= icon('chevron-down', class: "w-4 h-4") %>
+          </div>
+          <ul tabindex="0" class="dropdown-content menu bg-white rounded-none border-2 border-black z-[1] w-52 p-2 shadow-lg mt-3">
+            <li>
+              <%= link_to edit_user_path, class: "flex items-center gap-2" do %>
+                <%= icon('settings', class: "w-4 h-4") %>
+                <span>Settings</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to gravatar_profile_url(current_user),
+                          target: "_blank",
+                          rel: "noopener noreferrer",
+                          class: "flex items-center gap-2" do %>
+                <%= icon('user-circle', class: "w-4 h-4") %>
+                <span>Edit Avatar</span>
+              <% end %>
+            </li>
+            <div class="divider my-0"></div>
+            <li>
+              <%= button_to logout_path,
+                            method: :delete,
+                            class: "flex items-center gap-2 text-dnd-red hover:bg-red-50",
+                            form: { data: { turbo: "false" } } do %>
+                <%= icon('logout', class: "w-4 h-4") %>
+                <span>Logout</span>
+              <% end %>
+            </li>
+          </ul>
+        </div>
+      <% else %>
+        <%= link_to "Log In",
+                    login_path,
+                    class: "btn-clean px-4 py-2" %>
+      <% end %>
+    </nav>
+  </div>
 </header>

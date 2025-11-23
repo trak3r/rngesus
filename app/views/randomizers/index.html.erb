@@ -1,32 +1,31 @@
 <% content_for :title, "Randomizers" %>
 
-<div class="w-full">
-  <!-- Tab Content -->
+<div class="w-full max-w-7xl mx-auto">
   <%= turbo_frame_tag "randomizers" do %>
-    <!-- Tabs and Search Bar on Same Line -->
-    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+    <!-- Tabs and Search Bar -->
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-8">
       <!-- Tab Navigation -->
-      <div role="tablist" class="tabs tabs-lifted tabs-lg">
+      <div role="tablist" class="flex gap-1 border-b-2 border-black pb-2">
         <%= link_to randomizers_path(tab: 'newest', query: params[:query]), 
-            class: "tab font-semibold #{@tab == 'newest' ? 'tab-active [--tab-bg:hsl(var(--b2))] [--tab-border-color:hsl(var(--b3))]' : ''}", 
+            class: "px-4 py-2 font-semibold transition #{@tab == 'newest' ? 'bg-black text-white' : 'hover:bg-gray-100'}", 
             data: { turbo_frame: "randomizers", turbo_action: "advance" } do %>
           Newest
         <% end %>
         
         <%= link_to randomizers_path(tab: 'most_liked', query: params[:query]), 
-            class: "tab font-semibold #{@tab == 'most_liked' ? 'tab-active [--tab-bg:hsl(var(--b2))] [--tab-border-color:hsl(var(--b3))]' : ''}", 
+            class: "px-4 py-2 font-semibold transition #{@tab == 'most_liked' ? 'bg-black text-white' : 'hover:bg-gray-100'}", 
             data: { turbo_frame: "randomizers", turbo_action: "advance" } do %>
           Most Liked
         <% end %>
         
         <%= link_to randomizers_path(tab: 'your_likes', query: params[:query]), 
-            class: "tab font-semibold #{@tab == 'your_likes' ? 'tab-active [--tab-bg:hsl(var(--b2))] [--tab-border-color:hsl(var(--b3))]' : ''}", 
+            class: "px-4 py-2 font-semibold transition #{@tab == 'your_likes' ? 'bg-black text-white' : 'hover:bg-gray-100'}", 
             data: { turbo_frame: current_user ? "randomizers" : "_top", turbo_action: current_user ? "advance" : "replace" } do %>
           Your Likes
         <% end %>
         
         <%= link_to randomizers_path(tab: 'your_randomizers', query: params[:query]), 
-            class: "tab font-semibold #{@tab == 'your_randomizers' ? 'tab-active [--tab-bg:hsl(var(--b2))] [--tab-border-color:hsl(var(--b3))]' : ''}", 
+            class: "px-4 py-2 font-semibold transition #{@tab == 'your_randomizers' ? 'bg-black text-white' : 'hover:bg-gray-100'}", 
             data: { turbo_frame: current_user ? "randomizers" : "_top", turbo_action: current_user ? "advance" : "replace" } do %>
           Your Randomizers
         <% end %>
@@ -38,8 +37,8 @@
             data: { search_target: "form", turbo_frame: "randomizers", turbo_action: "advance" } do |f| %>
           <%= f.hidden_field :tab, value: @tab %>
           <%= f.text_field :query, 
-              placeholder: "Search randomizers...", 
-              class: "input-handwritten w-full sm:w-64",
+              placeholder: "Search...", 
+              class: "input-clean w-full sm:w-64",
               value: params[:query],
               data: { action: "input->search#submit", search_target: "input" } %>
         <% end %>
@@ -48,136 +47,126 @@
 
     <!-- Tag Filter Pills -->
     <% if Tag.exists? %>
-      <div class="flex flex-wrap gap-2 mb-4">
-        <%= link_to "All Tags", randomizers_path(tab: @tab, query: params[:query]),
-            class: "badge #{@tag.nil? ? 'badge-primary' : 'badge-outline'} font-handwriting text-base hover:badge-primary transition-colors",
+      <div class="flex flex-wrap gap-2 mb-8">
+        <%= link_to "All", randomizers_path(tab: @tab, query: params[:query]),
+            class: "px-3 py-1 border-2 border-black font-semibold text-sm transition #{@tag.nil? ? 'bg-black text-white' : 'bg-white hover:bg-gray-100'}",
             data: { turbo_frame: "randomizers", turbo_action: "advance" } %>
         <% Tag.order(:name).each do |tag| %>
           <%= link_to tag.name,
               randomizers_path(tab: @tab, query: params[:query], tag: tag.name),
-              class: "badge #{@tag == tag.name ? 'badge-primary' : 'badge-outline'} font-handwriting text-base hover:badge-primary transition-colors",
+              class: "px-3 py-1 border-2 border-black font-semibold text-sm transition #{@tag == tag.name ? 'bg-black text-white' : 'bg-white hover:bg-gray-100'}",
               data: { turbo_frame: "randomizers", turbo_action: "advance" } %>
         <% end %>
       </div>
     <% end %>
 
-    <div class="flex flex-wrap gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       <% if @randomizers.empty? %>
-        <div class="w-full text-center p-8 text-base-content/50">
-          No randomizers found<%= " matching \"#{params[:query]}\"" if params[:query].present? %>
+        <div class="col-span-full text-center p-12 text-gray-500">
+          <p class="text-lg">No randomizers found<%= " matching \"#{params[:query]}\"" if params[:query].present? %></p>
         </div>
       <% end %>
 
-      <!-- New Randomizer Card (appears on all tabs) -->
-      <div class="card-index w-96 flex flex-col group p-4 min-h-[180px] transition-transform hover:-rotate-1">
+      <!-- New Randomizer Card -->
+      <div class="card-clean transition-transform hover:-rotate-1">
         <%= link_to new_randomizer_path,
-                    class: "flex-1 flex flex-col no-underline text-inherit",
+                    class: "block p-6 space-y-4",
                     data: { turbo_frame: "_top" } do %>
-
-          <h2 class="card-title text-xl font-bold mb-2 font-typewriter border-b border-red-300 pb-1">New Randomizer</h2>
-
-          <p class="flex-1 text-base-content/70 font-handwriting text-lg">
-            Create your own!
-          </p>
-
+          <h2 class="text-2xl font-bold font-header border-b-2 border-black pb-2">New Randomizer</h2>
+          <p class="text-gray-600 text-center py-8">Create your own!</p>
         <% end %>
       </div>
 
       <!-- Existing Randomizer Cards -->
       <% @randomizers.each do |randomizer| %>
-        <div class="card-index w-96 flex flex-col group p-4 min-h-[180px] transition-transform hover:-rotate-1 relative">
+        <div class="card-clean transition-transform hover:-rotate-1 relative">
         
-        <!-- Tag Badge (Push Pin Style) -->
-        <% if randomizer.primary_tag %>
-          <%= link_to randomizer.primary_tag.name,
-              randomizers_path(tag: randomizer.primary_tag.name),
-              class: "absolute -top-3 left-1/2 -translate-x-1/2 z-20 badge badge-outline border-2 border-gray-300 bg-base-100 text-gray-600 hover:border-pencil hover:text-pencil transition-all font-handwriting text-sm shadow-sm transform hover:scale-105",
-              data: { turbo_frame: "_top" },
-              onclick: "event.stopPropagation();" %>
-        <% end %>
-        
-        <!-- Like Button (Top Right) -->
-        <div class="absolute top-4 right-4 z-10" id="<%= dom_id(randomizer, :like_button) %>">
-          <%= button_to toggle_like_randomizer_path(randomizer),
-                method: :post,
-                data: { turbo_stream: true },
-                class: "text-pencil hover:text-red-600 transition flex items-center gap-1 px-2 py-1" do %>
-            <span class="text-sm font-bold font-typewriter"><%= randomizer.cached_votes_total %></span>
-            <% icon_variant = current_user&.voted_for?(randomizer) ? :filled : :outline %>
-            <%= icon 'thumb-up', variant: icon_variant, class: "w-4 h-4" %>
+          <!-- Tag Badge (Top Center) -->
+          <% if randomizer.primary_tag %>
+            <%= link_to randomizer.primary_tag.name,
+                randomizers_path(tag: randomizer.primary_tag.name),
+                class: "absolute -top-3 left-1/2 -translate-x-1/2 z-20 px-3 py-1 border-2 border-gray-300 bg-white text-gray-600 hover:border-black hover:text-black transition-all text-sm font-semibold shadow-sm",
+                data: { turbo_frame: "_top" },
+                onclick: "event.stopPropagation();" %>
           <% end %>
-        </div>
-
-        <%= link_to randomizer_outcomes_path(randomizer),
-                    class: "flex-1 flex flex-col no-underline text-inherit pt-1",
-                    data: { turbo_frame: "_top" } do %>
-
-          <h2 class="card-title text-xl font-bold mb-3 pr-16 font-typewriter border-b border-red-300 pb-1">
-            <%= randomizer.name %>
-          </h2>
-
-          <div class="flex-1 text-pencil/80 flex flex-col gap-1 font-handwriting text-lg">
-            <% randomizer.rolls.each do |roll| %>
-              <div class="leading-tight flex items-center gap-2">
-                <span class="font-medium"><%= roll.name || 'Missing' %></span>
-                <span class="text-sm text-pencil/60"><%= roll.dice %></span>
-              </div>
+          
+          <!-- Like Button (Top Right) -->
+          <div class="absolute top-4 right-4 z-10" id="<%= dom_id(randomizer, :like_button) %>">
+            <%= button_to toggle_like_randomizer_path(randomizer),
+                  method: :post,
+                  data: { turbo_stream: true },
+                  class: "flex items-center gap-1 px-2 py-1 transition #{current_user&.voted_for?(randomizer) ? 'text-dnd-red' : 'text-gray-400 hover:text-dnd-red'}" do %>
+              <span class="text-sm font-bold"><%= randomizer.cached_votes_total %></span>
+              <% icon_variant = current_user&.voted_for?(randomizer) ? :filled : :outline %>
+              <%= icon 'thumb-up', variant: icon_variant, class: "w-4 h-4" %>
             <% end %>
           </div>
 
-        <% end %>
+          <%= link_to randomizer_outcomes_path(randomizer),
+                      class: "block p-6 space-y-4",
+                      data: { turbo_frame: "_top" } do %>
 
-        <div class="card-actions grid grid-cols-3 items-center mt-4 border-t border-blue-200 pt-3">
-          <!-- Owner Avatar and Edit Button (Left) -->
-          <div class="flex items-center gap-2 justify-self-start">
-            <% if randomizer.user&.email.present? %>
-              <%= image_tag gravatar_url(randomizer.user, size: 32),
-                            alt: "#{randomizer.user.display_name}'s avatar",
-                            title: "Created by #{randomizer.user.display_name}",
-                            class: "w-8 h-8 rounded-full border border-gray-400 grayscale hover:grayscale-0 transition-all" %>
+            <h2 class="text-2xl font-bold font-header border-b-2 border-black pb-2 pr-12">
+              <%= randomizer.name %>
+            </h2>
+
+            <!-- Rolls as Clean Table -->
+            <% if randomizer.rolls.any? %>
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="border-b border-black">
+                    <th class="text-left py-1 font-semibold">Roll</th>
+                    <th class="text-right py-1 font-semibold font-mono">Dice</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% randomizer.rolls.each do |roll| %>
+                    <tr class="border-b border-gray-200">
+                      <td class="py-2"><%= roll.name || 'Unnamed' %></td>
+                      <td class="py-2 text-right font-mono text-gray-600"><%= roll.dice %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            <% else %>
+              <p class="text-gray-500 text-center py-4">No rolls defined</p>
             <% end %>
-            
-            <% if current_user == randomizer.user %>
-              <%= link_to randomizer,
-                          class: "text-pencil/50 hover:text-pencil p-1 rounded flex items-center gap-1 transition-colors",
-                          title: "Edit",
-                          data: { turbo_frame: "_top" } do %>
-                <%= icon(:edit, class: "w-4 h-4") %>
+
+          <% end %>
+
+          <!-- Footer Actions -->
+          <div class="flex items-center justify-between px-6 pb-4 pt-2 border-t border-gray-200">
+            <!-- Owner Avatar and Edit -->
+            <div class="flex items-center gap-2">
+              <% if randomizer.user&.email.present? %>
+                <%= image_tag gravatar_url(randomizer.user, size: 32),
+                              alt: "#{randomizer.user.display_name}'s avatar",
+                              title: "Created by #{randomizer.user.display_name}",
+                              class: "w-8 h-8 rounded-full border-2 border-black" %>
               <% end %>
-            <% end %>
-          </div>
+              
+              <% if current_user == randomizer.user %>
+                <%= link_to randomizer,
+                            class: "text-gray-400 hover:text-black transition-colors",
+                            title: "Edit",
+                            data: { turbo_frame: "_top" } do %>
+                  <%= icon(:edit, class: "w-4 h-4") %>
+                <% end %>
+              <% end %>
+            </div>
 
-          <!-- Delete Button (Center) -->
-          <div class="justify-self-center">
-            <% if current_user == randomizer.user && @tab == 'your_randomizers' %>
-              <%= button_to randomizer_path(randomizer),
+            <!-- Delete Button -->
+            <% if current_user == randomizer.user %>
+              <%= button_to randomizer,
                             method: :delete,
-                            data: { turbo_confirm: "Are you sure you want to delete this randomizer?" },
-                            class: "text-pencil/30 hover:text-red-600 p-2 transition-colors flex items-center justify-center",
-                            title: "Delete" do %>
+                            class: "text-gray-400 hover:text-dnd-red transition-colors",
+                            title: "Delete",
+                            data: { turbo_confirm: "Delete this randomizer?" } do %>
                 <%= icon(:trash, class: "w-4 h-4") %>
               <% end %>
             <% end %>
           </div>
-
-          <!-- Share Button (Right) -->
-          <div class="flex items-center gap-2 relative justify-self-end" data-controller="clipboard" data-clipboard-url-value="<%= randomizer_url(randomizer) %>">
-            
-            <!-- Copied Notification (Left of button) -->
-            <div data-clipboard-target="notification"
-                 class="absolute right-full top-1/2 -translate-y-1/2 mr-3 bg-black text-white px-2 py-1 rounded text-xs whitespace-nowrap opacity-0 hidden pointer-events-none transition-all duration-200 z-20 font-typewriter">
-              Copied!
-            </div>
-
-            <button data-action="click->clipboard#copy"
-                    class="text-pencil hover:text-blue-600 transition flex items-center gap-1 p-2"
-                    title="Copy link to clipboard">
-              <%= icon 'share', variant: :outline, class: "w-5 h-5" %>
-            </button>
-          </div>
         </div>
-      </div>
-
       <% end %>
     </div>
   <% end %>
