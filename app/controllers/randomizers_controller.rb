@@ -23,6 +23,7 @@ class RandomizersController < ApplicationController
   # GET /randomizers
   def index
     @tab = params[:tab] || 'newest'
+    @tag = params[:tag]
 
     # Redirect to login for user-specific tabs if not authenticated
     redirect_to '/login' and return if %w[your_likes your_randomizers].include?(@tab) && !current_user
@@ -30,15 +31,15 @@ class RandomizersController < ApplicationController
     # Query based on active tab
     @randomizers = case @tab
                    when 'newest'
-                     Randomizer.search(params[:query]).newest
+                     Randomizer.search(params[:query]).tagged_with(@tag).newest
                    when 'most_liked'
-                     Randomizer.search(params[:query]).where('cached_votes_total > 0').most_liked
+                     Randomizer.search(params[:query]).tagged_with(@tag).where('cached_votes_total > 0').most_liked
                    when 'your_likes'
-                     current_user.get_voted(Randomizer).search(params[:query]).newest
+                     current_user.get_voted(Randomizer).search(params[:query]).tagged_with(@tag).newest
                    when 'your_randomizers'
-                     current_user.randomizers.search(params[:query]).newest
+                     current_user.randomizers.search(params[:query]).tagged_with(@tag).newest
                    else # rubocop:disable Lint/DuplicateBranch
-                     Randomizer.search(params[:query]).newest
+                     Randomizer.search(params[:query]).tagged_with(@tag).newest
                    end
   end
 
@@ -95,7 +96,7 @@ class RandomizersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def randomizer_params
-    params.expect(randomizer: [:name])
+    params.expect(randomizer: [:name, tag_ids: []])
   end
 
   def check_ownership

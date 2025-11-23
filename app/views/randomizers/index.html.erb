@@ -46,6 +46,21 @@
       </div>
     </div>
 
+    <!-- Tag Filter Pills -->
+    <% if Tag.exists? %>
+      <div class="flex flex-wrap gap-2 mb-4">
+        <%= link_to "All Tags", randomizers_path(tab: @tab, query: params[:query]),
+            class: "badge #{@tag.nil? ? 'badge-primary' : 'badge-outline'} font-handwriting text-base hover:badge-primary transition-colors",
+            data: { turbo_frame: "randomizers", turbo_action: "advance" } %>
+        <% Tag.order(:name).each do |tag| %>
+          <%= link_to tag.name,
+              randomizers_path(tab: @tab, query: params[:query], tag: tag.name),
+              class: "badge #{@tag == tag.name ? 'badge-primary' : 'badge-outline'} font-handwriting text-base hover:badge-primary transition-colors",
+              data: { turbo_frame: "randomizers", turbo_action: "advance" } %>
+        <% end %>
+      </div>
+    <% end %>
+
     <div class="flex flex-wrap gap-4">
       <% if @randomizers.empty? %>
         <div class="w-full text-center p-8 text-base-content/50">
@@ -68,10 +83,18 @@
         <% end %>
       </div>
 
-      <!-- Randomizer Cards -->
+      <!-- Existing Randomizer Cards -->
       <% @randomizers.each do |randomizer| %>
-
-      <div class="card-index w-96 flex flex-col group p-4 min-h-[180px] transition-transform hover:-rotate-1">
+        <div class="card-index w-96 flex flex-col group p-4 min-h-[180px] transition-transform hover:-rotate-1 relative">
+        
+        <!-- Tag Badge (Push Pin Style) -->
+        <% if randomizer.primary_tag %>
+          <%= link_to randomizer.primary_tag.name,
+              randomizers_path(tag: randomizer.primary_tag.name),
+              class: "absolute -top-3 left-1/2 -translate-x-1/2 z-20 badge badge-outline border-2 border-gray-300 bg-base-100 text-gray-600 hover:border-pencil hover:text-pencil transition-all font-handwriting text-sm shadow-sm transform hover:scale-105",
+              data: { turbo_frame: "_top" },
+              onclick: "event.stopPropagation();" %>
+        <% end %>
         
         <!-- Like Button (Top Right) -->
         <div class="absolute top-4 right-4 z-10" id="<%= dom_id(randomizer, :like_button) %>">
