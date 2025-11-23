@@ -14,7 +14,7 @@
       <div tabindex="0" role="button" class="btn btn-ghost flex items-center gap-2">
         <%= image_tag gravatar_url(current_user, size: 40),
                       alt: "#{current_user.display_name}'s avatar",
-                      class: "w-10 h-10 rounded-full border-2 border-primary" %>
+                      class: "w-10 h-10 rounded-full border-2 border-gray-400 grayscale hover:grayscale-0 transition-all" %>
         <span class="text-sm font-medium"><%= current_user.display_name %></span>
         <%= icon('chevron-down', class: "w-4 h-4") %>
       </div>
