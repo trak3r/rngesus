@@ -1,28 +1,33 @@
 <% content_for :title, @randomizer.name %>
 
-<div id="<%= dom_id @randomizer %>" class="card-index w-full my-5 flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
-  <div class="flex items-center text-2xl sm:text-3xl font-bold font-typewriter gap-2">
-    <%= link_to randomizers_path do %>
-      <%= icon('caret-left', class: "w-6 h-6 text-pencil") %>
-    <% end %>
-    <%= @randomizer.name %>
-    <% if @randomizer.primary_tag %>
-      <%= link_to @randomizer.primary_tag.name,
-          randomizers_path(tag: @randomizer.primary_tag.name),
-          class: "badge badge-outline text-pencil hover:badge-primary transition-colors font-handwriting text-sm" %>
-    <% end %>
-    <% if current_user == @randomizer.user %>
-      <%= link_to edit_randomizer_path(@randomizer),
-                  class: "text-pencil/50 hover:text-pencil p-2 rounded " do %>
-        <%= icon(:edit, class: "w-5 h-5") %>
+<div class="max-w-4xl mx-auto py-8 px-4">
+  <div class="flex items-center justify-between mb-8 pb-4 border-b-4 border-black">
+    <div class="flex items-center gap-3">
+      <h1 class="text-3xl font-bold font-header">
+        <%= @randomizer.name %>
+      </h1>
+      <% if @randomizer.primary_tag %>
+        <%= link_to @randomizer.primary_tag.name,
+            randomizers_path(tag: @randomizer.primary_tag.name),
+            class: "px-3 py-1 border-2 border-gray-300 bg-white text-gray-600 hover:border-black hover:text-black transition-all text-sm font-semibold" %>
       <% end %>
-    <% end %>
+    </div>
+
+    <%= render "like_button", randomizer: @randomizer, position_classes: "" %>
+  </div>
+
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-700 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <%= render @randomizer %>
+
+  <div class="mt-8 flex gap-4">
+    <%= link_to "Edit", edit_randomizer_path(@randomizer), class: "btn-clean" %>
+    <%= button_to "Delete", @randomizer, method: :delete, class: "text-gray-400 hover:text-dnd-red transition-colors font-semibold", data: { turbo_confirm: "Are you sure?" } %>
   </div>
 </div>
 
-<%= render 'rolls/index', rolls: @randomizer.rolls %>
-
-<% if current_user == @randomizer.user %>
   <div class="mt-4">
     <%= link_to "New roll", new_randomizer_roll_path(@randomizer), class: "btn btn-primary" %>
     <%= button_to "Destroy this randomizer", @randomizer, method: :delete, form_class: "inline-block", class: "btn btn-error", data: { turbo_confirm: "Are you sure?" } %>

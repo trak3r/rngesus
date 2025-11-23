@@ -1,34 +1,36 @@
 <% content_for :title, "#{@roll.randomizer.name} > #{@roll.name}" %>
 
-<div id="<%= dom_id @roll %>" class="w-full my-5 p-6 bg-base-200 rounded-xl shadow-md flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
-  <div class="flex items-center text-2xl sm:text-3xl font-bold text-primary gap-2">
-    <%= link_to @roll.randomizer do %>
-      <%= icon('caret-left', class: "w-6 h-6 text-gray-500") %>
-    <% end %>
-    <%= @roll.name %>
-    <% if current_user == @roll.randomizer.user %>
-      <%= link_to edit_roll_path(@roll),
-                  class: "text-base-content/50 hover:text-base-content p-2 rounded " do %>
-        <%= icon(:edit, class: "w-5 h-5") %>
+<div class="max-w-4xl mx-auto py-8 px-4">
+  <div class="flex items-center justify-between mb-8 pb-4 border-b-4 border-black">
+    <div class="flex items-center gap-3">
+      <%= link_to @roll.randomizer, class: "text-gray-400 hover:text-black transition-colors" do %>
+        <%= icon('caret-left', class: "w-6 h-6") %>
       <% end %>
-    <% end %>
+      <h1 class="text-3xl font-bold font-header"><%= @roll.name %></h1>
+      <% if current_user == @roll.randomizer.user %>
+        <%= link_to edit_roll_path(@roll),
+                    class: "text-gray-400 hover:text-black transition-colors" do %>
+          <%= icon(:edit, class: "w-5 h-5") %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="text-lg flex items-center gap-2">
+      <span class="font-semibold"><%= @roll.dice_object.try(:name) || 'Missing' %></span>
+      <span class="text-gray-600 font-mono text-sm">
+        (<%= @roll.dice_object.try(:min) || '?' %>&#8209;<%= @roll.dice_object.try(:max) || '?' %>)
+      </span>
+    </div>
   </div>
 
-  <div class="text-lg sm:text-xl text-base-content/80 flex items-center space-x-2">
-    <span class="font-medium"><%= @roll.dice_object.try(:name) || 'Missing' %></span>
-    <span class="text-base-content/60">
-      (<%= @roll.dice_object.try(:min) || '?' %>&#8209;<%= @roll.dice_object.try(:max) || '?' %>)
-    </span>
-  </div>
+  <%= render 'results/index', results: @roll.results %>
+
+  <% if current_user == @roll.randomizer.user %>
+    <div class="mt-8 flex gap-3 flex-wrap">
+      <%= link_to "New result", new_roll_result_path(@roll), class: "btn-primary-dnd" %>
+      <%= link_to "Import from Screenshot", new_roll_results_img_path(@roll), class: "btn-clean" %>
+      <%= link_to "Import from CSV", new_roll_results_csv_path(@roll), class: "btn-clean" %>
+      <%= button_to "Delete this roll", @roll, method: :delete, class: "text-gray-400 hover:text-dnd-red transition-colors font-semibold", data: { turbo_confirm: "Are you sure?" } %>
+    </div>
+  <% end %>
 </div>
-
-<%= render 'results/index', results: @roll.results %>
-
-<% if current_user == @roll.randomizer.user %>
-  <div class="mt-4">
-    <%= link_to "New result", new_roll_result_path(@roll), class: "btn btn-primary" %>
-    <%= link_to "Import from Screenshot", new_roll_results_img_path(@roll), class: "btn btn-primary" %>
-    <%= link_to "Import from CSV", new_roll_results_csv_path(@roll), class: "btn btn-primary" %>
-    <%= button_to "Destroy this roll", @roll, method: :delete, form_class: "inline-block", class: "btn btn-error", data: { turbo_confirm: "Are you sure?" } %>
-  </div>
-<% end %>

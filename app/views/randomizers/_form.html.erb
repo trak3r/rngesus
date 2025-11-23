@@ -1,42 +1,39 @@
 <%= form_with(model: randomizer, class: "contents") do |form| %>
   <% if randomizer.errors.any? %>
-    <div id="error_explanation" class="alert alert-error">
-      <div>
-        <h2><%= pluralize(randomizer.errors.count, "error") %> prohibited this randomizer from being saved:</h2>
-
-        <ul class="list-disc ml-6 mt-2">
-          <% randomizer.errors.each do |error| %>
-            <li><%= error.full_message %></li>
-          <% end %>
-        </ul>
-      </div>
+    <div id="error_explanation" class="border-2 border-dnd-red bg-red-50 p-4 mb-6">
+      <h2 class="font-bold text-dnd-red mb-2"><%= pluralize(randomizer.errors.count, "error") %> prohibited this randomizer from being saved:</h2>
+      <ul class="list-disc ml-6">
+        <% randomizer.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
     </div>
   <% end %>
 
-  <div class="my-5">
-    <%= form.label :name, class: "label" %>
+  <div class="mb-6">
+    <%= form.label :name, class: "block font-semibold mb-2" %>
     <%= form.text_field :name,
                     class: [
-                      "input-handwritten w-full",
+                      "input-clean",
                       {
-                        "border-red-500": randomizer.errors[:name].any?,
+                        "border-dnd-red": randomizer.errors[:name].any?,
                       },
                     ] %>
   </div>
 
-  <div class="my-5">
-    <%= form.label :tag_ids, "Tag (optional)", class: "label font-typewriter text-pencil" %>
+  <div class="mb-6">
+    <%= form.label :tag_ids, "Tag (optional)", class: "block font-semibold mb-2" %>
     <%= form.select :tag_ids,
                     options_from_collection_for_select(Tag.order(:name), :id, :name, randomizer.tag_ids.first),
                     { include_blank: "No tag" },
                     {
-                      class: "input-handwritten w-full",
+                      class: "input-clean",
                       name: "randomizer[tag_ids][]"
                     } %>
-    <p class="text-sm text-pencil/60 mt-1 font-handwriting">Choose a game system for this randomizer</p>
+    <p class="text-sm text-gray-600 mt-1">Choose a game system for this randomizer</p>
   </div>
 
   <div class="inline">
-    <%= form.submit "Submit", class: "btn-doodle cursor-pointer" %>
+    <%= form.submit "Submit", class: "btn-primary-dnd cursor-pointer" %>
   </div>
 <% end %>

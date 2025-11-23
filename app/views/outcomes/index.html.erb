@@ -1,16 +1,16 @@
 <% content_for :title, @randomizer.name %>
 
-<div class="max-w-4xl mx-auto py-10 px-4">
+<div class="max-w-5xl mx-auto py-8 px-4">
 
-  <div class="relative flex items-center justify-between gap-3 mb-6">
-    <div class="text-2xl sm:text-3xl font-bold font-typewriter text-pencil">
+  <div class="flex items-center justify-between mb-8 pb-4 border-b-4 border-black">
+    <h1 class="text-3xl font-bold font-header">
       <%= @randomizer.name %>
-    </div>
+    </h1>
 
     <%= render "randomizers/like_button", randomizer: @randomizer, position_classes: "" %>
   </div>
 
-  <div class="grid gap-6">
+  <div class="space-y-6">
     <% rolls = @randomizer.rolls.to_a %>
     <% should_animate = rolls.count == 1 %>
     <% rolls.each_with_index do |roll, index| %>
