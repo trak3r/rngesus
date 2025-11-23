@@ -18,9 +18,9 @@
         <span class="text-sm font-medium"><%= current_user.display_name %></span>
         <%= icon('chevron-down', class: "w-4 h-4") %>
       </div>
-      <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow-lg border border-base-300 mt-3">
+      <ul tabindex="0" class="dropdown-content menu bg-white rounded-sm z-[1] w-52 p-2 shadow-lg border border-gray-300 mt-3 font-handwriting text-pencil">
         <li>
-          <%= link_to edit_user_path, class: "flex items-center gap-2" do %>
+          <%= link_to edit_user_path, class: "flex items-center gap-2 hover:bg-yellow-50/50 active:bg-yellow-100 rounded-sm" do %>
             <%= icon('settings', class: "w-4 h-4") %>
             <span>Settings</span>
           <% end %>
@@ -29,16 +29,16 @@
           <%= link_to gravatar_profile_url(current_user),
                       target: "_blank",
                       rel: "noopener noreferrer",
-                      class: "flex items-center gap-2" do %>
+                      class: "flex items-center gap-2 hover:bg-yellow-50/50 active:bg-yellow-100 rounded-sm" do %>
             <%= icon('user-circle', class: "w-4 h-4") %>
             <span>Edit Avatar</span>
           <% end %>
         </li>
-        <div class="divider my-0"></div>
+        <div class="divider my-0 border-blue-200"></div>
         <li>
           <%= button_to logout_path,
                         method: :delete,
-                        class: "flex items-center gap-2 text-error hover:bg-error/10",
+                        class: "flex items-center gap-2 text-red-500/70 hover:text-red-600 hover:bg-red-50/50 rounded-sm",
                         form: { data: { turbo: "false" } } do %>
             <%= icon('logout', class: "w-4 h-4") %>
             <span>Logout</span>
