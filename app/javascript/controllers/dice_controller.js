@@ -145,7 +145,7 @@ export default class extends Controller {
             const coinResult = targetSum === 1
                 ? [1, 2, 3][Math.floor(Math.random() * 3)]
                 : [4, 5, 6][Math.floor(Math.random() * 3)]
-            this.constructor.box.roll('1d6', [coinResult], { newStartPoint: true })
+            this.constructor.box.roll('1d6', [coinResult])
             return
         }
 
@@ -153,7 +153,7 @@ export default class extends Controller {
         if (faces === 100) {
             // D100 result IS the final value (1-100)
             // Try to show it directly
-            this.constructor.box.roll(explicitNotation, [targetSum], { newStartPoint: true })
+            this.constructor.box.roll(explicitNotation, [targetSum])
             return
         }
 
@@ -164,9 +164,9 @@ export default class extends Controller {
             // Just distribute the visual result across the proxy dice
             const results = this.generateDieValues(count, faces, targetSum)
             if (results) {
-                this.constructor.box.roll(explicitNotation, results, { newStartPoint: true })
+                this.constructor.box.roll(explicitNotation, results)
             } else {
-                this.constructor.box.roll(explicitNotation, { newStartPoint: true })
+                this.constructor.box.roll(explicitNotation)
             }
             return
         }
