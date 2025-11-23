@@ -59,7 +59,7 @@ class OutcomesHoverTest < ApplicationSystemTestCase
 
     # Verify tooltip data attribute is present
     assert_equal 'Click to re-roll', card['data-tip']
-    
+
     # Verify tooltip class is present
     assert_includes card[:class], 'tooltip'
   end
