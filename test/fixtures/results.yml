@@ -1,3 +1,9 @@
 encounter_distance_close:
   roll: encounter_distance
+  name: Close
   value: 1
+
+dice_notation_result:
+  roll: roll_with_dice_notation
+  name: 1d6 goblins attack
+  value: 5
