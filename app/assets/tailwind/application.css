@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "../stylesheets/slot_machine.css";
 
 @theme {
   --font-handwriting: "Patrick Hand", cursive;
