@@ -13,8 +13,8 @@
                      } do %>
   <%= button_to reroll_randomizer_outcome_path(randomizer, roll),
                 method: :post,
-                class: "card-clean w-full hover:shadow-xl transition-all duration-200 flex flex-col items-center cursor-pointer group",
-                data: { tip: "Click to re-roll" },
+                class: "bg-white border border-gray-300 p-3 w-full hover:shadow-xl hover:border-gray-400 transition-all duration-200 flex flex-col items-center cursor-pointer group",
+                title: "Click to re-roll",
                 form: { class: "w-full" } do %>
 
     <!-- Result Display with Hover -->

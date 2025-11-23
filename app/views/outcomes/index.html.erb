@@ -10,7 +10,7 @@
     <%= render "randomizers/like_button", randomizer: @randomizer, position_classes: "" %>
   </div>
 
-  <div class="space-y-6">
+  <div class="space-y-4">
     <% rolls = @randomizer.rolls.to_a %>
     <% should_animate = rolls.count == 1 %>
     <% rolls.each_with_index do |roll, index| %>

@@ -3,25 +3,25 @@
     <table class="w-full">
       <thead>
         <tr class="border-b-2 border-black">
-          <th class="text-left py-2 px-3 font-semibold w-20">Value</th>
+          <th class="text-right py-2 px-3 font-semibold w-20">Value</th>
           <th class="text-left py-2 px-3 font-semibold">Name</th>
           <% if current_user == results.first.roll.randomizer.user %>
-            <th class="text-right py-2 px-3 font-semibold w-24">Actions</th>
+            <th class="text-right py-2 px-3 font-semibold w-28">Actions</th>
           <% end %>
         </tr>
       </thead>
       <tbody>
         <% results.sort_by(&:value).each do |result| %>
           <tr class="border-b border-gray-200 hover:bg-gray-50 transition-colors">
-            <td class="py-3 px-3 font-mono text-gray-600 tabular-nums"><%= result.value %></td>
+            <td class="py-3 px-3 font-mono text-gray-600 tabular-nums text-right"><%= result.value %></td>
             <td class="py-3 px-3"><%= result.name %></td>
             <% if current_user == result.roll.randomizer.user %>
-              <td class="py-3 px-3 text-right">
-                <div class="flex justify-end gap-2">
-                  <%= link_to edit_result_path(result), class: "text-gray-400 hover:text-black transition-colors" do %>
+              <td class="py-3 px-3">
+                <div class="flex justify-end items-center gap-3">
+                  <%= link_to edit_result_path(result), class: "text-gray-400 hover:text-black transition-colors p-1" do %>
                     <%= icon(:edit, class: "w-4 h-4") %>
                   <% end %>
-                  <%= button_to result_path(result), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "text-gray-400 hover:text-dnd-red transition-colors" do %>
+                  <%= button_to result_path(result), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "text-gray-400 hover:text-dnd-red transition-colors p-1" do %>
                     <%= icon(:trash, class: "w-4 h-4") %>
                   <% end %>
                 </div>

@@ -20,3 +20,11 @@ http://localhost:3000/randomizers/0dyit/outcomes
 you broke lots of hover functionality on the results cards. they used to be able to be clicked to reroll, and now they can't. also they used to show the raw name and now they don't.
 http://localhost:3000/rolls/18
 the results in the list are still showing the old design of purple gradient wells and colored icons.
+
+http://localhost:3000/randomizers/0dyit/outcomes
+- too many borders on this page. make the result border more subtle. add spacing between the results cards.
+- the results used to have a tooltip on hover to reroll. add that back.
+http://localhost:3000/rolls/18
+- right justify the value column
+- add spacing between the edit and delete icons; they are hard targets for a misclick
+- the edit and delete iconts aren't aligned vertically
