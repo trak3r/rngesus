@@ -1,11 +1,10 @@
 <%= turbo_frame_tag dom_id(roll, :outcome), 
                      class: "w-full",
                      data: { 
-                       controller: "dice",
-                       # slot_machine controller disabled but code preserved
-                       # slot_machine_final_result_value: result.try(:name_with_rolls) || 'No match',
-                       # slot_machine_all_results_value: roll.results.map(&:name).to_json,
-                       # slot_machine_index_value: index,
+                       controller: "dice slot-machine",
+                       slot_machine_final_result_value: result.try(:name_with_rolls) || 'No match',
+                       slot_machine_all_results_value: roll.results.map(&:name).to_json,
+                       slot_machine_index_value: index,
                        dice_dice_value: roll.dice,
                        dice_result_value: result.try(:name_with_rolls) || 'No match',
                        dice_rolled_value: rolled,

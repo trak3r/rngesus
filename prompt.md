@@ -39,3 +39,7 @@ i'm dismayed by how much functionality has been broken by this visual styling ch
 http://localhost:3000/randomizers/0dyit/outcomes
 - add a little space between results
 - make the "click to reroll" more subtle
+
+http://localhost:3000/randomizers/0dyit/outcomes
+- add some spacing betwen the results cards
+- reenable the slot machine spinner
