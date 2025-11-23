@@ -61,6 +61,8 @@ export default class extends Controller {
         }
 
         try {
+            // Note: Only 'default' theme is currently available in assets
+            // Additional themes would require downloading theme files to public/assets/dice-box/themes/
             const box = new DiceBox({
                 container: "#dice-box-container",
                 assetPath: "/assets/dice-box/",
@@ -94,14 +96,22 @@ export default class extends Controller {
 
         // Normalize dice string (e.g. "D100" -> "d100")
         let diceNotation = this.diceValue.toLowerCase()
+        let originalNotation = diceNotation
 
-        // Handle unsupported D100 by converting to 2d10 (percentile) or just d20 as fallback for now
-        // dice-box 1.1.3 might not support d100 out of the box with default theme
-        if (diceNotation.includes("d100")) {
-            console.warn("D100 not fully supported, using 2d10 as visual proxy")
-            // We can't easily fake 1-100 with 2d10 visually summing to it without complex logic
-            // For now, let's just try to roll it as is, but lowercase might fix the "Invalid notation" error
-            // If it still fails, we might need to swap to d20s
+        // Map unsupported dice types to visual proxies
+        const diceMap = {
+            'd2': '1d6',      // Coin flip -> d6 proxy
+            'd40': '2d20',    // D40 -> 2d20 visual proxy
+            'd66': '2d6',     // Sequence notation -> 2d6
+        }
+
+        // Check if we need to map this dice type
+        for (const [unsupported, proxy] of Object.entries(diceMap)) {
+            if (diceNotation.includes(unsupported)) {
+                console.log(`Mapping ${unsupported} to ${proxy} for visual display`)
+                diceNotation = proxy
+                break
+            }
         }
 
         // Parse the dice string (e.g. "2d6+2")
@@ -119,10 +129,7 @@ export default class extends Controller {
         const modifier = parseInt(match[3] || "0", 10)
 
         // Reconstruct notation to ensure count is present (e.g. "d12" -> "1d12")
-        // dice-box might require the count explicitly
         const explicitNotation = `${count}d${faces}`
-
-        // alert("Explicit Notation: " + explicitNotation)
 
         let targetSum = parseInt(this.rolledValue, 10)
 
@@ -132,16 +139,45 @@ export default class extends Controller {
             return
         }
 
-        // Adjust target sum by removing modifier
+        // Special handling for D2 (coin flip)
+        if (originalNotation.includes('d2')) {
+            // Map result: 1 = heads (show 1-3), 2 = tails (show 4-6)
+            const coinResult = targetSum === 1
+                ? [1, 2, 3][Math.floor(Math.random() * 3)]
+                : [4, 5, 6][Math.floor(Math.random() * 3)]
+            this.constructor.box.roll('1d6', [coinResult], { newStartPoint: true })
+            return
+        }
+
+        // Special handling for D100
+        if (faces === 100) {
+            // D100 result IS the final value (1-100)
+            // Try to show it directly
+            this.constructor.box.roll(explicitNotation, [targetSum], { newStartPoint: true })
+            return
+        }
+
+        // Special handling for D40 and D66 (using proxies)
+        if (originalNotation.includes('d40') || originalNotation.includes('d66')) {
+            // For D40: result is 1-40, we're showing 2d20
+            // For D66: result is sequence like "12", "34", we're showing 2d6
+            // Just distribute the visual result across the proxy dice
+            const results = this.generateDieValues(count, faces, targetSum)
+            if (results) {
+                this.constructor.box.roll(explicitNotation, results, { newStartPoint: true })
+            } else {
+                this.constructor.box.roll(explicitNotation, { newStartPoint: true })
+            }
+            return
+        }
+
+        // Standard dice: adjust target sum by removing modifier
         let sumToFind = targetSum - modifier
 
         // Generate individual die values that sum to `sumToFind`
         const results = this.generateDieValues(count, faces, sumToFind)
 
         if (results) {
-            // dice-box expects an array of results matching the dice count
-            // We need to construct the roll notation or object for dice-box
-            // box.roll("2d6", [3, 4])
             this.constructor.box.roll(explicitNotation, results, { newStartPoint: true })
         } else {
             console.warn("Could not find matching dice values for", sumToFind)

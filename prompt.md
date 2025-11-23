@@ -1,8 +1,6 @@
-we're starting to encounter some weird hard to troubleshoot issues.
-let's take a second to audit the code base so far for:
-- any extraneous code
-- any code that's not being used
-- any code that's not being tested
-- any code that's not being used
-- any potentially overcomplicated code
-- any convoluted code, like deeply nested markup wrappers or partial renders
+OK let's revisit the animated dice - a really cool feature that only works half the time.
+problems to address:
+- the animated dice roll should happen when the outcome page is first loaded
+- some of the "predefined" dice (see the model) are not animating
+- the dice don't roll to the same result as returned from the server
+- if possible without too much PITA it would be nice to see random colors and textures for the dice on each roll
