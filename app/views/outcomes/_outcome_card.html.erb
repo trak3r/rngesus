@@ -13,26 +13,26 @@
                      } do %>
   <%= button_to reroll_randomizer_outcome_path(randomizer, roll),
                 method: :post,
-                class: "card-clean w-full hover:shadow-xl transition-all duration-200 cursor-pointer",
+                class: "card-clean w-full hover:shadow-xl transition-all duration-200 flex flex-col items-center cursor-pointer group",
                 data: { tip: "Click to re-roll" },
                 form: { class: "w-full" } do %>
 
-    <div class="p-3 space-y-3">
-      <!-- Roll Name and Dice -->
-      <div class="flex items-center justify-between border-b-2 border-black pb-2">
-        <h3 class="text-lg font-bold font-header"><%= roll.name %></h3>
-        <span class="font-mono text-sm text-gray-600"><%= roll.dice_object.name %></span>
-      </div>
+    <!-- Result Display with Hover -->
+    <div class="relative inline-block text-3xl font-bold text-dnd-red mb-2 text-center">
+      <span class="block group-hover:hidden" data-slot-machine-target="result">
+        <%= result.try(:name_with_rolls) || 'No match' %>
+      </span>
+      <span class="hidden group-hover:block text-gray-600">
+        <%= result.try(:name) || 'No match' %>
+      </span>
+    </div>
 
-      <!-- Result Display -->
-      <div class="text-center space-y-2" data-slot-machine-target="result">
-        <div class="text-3xl font-bold text-dnd-red">
-          <%= result.try(:name_with_rolls) || 'No match' %>
-        </div>
-        <div class="text-sm text-gray-600">
-          <%= roll.name %> · <%= roll.dice_object.name %> → <%= rolled %>
-        </div>
-      </div>
+    <div class="text-gray-600 text-sm font-mono">
+      <%= roll.name %>
+      &middot;
+      <%= roll.dice_object.name %>
+      &rarr;
+      <%= rolled %>
     </div>
   <% end %>
 <% end %>
