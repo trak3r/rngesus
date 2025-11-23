@@ -46,6 +46,21 @@
       </div>
     </div>
 
+    <!-- Tag Filter Pills -->
+    <% if Tag.exists? %>
+      <div class="flex flex-wrap gap-2 mb-4">
+        <%= link_to "All Tags", randomizers_path(tab: @tab, query: params[:query]),
+            class: "badge #{@tag.nil? ? 'badge-primary' : 'badge-outline'} font-handwriting text-base hover:badge-primary transition-colors",
+            data: { turbo_frame: "randomizers", turbo_action: "advance" } %>
+        <% Tag.order(:name).each do |tag| %>
+          <%= link_to tag.name,
+              randomizers_path(tab: @tab, query: params[:query], tag: tag.name),
+              class: "badge #{@tag == tag.name ? 'badge-primary' : 'badge-outline'} font-handwriting text-base hover:badge-primary transition-colors",
+              data: { turbo_frame: "randomizers", turbo_action: "advance" } %>
+        <% end %>
+      </div>
+    <% end %>
+
     <div class="flex flex-wrap gap-4">
       <% if @randomizers.empty? %>
         <div class="w-full text-center p-8 text-base-content/50">
@@ -89,8 +104,15 @@
                     class: "flex-1 flex flex-col no-underline text-inherit pt-1",
                     data: { turbo_frame: "_top" } do %>
 
-          <h2 class="card-title text-xl font-bold mb-3 pr-16 font-typewriter border-b border-red-300 pb-1">
+          <h2 class="card-title text-xl font-bold mb-3 pr-16 font-typewriter border-b border-red-300 pb-1 flex items-center gap-2">
             <%= randomizer.name %>
+            <% if randomizer.primary_tag %>
+              <%= link_to randomizer.primary_tag.name,
+                  randomizers_path(tag: randomizer.primary_tag.name),
+                  class: "badge badge-sm badge-outline text-pencil hover:badge-primary transition-colors font-handwriting text-xs",
+                  data: { turbo_frame: "_top" },
+                  onclick: "event.stopPropagation();" %>
+            <% end %>
           </h2>
 
           <div class="flex-1 text-pencil/80 flex flex-col gap-1 font-handwriting text-lg">

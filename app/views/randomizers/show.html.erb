@@ -6,6 +6,11 @@
       <%= icon('caret-left', class: "w-6 h-6 text-pencil") %>
     <% end %>
     <%= @randomizer.name %>
+    <% if @randomizer.primary_tag %>
+      <%= link_to @randomizer.primary_tag.name,
+          randomizers_path(tag: @randomizer.primary_tag.name),
+          class: "badge badge-outline text-pencil hover:badge-primary transition-colors font-handwriting text-sm" %>
+    <% end %>
     <% if current_user == @randomizer.user %>
       <%= link_to edit_randomizer_path(@randomizer),
                   class: "text-pencil/50 hover:text-pencil p-2 rounded " do %>

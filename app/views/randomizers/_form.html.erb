@@ -24,6 +24,20 @@
                     ] %>
   </div>
 
+  <div class="my-5">
+    <%= form.label :tag_ids, "Tag (optional)", class: "label font-typewriter text-pencil" %>
+    <%= form.collection_select :tag_ids,
+                    Tag.order(:name),
+                    :id,
+                    :name,
+                    { include_blank: "No tag" },
+                    {
+                      class: "input-handwritten w-full",
+                      multiple: false
+                    } %>
+    <p class="text-sm text-pencil/60 mt-1 font-handwriting">Choose a game system for this randomizer</p>
+  </div>
+
   <div class="inline">
     <%= form.submit "Submit", class: "btn-doodle cursor-pointer" %>
   </div>

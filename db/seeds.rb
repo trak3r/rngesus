@@ -9,3 +9,8 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+# Create initial tags for game systems
+['Shadowdark', 'Dolmenwood', 'JAGS', 'Dungeons & Dragons', 'System Agnostic'].each do |tag_name|
+  Tag.find_or_create_by!(name: tag_name)
+end
