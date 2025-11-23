@@ -1,2 +1,0 @@
-- the "new randomizer" card should be the same design as the index cards. it should have the red line under the title.
-- the link buttons are turning from gray to blue when clicked. and they are blue on the outcomes page. they should always be the same color no matter state or location.
