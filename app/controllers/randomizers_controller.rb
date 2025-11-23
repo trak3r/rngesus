@@ -83,7 +83,7 @@ class RandomizersController < ApplicationController
   def destroy
     @randomizer.destroy!
     redirect_to randomizers_path,
-                notice: t('randomizers.create.success'),
+                notice: t('.success'),
                 status: :see_other
   end
 

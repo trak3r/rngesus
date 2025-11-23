@@ -36,6 +36,8 @@ en:
   randomizers:
     create:
       success: "Randomizer was successfully created."
+    destroy:
+      success: "Randomizer was successfully destroyed."
   rolls:
     create:
       success: "Roll was successfully created."
