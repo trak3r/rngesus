@@ -129,8 +129,12 @@
             <% if current_user == randomizer.user && @tab == 'your_randomizers' %>
               <%= button_to randomizer_path(randomizer),
                             method: :delete,
-                            data: { turbo_confirm: "Are you sure you want to delete this randomizer?" },
-                            form: { data: { turbo_frame: "_top" } },
+                            form: { 
+                              data: { 
+                                turbo_confirm: "Are you sure you want to delete this randomizer?",
+                                turbo_frame: "_top"
+                              }
+                            },
                             class: "text-pencil/30 hover:text-red-600 p-2 transition-colors flex items-center justify-center",
                             title: "Delete" do %>
                 <%= icon(:trash, class: "w-4 h-4") %>
