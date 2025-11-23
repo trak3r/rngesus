@@ -7,7 +7,8 @@ class Randomizer < ApplicationRecord
 
   belongs_to :user
   has_many :rolls, dependent: :destroy
-  has_and_belongs_to_many :tags
+  has_many :randomizer_tags, dependent: :destroy
+  has_many :tags, through: :randomizer_tags
 
   # Make slug immutable after creation
   attr_immutable :slug
@@ -20,7 +21,7 @@ class Randomizer < ApplicationRecord
   scope :search, ->(query) { where('randomizers.name LIKE ?', "%#{query}%") if query.present? }
   scope :newest, -> { order(created_at: :desc) }
   scope :most_liked, -> { order(cached_votes_total: :desc) }
-  scope :tagged_with, ->(tag_name) {
+  scope :tagged_with, lambda { |tag_name|
     joins(:tags).where(tags: { name: tag_name }) if tag_name.present?
   }
 

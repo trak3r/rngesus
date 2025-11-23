@@ -10,12 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_11_23_152507) do
+ActiveRecord::Schema[8.1].define(version: 2025_11_23_195921) do
   create_table "examples", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "name"
     t.datetime "updated_at", null: false
     t.integer "value"
+  end
+
+  create_table "randomizer_tags", force: :cascade do |t|
+    t.integer "randomizer_id", null: false
+    t.integer "tag_id", null: false
+    t.index ["randomizer_id", "tag_id"], name: "index_randomizer_tags_on_randomizer_id_and_tag_id", unique: true
   end
 
   create_table "randomizers", force: :cascade do |t|
@@ -30,12 +36,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_23_152507) do
     t.integer "user_id", null: false
     t.index ["slug"], name: "index_randomizers_on_slug", unique: true
     t.index ["user_id"], name: "index_randomizers_on_user_id"
-  end
-
-  create_table "randomizers_tags", id: false, force: :cascade do |t|
-    t.integer "randomizer_id", null: false
-    t.integer "tag_id", null: false
-    t.index ["randomizer_id", "tag_id"], name: "index_randomizers_tags_on_randomizer_id_and_tag_id", unique: true
   end
 
   create_table "results", force: :cascade do |t|

@@ -96,7 +96,7 @@ class RandomizersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def randomizer_params
-    params.expect(randomizer: [:name, tag_ids: []])
+    params.expect(randomizer: [:name, { tag_ids: [] }])
   end
 
   def check_ownership
