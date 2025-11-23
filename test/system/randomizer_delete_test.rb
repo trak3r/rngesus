@@ -11,6 +11,7 @@ class RandomizerDeleteTest < ApplicationSystemTestCase
 
   test 'user is logged in' do
     visit randomizers_path
+
     assert_selector "img[alt='#{@user.display_name}\\'s avatar']"
   end
 
@@ -20,10 +21,10 @@ class RandomizerDeleteTest < ApplicationSystemTestCase
     # Should NOT see delete button on default tab (newest)
     # We need to find the specific card for our randomizer
     # The "New Randomizer" card is always first, so we can't use first('.card-index')
-    
+
     # Find card with randomizer name
     card = find('.card-index', text: @randomizer.name)
-    
+
     within card do
       assert_no_selector 'button[title="Delete"]', visible: :all
     end
@@ -33,6 +34,7 @@ class RandomizerDeleteTest < ApplicationSystemTestCase
 
     # Should see delete button on user's own randomizers
     card = find('.card-index', text: @randomizer.name)
+
     within card do
       assert_selector 'button[title="Delete"]'
     end
@@ -79,8 +81,8 @@ class RandomizerDeleteTest < ApplicationSystemTestCase
 
     # Card should no longer appear
     assert_no_text randomizer_name
-    
-    # Note: Flash message is not checked because the delete happens within a Turbo Frame,
+
+    # NOTE: Flash message is not checked because the delete happens within a Turbo Frame,
     # and flash messages are rendered outside the frame in the layout
   end
 
@@ -107,7 +109,7 @@ class RandomizerDeleteTest < ApplicationSystemTestCase
 
     card = find('.card-index', text: @randomizer.name)
     card_actions = card.find('.card-actions')
-    
+
     # Verify grid layout
     assert_includes card_actions[:class], 'grid'
     assert_includes card_actions[:class], 'grid-cols-3'

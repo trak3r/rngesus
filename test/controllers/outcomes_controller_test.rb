@@ -6,7 +6,7 @@ class OutcomesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @randomizer = randomizers(:encounter)
     @roll = rolls(:encounter_distance)
-    
+
     # Ensure the roll has at least one result for testing
     @roll.results.create!(name: 'Test Result', value: 5) if @roll.results.empty?
   end
@@ -22,14 +22,14 @@ class OutcomesControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :success
     assert_equal 'text/vnd.turbo-stream.html', response.media_type
-    
+
     # Verify the response contains turbo-stream tags
-    assert_match /turbo-stream/, response.body
+    assert_match(/turbo-stream/, response.body)
   end
 
   test 'should handle reroll for roll with no results' do
     empty_roll = @randomizer.rolls.create!(name: 'Empty Roll', dice: 'D6')
-    
+
     post reroll_randomizer_outcome_path(@randomizer, empty_roll), as: :turbo_stream
 
     assert_response :success
