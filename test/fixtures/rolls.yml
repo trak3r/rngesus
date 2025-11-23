@@ -2,7 +2,18 @@ encounter_distance:
   randomizer: encounter
   name: Distance
   dice: 2D6
+
 encounter_forest:
   randomizer: encounter
   name: Monster
   dice: D100
+
+empty_roll:
+  randomizer: encounter
+  name: Empty Roll
+  dice: D6
+
+roll_with_dice_notation:
+  randomizer: encounter
+  name: Test Roll
+  dice: D6

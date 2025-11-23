@@ -6,10 +6,8 @@ class OutcomesHoverTest < ApplicationSystemTestCase
   setup do
     @user = users(:ted)
     @randomizer = randomizers(:encounter)
-
-    # Create a new roll with a result that has dice notation
-    @roll = @randomizer.rolls.create!(name: 'Test Roll', dice: 'D6')
-    @result = @roll.results.create!(name: '1d6 goblins attack', value: 5)
+    @roll = rolls(:roll_with_dice_notation)
+    @result = results(:dice_notation_result)
 
     login_as @user
   end

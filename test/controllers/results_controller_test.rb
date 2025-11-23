@@ -62,7 +62,7 @@ class ResultsControllerTest < ActionDispatch::IntegrationTest
 
   # Authorization tests
   test 'non-owner cannot edit result' do
-    other_user = User.create!(provider: 'google', uid: '77777', email: 'yetanother@example.com')
+    other_user = users(:other_user)
     ResultsController.any_instance.stubs(:current_user).returns(other_user)
 
     get edit_result_url(@result)
@@ -72,7 +72,7 @@ class ResultsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'non-owner cannot update result' do
-    other_user = User.create!(provider: 'google', uid: '77776', email: 'otheragain@example.com')
+    other_user = users(:other_user)
     ResultsController.any_instance.stubs(:current_user).returns(other_user)
 
     patch result_url(@result), params: { result: { name: 'Updated Result' } }
@@ -82,7 +82,7 @@ class ResultsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'non-owner cannot destroy result' do
-    other_user = User.create!(provider: 'google', uid: '77775', email: 'andanother@example.com')
+    other_user = users(:other_user)
     ResultsController.any_instance.stubs(:current_user).returns(other_user)
 
     assert_no_difference('Result.count') do

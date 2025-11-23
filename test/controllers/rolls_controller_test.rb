@@ -63,7 +63,7 @@ class RollsControllerTest < ActionDispatch::IntegrationTest
 
   # Authorization tests
   test 'non-owner cannot edit roll' do
-    other_user = User.create!(provider: 'google', uid: '88888', email: 'another@example.com')
+    other_user = users(:other_user)
     RollsController.any_instance.stubs(:current_user).returns(other_user)
 
     get edit_roll_url(@roll)
@@ -73,7 +73,7 @@ class RollsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'non-owner cannot update roll' do
-    other_user = User.create!(provider: 'google', uid: '88887', email: 'yetanother@example.com')
+    other_user = users(:other_user)
     RollsController.any_instance.stubs(:current_user).returns(other_user)
 
     patch roll_url(@roll), params: { roll: { name: 'Updated Roll' } }
@@ -83,7 +83,7 @@ class RollsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'non-owner cannot destroy roll' do
-    other_user = User.create!(provider: 'google', uid: '88886', email: 'otheragain@example.com')
+    other_user = users(:other_user)
     RollsController.any_instance.stubs(:current_user).returns(other_user)
 
     assert_no_difference('Roll.count') do

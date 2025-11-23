@@ -8,7 +8,7 @@ class RandomizersControllerTest < ActionDispatch::IntegrationTest
     RandomizersController
       .any_instance
       .stubs(:current_user)
-      .returns(User.first)
+      .returns(users(:ted))
   end
 
   test 'should get index' do
@@ -69,7 +69,7 @@ class RandomizersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'non-owner cannot edit randomizer' do
-    other_user = User.create!(provider: 'google', uid: '99999', email: 'other@example.com')
+    other_user = users(:other_user)
     RandomizersController.any_instance.stubs(:current_user).returns(other_user)
 
     get edit_randomizer_url(@randomizer)
@@ -79,7 +79,7 @@ class RandomizersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'non-owner cannot update randomizer' do
-    other_user = User.create!(provider: 'google', uid: '99998', email: 'another@example.com')
+    other_user = users(:other_user)
     RandomizersController.any_instance.stubs(:current_user).returns(other_user)
 
     patch randomizer_url(@randomizer), params: { randomizer: { name: 'Updated Name' } }
@@ -89,7 +89,7 @@ class RandomizersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'non-owner cannot destroy randomizer' do
-    other_user = User.create!(provider: 'google', uid: '99997', email: 'yetanother@example.com')
+    other_user = users(:other_user)
     RandomizersController.any_instance.stubs(:current_user).returns(other_user)
 
     assert_no_difference('Randomizer.count') do

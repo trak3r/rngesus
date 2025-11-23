@@ -6,9 +6,6 @@ class OutcomesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @randomizer = randomizers(:encounter)
     @roll = rolls(:encounter_distance)
-
-    # Ensure the roll has at least one result for testing
-    @roll.results.create!(name: 'Test Result', value: 5) if @roll.results.empty?
   end
 
   test 'should get index' do
@@ -28,7 +25,7 @@ class OutcomesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should handle reroll for roll with no results' do
-    empty_roll = @randomizer.rolls.create!(name: 'Empty Roll', dice: 'D6')
+    empty_roll = rolls(:empty_roll)
 
     post reroll_randomizer_outcome_path(@randomizer, empty_roll), as: :turbo_stream
 
