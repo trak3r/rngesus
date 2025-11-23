@@ -1,3 +1,4 @@
 encounter_distance_close:
   roll: encounter_distance
+  name: Close
   value: 1
