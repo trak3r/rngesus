@@ -8,7 +8,7 @@
                        dice_dice_value: roll.dice,
                        dice_result_value: result.try(:name_with_rolls) || 'No match',
                        dice_rolled_value: rolled,
-                       dice_animate_value: local_assigns[:animate] || false
+                       dice_animate_value: local_assigns.fetch(:animate, true)
                      } do %>
   <%= button_to reroll_randomizer_outcome_path(randomizer, roll),
                 method: :post,

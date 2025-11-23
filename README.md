@@ -1,4 +1,5 @@
 # TODO
+- delete confirmation broken and AI just running in circles so we'll come back to that later
 - animate cool 3d dice roll on screen
     - only showing on the reroll, not the initial roll
     - often have to hard-reload a page to see the dice; seems navigating around causes them to stop working

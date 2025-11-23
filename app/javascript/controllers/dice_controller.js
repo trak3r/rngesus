@@ -61,6 +61,8 @@ export default class extends Controller {
         }
 
         try {
+            // Note: Only 'default' theme is currently available in assets
+            // Additional themes would require downloading theme files to public/assets/dice-box/themes/
             const box = new DiceBox({
                 container: "#dice-box-container",
                 assetPath: "/assets/dice-box/",
@@ -90,18 +92,26 @@ export default class extends Controller {
     }
 
     async roll() {
-        console.log("Rolling dice:", this.diceValue, "Result:", this.rolledValue)
+        console.log("Rolling dice:", this.diceValue, "Target result:", this.rolledValue)
 
         // Normalize dice string (e.g. "D100" -> "d100")
         let diceNotation = this.diceValue.toLowerCase()
+        let originalNotation = diceNotation
 
-        // Handle unsupported D100 by converting to 2d10 (percentile) or just d20 as fallback for now
-        // dice-box 1.1.3 might not support d100 out of the box with default theme
-        if (diceNotation.includes("d100")) {
-            console.warn("D100 not fully supported, using 2d10 as visual proxy")
-            // We can't easily fake 1-100 with 2d10 visually summing to it without complex logic
-            // For now, let's just try to roll it as is, but lowercase might fix the "Invalid notation" error
-            // If it still fails, we might need to swap to d20s
+        // Map unsupported dice types to visual proxies
+        const diceMap = {
+            'd2': '1d6',        // Coin flip -> d6 proxy
+            'd40': '1d4+1d10',  // D40 -> d4 + d10 (creates 2-14 range, but we'll show target result)
+            'd66': '2d6',       // Sequence notation -> 2d6
+        }
+
+        // Check if we need to map this dice type
+        for (const [unsupported, proxy] of Object.entries(diceMap)) {
+            if (diceNotation.includes(unsupported)) {
+                console.log(`Mapping ${unsupported} to ${proxy} for visual display`)
+                diceNotation = proxy
+                break
+            }
         }
 
         // Parse the dice string (e.g. "2d6+2")
@@ -119,32 +129,74 @@ export default class extends Controller {
         const modifier = parseInt(match[3] || "0", 10)
 
         // Reconstruct notation to ensure count is present (e.g. "d12" -> "1d12")
-        // dice-box might require the count explicitly
         const explicitNotation = `${count}d${faces}`
-
-        // alert("Explicit Notation: " + explicitNotation)
 
         let targetSum = parseInt(this.rolledValue, 10)
 
         if (isNaN(targetSum)) {
             // If we can't parse the result, just roll random
-            this.constructor.box.roll(explicitNotation, { newStartPoint: true })
+            console.warn("Cannot parse target result, rolling random")
+            this.constructor.box.roll(explicitNotation)
             return
         }
 
-        // Adjust target sum by removing modifier
+        // Special handling for D2 (coin flip)
+        if (originalNotation.includes('d2')) {
+            // Map result: 1 = heads (show 1-3), 2 = tails (show 4-6)
+            const coinResult = targetSum === 1
+                ? [1, 2, 3][Math.floor(Math.random() * 3)]
+                : [4, 5, 6][Math.floor(Math.random() * 3)]
+            console.log(`D2 result ${targetSum} -> showing d6 value ${coinResult}`)
+            this.constructor.box.roll('1d6', [coinResult])
+            return
+        }
+
+        // Special handling for D100
+        if (faces === 100) {
+            // D100 result IS the final value (1-100)
+            console.log(`D100 showing result: ${targetSum}`)
+            this.constructor.box.roll(explicitNotation, [targetSum])
+            return
+        }
+
+        // Special handling for D40 (using d4+d10 proxy)
+        if (originalNotation.includes('d40')) {
+            // D40 ranges from 1-40
+            // We're showing 1d4+1d10 which gives us visual variety
+            // Actually, let's just distribute it more naturally
+            // Target is 1-40, we want d4 (1-4) + d10 (0-9)*4 to approximate it
+            const d4Result = Math.min(4, Math.max(1, (targetSum % 4) || 4))
+            const d10Result = Math.min(10, Math.max(1, Math.ceil((targetSum - d4Result + 1) / 4)))
+
+            console.log(`D40 result ${targetSum} -> showing d4=${d4Result}, d10=${d10Result}`)
+            this.constructor.box.roll('1d4+1d10', [d4Result, d10Result])
+            return
+        }
+
+        // Special handling for D66 (using 2d6 proxy)
+        if (originalNotation.includes('d66')) {
+            // D66 is sequence notation: result like "12", "34", "65"
+            // Parse as two digits
+            const resultStr = targetSum.toString().padStart(2, '1')
+            const d6_1 = Math.min(6, Math.max(1, parseInt(resultStr[0]) || 1))
+            const d6_2 = Math.min(6, Math.max(1, parseInt(resultStr[1]) || 1))
+            console.log(`D66 result ${targetSum} -> showing 2d6=[${d6_1}, ${d6_2}]`)
+            this.constructor.box.roll('2d6', [d6_1, d6_2])
+            return
+        }
+
+        // Standard dice: adjust target sum by removing modifier
         let sumToFind = targetSum - modifier
+        console.log(`Standard dice ${explicitNotation}: target sum after modifier = ${sumToFind}`)
 
         // Generate individual die values that sum to `sumToFind`
         const results = this.generateDieValues(count, faces, sumToFind)
 
         if (results) {
-            // dice-box expects an array of results matching the dice count
-            // We need to construct the roll notation or object for dice-box
-            // box.roll("2d6", [3, 4])
+            console.log(`Generated die values:`, results, `Sum: ${results.reduce((a, b) => a + b, 0)}`)
             this.constructor.box.roll(explicitNotation, results, { newStartPoint: true })
         } else {
-            console.warn("Could not find matching dice values for", sumToFind)
+            console.warn("Could not find matching dice values for", sumToFind, "- rolling random")
             this.constructor.box.roll(explicitNotation, { newStartPoint: true })
         }
     }

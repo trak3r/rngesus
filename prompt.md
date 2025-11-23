@@ -1,8 +1,2 @@
-we're starting to encounter some weird hard to troubleshoot issues.
-let's take a second to audit the code base so far for:
-- any extraneous code
-- any code that's not being used
-- any code that's not being tested
-- any code that's not being used
-- any potentially overcomplicated code
-- any convoluted code, like deeply nested markup wrappers or partial renders
+- d40 is rolling 2 d20s; it should be a d4 and a d10 
+- the animated dice are not showing the same results as the outcome
