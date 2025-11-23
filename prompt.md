@@ -1,1 +1,1 @@
-please audit the controller, models, and views for test coverage. thanks!
+everywhere a create or update occurs in a test, replace with a fixture unless the actual update or create is being tested
