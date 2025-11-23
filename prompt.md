@@ -35,3 +35,7 @@ http://localhost:3000/randomizers/0dyit/outcomes
 - this page used to have a click to reroll hover notice; add that back
 
 i'm dismayed by how much functionality has been broken by this visual styling change. audit a git diff of this branch and see what functionalty was changed and lost lost and restore it.
+
+http://localhost:3000/randomizers/0dyit/outcomes
+- add a little space between results
+- make the "click to reroll" more subtle

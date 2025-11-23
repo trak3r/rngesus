@@ -42,10 +42,10 @@
                 <td class="py-3 px-4 font-mono text-sm text-gray-600"><%= roll.dice_object.name %></td>
                 <td class="py-3 px-4 text-right">
                   <div class="flex justify-end items-center gap-3">
-                    <%= link_to edit_randomizer_roll_path(@randomizer, roll), class: "text-gray-400 hover:text-black transition-colors p-1" do %>
+                    <%= link_to edit_roll_path(roll), class: "text-gray-400 hover:text-black transition-colors p-1" do %>
                       <%= icon(:edit, class: "w-4 h-4") %>
                     <% end %>
-                    <%= button_to randomizer_roll_path(@randomizer, roll), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "text-gray-400 hover:text-dnd-red transition-colors p-1" do %>
+                    <%= button_to roll_path(roll), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "text-gray-400 hover:text-dnd-red transition-colors p-1" do %>
                       <%= icon(:trash, class: "w-4 h-4") %>
                     <% end %>
                   </div>
