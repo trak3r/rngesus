@@ -1,13 +1,14 @@
   <div class="flex items-center gap-4">
     <% Dice.predefined.each do |dice| %>
-      <label class="cursor-pointer flex flex-col items-center">
+      <label class="cursor-pointer flex flex-col items-center group">
         <%= form.radio_button :dice,
           dice.name,
-          checked: roll.dice == dice.name %>
-        <div class="p-2 rounded-md border-2 border-gray-300 hover:border-blue-500 mt-4">
-          <%= icon dice.icon %>
+          checked: roll.dice == dice.name,
+          class: "peer hidden" %>
+        <div class="p-2 rounded-full border-2 border-gray-400 peer-checked:border-gray-800 peer-checked:bg-gray-100 group-hover:scale-110 transition-transform mt-4">
+          <%= icon dice.icon, class: "w-8 h-8 text-pencil" %>
         </div>
-        <span class="text-sm mt-1"><%= dice.name_alt || dice.name %></span>
+        <span class="text-sm mt-1 font-handwriting text-xl text-pencil"><%= dice.name_alt || dice.name %></span>
       </label>
     <% end %>
   </div>

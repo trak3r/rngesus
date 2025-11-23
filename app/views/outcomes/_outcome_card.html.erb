@@ -12,20 +12,20 @@
                      } do %>
   <%= button_to reroll_randomizer_outcome_path(randomizer, roll),
                 method: :post,
-                class: "card bg-base-100 shadow-lg border border-base-300 p-6 hover:shadow-xl transition-all duration-300 flex flex-col items-center cursor-pointer hover:scale-[1.02] active:scale-[0.98] w-full tooltip",
+                class: "card-index w-full hover:shadow-lg transition-all duration-300 flex flex-col items-center cursor-pointer hover:scale-[1.02] active:scale-[0.98] tooltip",
                 data: { tip: "Click to re-roll" },
                 form: { class: "w-full" } do %>
 
-    <div class="relative group inline-block text-3xl font-bold text-secondary mb-2 text-center">
+    <div class="relative group inline-block text-3xl font-bold font-typewriter mb-2 text-center text-pencil">
       <span class="block group-hover:hidden" data-slot-machine-target="result">
         <%= result.try(:name_with_rolls) || 'No match' %>
       </span>
-      <span class="hidden group-hover:block text-secondary/70">
+      <span class="hidden group-hover:block text-pencil/70">
         <%= result.try(:name) || 'No match' %>
       </span>
     </div>
 
-    <div class="text-base-content/60 text-sm font-thin">
+    <div class="text-pencil/60 text-sm font-handwriting text-xl">
       <%= roll.name %>
       &middot;
       <%= roll.dice_object.name %>

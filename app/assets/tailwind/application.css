@@ -1,10 +1,38 @@
 @import "tailwindcss";
 
+@theme {
+  --font-handwriting: "Patrick Hand", cursive;
+  --font-typewriter: "Special Elite", monospace;
+
+  --color-pencil: #2d2d2d;
+  --color-paper: #fdfbf7;
+  --color-highlighter-yellow: #ffff00;
+  --color-highlighter-pink: #ff69b4;
+}
+
+@utility bg-notebook {
+  background-image: url("notebook_paper.png");
+  background-repeat: repeat;
+}
+
+@utility card-index {
+  @apply bg-white border border-gray-200 shadow-md p-6 relative;
+  /* Simple index card look */
+}
+
+@utility input-handwritten {
+  @apply bg-transparent border-b-2 border-gray-400 focus:border-gray-800 focus:outline-none px-2 py-1 font-handwriting text-xl;
+}
+
+@utility btn-doodle {
+  @apply bg-white border-2 border-gray-800 rounded-lg px-4 py-2 font-handwriting text-xl hover:bg-gray-100 hover:-rotate-1 transition-transform shadow-[2px_2px_0px_0px_rgba(0, 0, 0, 1)];
+}
+
 @source not "./daisyui{,*}.mjs";
 
 @plugin "./daisyui.mjs";
 
 /* Optional for custom themes – Docs: https://daisyui.com/docs/themes/#how-to-add-a-new-custom-theme */
-@plugin "./daisyui-theme.mjs"{
+@plugin "./daisyui-theme.mjs" {
   /* custom theme here */
 }
