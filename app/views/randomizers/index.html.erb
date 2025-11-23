@@ -39,7 +39,7 @@
           <%= f.hidden_field :tab, value: @tab %>
           <%= f.text_field :query, 
               placeholder: "Search randomizers...", 
-              class: "input input-bordered w-full sm:w-64",
+              class: "input-handwritten w-full sm:w-64",
               value: params[:query],
               data: { action: "input->search#submit", search_target: "input" } %>
         <% end %>
@@ -54,16 +54,14 @@
       <% end %>
 
       <!-- New Randomizer Card (appears on all tabs) -->
-      <div class="card bg-base-100 w-96 shadow-sm flex flex-col group
-                   p-4 min-h-[180px]
-                  bg-gradient-to-b from-base-100 to-base-200">
+      <div class="card-index w-96 flex flex-col group p-4 min-h-[180px] transition-transform hover:-rotate-1">
         <%= link_to new_randomizer_path,
                     class: "flex-1 flex flex-col no-underline text-inherit",
                     data: { turbo_frame: "_top" } do %>
 
-          <h2 class="card-title text-xl font-bold mb-2">New Randomizer</h2>
+          <h2 class="card-title text-xl font-bold mb-2 font-typewriter border-b border-red-300 pb-1">New Randomizer</h2>
 
-          <p class="flex-1 text-base-content/70">
+          <p class="flex-1 text-base-content/70 font-handwriting text-lg">
             Create your own!
           </p>
 
@@ -73,17 +71,15 @@
       <!-- Randomizer Cards -->
       <% @randomizers.each do |randomizer| %>
 
-      <div class="card w-96 shadow-sm flex flex-col group p-4 min-h-[180px] relative
-                  bg-gradient-to-br from-primary/5 to-primary/10
-                  hover:from-primary/10 hover:to-primary/20 transition-all duration-200">
+      <div class="card-index w-96 flex flex-col group p-4 min-h-[180px] transition-transform hover:-rotate-1">
         
         <!-- Like Button (Top Right) -->
         <div class="absolute top-4 right-4 z-10" id="<%= dom_id(randomizer, :like_button) %>">
           <%= button_to toggle_like_randomizer_path(randomizer),
                 method: :post,
                 data: { turbo_stream: true },
-                class: "text-primary hover:text-secondary transition flex items-center gap-1 bg-base-100/50 px-2 py-1 rounded-full hover:bg-base-100 shadow-sm" do %>
-            <span class="text-sm font-bold"><%= randomizer.cached_votes_total %></span>
+                class: "text-pencil hover:text-red-600 transition flex items-center gap-1 px-2 py-1" do %>
+            <span class="text-sm font-bold font-typewriter"><%= randomizer.cached_votes_total %></span>
             <% icon_variant = current_user&.voted_for?(randomizer) ? :filled : :outline %>
             <%= icon 'thumb-up', variant: icon_variant, class: "w-4 h-4" %>
           <% end %>
@@ -93,34 +89,34 @@
                     class: "flex-1 flex flex-col no-underline text-inherit pt-1",
                     data: { turbo_frame: "_top" } do %>
 
-          <h2 class="card-title text-xl font-bold mb-3 pr-16">
+          <h2 class="card-title text-xl font-bold mb-3 pr-16 font-typewriter border-b border-red-300 pb-1">
             <%= randomizer.name %>
           </h2>
 
-          <div class="flex-1 text-base-content/70 flex flex-col gap-1">
+          <div class="flex-1 text-pencil/80 flex flex-col gap-1 font-handwriting text-lg">
             <% randomizer.rolls.each do |roll| %>
               <div class="leading-tight flex items-center gap-2">
                 <span class="font-medium"><%= roll.name || 'Missing' %></span>
-                <span class="text-sm text-base-content/60"><%= roll.dice %></span>
+                <span class="text-sm text-pencil/60"><%= roll.dice %></span>
               </div>
             <% end %>
           </div>
 
         <% end %>
 
-        <div class="card-actions justify-between items-end mt-4 flex flex-row border-t border-base-content/5 pt-3">
+        <div class="card-actions justify-between items-end mt-4 flex flex-row border-t border-blue-200 pt-3">
           <!-- Owner Avatar and Edit Button (Bottom Left) -->
           <div class="flex items-center gap-2">
             <% if randomizer.user&.email.present? %>
               <%= image_tag gravatar_url(randomizer.user, size: 32),
                             alt: "#{randomizer.user.display_name}'s avatar",
                             title: "Created by #{randomizer.user.display_name}",
-                            class: "w-8 h-8 rounded-full border border-base-content/20" %>
+                            class: "w-8 h-8 rounded-full border border-gray-400 grayscale hover:grayscale-0 transition-all" %>
             <% end %>
             
             <% if current_user == randomizer.user %>
               <%= link_to randomizer,
-                          class: "text-base-content/50 hover:text-base-content p-1 rounded flex items-center gap-1 transition-colors",
+                          class: "text-pencil/50 hover:text-pencil p-1 rounded flex items-center gap-1 transition-colors",
                           title: "Edit",
                           data: { turbo_frame: "_top" } do %>
                 <%= icon(:edit, class: "w-4 h-4") %>
@@ -133,13 +129,12 @@
             
             <!-- Copied Notification (Left of button) -->
             <div data-clipboard-target="notification"
-                 class="absolute right-full top-1/2 -translate-y-1/2 mr-3 bg-neutral text-neutral-content px-2 py-1 rounded text-xs whitespace-nowrap opacity-0 hidden pointer-events-none transition-all duration-200 z-20 shadow-md">
+                 class="absolute right-full top-1/2 -translate-y-1/2 mr-3 bg-black text-white px-2 py-1 rounded text-xs whitespace-nowrap opacity-0 hidden pointer-events-none transition-all duration-200 z-20 font-typewriter">
               Copied!
-              <div class="absolute top-1/2 -right-1 -translate-y-1/2 border-4 border-transparent border-l-neutral"></div>
             </div>
 
             <button data-action="click->clipboard#copy"
-                    class="text-primary hover:text-secondary transition flex items-center gap-1 p-2 hover:bg-primary/10 rounded-full"
+                    class="text-pencil hover:text-blue-600 transition flex items-center gap-1 p-2"
                     title="Copy link to clipboard">
               <%= icon 'share', variant: :outline, class: "w-5 h-5" %>
             </button>

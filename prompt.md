@@ -1,1 +1,0 @@
-let's allow uploading multiple screenshots at once for roll results http://localhost:3000/rolls/35/results_imgs/new

@@ -1,14 +1,14 @@
 <% content_for :title, @randomizer.name %>
 
-<div id="<%= dom_id @randomizer %>" class="w-full my-5 p-6 bg-base-200 rounded-xl shadow-md flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
-  <div class="flex items-center text-2xl sm:text-3xl font-bold text-primary gap-2">
+<div id="<%= dom_id @randomizer %>" class="card-index w-full my-5 flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
+  <div class="flex items-center text-2xl sm:text-3xl font-bold font-typewriter gap-2">
     <%= link_to randomizers_path do %>
-      <%= icon('caret-left', class: "w-6 h-6 text-gray-500") %>
+      <%= icon('caret-left', class: "w-6 h-6 text-pencil") %>
     <% end %>
     <%= @randomizer.name %>
     <% if current_user == @randomizer.user %>
       <%= link_to edit_randomizer_path(@randomizer),
-                  class: "text-base-content/50 hover:text-base-content p-2 rounded " do %>
+                  class: "text-pencil/50 hover:text-pencil p-2 rounded " do %>
         <%= icon(:edit, class: "w-5 h-5") %>
       <% end %>
     <% end %>

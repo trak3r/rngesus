@@ -24,9 +24,9 @@
     <%= form.label :name, class: "label" %>
     <%= form.text_field :name,
                     class: [
-                      "input input-bordered w-full",
+                      "input-handwritten w-full",
                       {
-                        "input-error": roll.errors[:name].any?,
+                        "border-red-500": roll.errors[:name].any?,
                       },
                     ] %>
   </div>
@@ -36,6 +36,6 @@
   </div>
 
   <div class="inline">
-    <%= form.submit "Submit", class: "btn btn-primary" %>
+    <%= form.submit "Submit", class: "btn-doodle cursor-pointer" %>
   </div>
 <% end %>

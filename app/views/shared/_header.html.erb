@@ -1,9 +1,9 @@
-<header class="bg-base-100 shadow-md py-4 px-6 flex justify-between items-center">
+<header class="border-b border-gray-300 bg-white/80 backdrop-blur-sm py-4 px-6 flex justify-between items-center sticky top-0 z-50">
 
-<h1 class="text-2xl font-bold">
+<h1 class="text-2xl font-bold font-typewriter">
   <%= link_to root_path,
-      class: "flex items-center space-x-2 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent hover:opacity-90 transition" do %>
-    <%= icon('directions', class: "w-6 h-6 text-primary") %>
+      class: "flex items-center space-x-2 text-pencil hover:opacity-70 transition" do %>
+    <%= icon('directions', class: "w-6 h-6 text-pencil") %>
     <span>RNGesus</span>
   <% end %>
 </h1>
@@ -14,7 +14,7 @@
       <div tabindex="0" role="button" class="btn btn-ghost flex items-center gap-2">
         <%= image_tag gravatar_url(current_user, size: 40),
                       alt: "#{current_user.display_name}'s avatar",
-                      class: "w-10 h-10 rounded-full border-2 border-primary" %>
+                      class: "w-10 h-10 rounded-full border-2 border-gray-400 grayscale hover:grayscale-0 transition-all" %>
         <span class="text-sm font-medium"><%= current_user.display_name %></span>
         <%= icon('chevron-down', class: "w-4 h-4") %>
       </div>

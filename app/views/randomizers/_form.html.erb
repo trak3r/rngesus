@@ -17,14 +17,14 @@
     <%= form.label :name, class: "label" %>
     <%= form.text_field :name,
                     class: [
-                      "input input-bordered w-full",
+                      "input-handwritten w-full",
                       {
-                        "input-error": randomizer.errors[:name].any?,
+                        "border-red-500": randomizer.errors[:name].any?,
                       },
                     ] %>
   </div>
 
   <div class="inline">
-    <%= form.submit "Submit", class: "btn btn-primary" %>
+    <%= form.submit "Submit", class: "btn-doodle cursor-pointer" %>
   </div>
 <% end %>
