@@ -1,9 +1,7 @@
-http://localhost:3000/randomizers/EgAnv
-- remove the back triangle from the header
-
-http://localhost:3000/rolls/25
-- remove the back triangle from the header
-- clicking the resuls should go the edit result, and remove the edit icon
+http://localhost:3000/
+- if you can generate artwork, make some old school D&D-style black and white ink art of monsters, dungeons, mages and warriors, etc. the same dimensions as the cards and randomly pepper one in the list of randomizers each page reload
+- the artwork is always showing as the first card. it should randomly appear as first to fifth
+- the artwork is too tall. make it the same height as the cards
 
 ---
 
