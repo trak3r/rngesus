@@ -17,10 +17,6 @@
 
   <% if current_user == roll.randomizer.user %>
     <div class="flex flex-row space-x-2 w-auto opacity-0 group-hover:opacity-100 transition-opacity">
-      <%= link_to edit_roll_path(roll), class: "text-pencil/50 hover:text-pencil p-2 rounded" do %>
-        <%= icon(:edit, class: "w-5 h-5") %>
-      <% end %>
-
       <%= button_to roll_path(roll), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "text-red-500/50 hover:text-red-600 p-2 rounded" do %>
         <%= icon(:trash, class: "w-5 h-5") %>
       <% end %>

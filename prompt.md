@@ -1,23 +1,8 @@
-# rubocop
+http://localhost:3000/randomizers/EgAnv
+- should not have an edit icon for the roll; the roll show page has an edit button
 
-Offenses:
-
-test/system/randomizers_index_test.rb:13:121: C: Layout/LineLength: Line is too long. [158/120]
-    long_name = 'This is a very long randomizer name that should definitely be truncated because it is way too long to fit on a single line or even two lines'
-                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-# tests
-
-Failure:
-RandomizersSearchTest#test_shows_no_results_message_when_no_matches_found [test/integration/randomizers_search_test.rb:51]:
---- expected
-+++ actual
-@@ -1 +1 @@
--/No randomizers found matching "nonexistent"/
-+"RNGesus Log In Newest Most Liked Your Likes Your Randomizers All Tags TagOne TagTwo New Randomizer Create your own! No randomizers found... matching \"nonexistent\" © 2025 · Thomas E. Davis"
-.
-Expected 0 to be >= 1.
-
-bin/rails test test/integration/randomizers_search_test.rb:47
+http://localhost:3000/rolls/25
+- show the randomizer name in the header before the roll name like a breadcrumb
 
 ---
 

@@ -5,6 +5,8 @@
     <%= link_to @roll.randomizer do %>
       <%= icon('caret-left', class: "w-6 h-6 text-pencil") %>
     <% end %>
+    <%= link_to @roll.randomizer.name, @roll.randomizer, class: "text-pencil/60 hover:text-pencil transition-colors" %>
+    <span class="text-pencil/40">></span>
     <%= @roll.name %>
     <% if current_user == @roll.randomizer.user %>
       <%= link_to edit_roll_path(@roll),
