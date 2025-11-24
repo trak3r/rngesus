@@ -61,6 +61,14 @@ class RandomizersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to randomizers_url
   end
 
+  test 'should destroy randomizer and redirect to specific tab' do
+    assert_difference('Randomizer.count', -1) do
+      delete randomizer_url(@randomizer), params: { tab: 'your_randomizers' }
+    end
+
+    assert_redirected_to randomizers_url(tab: 'your_randomizers')
+  end
+
   # Authorization tests
   test 'owner can edit their randomizer' do
     get edit_randomizer_url(@randomizer)

@@ -82,7 +82,7 @@ class RandomizersController < ApplicationController
   # DELETE /randomizers/1
   def destroy
     @randomizer.destroy!
-    redirect_to randomizers_path,
+    redirect_to randomizers_path(tab: params[:tab]),
                 notice: t('.success'),
                 status: :see_other
   end
