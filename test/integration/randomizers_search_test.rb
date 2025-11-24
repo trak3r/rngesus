@@ -48,7 +48,8 @@ class RandomizersSearchTest < ActionDispatch::IntegrationTest
     get randomizers_path(query: 'nonexistent')
 
     assert_response :success
-    assert_select 'body', text: /No randomizers found matching "nonexistent"/
+    assert_select 'body', text: /No randomizers found\.\.\./
+    assert_select 'body', text: /matching "nonexistent"/
     assert_select 'body', text: /Dice Roller/, count: 0
     assert_select 'body', text: /Card Deck/, count: 0
     assert_select 'body', text: /Coin Flip/, count: 0

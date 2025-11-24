@@ -10,7 +10,8 @@ class RandomizersIndexTest < ApplicationSystemTestCase
 
   test 'randomizer name is truncated' do
     # Create a randomizer with a long name
-    long_name = 'This is a very long randomizer name that should definitely be truncated because it is way too long to fit on a single line or even two lines'
+    long_name = 'This is a very long randomizer name that should definitely be truncated ' \
+                'because it is way too long to fit on a single line or even two lines'
     Randomizer.create!(name: long_name, user: @user)
 
     visit randomizers_path
