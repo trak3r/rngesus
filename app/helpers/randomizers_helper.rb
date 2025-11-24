@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RandomizersHelper
-  DND_ARTWORKS = %w[dragon wizard dungeon warrior].freeze
+  DND_ARTWORKS = %w[dragon wizard dungeon].freeze
 
   def random_dnd_artwork
     DND_ARTWORKS.sample
