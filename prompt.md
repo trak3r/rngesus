@@ -4,6 +4,7 @@ http://localhost:3000/
 - the artwork is too tall. make it the same height as the cards
 - you're cropping the artwork to the shape of the card but it's not looking good because the images are tall. please generate images that are the same dimensions as the cards (wide and short)
 - the dungeon image is perfect. make the others like it
+- the new images look good but they are displaying tiny in the cards. zoom them in to fill the card
 
 ---
 

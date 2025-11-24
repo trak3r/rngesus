@@ -101,7 +101,7 @@
           <div class="card-index flex flex-col items-center justify-center p-4 min-h-[220px] max-h-[220px] overflow-hidden transition-transform hover:rotate-1 grayscale hover:grayscale-0 transition-all duration-300">
             <%= image_tag "dnd_artwork/#{artwork}.png", 
                           alt: "D&D #{artwork.titleize}", 
-                          class: "w-full h-full object-contain" %>
+                          class: "w-full h-full object-cover" %>
           </div>
         <% end %>
         <div id="<%= dom_id(randomizer) %>" class="card-index flex flex-col group p-4 min-h-[220px] transition-transform hover:-rotate-1 relative">
