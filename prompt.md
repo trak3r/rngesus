@@ -1,4 +1,5 @@
-everywhere a create or update occurs in a test, replace with a fixture unless the actual update or create is being tested
+- the tag pills on the randomizers index page should not be translucent 
+- when a tag is selected it should not be blue since the rest of the site is black and white
 
 ---
 

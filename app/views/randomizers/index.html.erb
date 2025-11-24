@@ -50,12 +50,12 @@
     <% if Tag.exists? %>
       <div class="flex flex-wrap gap-2 mb-4">
         <%= link_to "All Tags", randomizers_path(tab: @tab, query: params[:query]),
-            class: "badge #{@tag.nil? ? 'badge-primary' : 'badge-outline'} font-handwriting text-base hover:badge-primary transition-colors",
+            class: "badge #{@tag.nil? ? 'bg-black text-white border-black' : 'bg-white text-black border-black'} font-handwriting text-base hover:bg-black hover:text-white transition-colors",
             data: { turbo_frame: "randomizers", turbo_action: "advance" } %>
         <% Tag.order(:name).each do |tag| %>
           <%= link_to tag.name,
               randomizers_path(tab: @tab, query: params[:query], tag: tag.name),
-              class: "badge #{@tag == tag.name ? 'badge-primary' : 'badge-outline'} font-handwriting text-base hover:badge-primary transition-colors",
+              class: "badge #{@tag == tag.name ? 'bg-black text-white border-black' : 'bg-white text-black border-black'} font-handwriting text-base hover:bg-black hover:text-white transition-colors",
               data: { turbo_frame: "randomizers", turbo_action: "advance" } %>
         <% end %>
       </div>

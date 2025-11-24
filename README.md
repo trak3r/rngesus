@@ -1,7 +1,6 @@
 # TODO
 - imagery; would be cool if pages looked like old D&D manuals with black & white ink art filling dead space on the page
     - the AI got way off the rails with this one and somehow managed to break a lot of functionality with just "style" changes so the branch was abandoned; we'll have to revisit this later
-- delete confirmation broken and AI just running in circles so we'll come back to that later
 - animate cool 3d dice roll on screen
     - only showing on the reroll, not the initial roll (not working consistently)
     - often have to hard-reload a page to see the dice; seems navigating around causes them to stop working
@@ -96,3 +95,4 @@
 - profanity / vulgarity detector
 - upload multiple screenshots at once; the carousing benefits is 4 pages
 - tagging / categories, searchable and browsable
+- delete confirmation broken and AI just running in circles so we'll come back to that later (somehow magically working now)
