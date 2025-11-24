@@ -26,6 +26,8 @@
 # Hosting
 - free hosting?
     - database backups
+- kamal deploy?
+    - remember to put data on external volume so ya don't lose it
 - set up email exceptions so i'm notified of bugs i don't see myself
 - SEO
 - google analytics
