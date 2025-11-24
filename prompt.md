@@ -1,5 +1,4 @@
-- the tag pills on the randomizers index page should not be translucent 
-- when a tag is selected it should not be blue since the rest of the site is black and white
+- the "No randomizers found" message should be in the same style as the card layout, perhaps to the right of the "new randomizer" card. impress me.
 
 ---
 
