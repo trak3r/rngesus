@@ -64,7 +64,7 @@
     <div class="grid grid-cols-[repeat(auto-fill,minmax(24rem,1fr))] gap-4">
 
       <!-- New Randomizer Card (appears on all tabs) -->
-      <div class="card-index flex flex-col group p-4 min-h-[180px] transition-transform hover:-rotate-1">
+      <div class="card-index flex flex-col group p-4 min-h-[220px] transition-transform hover:-rotate-1">
         <%= link_to new_randomizer_path,
                     class: "flex-1 flex flex-col no-underline text-inherit",
                     data: { turbo_frame: "_top" } do %>
@@ -79,7 +79,7 @@
       </div>
 
       <% if @randomizers.empty? %>
-        <div class="card-index flex flex-col items-center justify-center p-8 min-h-[180px] border-4 border-dashed border-base-content/20 rounded-box text-base-content/40 rotate-1 select-none grayscale">
+        <div class="card-index flex flex-col items-center justify-center p-8 min-h-[220px] border-4 border-dashed border-base-content/20 rounded-box text-base-content/40 rotate-1 select-none grayscale">
           <%= icon 'mood-sad', variant: :outline, class: "w-16 h-16 mb-2 stroke-1 opacity-50" %>
           <p class="font-handwriting text-2xl text-center">
             No randomizers found...
@@ -94,7 +94,7 @@
 
       <!-- Existing Randomizer Cards -->
       <% @randomizers.each do |randomizer| %>
-        <div id="<%= dom_id(randomizer) %>" class="card-index flex flex-col group p-4 min-h-[180px] transition-transform hover:-rotate-1 relative">
+        <div id="<%= dom_id(randomizer) %>" class="card-index flex flex-col group p-4 min-h-[220px] transition-transform hover:-rotate-1 relative">
         
         <!-- Tag Badge (Push Pin Style) -->
         <% if randomizer.primary_tag %>
@@ -121,18 +121,18 @@
                     class: "flex-1 flex flex-col no-underline text-inherit pt-1",
                     data: { turbo_frame: "_top" } do %>
 
-          <h2 class="card-title text-xl font-bold mb-3 pr-16 font-typewriter border-b border-red-300 pb-1 line-clamp-2">
+          <h2 class="card-title text-xl font-bold mb-3 pr-16 font-typewriter border-b border-red-300 pb-1 line-clamp-1">
             <%= randomizer.name %>
           </h2>
 
           <div class="flex-1 text-pencil/80 flex flex-col gap-1 font-handwriting text-lg">
-            <% randomizer.rolls.first(3).each do |roll| %>
+            <% randomizer.rolls.first(2).each do |roll| %>
               <div class="leading-tight flex items-center gap-2">
                 <span class="font-medium"><%= roll.name || 'Missing' %></span>
                 <span class="text-sm text-pencil/60"><%= roll.dice %></span>
               </div>
             <% end %>
-            <% if randomizer.rolls.count > 3 %>
+            <% if randomizer.rolls.count > 2 %>
               <div class="text-sm text-pencil/60 italic mt-1">...and more</div>
             <% end %>
           </div>

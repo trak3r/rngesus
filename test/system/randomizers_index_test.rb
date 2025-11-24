@@ -14,10 +14,10 @@ class RandomizersIndexTest < ApplicationSystemTestCase
     visit randomizers_path
     
     # Check for the presence of the line-clamp class
-    assert_selector "h2.line-clamp-2", text: long_name
+    assert_selector "h2.line-clamp-1", text: long_name
   end
 
-  test "rolls are limited to 3 and show more indicator" do
+  test "rolls are limited to 2 and show more indicator" do
     # Create a randomizer with many rolls
     randomizer = Randomizer.create!(name: "Many Rolls", user: @user)
     5.times { |i| randomizer.rolls.create!(name: "Roll #{i}", dice: "1d6") }
@@ -27,8 +27,7 @@ class RandomizersIndexTest < ApplicationSystemTestCase
     within "#randomizer_#{randomizer.id}" do
       assert_text "Roll 0"
       assert_text "Roll 1"
-      assert_text "Roll 2"
-      assert_no_text "Roll 3"
+      assert_no_text "Roll 2"
       assert_text "...and more"
     end
   end
