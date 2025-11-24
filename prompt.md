@@ -1,7 +1,5 @@
-- the cards on the randomizer index page have inconsitent heights when the name spans multiple lines or there are many rolls
-- can we truncate the name to 2 lines and add an ellipsis if it goes beyond that?
-- can we show just the first 3 rolls then add a "...and more" note if there are more than 3 rolls?
-- and adjust the height of the cards to be consistent
+http://localhost:3000/randomizers/0dyit/outcomes
+- as the slot machine spinner animates between results that span one or two lines the card jerks up and down. fix this.
 
 ---
 
