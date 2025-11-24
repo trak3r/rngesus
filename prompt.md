@@ -1,8 +1,9 @@
 http://localhost:3000/randomizers/EgAnv
-- should not have an edit icon for the roll; the roll show page has an edit button
+- remove the back triangle from the header
 
 http://localhost:3000/rolls/25
-- show the randomizer name in the header before the roll name like a breadcrumb
+- remove the back triangle from the header
+- clicking the resuls should go the edit result, and remove the edit icon
 
 ---
 

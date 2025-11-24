@@ -5,23 +5,29 @@
 <li class="flex items-center space-x-4 py-3 px-3
            border-b border-blue-200
            hover:bg-yellow-50/50 transition-colors group">
-  <div class="w-18 text-4xl font-handwriting opacity-50 tabular-nums text-right text-pencil group-hover:opacity-80 transition-opacity">
-    <%= result.value %>
-  </div>
-
-  <div class="flex-1 flex items-center">
-    <div class="text-xl font-handwriting text-pencil group-hover:text-blue-600 transition-colors"><%= result.name %></div>
-  </div>
-
   <% if current_user == result.roll.randomizer.user %>
-    <div class="flex flex-row space-x-2 w-auto opacity-0 group-hover:opacity-100 transition-opacity">
-      <%= link_to edit_result_path(result), class: "text-pencil/50 hover:text-pencil p-2 rounded" do %>
-        <%= icon(:edit, class: "w-5 h-5") %>
-      <% end %>
+    <%= link_to edit_result_path(result), class: "flex-1 flex items-center space-x-4 text-inherit no-underline" do %>
+      <div class="w-18 text-4xl font-handwriting opacity-50 tabular-nums text-right text-pencil group-hover:opacity-80 transition-opacity">
+        <%= result.value %>
+      </div>
 
+      <div class="flex-1 flex items-center">
+        <div class="text-xl font-handwriting text-pencil group-hover:text-blue-600 transition-colors"><%= result.name %></div>
+      </div>
+    <% end %>
+
+    <div class="flex flex-row space-x-2 w-auto opacity-0 group-hover:opacity-100 transition-opacity">
       <%= button_to result_path(result), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "text-red-500/50 hover:text-red-600 p-2 rounded" do %>
         <%= icon(:trash, class: "w-5 h-5") %>
       <% end %>
+    </div>
+  <% else %>
+    <div class="w-18 text-4xl font-handwriting opacity-50 tabular-nums text-right text-pencil group-hover:opacity-80 transition-opacity">
+      <%= result.value %>
+    </div>
+
+    <div class="flex-1 flex items-center">
+      <div class="text-xl font-handwriting text-pencil group-hover:text-blue-600 transition-colors"><%= result.name %></div>
     </div>
   <% end %>
 </li>
