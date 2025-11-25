@@ -1,5 +1,4 @@
 # TODO
-- pivot tagging from brands to generic; don't want to deal with potential headache of takedowns and C&D
 - imagery; would be cool if pages looked like old D&D manuals with black & white ink art filling dead space on the page
     - the AI got way off the rails with this one and somehow managed to break a lot of functionality with just "style" changes so the branch was abandoned; we'll have to revisit this later
     - got a couple good images for the cards page but apparently the art generation tokens burn up real quick so we'll have to do these in small infrequent batches
@@ -101,3 +100,4 @@
 - upload multiple screenshots at once; the carousing benefits is 4 pages
 - tagging / categories, searchable and browsable
 - delete confirmation broken and AI just running in circles so we'll come back to that later (somehow magically working now)
+- pivot tagging from brands to generic; don't want to deal with potential headache of takedowns and C&D

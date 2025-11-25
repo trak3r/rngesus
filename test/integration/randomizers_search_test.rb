@@ -11,8 +11,8 @@ class RandomizersSearchTest < ActionDispatch::IntegrationTest
   end
 
   test 'searching for randomizers filters the list' do
-    # All randomizers should be visible initially
-    get randomizers_path
+    # All randomizers should be visible initially (using newest tab since most_liked filters out 0-like items)
+    get randomizers_path(tab: 'newest')
 
     assert_response :success
     assert_select 'body', text: /Dice Roller/
@@ -20,7 +20,7 @@ class RandomizersSearchTest < ActionDispatch::IntegrationTest
     assert_select 'body', text: /Coin Flip/
 
     # Search for "dice"
-    get randomizers_path(query: 'dice')
+    get randomizers_path(tab: 'newest', query: 'dice')
 
     assert_response :success
     assert_select 'body', text: /Dice Roller/
@@ -28,7 +28,7 @@ class RandomizersSearchTest < ActionDispatch::IntegrationTest
     assert_select 'body', text: /Coin Flip/, count: 0
 
     # Search for "card"
-    get randomizers_path(query: 'card')
+    get randomizers_path(tab: 'newest', query: 'card')
 
     assert_response :success
     assert_select 'body', text: /Dice Roller/, count: 0
@@ -36,7 +36,7 @@ class RandomizersSearchTest < ActionDispatch::IntegrationTest
     assert_select 'body', text: /Coin Flip/, count: 0
 
     # Empty search returns all
-    get randomizers_path(query: '')
+    get randomizers_path(tab: 'newest', query: '')
 
     assert_response :success
     assert_select 'body', text: /Dice Roller/
@@ -45,7 +45,7 @@ class RandomizersSearchTest < ActionDispatch::IntegrationTest
   end
 
   test 'shows no results message when no matches found' do
-    get randomizers_path(query: 'nonexistent')
+    get randomizers_path(tab: 'newest', query: 'nonexistent')
 
     assert_response :success
     assert_select 'body', text: /No randomizers found\.\.\./

@@ -1,5 +1,5 @@
-replace the placeholder icon next to the app name in the header with the favicon
-
+- is it more proper and standard to say "your likes" or "my likes" or somethingn else altogether?
+- defaulting to "newest" doesn't show our best face; i think "most liked" should be the default
 
 ---
 

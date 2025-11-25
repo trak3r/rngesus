@@ -22,7 +22,7 @@ class RandomizersController < ApplicationController
 
   # GET /randomizers
   def index
-    @tab = params[:tab] || 'newest'
+    @tab = params[:tab] || 'most_liked'
     @tag = params[:tag]
 
     # Redirect to login for user-specific tabs if not authenticated
@@ -39,7 +39,7 @@ class RandomizersController < ApplicationController
                    when 'your_randomizers'
                      current_user.randomizers.search(params[:query]).tagged_with(@tag).newest
                    else # rubocop:disable Lint/DuplicateBranch
-                     Randomizer.search(params[:query]).tagged_with(@tag).newest
+                     Randomizer.search(params[:query]).tagged_with(@tag).where('cached_votes_total > 0').most_liked
                    end
   end
 
