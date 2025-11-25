@@ -106,4 +106,45 @@ class RandomizersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to randomizers_path
     assert_equal "You don't have permission to do that.", flash[:alert]
   end
+
+  test 'should create randomizer with multiple tags' do
+    assert_difference('Randomizer.count') do
+      post randomizers_url, params: { randomizer: {
+        name: 'Multi-Tag Randomizer',
+        tag_ids: [tags(:forest).id, tags(:dungeon).id]
+      } }
+    end
+
+    randomizer = Randomizer.last
+
+    assert_equal 2, randomizer.tags.count
+    assert_includes randomizer.tags, tags(:forest)
+    assert_includes randomizer.tags, tags(:dungeon)
+    assert_redirected_to randomizer_url(randomizer)
+  end
+
+  test 'should create randomizer with 3 tags (maximum)' do
+    assert_difference('Randomizer.count') do
+      post randomizers_url, params: { randomizer: {
+        name: 'Three Tag Randomizer',
+        tag_ids: [tags(:forest).id, tags(:dungeon).id, tags(:monster).id]
+      } }
+    end
+
+    randomizer = Randomizer.last
+
+    assert_equal 3, randomizer.tags.count
+    assert_redirected_to randomizer_url(randomizer)
+  end
+
+  test 'should not create randomizer with more than 3 tags' do
+    assert_no_difference('Randomizer.count') do
+      post randomizers_url, params: { randomizer: {
+        name: 'Too Many Tags',
+        tag_ids: [tags(:forest).id, tags(:dungeon).id, tags(:monster).id, tags(:magic).id]
+      } }
+    end
+
+    assert_response :unprocessable_content
+  end
 end

@@ -1,0 +1,28 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# encounter has 1 tag
+encounter_forest:
+  randomizer: encounter
+  tag: forest
+
+# treasure_hunt has 3 tags (max allowed)
+treasure_hunt_treasure:
+  randomizer: treasure_hunt
+  tag: treasure
+
+treasure_hunt_dungeon:
+  randomizer: treasure_hunt
+  tag: dungeon
+
+treasure_hunt_magic:
+  randomizer: treasure_hunt
+  tag: magic
+
+# dungeon_crawler has 2 tags
+dungeon_crawler_dungeon:
+  randomizer: dungeon_crawler
+  tag: dungeon
+
+dungeon_crawler_monster:
+  randomizer: dungeon_crawler
+  tag: monster

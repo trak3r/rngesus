@@ -2,11 +2,11 @@
 
 module RandomizersHelper
   DND_ARTWORKS = %w[
-  dragon 
-  wizard 
-  battle 
-  moon_bats 
-  crude_map
+    dragon
+    wizard
+    battle
+    moon_bats
+    crude_map
   ].freeze
 
   def random_card_artwork

@@ -8,7 +8,7 @@ class Randomizer < ApplicationRecord
   belongs_to :user
   has_many :rolls, dependent: :destroy
   has_many :randomizer_tags, dependent: :destroy
-  has_many :tags, through: :randomizer_tags
+  has_many :tags, -> { order(:name) }, through: :randomizer_tags
 
   # Make slug immutable after creation
   attr_immutable :slug
@@ -17,6 +17,7 @@ class Randomizer < ApplicationRecord
 
   validates :name, presence: true, profanity: true
   validates :slug, presence: true, uniqueness: true, format: { with: /\A[a-zA-Z0-9]{5}\z/ }
+  validate :maximum_tags_limit
 
   scope :search, ->(query) { where('randomizers.name LIKE ?', "%#{query}%") if query.present? }
   scope :newest, -> { order(created_at: :desc) }
@@ -35,6 +36,12 @@ class Randomizer < ApplicationRecord
   end
 
   private
+
+  def maximum_tags_limit
+    return unless tags.size > 3
+
+    errors.add(:tags, 'cannot exceed 3 tags per randomizer')
+  end
 
   def generate_slug_if_blank
     return if slug.present?

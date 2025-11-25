@@ -3,9 +3,9 @@
 <div id="<%= dom_id @randomizer %>" class="card-index w-full my-5 flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
   <div class="flex items-center text-2xl sm:text-3xl font-bold font-typewriter gap-2">
     <%= @randomizer.name %>
-    <% if @randomizer.primary_tag %>
-      <%= link_to @randomizer.primary_tag.name,
-          randomizers_path(tag: @randomizer.primary_tag.name),
+    <% @randomizer.tags.each do |tag| %>
+      <%= link_to tag.name,
+          randomizers_path(tag: tag.name),
           class: "badge badge-outline text-pencil hover:badge-primary transition-colors font-handwriting text-sm" %>
     <% end %>
     <% if current_user == @randomizer.user %>
