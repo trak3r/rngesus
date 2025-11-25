@@ -1,12 +1,4 @@
-- we need to genericize the tag names
-- delete all the current tags - they are name brands
-- replace with these new tags:
-    - Forest
-    - Town
-    - Dungeon
-    - Treasure
-    - Magic
-    - Encounter
+- looks like a lot of dark-mode issues have crept back into the styling; fix them
 
 ---
 

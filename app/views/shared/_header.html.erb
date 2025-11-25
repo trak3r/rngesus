@@ -1,4 +1,4 @@
-<header class="border-b border-gray-300 bg-white/80 backdrop-blur-sm py-4 px-6 flex justify-between items-center sticky top-0 z-50">
+<header class="border-b border-base-300 bg-base-100/80 backdrop-blur-sm py-4 px-6 flex justify-between items-center sticky top-0 z-50">
 
 <h1 class="text-2xl font-bold font-typewriter">
   <%= link_to root_path,
@@ -18,7 +18,7 @@
         <span class="text-sm font-medium"><%= current_user.display_name %></span>
         <%= icon('chevron-down', class: "w-4 h-4") %>
       </div>
-      <ul tabindex="0" class="dropdown-content menu bg-white rounded-sm z-[1] w-52 p-2 shadow-lg border border-gray-300 mt-3 font-handwriting text-pencil">
+      <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-sm z-[1] w-52 p-2 shadow-lg border border-base-300 mt-3 font-handwriting text-base-content">
         <li>
           <%= link_to edit_user_path, class: "flex items-center gap-2 hover:bg-yellow-50/50 active:bg-yellow-100 rounded-sm" do %>
             <%= icon('settings', class: "w-4 h-4") %>
