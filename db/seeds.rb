@@ -10,7 +10,7 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-# Create initial tags for game systems
-['Shadowdark', 'Dolmenwood', 'JAGS', 'Dungeons & Dragons', 'System Agnostic'].each do |tag_name|
+# Create initial tags for D&D themes
+%w[Forest Town Dungeon Treasure Magic Encounter].each do |tag_name|
   Tag.find_or_create_by!(name: tag_name)
 end
