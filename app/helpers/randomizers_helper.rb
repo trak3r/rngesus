@@ -3,7 +3,7 @@
 module RandomizersHelper
   DND_ARTWORKS = %w[dragon wizard battle moon_bats].freeze
 
-  def random_dnd_artwork
+  def random_card_artwork
     DND_ARTWORKS.sample
   end
 
