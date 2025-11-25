@@ -23,7 +23,11 @@ class RandomizersController < ApplicationController
   # GET /randomizers
   def index
     @tab = params[:tab] || 'most_liked'
-    @tag = params[:tag]
+    
+    # Handle both :tags (array) and legacy :tag (string)
+    @tags = Array(params[:tags])
+    @tags << params[:tag] if params[:tag].present?
+    @tags = @tags.reject(&:blank?).uniq
 
     # Redirect to login for user-specific tabs if not authenticated
     redirect_to '/login' and return if %w[your_likes your_randomizers].include?(@tab) && !current_user
@@ -31,15 +35,15 @@ class RandomizersController < ApplicationController
     # Query based on active tab
     @randomizers = case @tab
                    when 'newest'
-                     Randomizer.search(params[:query]).tagged_with(@tag).newest
+                     Randomizer.search(params[:query]).tagged_with(@tags).newest
                    when 'most_liked'
-                     Randomizer.search(params[:query]).tagged_with(@tag).where('cached_votes_total > 0').most_liked
+                     Randomizer.search(params[:query]).tagged_with(@tags).where('cached_votes_total > 0').most_liked
                    when 'your_likes'
-                     current_user.get_voted(Randomizer).search(params[:query]).tagged_with(@tag).newest
+                     current_user.get_voted(Randomizer).search(params[:query]).tagged_with(@tags).newest
                    when 'your_randomizers'
-                     current_user.randomizers.search(params[:query]).tagged_with(@tag).newest
+                     current_user.randomizers.search(params[:query]).tagged_with(@tags).newest
                    else # rubocop:disable Lint/DuplicateBranch
-                     Randomizer.search(params[:query]).tagged_with(@tag).where('cached_votes_total > 0').most_liked
+                     Randomizer.search(params[:query]).tagged_with(@tags).where('cached_votes_total > 0').most_liked
                    end
   end
 

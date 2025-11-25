@@ -7,25 +7,25 @@
     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
       <!-- Tab Navigation -->
       <div role="tablist" class="tabs tabs-lifted tabs-lg">
-        <%= link_to randomizers_path(tab: 'newest', query: params[:query], tag: params[:tag]), 
+        <%= link_to randomizers_path(tab: 'newest', query: params[:query], tags: @tags), 
             class: "tab font-semibold #{@tab == 'newest' ? 'tab-active [--tab-bg:hsl(var(--b2))] [--tab-border-color:hsl(var(--b3))]' : ''}", 
             data: { turbo_frame: "randomizers", turbo_action: "advance" } do %>
           Newest
         <% end %>
         
-        <%= link_to randomizers_path(tab: 'most_liked', query: params[:query], tag: params[:tag]), 
+        <%= link_to randomizers_path(tab: 'most_liked', query: params[:query], tags: @tags), 
             class: "tab font-semibold #{@tab == 'most_liked' ? 'tab-active [--tab-bg:hsl(var(--b2))] [--tab-border-color:hsl(var(--b3))]' : ''}", 
             data: { turbo_frame: "randomizers", turbo_action: "advance" } do %>
           Most Liked
         <% end %>
         
-        <%= link_to randomizers_path(tab: 'your_likes', query: params[:query], tag: params[:tag]), 
+        <%= link_to randomizers_path(tab: 'your_likes', query: params[:query], tags: @tags), 
             class: "tab font-semibold #{@tab == 'your_likes' ? 'tab-active [--tab-bg:hsl(var(--b2))] [--tab-border-color:hsl(var(--b3))]' : ''}", 
             data: { turbo_frame: current_user ? "randomizers" : "_top", turbo_action: current_user ? "advance" : "replace" } do %>
           Your Likes
         <% end %>
         
-        <%= link_to randomizers_path(tab: 'your_randomizers', query: params[:query], tag: params[:tag]), 
+        <%= link_to randomizers_path(tab: 'your_randomizers', query: params[:query], tags: @tags), 
             class: "tab font-semibold #{@tab == 'your_randomizers' ? 'tab-active [--tab-bg:hsl(var(--b2))] [--tab-border-color:hsl(var(--b3))]' : ''}", 
             data: { turbo_frame: current_user ? "randomizers" : "_top", turbo_action: current_user ? "advance" : "replace" } do %>
           Your Randomizers
@@ -37,6 +37,9 @@
         <%= form_with url: randomizers_path, method: :get, 
             data: { search_target: "form", turbo_frame: "randomizers", turbo_action: "advance" } do |f| %>
           <%= f.hidden_field :tab, value: @tab %>
+          <% Array(@tags).each do |tag| %>
+            <%= hidden_field_tag 'tags[]', tag %>
+          <% end %>
           <%= f.text_field :query, 
               placeholder: "Search randomizers...", 
               class: "input-handwritten w-full sm:w-64",
@@ -51,11 +54,11 @@
       <div class="flex flex-wrap gap-2 mb-4 items-center">
         <% Tag.order(:name).each do |tag| %>
           <%= link_to tag.name,
-              randomizers_path(tab: @tab, query: params[:query], tag: tag.name),
-              class: "badge #{@tag == tag.name ? 'bg-base-content text-base-100 border-base-content' : 'bg-base-100 text-base-content border-base-content'} font-handwriting text-base hover:bg-base-content hover:text-base-100 transition-colors",
+              toggle_tag_url(tag.name),
+              class: "badge #{tag_active?(tag.name) ? 'bg-base-content text-base-100 border-base-content' : 'bg-base-100 text-base-content border-base-content'} font-handwriting text-base hover:bg-base-content hover:text-base-100 transition-colors",
               data: { turbo_frame: "randomizers", turbo_action: "advance" } %>
         <% end %>
-        <% if @tag.present? %>
+        <% if @tags.present? %>
           <%= link_to "Clear", randomizers_path(tab: @tab, query: params[:query]),
               class: "text-error hover:text-error/70 font-handwriting text-base underline transition-colors ml-2",
               data: { turbo_frame: "randomizers", turbo_action: "advance" } %>

@@ -1,6 +1,6 @@
-- when i change tabs, the selected tags are not being preserved
-- remove the "all tags"
-- add a "clear" link to clear the tags
+- selecting an already-selected filter pill should deselect it
+- allow for selcting multiple filter pills, acting as AND logic
+- the url should refelct the state of the filters so it can be bookmarked or shared
 
 ---
 

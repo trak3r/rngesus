@@ -17,6 +17,15 @@ class RandomizersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should get index with multiple tags" do
+    get randomizers_url, params: { tags: ['Dungeon', 'Magic'], tab: 'newest' }
+    assert_response :success
+    # Treasure Hunt has Dungeon and Magic
+    assert_select 'body', text: /Treasure Hunt/
+    # Dungeon Crawler has Dungeon but not Magic
+    assert_select 'body', text: /Dungeon Crawler/, count: 0
+  end
+
   test 'should get new' do
     get new_randomizer_url
 

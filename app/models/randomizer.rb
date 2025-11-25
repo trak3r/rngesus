@@ -22,8 +22,20 @@ class Randomizer < ApplicationRecord
   scope :search, ->(query) { where('randomizers.name LIKE ?', "%#{query}%") if query.present? }
   scope :newest, -> { order(created_at: :desc) }
   scope :most_liked, -> { order(cached_votes_total: :desc) }
-  scope :tagged_with, lambda { |tag_name|
-    joins(:tags).where(tags: { name: tag_name }) if tag_name.present?
+  scope :tagged_with, lambda { |tag_names|
+    return if tag_names.blank?
+
+    tags_list = Array(tag_names).reject(&:blank?)
+    return if tags_list.empty?
+
+    # Use pluck to get IDs first to avoid GROUP BY conflicts with other scopes (like ordering)
+    ids = joins(:tags)
+          .where(tags: { name: tags_list })
+          .group('randomizers.id')
+          .having('COUNT(DISTINCT tags.id) = ?', tags_list.size)
+          .pluck('randomizers.id')
+
+    where(id: ids)
   }
 
   def to_param
