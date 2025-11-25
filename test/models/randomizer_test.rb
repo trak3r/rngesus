@@ -72,6 +72,29 @@ class RandomizerTest < ActiveSupport::TestCase
     randomizer = randomizers(:treasure_hunt)
     tag_names = randomizer.tags.map(&:name)
 
-    assert_equal %w[Dungeon Magic Treasure], tag_names
+    assert_equal ['Dungeon', 'Magic', 'Treasure'], tag_names
+  end
+
+  test 'tagged_with filters by single tag' do
+    assert_includes Randomizer.tagged_with('Dungeon'), randomizers(:treasure_hunt)
+    assert_includes Randomizer.tagged_with('Dungeon'), randomizers(:dungeon_crawler)
+    assert_not_includes Randomizer.tagged_with('Dungeon'), randomizers(:encounter)
+  end
+
+  test 'tagged_with filters by multiple tags with AND logic' do
+    # treasure_hunt has Dungeon, Magic, Treasure
+    # dungeon_crawler has Dungeon, Monster
+    
+    # Both have Dungeon
+    assert_includes Randomizer.tagged_with(['Dungeon']), randomizers(:treasure_hunt)
+    assert_includes Randomizer.tagged_with(['Dungeon']), randomizers(:dungeon_crawler)
+
+    # Only treasure_hunt has Dungeon AND Magic
+    assert_includes Randomizer.tagged_with(['Dungeon', 'Magic']), randomizers(:treasure_hunt)
+    assert_not_includes Randomizer.tagged_with(['Dungeon', 'Magic']), randomizers(:dungeon_crawler)
+
+    # Only dungeon_crawler has Dungeon AND Monster
+    assert_includes Randomizer.tagged_with(['Dungeon', 'Monster']), randomizers(:dungeon_crawler)
+    assert_not_includes Randomizer.tagged_with(['Dungeon', 'Monster']), randomizers(:treasure_hunt)
   end
 end
