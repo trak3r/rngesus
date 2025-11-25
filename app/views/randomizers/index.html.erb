@@ -69,7 +69,7 @@
           <% end %>
           <% if @tags.present? %>
             <%= link_to "Clear filters", randomizers_path(tab: @tab, query: params[:query]),
-                class: "btn btn-ghost btn-xs text-error hover:bg-error/10 ml-2 font-handwriting",
+                class: "text-error hover:text-error/70 font-handwriting text-base underline transition-colors ml-2",
                 data: { turbo_frame: "randomizers", turbo_action: "advance" } %>
           <% end %>
         </div>
