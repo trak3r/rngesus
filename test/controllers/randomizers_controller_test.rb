@@ -116,6 +116,7 @@ class RandomizersControllerTest < ActionDispatch::IntegrationTest
     end
 
     randomizer = Randomizer.last
+
     assert_equal 2, randomizer.tags.count
     assert_includes randomizer.tags, tags(:forest)
     assert_includes randomizer.tags, tags(:dungeon)
@@ -131,6 +132,7 @@ class RandomizersControllerTest < ActionDispatch::IntegrationTest
     end
 
     randomizer = Randomizer.last
+
     assert_equal 3, randomizer.tags.count
     assert_redirected_to randomizer_url(randomizer)
   end

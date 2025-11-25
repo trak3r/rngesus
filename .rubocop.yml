@@ -34,3 +34,5 @@ Style/BlockComments:
 Rails/ThreeStateBooleanColumn:
   # default database values are bad IMHO
   Enabled: false
+Metrics/ClassLength:
+  Enabled: false

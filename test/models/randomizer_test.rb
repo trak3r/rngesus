@@ -40,21 +40,21 @@ class RandomizerTest < ActiveSupport::TestCase
     randomizer = Randomizer.create!(name: 'No Tags Randomizer', user: users(:ted))
 
     assert_equal 0, randomizer.tags.count
-    assert randomizer.valid?
+    assert_predicate randomizer, :valid?
   end
 
   test 'randomizer can have 1 tag' do
     randomizer = randomizers(:encounter)
 
     assert_equal 1, randomizer.tags.count
-    assert randomizer.valid?
+    assert_predicate randomizer, :valid?
   end
 
   test 'randomizer can have 3 tags (maximum allowed)' do
     randomizer = randomizers(:treasure_hunt)
 
     assert_equal 3, randomizer.tags.count
-    assert randomizer.valid?
+    assert_predicate randomizer, :valid?
   end
 
   test 'randomizer cannot have more than 3 tags' do
@@ -72,6 +72,6 @@ class RandomizerTest < ActiveSupport::TestCase
     randomizer = randomizers(:treasure_hunt)
     tag_names = randomizer.tags.map(&:name)
 
-    assert_equal ['Dungeon', 'Magic', 'Treasure'], tag_names
+    assert_equal %w[Dungeon Magic Treasure], tag_names
   end
 end
