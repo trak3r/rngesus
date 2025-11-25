@@ -3,6 +3,10 @@
 - update the randomizer index cards to show multiple tags per randomizer, same style across the top of the card
 - add new "Monster" tag
 
+http://localhost:3000/randomizers/0dyit
+- the header is only showing 1 tag
+http://localhost:3000/randomizers/0dyit/edit
+- the form field for selecting multiple tags isn't intuitive; make it more clear how to select multiple tags
 
 ---
 
