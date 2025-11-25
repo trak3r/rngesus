@@ -23,11 +23,11 @@ class RandomizersController < ApplicationController
   # GET /randomizers
   def index
     @tab = params[:tab] || 'most_liked'
-    
+
     # Handle both :tags (array) and legacy :tag (string)
     @tags = Array(params[:tags])
     @tags << params[:tag] if params[:tag].present?
-    @tags = @tags.reject(&:blank?).uniq
+    @tags = @tags.compact_blank.uniq
 
     # Redirect to login for user-specific tabs if not authenticated
     redirect_to '/login' and return if %w[your_likes your_randomizers].include?(@tab) && !current_user

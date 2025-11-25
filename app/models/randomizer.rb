@@ -25,7 +25,7 @@ class Randomizer < ApplicationRecord
   scope :tagged_with, lambda { |tag_names|
     return if tag_names.blank?
 
-    tags_list = Array(tag_names).reject(&:blank?)
+    tags_list = Array(tag_names).compact_blank
     return if tags_list.empty?
 
     # Use pluck to get IDs first to avoid GROUP BY conflicts with other scopes (like ordering)

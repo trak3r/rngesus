@@ -19,13 +19,13 @@ module RandomizersHelper
 
   def toggle_tag_url(tag_name)
     current_tags = @tags || Array(params[:tags])
-    
+
     new_tags = if current_tags.include?(tag_name)
                  current_tags - [tag_name]
                else
                  current_tags + [tag_name]
                end
-    
+
     randomizers_path(tab: params[:tab], query: params[:query], tags: new_tags)
   end
 
