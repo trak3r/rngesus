@@ -1,4 +1,8 @@
-- looks like a lot of dark-mode issues have crept back into the styling; fix them
+- allow multiple tags per randomizer, limit to 3
+- update the randomizer form to allow multiple tags selection, error message if more than 3 tags are selected, use the same style as the tag pills on the index page
+- update the randomizer index cards to show multiple tags per randomizer, same style across the top of the card
+- add new "Monster" tag
+
 
 ---
 
