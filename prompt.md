@@ -1,6 +1,6 @@
-- selecting an already-selected filter pill should deselect it
-- allow for selcting multiple filter pills, acting as AND logic
-- the url should refelct the state of the filters so it can be bookmarked or shared
+- the top of the randomizer index page is a but chaotic between the tabs, search bar, and tag pills 
+- can you clean it up and make it more organized?
+- also add a little more space - or a subtle border - before the cards below
 
 ---
 
