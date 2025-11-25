@@ -1,11 +1,12 @@
-http://localhost:3000/
-- if you can generate artwork, make some old school D&D-style black and white ink art of monsters, dungeons, mages and warriors, etc. the same dimensions as the cards and randomly pepper one in the list of randomizers each page reload
-- the artwork is always showing as the first card. it should randomly appear as first to fifth
-- the artwork is too tall. make it the same height as the cards
-- you're cropping the artwork to the shape of the card but it's not looking good because the images are tall. please generate images that are the same dimensions as the cards (wide and short)
-- the dungeon image is perfect. make the others like it
-- the new images look good but they are displaying tiny in the cards. zoom them in to fill the card
-- the wizard and dragon are perfect. since you can't generate any more images today, please remove the others for now
+- we need to genericize the tag names
+- delete all the current tags - they are name brands
+- replace with these new tags:
+    - Forest
+    - Town
+    - Dungeon
+    - Treasure
+    - Magic
+    - Encounter
 
 ---
 
