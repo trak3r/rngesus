@@ -67,4 +67,11 @@ class RandomizerTest < ActiveSupport::TestCase
     assert_not randomizer.valid?
     assert_includes randomizer.errors[:tags], 'cannot exceed 3 tags per randomizer'
   end
+
+  test 'tags are returned in alphabetical order' do
+    randomizer = randomizers(:treasure_hunt)
+    tag_names = randomizer.tags.map(&:name)
+
+    assert_equal ['Dungeon', 'Magic', 'Treasure'], tag_names
+  end
 end

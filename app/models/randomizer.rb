@@ -8,7 +8,7 @@ class Randomizer < ApplicationRecord
   belongs_to :user
   has_many :rolls, dependent: :destroy
   has_many :randomizer_tags, dependent: :destroy
-  has_many :tags, through: :randomizer_tags
+  has_many :tags, -> { order(:name) }, through: :randomizer_tags
 
   # Make slug immutable after creation
   attr_immutable :slug

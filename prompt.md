@@ -8,6 +8,12 @@ http://localhost:3000/randomizers/0dyit
 http://localhost:3000/randomizers/0dyit/edit
 - the form field for selecting multiple tags isn't intuitive; make it more clear how to select multiple tags
 
+tags should always apper in alphabetical order
+- index page filter pills
+- index page card tags
+- randomizer show page tags
+- randomizer form tags
+
 ---
 
 # Test Guidelines
