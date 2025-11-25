@@ -20,10 +20,11 @@ import { Controller } from "@hotwired/stimulus"
  * Connected to: app/views/randomizers/index.html.erb
  */
 export default class extends Controller {
-    static targets = ["input", "form"]
+    static targets = ["input", "form", "clearButton"]
 
     connect() {
         console.log("Search controller connected")
+        this.toggleClear()
     }
 
     /**
@@ -38,5 +39,27 @@ export default class extends Controller {
         this.timeout = setTimeout(() => {
             this.formTarget.requestSubmit()
         }, 200)
+    }
+
+    /**
+     * Toggle visibility of clear button based on input value
+     */
+    toggleClear() {
+        if (this.hasClearButtonTarget) {
+            if (this.inputTarget.value.trim().length > 0) {
+                this.clearButtonTarget.classList.remove("hidden")
+            } else {
+                this.clearButtonTarget.classList.add("hidden")
+            }
+        }
+    }
+
+    /**
+     * Clear the search input and submit the form
+     */
+    clear() {
+        this.inputTarget.value = ""
+        this.toggleClear()
+        this.formTarget.requestSubmit()
     }
 }
