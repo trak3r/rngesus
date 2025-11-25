@@ -1,5 +1,6 @@
-- is it more proper and standard to say "your likes" or "my likes" or somethingn else altogether?
-- defaulting to "newest" doesn't show our best face; i think "most liked" should be the default
+- when i change tabs, the selected tags are not being preserved
+- remove the "all tags"
+- add a "clear" link to clear the tags
 
 ---
 
