@@ -1,18 +1,5 @@
-- allow multiple tags per randomizer, limit to 3
-- update the randomizer form to allow multiple tags selection, error message if more than 3 tags are selected, use the same style as the tag pills on the index page
-- update the randomizer index cards to show multiple tags per randomizer, same style across the top of the card
-- add new "Monster" tag
+replace the placeholder icon next to the app name in the header with the favicon
 
-http://localhost:3000/randomizers/0dyit
-- the header is only showing 1 tag
-http://localhost:3000/randomizers/0dyit/edit
-- the form field for selecting multiple tags isn't intuitive; make it more clear how to select multiple tags
-
-tags should always apper in alphabetical order
-- index page filter pills
-- index page card tags
-- randomizer show page tags
-- randomizer form tags
 
 ---
 
