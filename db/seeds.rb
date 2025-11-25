@@ -11,6 +11,6 @@
 #   end
 
 # Create initial tags for D&D themes
-%w[Forest Town Dungeon Treasure Magic Encounter].each do |tag_name|
+%w[Forest Town Dungeon Treasure Magic Encounter Monster].each do |tag_name|
   Tag.find_or_create_by!(name: tag_name)
 end

@@ -35,4 +35,36 @@ class RandomizerTest < ActiveSupport::TestCase
     assert_equal 5, randomizer.slug.length
     assert_match(/\A[a-zA-Z0-9]{5}\z/, randomizer.slug)
   end
+
+  test 'randomizer can have 0 tags' do
+    randomizer = Randomizer.create!(name: 'No Tags Randomizer', user: users(:ted))
+
+    assert_equal 0, randomizer.tags.count
+    assert randomizer.valid?
+  end
+
+  test 'randomizer can have 1 tag' do
+    randomizer = randomizers(:encounter)
+
+    assert_equal 1, randomizer.tags.count
+    assert randomizer.valid?
+  end
+
+  test 'randomizer can have 3 tags (maximum allowed)' do
+    randomizer = randomizers(:treasure_hunt)
+
+    assert_equal 3, randomizer.tags.count
+    assert randomizer.valid?
+  end
+
+  test 'randomizer cannot have more than 3 tags' do
+    randomizer = Randomizer.new(name: 'Too Many Tags', user: users(:ted))
+    randomizer.tags << tags(:forest)
+    randomizer.tags << tags(:dungeon)
+    randomizer.tags << tags(:monster)
+    randomizer.tags << tags(:magic)
+
+    assert_not randomizer.valid?
+    assert_includes randomizer.errors[:tags], 'cannot exceed 3 tags per randomizer'
+  end
 end

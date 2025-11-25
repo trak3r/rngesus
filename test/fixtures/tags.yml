@@ -5,3 +5,12 @@ forest:
 
 dungeon:
   name: Dungeon
+
+monster:
+  name: Monster
+
+magic:
+  name: Magic
+
+treasure:
+  name: Treasure
