@@ -1,6 +1,15 @@
-- the top of the randomizer index page is a but chaotic between the tabs, search bar, and tag pills 
-- can you clean it up and make it more organized?
-- also add a little more space - or a subtle border - before the cards below
+i'm getting this from my docker container:
+
+Missing GOOGLE_CLIENT_ID or GOOGLE_CLIENT_SECRET environment variables!
+/rails/config/initializers/omniauth.rb:13:in '<main>'
+/rails/config/environment.rb:7:in '<main>'
+Tasks: TOP => db:prepare => db:load_config => environment
+(See full trace by running task with --trace)
+
+how do i set those values in the container securely via "kamal deploy"?
+
+add GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET to .kamal/secrets and have them set by reading (echo?) from my local environment.
+i think you also need to add them to deploy.yml
 
 ---
 
