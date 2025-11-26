@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 
-require_relative 'dice_notations/dice_notation'
-require_relative 'dice_notations/summed_dice_notation'
-require_relative 'dice_notations/sequence_dice_notation'
-
 class Dice
   # Factory method to create appropriate DiceNotation instance
   def self.new(name, icon = nil, name_alt = nil)
@@ -13,10 +9,10 @@ class Dice
 
     if name =~ /^d(\d+)$/i
       face = ::Regexp.last_match(1).to_i
-      return SequenceDiceNotation.new(name, icon, name_alt) if face > 10 && [12, 20, 100].exclude?(face)
+      return DiceNotations::SequenceDiceNotation.new(name, icon, name_alt) if face > 10 && [12, 20, 100].exclude?(face)
     end
 
-    SummedDiceNotation.new(name, icon, name_alt)
+    DiceNotations::SummedDiceNotation.new(name, icon, name_alt)
   end
 
   def self.from(text)
@@ -36,19 +32,19 @@ class Dice
 
   def self.predefined
     @predefined = [
-      SummedDiceNotation.new('D2', 'coin', 'Coin'),
-      SummedDiceNotation.new('D4', 'triangle'),
-      SummedDiceNotation.new('D6', 'dice-6'),
-      SummedDiceNotation.new('2D6', 'dice'),
-      SummedDiceNotation.new('4D6-4', 'dice', 'JAGS'),
-      SequenceDiceNotation.new('D40', 'dice'),
-      SequenceDiceNotation.new('D66', 'dice'),
-      SummedDiceNotation.new('D8', 'diamond'),
-      SummedDiceNotation.new('D10', 'pentagon'),
-      SummedDiceNotation.new('D12', 'hexagon'),
-      SummedDiceNotation.new('D20', 'hexagon'),
+      DiceNotations::SummedDiceNotation.new('D2', 'coin', 'Coin'),
+      DiceNotations::SummedDiceNotation.new('D4', 'triangle'),
+      DiceNotations::SummedDiceNotation.new('D6', 'dice-6'),
+      DiceNotations::SummedDiceNotation.new('2D6', 'dice'),
+      DiceNotations::SummedDiceNotation.new('4D6-4', 'dice', 'JAGS'),
+      DiceNotations::SequenceDiceNotation.new('D40', 'dice'),
+      DiceNotations::SequenceDiceNotation.new('D66', 'dice'),
+      DiceNotations::SummedDiceNotation.new('D8', 'diamond'),
+      DiceNotations::SummedDiceNotation.new('D10', 'pentagon'),
+      DiceNotations::SummedDiceNotation.new('D12', 'hexagon'),
+      DiceNotations::SummedDiceNotation.new('D20', 'hexagon'),
       # FIXME: d100 should be a special case sequence notation even though it works as summed
-      SummedDiceNotation.new('D100', 'percentage')
+      DiceNotations::SummedDiceNotation.new('D100', 'percentage')
     ]
   end
 end

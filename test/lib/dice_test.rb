@@ -6,7 +6,7 @@ class DiceTest < ActiveSupport::TestCase
   test '3d6+2' do
     dice = Dice.new '3d6+2'
 
-    assert_kind_of SummedDiceNotation, dice
+    assert_kind_of DiceNotations::SummedDiceNotation, dice
     assert_equal 3, dice.multiplier
     assert_equal 6, dice.face
     assert_equal 2, dice.modifier
@@ -20,7 +20,7 @@ class DiceTest < ActiveSupport::TestCase
   test 'd2' do
     dice = Dice.new 'd2'
 
-    assert_kind_of SummedDiceNotation, dice
+    assert_kind_of DiceNotations::SummedDiceNotation, dice
     assert_equal 1, dice.multiplier
     assert_equal 2, dice.face
     assert_equal 0, dice.modifier
@@ -41,7 +41,7 @@ class DiceTest < ActiveSupport::TestCase
   test 'd66 sequence dice' do
     dice = Dice.new 'd66'
 
-    assert_kind_of SequenceDiceNotation, dice
+    assert_kind_of DiceNotations::SequenceDiceNotation, dice
     assert_equal 11, dice.min
     assert_equal 66, dice.max
 
@@ -54,7 +54,7 @@ class DiceTest < ActiveSupport::TestCase
   test 'd40 sequence dice' do
     dice = Dice.new 'd40'
 
-    assert_kind_of SequenceDiceNotation, dice
+    assert_kind_of DiceNotations::SequenceDiceNotation, dice
     # d4 (1-4) and d10 (0-9)
     # Min: 10. Max: 49.
     assert_equal 10, dice.min
@@ -69,7 +69,7 @@ class DiceTest < ActiveSupport::TestCase
   test 'd100 remains summed dice' do
     dice = Dice.new 'd100'
 
-    assert_kind_of SummedDiceNotation, dice
+    assert_kind_of DiceNotations::SummedDiceNotation, dice
     assert_equal 1, dice.min
     assert_equal 100, dice.max
   end
@@ -77,12 +77,12 @@ class DiceTest < ActiveSupport::TestCase
   test 'd20 remains summed dice' do
     dice = Dice.new 'd20'
 
-    assert_kind_of SummedDiceNotation, dice
+    assert_kind_of DiceNotations::SummedDiceNotation, dice
   end
 
   test 'd12 remains summed dice' do
     dice = Dice.new 'd12'
 
-    assert_kind_of SummedDiceNotation, dice
+    assert_kind_of DiceNotations::SummedDiceNotation, dice
   end
 end
