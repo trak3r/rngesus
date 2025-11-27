@@ -29,6 +29,7 @@
     - test on sandbox virtual machine
         - http://localhost:4080/
     - get SSL working (enforced) with free cert generation
+        - https://localhost:4443/
 - free hosting?
     - database backups
 - set up email exceptions so i'm notified of bugs i don't see myself
