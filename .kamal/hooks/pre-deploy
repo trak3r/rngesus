@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Ensure SSL certificates exist before deploying
+if [ ! -f ".kamal/certs/localhost.key" ] || [ ! -f ".kamal/certs/localhost.crt" ]; then
+  echo "SSL certificates missing. Generating them now..."
+  bin/generate-ssl-cert.sh
+fi
