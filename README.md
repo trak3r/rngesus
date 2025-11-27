@@ -27,6 +27,8 @@
 - kamal deploy?
     - remember to put data on external volume so ya don't lose it
     - test on sandbox virtual machine
+        - http://localhost:4080/
+    - get SSL working (enforced) with free cert generation
 - free hosting?
     - database backups
 - set up email exceptions so i'm notified of bugs i don't see myself
