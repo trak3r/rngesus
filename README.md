@@ -24,11 +24,7 @@
 - hotwire native
 
 # Hosting
-- kamal deploy?
-    - remember to put data on external volume so ya don't lose it
-    - test on sandbox virtual machine
-        - http://localhost:4080/
-    - get SSL working (enforced) with free cert generation
+- get SSL working (enforced) with free cert generation
 - free hosting?
     - database backups
 - set up email exceptions so i'm notified of bugs i don't see myself
@@ -104,3 +100,8 @@
 - tagging / categories, searchable and browsable
 - delete confirmation broken and AI just running in circles so we'll come back to that later (somehow magically working now)
 - pivot tagging from brands to generic; don't want to deal with potential headache of takedowns and C&D
+- kamal deploy
+    - remember to put data on external volume so ya don't lose it
+        - rails already did that by default (yay)
+    - test on sandbox virtual machine
+        - http://localhost:4080/
