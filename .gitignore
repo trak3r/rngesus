@@ -39,3 +39,7 @@
 !/app/assets/builds/.keep
 
 .DS_Store
+
+# Ignore the AI generated files
+implementation_plan.md
+walkthrough.md  

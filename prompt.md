@@ -1,6 +1,10 @@
-- the top of the randomizer index page is a but chaotic between the tabs, search bar, and tag pills 
-- can you clean it up and make it more organized?
-- also add a little more space - or a subtle border - before the cards below
+let's setup ssl with the kamal deploy.
+we want to generate a free ssl certificate.
+this is for local testing so we don't care about the security of the certificate.
+we want to enforce https.
+we're deploying to an ubuntu virtual machine that is not internet accessible.
+we will be accessing it via https://localhost:4443
+the virtual machine is running on a macbook if that matters for anything.
 
 ---
 

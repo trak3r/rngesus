@@ -13,10 +13,10 @@
 - toggle to disable animations on settings page
 - user option to hide / report offensive items
 - combine randomizers (e.g. forest encounters + reaction rolls)
-    - copy rather than link?
+    - copy rather than symlink?
 - would we need to support "with advantage" rolls?
     - is there a standard syntax for it? 2d20kh1
-- distribution graphs for multi-dice rolls
+- distribution graphs for multi-dice rolls, informative eye candy
 - re-enable github ci workflow
 
 # Mobile
@@ -24,10 +24,13 @@
 - hotwire native
 
 # Hosting
-- free hosting?
-    - database backups
 - kamal deploy?
     - remember to put data on external volume so ya don't lose it
+    - test on sandbox virtual machine
+        - http://localhost:4080/
+    - get SSL working (enforced) with free cert generation
+- free hosting?
+    - database backups
 - set up email exceptions so i'm notified of bugs i don't see myself
 - SEO
 - google analytics
