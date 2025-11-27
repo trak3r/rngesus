@@ -25,10 +25,10 @@ ssh:
 # Don't use this when deploying to multiple web servers (then you have to terminate SSL at your load balancer).
 #
 proxy:
-  ssl: true
+  ssl:
+    certificate_pem: KAMAL_SSL_CERTIFICATE
+    private_key_pem: KAMAL_SSL_PRIVATE_KEY
   host: localhost
-  ssl_certificate: KAMAL_SSL_CERTIFICATE
-  ssl_private_key: KAMAL_SSL_PRIVATE_KEY
   app_port: 3000
 
 # Where you keep your container images.
