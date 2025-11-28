@@ -21,16 +21,16 @@
     </div>
 
 
-    <div class="relative group inline-block text-3xl font-bold font-typewriter mb-2 text-center text-pencil min-h-[4.5rem] flex items-center justify-center">
+    <div class="relative group inline-block text-3xl font-bold font-typewriter mb-2 text-center text-base-content min-h-[4.5rem] flex items-center justify-center">
       <span class="block group-hover:hidden" data-slot-machine-target="result">
         <%= result.try(:name_with_rolls) || 'No match' %>
       </span>
-      <span class="hidden group-hover:block text-pencil/70">
+      <span class="hidden group-hover:block text-base-content/70">
         <%= result.try(:name) || 'No match' %>
       </span>
     </div>
 
-    <div class="text-pencil/60 text-sm font-handwriting text-xl">
+    <div class="text-base-content/60 text-sm font-handwriting text-xl">
       <%= roll.name %>
       &middot;
       <%= roll.dice_object.name %>

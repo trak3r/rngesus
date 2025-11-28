@@ -28,6 +28,10 @@ dark mode regressions
 - now the randomizer card text is light on white
 - the randomizer card tagsa are black text on black pills
 
+still dark mode issues
+- the text on the outcomes cards is black on black
+- the borders of the randomizer cards aren't visible on dark mode; perhaps make the card a little lighter than black?
+
 ---
 
 # Style Guidelines
