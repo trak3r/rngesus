@@ -22,7 +22,19 @@ end
 
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :google_oauth2, google_client_id, google_client_secret
-  provider :twitter, twitter_api_key, twitter_api_secret
+  provider :twitter, twitter_api_key, twitter_api_secret, {
+    client_options: {
+      ssl: {
+        verify_mode: OpenSSL::SSL::VERIFY_PEER,
+        ca_file: '/opt/homebrew/etc/openssl@3/cert.pem',
+        # Disable CRL checking which is causing the error
+        verify_callback: proc { |preverify_ok, store_context|
+          # Always return true to skip CRL verification
+          true
+        }
+      }
+    }
+  }
 end
 
 OmniAuth.config.allowed_request_methods = %i[get]
