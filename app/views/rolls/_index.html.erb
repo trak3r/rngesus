@@ -3,21 +3,21 @@
       <% rolls.each do |roll| %>
 
 <li class="flex items-center space-x-4 py-3 px-3
-           border-b border-blue-200
-           hover:bg-yellow-50/50 transition-colors group">
+           border-b border-base-300
+           hover:bg-base-200 transition-colors group">
   <%= link_to roll, class: "flex-1 flex items-center space-x-4 text-inherit no-underline" do %>
     <div class="w-24 text-4xl font-handwriting opacity-50 tabular-nums text-right text-base-content group-hover:opacity-80 transition-opacity">
       <%= roll.dice_object.try(:name) || '?' %>
     </div>
 
     <div class="flex-1 flex items-center">
-      <div class="text-xl font-handwriting text-base-content group-hover:text-blue-600 transition-colors"><%= roll.name %></div>
+      <div class="text-xl font-handwriting text-base-content group-hover:opacity-70 transition-opacity"><%= roll.name %></div>
     </div>
   <% end %>
 
   <% if current_user == roll.randomizer.user %>
     <div class="flex flex-row space-x-2 w-auto opacity-0 group-hover:opacity-100 transition-opacity">
-      <%= button_to roll_path(roll), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "text-red-500/50 hover:text-red-600 p-2 rounded" do %>
+      <%= button_to roll_path(roll), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "text-base-content/30 hover:text-base-content p-2 rounded" do %>
         <%= icon(:trash, class: "w-5 h-5") %>
       <% end %>
     </div>

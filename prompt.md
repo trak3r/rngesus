@@ -70,6 +70,17 @@ http://localhost:3000/randomizers/8iQ6D/edit
 http://localhost:3000/rolls/20/edit
 - dice icons and labels not visible
 
+http://localhost:3000/randomizers/8iQ6D
+http://localhost:3000/rolls/20
+make the buttons on these pages the same style as those on the edit forms
+
+http://localhost:3000/rolls/20/edit
+in dark mode, really hard to tell which dice is selected
+http://localhost:3000/rolls/20
+the hover of results with the blue text and red icon doesn't look right in dark mode and within the style of the rest of the site
+http://localhost:3000/randomizers/8iQ6D
+the hover of rolls with the blue text and red icon doesn't look right in dark mode and within the style of the rest of the site
+
 ---
 
 # Style Guidelines
