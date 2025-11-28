@@ -10,7 +10,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
   teardown do
     OmniAuth.config.test_mode = false
     OmniAuth.config.mock_auth[:google_oauth2] = nil
-    OmniAuth.config.mock_auth[:twitter] = nil
+    OmniAuth.config.mock_auth[:twitter2] = nil
   end
 
   test 'should get login page' do
@@ -41,8 +41,8 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should create user and login with twitter' do
-    OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new({
-      provider: 'twitter',
+    OmniAuth.config.mock_auth[:twitter2] = OmniAuth::AuthHash.new({
+      provider: 'twitter2',
       uid: '987654',
       info: {
         name: 'Twitter User',
@@ -52,7 +52,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     })
 
     assert_difference('User.count') do
-      get '/auth/twitter/callback'
+      get '/auth/twitter2/callback'
     end
 
     assert_redirected_to root_path
