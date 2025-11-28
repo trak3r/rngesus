@@ -1,9 +1,11 @@
 <div class="card-index max-w-md mx-auto mt-8 p-8 flex flex-col items-center space-y-6">
   <h1 class="text-3xl font-bold font-typewriter mb-2">Login</h1>
 
-  <%= link_to '/auth/developer', class: "btn-doodle w-full flex items-center justify-center space-x-2" do %>
-    <%= icon('test-pipe', class: "w-5 h-5") %>
-    <span>Login with Developer</span>
+  <% if Rails.env.development? %>
+    <%= link_to '/auth/developer', class: "btn-doodle w-full flex items-center justify-center space-x-2" do %>
+      <%= icon('test-pipe', class: "w-5 h-5") %>
+      <span>Login with Developer</span>
+    <% end %>
   <% end %>
 
   <%= link_to '/auth/google_oauth2', class: "btn-doodle w-full flex items-center justify-center space-x-2" do %>
@@ -11,11 +13,10 @@
     <span>Login with Google</span>
   <% end %>
 
-  <%# Dummy placeholders for Twitter and Facebook %>
-  <button class="btn-doodle w-full flex items-center justify-center space-x-2 opacity-50 cursor-not-allowed">
+  <%= link_to '/auth/twitter2', class: "btn-doodle w-full flex items-center justify-center space-x-2" do %>
     <%= icon('brand-twitter', class: "w-5 h-5") %>
     <span>Login with Twitter</span>
-  </button>
+  <% end %>
 
   <button class="btn-doodle w-full flex items-center justify-center space-x-2 opacity-50 cursor-not-allowed">
     <%= icon('brand-facebook', class: "w-5 h-5") %>

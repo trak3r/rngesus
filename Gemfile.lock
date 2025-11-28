@@ -269,6 +269,9 @@ GEM
     omniauth-rails_csrf_protection (1.0.2)
       actionpack (>= 4.2)
       omniauth (~> 2.0)
+    omniauth-twitter2 (1.0.0)
+      omniauth
+      omniauth-oauth2 (~> 1.0)
     ostruct (0.6.3)
     parallel (1.27.0)
     parser (3.3.10.0)
@@ -506,6 +509,7 @@ DEPENDENCIES
   omniauth
   omniauth-google-oauth2
   omniauth-rails_csrf_protection
+  omniauth-twitter2 (~> 1.0)
   propshaft
   puma (>= 5.0)
   rails (~> 8.1.1)

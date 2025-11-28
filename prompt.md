@@ -1,4 +1,6 @@
-audit the kamal deploy config for this application and ensure the database isn't lost or overwritten between deployments
+make the twitter sso work.
+look at the google sso for an example.
+make the google and twitter implementations as similar as possible.
 
 ---
 
