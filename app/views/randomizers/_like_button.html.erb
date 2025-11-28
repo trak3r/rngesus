@@ -3,7 +3,7 @@
   <%= button_to toggle_like_randomizer_path(randomizer),
         method: :post,
         data: { turbo_stream: true },
-        class: "text-pencil hover:text-red-600 transition flex items-center gap-1 px-2 py-1" do %>
+        class: "text-base-content hover:text-red-600 transition flex items-center gap-1 px-2 py-1" do %>
     <span class="text-sm font-bold font-typewriter"><%= randomizer.cached_votes_total %></span>
     <% icon_variant = current_user&.voted_for?(randomizer) ? :filled : :outline %>
     <%= icon 'thumb-up', variant: icon_variant, class: "w-4 h-4" %>
