@@ -25,7 +25,7 @@
   </div>
 
   <div class="my-5">
-    <%= form.label :tag_ids, "Tags (optional, max 3)", class: "label font-typewriter text-pencil" %>
+    <%= form.label :tag_ids, "Tags (optional, max 3)", class: "label font-typewriter text-base-content" %>
     <%= hidden_field_tag 'randomizer[tag_ids][]', '' %>
     <div class="flex flex-wrap gap-3 p-4 border-2 border-dashed border-pencil/30 rounded-lg bg-base-100">
       <% Tag.order(:name).each do |tag| %>
@@ -37,7 +37,7 @@
         </label>
       <% end %>
     </div>
-    <p class="text-sm text-pencil/60 mt-1 font-handwriting">Select up to 3 game systems for this randomizer</p>
+    <p class="text-sm text-base-content/60 mt-1 font-handwriting">Select up to 3 game systems for this randomizer</p>
   </div>
 
   <div class="inline">

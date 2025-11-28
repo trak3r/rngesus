@@ -47,6 +47,21 @@ http://localhost:3000/results/280/edit
 - form field labels not visible
 - button labels not visible
 
+still more dark mode issues
+http://localhost:3000/randomizers/8iQ6D
+- list of rolls not visible
+- footer text not visible (all pages)
+http://localhost:3000/randomizers/8iQ6D/edit
+- page header not visible
+- form field labels not visible
+- button labels not visible
+http://localhost:3000/rolls/20
+- list of results not visible
+http://localhost:3000/rolls/20/edit
+- page header not visible
+- form field labels not visible
+- button labels not visible
+
 ---
 
 # Style Guidelines
