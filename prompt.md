@@ -1,6 +1,9 @@
-make the facebook sso work.
-look at the google and twitter sso for an example.
-make the google and twitter and facebook implementations as similar as possible.
+- on a phone screen, the "new randomizer" card appears at the top of every list and becomes a huge waste of real estate. let's make "New Randomizer" a tab-style link on the row with the other tabs
+- let's ensure the artwork card is never the first (top) card in a list
+- let's not show art cards on phone screens; we don't need to spend precious real estate on eye candy for small screens
+- i'm realizing now (shame on me) that "hovers" don't work on touch screens. 
+    - change the "click to re-roll" from a hover tool tip to an always-visible message, perhaps in the lower right corner of the card, perhaps a diagonal ribbon like 
+- do not make any fuctional or logic changes - this is an entirely cosmetic review for now
 
 ---
 
