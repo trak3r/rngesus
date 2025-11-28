@@ -8,10 +8,11 @@ module AvatarHelper
   # @param size [Integer] the size of the avatar in pixels (default: 40)
   # @return [String] the Gravatar URL
   def gravatar_url(user, size: 40)
-    return nil if user&.email.blank?
-
+    # Use uid as fallback if email is not available (e.g., Twitter OAuth 2.0)
+    identifier = user&.email.presence || user&.uid || 'anonymous'
+    
     # Gravatar requires lowercase, trimmed email
-    email_hash = Digest::MD5.hexdigest(user.email.downcase.strip)
+    email_hash = Digest::MD5.hexdigest(identifier.downcase.strip)
 
     # d=identicon generates a unique geometric pattern as fallback
     # s=size sets the image size
