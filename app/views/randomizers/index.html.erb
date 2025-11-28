@@ -35,11 +35,7 @@
               Your Randomizers
             <% end %>
             
-            <%= link_to new_randomizer_path, 
-                class: "tab font-semibold", 
-                data: { turbo_frame: "_top" } do %>
-              + New Randomizer
-            <% end %>
+
           </div>
 
           <!-- Mobile Dropdown -->
@@ -49,7 +45,7 @@
               <option value="<%= randomizers_path(tab: 'most_liked', query: params[:query], tags: @tags) %>" <%= 'selected' if @tab == 'most_liked' %>>Most Liked</option>
               <option value="<%= randomizers_path(tab: 'your_likes', query: params[:query], tags: @tags) %>" <%= 'selected' if @tab == 'your_likes' %>>Your Likes</option>
               <option value="<%= randomizers_path(tab: 'your_randomizers', query: params[:query], tags: @tags) %>" <%= 'selected' if @tab == 'your_randomizers' %>>Your Randomizers</option>
-              <option value="<%= new_randomizer_path %>">+ New Randomizer</option>
+
             </select>
           </div>
         </div>
@@ -132,7 +128,22 @@
 
     <div class="grid grid-cols-[repeat(auto-fill,minmax(24rem,1fr))] gap-4">
 
+      <% if @tab == 'your_randomizers' %>
+        <!-- New Randomizer Card (only on 'Your Randomizers' tab) -->
+        <div class="card-index flex flex-col group p-4 min-h-[220px] transition-transform hover:-rotate-1">
+          <%= link_to new_randomizer_path,
+                      class: "flex-1 flex flex-col no-underline text-inherit",
+                      data: { turbo_frame: "_top" } do %>
 
+            <h2 class="card-title text-xl font-bold mb-2 font-typewriter border-b border-red-300 pb-1">New Randomizer</h2>
+
+            <p class="flex-1 text-base-content/70 font-handwriting text-lg">
+              Create your own!
+            </p>
+
+          <% end %>
+        </div>
+      <% end %>
       <% if @randomizers.empty? %>
         <div class="card-index flex flex-col items-center justify-center p-8 min-h-[220px] border-4 border-dashed border-base-content/20 rounded-box text-base-content/40 rotate-1 select-none grayscale">
           <%= icon 'mood-sad', variant: :outline, class: "w-16 h-16 mb-2 stroke-1 opacity-50" %>
