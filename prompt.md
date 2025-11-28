@@ -1,6 +1,6 @@
-make the twitter sso work.
-look at the google sso for an example.
-make the google and twitter implementations as similar as possible.
+make the facebook sso work.
+look at the google and twitter sso for an example.
+make the google and twitter and facebook implementations as similar as possible.
 
 ---
 

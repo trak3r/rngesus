@@ -30,14 +30,23 @@ class AvatarHelperTest < ActionView::TestCase
     assert_includes url, 's=80'
   end
 
-  test 'gravatar_url returns nil for user without email' do
-    user = User.new(email: nil)
+  test 'gravatar_url uses uid as fallback for user without email' do
+    user = User.new(email: nil, uid: '12345')
+    url = gravatar_url(user)
 
-    assert_nil gravatar_url(user)
+    # MD5 hash of '12345'
+    expected_hash = '827ccb0eea8a706c4c34a16891f84e7b'
+
+    assert_equal "https://www.gravatar.com/avatar/#{expected_hash}?d=identicon&s=40", url
   end
 
-  test 'gravatar_url returns nil for nil user' do
-    assert_nil gravatar_url(nil)
+  test 'gravatar_url uses anonymous for nil user' do
+    url = gravatar_url(nil)
+
+    # MD5 hash of 'anonymous'
+    expected_hash = '294de3557d9d00b3d2d8a1e6aab028cf'
+
+    assert_equal "https://www.gravatar.com/avatar/#{expected_hash}?d=identicon&s=40", url
   end
 
   test 'gravatar_profile_url generates correct profile URL' do
