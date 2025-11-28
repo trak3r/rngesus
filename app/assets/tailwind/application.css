@@ -26,7 +26,7 @@
 }
 
 @utility btn-doodle {
-  @apply bg-white border-2 border-gray-800 rounded-lg px-4 py-2 font-handwriting text-xl hover:bg-gray-100 hover:-rotate-1 transition-transform shadow-[2px_2px_0px_0px_#000];
+  @apply bg-base-100 border-2 border-base-content rounded-lg px-4 py-2 font-handwriting text-xl text-base-content hover:bg-base-200 hover:-rotate-1 transition-transform shadow-[2px_2px_0px_0px_currentColor];
 }
 
 @layer base {

@@ -62,6 +62,14 @@ http://localhost:3000/rolls/20/edit
 - form field labels not visible
 - button labels not visible
 
+a few more dark mode issues
+http://localhost:3000/randomizers/8iQ6D
+- the blue and red colors of the buttons are jarring in dark mode; same for all forms
+http://localhost:3000/randomizers/8iQ6D/edit
+- text on the submit button is not visible (same for all forms)
+http://localhost:3000/rolls/20/edit
+- dice icons and labels not visible
+
 ---
 
 # Style Guidelines
