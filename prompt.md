@@ -32,6 +32,21 @@ still dark mode issues
 - the text on the outcomes cards is black on black
 - the borders of the randomizer cards aren't visible on dark mode; perhaps make the card a little lighter than black?
 
+- the like button on the outcomes page is black on black
+
+more dark mode issues
+http://localhost:3000/randomizers/8iQ6D
+- tags are not visibile
+- edit icon is not visible
+- list of rolls not visible
+http://localhost:3000/rolls/21
+- randomer name not visible
+- list of results not visible
+http://localhost:3000/results/280/edit
+- page header not visible
+- form field labels not visible
+- button labels not visible
+
 ---
 
 # Style Guidelines
