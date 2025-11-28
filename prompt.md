@@ -5,6 +5,10 @@
     - change the "click to re-roll" from a hover tool tip to an always-visible message, perhaps in the lower right corner of the card, perhaps a diagonal ribbon like 
 - do not make any fuctional or logic changes - this is an entirely cosmetic review for now
 
+- i'm STILL not seeing the "click to re-roll" message/ribbon on the outcomes page cards
+- the tabs are not wrapping on a phone screen and instead disappearing off the side of the screen; try some other best practices UI without making the font any smaller
+- the filter pills are not wrapping on a phone screen and instead disappearing off the side of the screen; try some other best practices UI without making the font any smaller
+
 ---
 
 # Test Guidelines
