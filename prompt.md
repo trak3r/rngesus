@@ -16,7 +16,23 @@
 - let's bring back the "new randomizer" card but only show it on the "your randomizers" tab
     - and remove the "new randomizer" tab
 
+we've got some issues with dark mode again
+- the app name and user name are not visible on the dark theme
+- the page header on outcomes is black on black
+- the selected active tab is black on black
+- the filters label is black on black
+- look for more i haven't found
+
+dark mode regressions
+- now the like button is black on black
+- now the randomizer card text is light on white
+- the randomizer card tagsa are black text on black pills
+
 ---
+
+# Style Guidelines
+- always consider dark mode and light mode
+- always consider mobile and desktop
 
 # Test Guidelines
 - write test coverage for any logic changes
