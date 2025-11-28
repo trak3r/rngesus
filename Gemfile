@@ -95,7 +95,6 @@ gem 'omniauth-rails_csrf_protection'
 gem 'acts_as_votable' # for likes / favorites
 gem 'language_filter' # for profanity detection
 
+gem 'omniauth-twitter2', '~> 1.0'
 
-gem "omniauth-twitter2", "~> 1.0"
-
-gem "omniauth-facebook", "~> 10.0"
+gem 'omniauth-facebook', '~> 10.0'

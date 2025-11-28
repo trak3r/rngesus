@@ -10,7 +10,7 @@ module AvatarHelper
   def gravatar_url(user, size: 40)
     # Use uid as fallback if email is not available (e.g., Twitter OAuth 2.0)
     identifier = user&.email.presence || user&.uid || 'anonymous'
-    
+
     # Gravatar requires lowercase, trimmed email
     email_hash = Digest::MD5.hexdigest(identifier.downcase.strip)
 

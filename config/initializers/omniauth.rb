@@ -30,9 +30,9 @@ end
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :google_oauth2, google_client_id, google_client_secret
   provider :twitter2, twitter_client_id, twitter_client_secret,
-    scope: 'tweet.read users.read'
+           scope: 'tweet.read users.read'
   provider :facebook, facebook_app_id, facebook_app_secret,
-    scope: 'email,public_profile'
+           scope: 'email,public_profile'
 end
 
 OmniAuth.config.allowed_request_methods = %i[get post]
