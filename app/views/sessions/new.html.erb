@@ -1,9 +1,11 @@
 <div class="card-index max-w-md mx-auto mt-8 p-8 flex flex-col items-center space-y-6">
   <h1 class="text-3xl font-bold font-typewriter mb-2">Login</h1>
 
-  <%= link_to '/auth/developer', class: "btn-doodle w-full flex items-center justify-center space-x-2" do %>
-    <%= icon('test-pipe', class: "w-5 h-5") %>
-    <span>Login with Developer</span>
+  <% if Rails.env.development? %>
+    <%= link_to '/auth/developer', class: "btn-doodle w-full flex items-center justify-center space-x-2" do %>
+      <%= icon('test-pipe', class: "w-5 h-5") %>
+      <span>Login with Developer</span>
+    <% end %>
   <% end %>
 
   <%= link_to '/auth/google_oauth2', class: "btn-doodle w-full flex items-center justify-center space-x-2" do %>
