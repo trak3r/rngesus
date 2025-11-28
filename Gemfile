@@ -97,3 +97,5 @@ gem 'language_filter' # for profanity detection
 
 
 gem "omniauth-twitter2", "~> 1.0"
+
+gem "omniauth-facebook", "~> 10.0"
