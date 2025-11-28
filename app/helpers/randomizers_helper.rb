@@ -17,8 +17,8 @@ module RandomizersHelper
     rand(2..6)
   end
 
-  def toggle_tag_url(tag_name)
-    current_tags = @tags || Array(params[:tags])
+  def toggle_tag_url(tag_name, current_tags: nil)
+    current_tags ||= Array(params[:tags])
 
     new_tags = if current_tags.include?(tag_name)
                  current_tags - [tag_name]
@@ -29,7 +29,8 @@ module RandomizersHelper
     randomizers_path(tab: params[:tab], query: params[:query], tags: new_tags)
   end
 
-  def tag_active?(tag_name)
-    (@tags || Array(params[:tags])).include?(tag_name)
+  def tag_active?(tag_name, current_tags: nil)
+    current_tags ||= Array(params[:tags])
+    current_tags.include?(tag_name)
   end
 end

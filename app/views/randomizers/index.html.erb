@@ -71,8 +71,8 @@
           <span class="text-sm font-semibold mr-2 opacity-70">Filter by:</span>
           <% Tag.order(:name).each do |tag| %>
             <%= link_to tag.name,
-                toggle_tag_url(tag.name),
-                class: "badge #{tag_active?(tag.name) ? 'bg-base-content text-base-100 border-base-content' : 'bg-base-100 text-base-content border-base-content'} font-handwriting text-base hover:bg-base-content hover:text-base-100 transition-colors",
+                toggle_tag_url(tag.name, current_tags: @tags),
+                class: "badge #{tag_active?(tag.name, current_tags: @tags) ? 'bg-base-content text-base-100 border-base-content' : 'bg-base-100 text-base-content border-base-content'} font-handwriting text-base hover:bg-base-content hover:text-base-100 transition-colors",
                 data: { turbo_frame: "randomizers", turbo_action: "advance" } %>
           <% end %>
           <% if @tags.present? %>
