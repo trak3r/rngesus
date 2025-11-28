@@ -10,8 +10,9 @@ class SessionsController < ApplicationController
 
     # 1. Find or create a User
     user = User.find_or_initialize_by(provider: auth.provider, uid: auth.uid)
-    user.name  = auth.info.name
-    user.email = auth.info.email
+    user.name     = auth.info.name
+    user.email    = auth.info.email
+    user.nickname = auth.info.nickname if auth.info.nickname.present?
     user.save!
 
     # 2. Store the user in the session
