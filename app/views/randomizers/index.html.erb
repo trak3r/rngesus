@@ -31,6 +31,12 @@
               data: { turbo_frame: current_user ? "randomizers" : "_top", turbo_action: current_user ? "advance" : "replace" } do %>
             Your Randomizers
           <% end %>
+          
+          <%= link_to new_randomizer_path, 
+              class: "tab font-semibold", 
+              data: { turbo_frame: "_top" } do %>
+            + New
+          <% end %>
         </div>
 
         <!-- Search Bar -->
@@ -86,20 +92,6 @@
 
     <div class="grid grid-cols-[repeat(auto-fill,minmax(24rem,1fr))] gap-4">
 
-      <!-- New Randomizer Card (appears on all tabs) -->
-      <div class="card-index flex flex-col group p-4 min-h-[220px] transition-transform hover:-rotate-1">
-        <%= link_to new_randomizer_path,
-                    class: "flex-1 flex flex-col no-underline text-inherit",
-                    data: { turbo_frame: "_top" } do %>
-
-          <h2 class="card-title text-xl font-bold mb-2 font-typewriter border-b border-red-300 pb-1">New Randomizer</h2>
-
-          <p class="flex-1 text-base-content/70 font-handwriting text-lg">
-            Create your own!
-          </p>
-
-        <% end %>
-      </div>
 
       <% if @randomizers.empty? %>
         <div class="card-index flex flex-col items-center justify-center p-8 min-h-[220px] border-4 border-dashed border-base-content/20 rounded-box text-base-content/40 rotate-1 select-none grayscale">
@@ -120,8 +112,8 @@
       <% artwork_position = random_artwork_position %>
       <% @randomizers.each_with_index do |randomizer, index| %>
         <% if index + 2 == artwork_position %>
-          <!-- D&D Artwork Card (randomly positioned) -->
-          <div class="card-index flex flex-col items-center justify-center p-4 min-h-[220px] max-h-[220px] overflow-hidden transition-transform hover:rotate-1 grayscale hover:grayscale-0 transition-all duration-300">
+          <!-- D&D Artwork Card (randomly positioned, hidden on mobile) -->
+          <div class="hidden lg:flex card-index flex-col items-center justify-center p-4 min-h-[220px] max-h-[220px] overflow-hidden transition-transform hover:rotate-1 grayscale hover:grayscale-0 transition-all duration-300">
             <%= image_tag "cards/#{artwork}.png", 
                           alt: "D&D #{artwork.titleize}", 
                           class: "w-full h-full object-cover" %>

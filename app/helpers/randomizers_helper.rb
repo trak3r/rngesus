@@ -14,7 +14,7 @@ module RandomizersHelper
   end
 
   def random_artwork_position
-    rand(2..6)
+    rand(3..6)
   end
 
   def toggle_tag_url(tag_name, current_tags: nil)
