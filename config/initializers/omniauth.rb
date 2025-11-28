@@ -35,4 +35,4 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     scope: 'email,public_profile'
 end
 
-OmniAuth.config.allowed_request_methods = %i[get]
+OmniAuth.config.allowed_request_methods = %i[get post]
