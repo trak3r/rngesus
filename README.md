@@ -22,6 +22,7 @@
 
 # Mobile
 - responsive/mobile screens
+- PWA
 - hotwire native
 
 # Hosting

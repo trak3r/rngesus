@@ -12,6 +12,10 @@
 - tabs on desktop are now appearing vertically stacked instead of horizontally
 - i'm STILL not seeing the "click to re-roll" message/ribbon on the outcomes page cards on any screen size
 
+- i can finally see the "click to re-roll" message/ribbon on the outcomes page cards but the text is being cropped a bit
+- let's bring back the "new randomizer" card but only show it on the "your randomizers" tab
+    - and remove the "new randomizer" tab
+
 ---
 
 # Test Guidelines
