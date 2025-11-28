@@ -6,11 +6,11 @@
     <% @randomizer.tags.each do |tag| %>
       <%= link_to tag.name,
           randomizers_path(tag: tag.name),
-          class: "badge badge-outline text-pencil hover:badge-primary transition-colors font-handwriting text-sm" %>
+          class: "badge badge-outline text-base-content hover:badge-primary transition-colors font-handwriting text-sm" %>
     <% end %>
     <% if current_user == @randomizer.user %>
       <%= link_to edit_randomizer_path(@randomizer),
-                  class: "text-pencil/50 hover:text-pencil p-2 rounded " do %>
+                  class: "text-base-content/50 hover:text-base-content p-2 rounded " do %>
         <%= icon(:edit, class: "w-5 h-5") %>
       <% end %>
     <% end %>
@@ -21,7 +21,7 @@
 
 <% if current_user == @randomizer.user %>
   <div class="mt-4">
-    <%= link_to "New roll", new_randomizer_roll_path(@randomizer), class: "btn btn-primary" %>
-    <%= button_to "Destroy this randomizer", @randomizer, method: :delete, form_class: "inline-block", class: "btn btn-error", data: { turbo_confirm: "Are you sure?" } %>
+    <%= link_to "New roll", new_randomizer_roll_path(@randomizer), class: "btn-doodle" %>
+    <%= button_to "Destroy this randomizer", @randomizer, method: :delete, form_class: "inline-block", class: "btn-doodle cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
   </div>
 <% end %>
