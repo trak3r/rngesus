@@ -21,7 +21,7 @@
 
 <% if current_user == @randomizer.user %>
   <div class="mt-4">
-    <%= link_to "New roll", new_randomizer_roll_path(@randomizer), class: "btn btn-primary" %>
-    <%= button_to "Destroy this randomizer", @randomizer, method: :delete, form_class: "inline-block", class: "btn btn-error", data: { turbo_confirm: "Are you sure?" } %>
+    <%= link_to "New roll", new_randomizer_roll_path(@randomizer), class: "btn-doodle" %>
+    <%= button_to "Destroy this randomizer", @randomizer, method: :delete, form_class: "inline-block", class: "btn-doodle cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
   </div>
 <% end %>
