@@ -9,6 +9,9 @@
 - the tabs are not wrapping on a phone screen and instead disappearing off the side of the screen; try some other best practices UI without making the font any smaller
 - the filter pills are not wrapping on a phone screen and instead disappearing off the side of the screen; try some other best practices UI without making the font any smaller
 
+- tabs on desktop are now appearing vertically stacked instead of horizontally
+- i'm STILL not seeing the "click to re-roll" message/ribbon on the outcomes page cards on any screen size
+
 ---
 
 # Test Guidelines

@@ -10,7 +10,7 @@
         <!-- Tab Navigation -->
         <div class="w-full">
           <!-- Desktop Tabs -->
-          <div role="tablist" class="hidden lg:grid tabs tabs-lifted tabs-lg">
+          <div role="tablist" class="hidden lg:flex tabs tabs-lifted tabs-lg">
             <%= link_to randomizers_path(tab: 'newest', query: params[:query], tags: @tags), 
                 class: "tab font-semibold #{@tab == 'newest' ? 'tab-active [--tab-bg:hsl(var(--b2))] [--tab-border-color:hsl(var(--b3))]' : ''}", 
                 data: { turbo_frame: "randomizers", turbo_action: "advance" } do %>
