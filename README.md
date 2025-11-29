@@ -39,7 +39,8 @@
 
 # Monetization
 - donations / patreon
-    - https://buymeacoffee.com/signup
+    - https://buymeacoffee.com/
+    - https://ko-fi.com/
 - affiliate links to buy real dice
 - sponsors
 
