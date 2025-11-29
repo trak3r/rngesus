@@ -6,7 +6,6 @@ module RandomizersHelper
     wizard
     battle
     moon_bats
-    crude_map
   ].freeze
 
   def random_card_artwork
