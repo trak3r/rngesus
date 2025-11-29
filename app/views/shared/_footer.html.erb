@@ -1,6 +1,11 @@
   <footer class="py-4 text-center text-base-content/60 font-handwriting text-xl">
+    <%= link_to 'Terms', terms_path, class: 'hover:text-base-content transition-colors' %>
     &middot;
-    <a href="mailto:rngesus@rudiment.net">
+    <%= link_to 'Privacy', privacy_path, class: 'hover:text-base-content transition-colors' %>
+    &middot;
+    <%= link_to 'DMCA', dmca_path, class: 'hover:text-base-content transition-colors' %>
+    &middot;
+    <a href="mailto:rngesus@rudiment.net" class="hover:text-base-content transition-colors">
     Contact Us
     </a>
   </footer>

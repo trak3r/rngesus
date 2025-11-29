@@ -67,4 +67,100 @@ en:
   flash:
     signed_in: "Signed in!"
     signed_out: "Signed out."
+  pages:
+    terms:
+      title: "Terms of Service"
+      last_updated: "Last updated: November 29, 2024"
+      acceptance:
+        title: "Acceptance of Terms"
+        content: "By accessing and using RNGesus, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to these Terms of Service, please do not use this service."
+      user_content:
+        title: "User-Generated Content"
+        ownership: "You retain all rights to any content you submit, post or display on or through the Service. By submitting content, you grant us a worldwide, non-exclusive, royalty-free license to use, copy, reproduce, process, adapt, modify, publish, transmit, display and distribute such content in any and all media or distribution methods."
+        license: "You represent and warrant that you own or have the necessary rights to use and authorize us to use all content you submit in the manner contemplated by the Service and these Terms."
+        responsibility: "You are solely responsible for your content and the consequences of posting or publishing it. We do not endorse any content or any opinion, recommendation, or advice expressed therein. You agree that your use of the Service is at your sole risk."
+      prohibited_content:
+        title: "Prohibited Content"
+        intro: "You agree not to post content that:"
+        items:
+          - "Infringes any patent, trademark, trade secret, copyright, or other intellectual or proprietary right of any party"
+          - "Contains unlawful, harmful, threatening, abusive, harassing, defamatory, vulgar, obscene, or otherwise objectionable material"
+          - "Violates any applicable local, state, national, or international law"
+          - "Impersonates any person or entity or falsely states or otherwise misrepresents your affiliation with a person or entity"
+      disclaimer:
+        title: "Disclaimer of Warranties"
+        content: "THE SERVICE IS PROVIDED \"AS IS\" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT. WE DO NOT WARRANT THAT THE SERVICE WILL BE UNINTERRUPTED OR ERROR-FREE. WE ARE NOT LIABLE FOR ANY USER-GENERATED CONTENT."
+      termination:
+        title: "Termination"
+        content: "We reserve the right to terminate or suspend your account and access to the Service at our sole discretion, without notice, for conduct that we believe violates these Terms of Service or is harmful to other users, us, or third parties, or for any other reason."
+      changes:
+        title: "Changes to Terms"
+        content: "We reserve the right to modify these terms at any time. We will notify users of any material changes by posting the new Terms of Service on this page. Your continued use of the Service after such modifications constitutes your acceptance of the updated terms."
+      contact:
+        title: "Contact Us"
+        content_html: "If you have any questions about these Terms, please contact us at <a href=\"mailto:rngesus@rudiment.net\" class=\"text-base-content hover:underline\">rngesus@rudiment.net</a>."
+    privacy:
+      title: "Privacy Policy"
+      last_updated: "Last updated: November 29, 2024"
+      intro:
+        title: "Introduction"
+        content: "This Privacy Policy describes how RNGesus collects, uses, and shares your personal information when you use our service."
+      data_collected:
+        title: "Information We Collect"
+        intro: "We collect the following types of information:"
+        items:
+          - "Account Information: Email address and profile information from OAuth providers (Google, Facebook, Twitter)"
+          - "User Content: Randomizers, rolls, and results you create"
+          - "Usage Data: Information about how you use the Service, including pages visited and features used"
+          - "Cookies: We use session cookies to keep you logged in and remember your preferences"
+      data_usage:
+        title: "How We Use Your Information"
+        content: "We use the information we collect to provide, maintain, and improve the Service; to communicate with you; to monitor and analyze trends and usage; and to protect the rights and safety of our users and the Service."
+      third_party:
+        title: "Third-Party Services"
+        content: "We use OAuth authentication providers (Google, Facebook, Twitter) to allow you to sign in. These providers may collect information according to their own privacy policies. We do not share your personal information with third parties except as necessary to provide the Service or as required by law."
+      cookies:
+        title: "Cookies"
+        content: "We use cookies to maintain your session and remember your preferences. You can disable cookies in your browser settings, but this may affect your ability to use certain features of the Service."
+      user_rights:
+        title: "Your Rights"
+        intro: "You have the right to:"
+        items:
+          - "Access the personal information we hold about you"
+          - "Request correction of inaccurate information"
+          - "Request deletion of your account and associated data"
+          - "Object to processing of your personal information"
+          - "Data portability (receive a copy of your data in a structured format)"
+      data_retention:
+        title: "Data Retention"
+        content: "We retain your personal information for as long as your account is active or as needed to provide you services. If you delete your account, we will delete your personal information, though some information may be retained in backup copies for a limited period."
+      contact:
+        title: "Contact Us"
+        content_html: "If you have any questions about this Privacy Policy, please contact us at <a href=\"mailto:rngesus@rudiment.net\" class=\"text-base-content hover:underline\">rngesus@rudiment.net</a>."
+    dmca:
+      title: "DMCA / Copyright Policy"
+      last_updated: "Last updated: November 29, 2024"
+      intro:
+        title: "Copyright Infringement Notification"
+        content: "RNGesus respects the intellectual property rights of others and expects users to do the same. We will respond to notices of alleged copyright infringement that comply with the Digital Millennium Copyright Act (DMCA)."
+      filing_notice:
+        title: "Filing a DMCA Notice"
+        intro: "If you believe that your copyrighted work has been copied in a way that constitutes copyright infringement, please provide our designated agent with the following information:"
+        requirements:
+          - "A physical or electronic signature of the copyright owner or authorized representative"
+          - "Identification of the copyrighted work claimed to have been infringed"
+          - "Identification of the material that is claimed to be infringing, with information sufficient to locate the material"
+          - "Your contact information (address, telephone number, email address)"
+          - "A statement that you have a good faith belief that use of the material is not authorized"
+          - "A statement that the information in the notification is accurate, and under penalty of perjury, that you are authorized to act on behalf of the copyright owner"
+        send_to_html: "Send DMCA notices to: <a href=\"mailto:rngesus@rudiment.net\" class=\"text-base-content hover:underline\">rngesus@rudiment.net</a>"
+      counter_notice:
+        title: "Counter-Notification"
+        content: "If you believe that your content was removed in error, you may file a counter-notification with our designated agent. The counter-notification must include substantially the same information as required for a DMCA notice, along with a statement under penalty of perjury that the content was removed by mistake or misidentification."
+      repeat_infringers:
+        title: "Repeat Infringers"
+        content: "We will terminate the accounts of users who are repeat infringers of copyright."
+      contact:
+        title: "Contact"
+        content_html: "For copyright matters, contact: <a href=\"mailto:rngesus@rudiment.net\" class=\"text-base-content hover:underline\">rngesus@rudiment.net</a>"
 

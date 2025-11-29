@@ -6,6 +6,11 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   delete '/logout', to: 'sessions#destroy', as: :logout
 
+  # Legal pages
+  get 'terms', to: 'pages#terms'
+  get 'privacy', to: 'pages#privacy'
+  get 'dmca', to: 'pages#dmca'
+
   resource :user, only: %i[edit update]
 
   resources :examples
