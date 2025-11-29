@@ -186,6 +186,7 @@ class RollTest < ActiveSupport::TestCase
     assert_not_equal high_result, result if result
     # Discarded result should not be in the eligible results
     roll.results.reload
+
     assert_not_includes roll.results, high_result
   end
 
@@ -222,6 +223,7 @@ class RollTest < ActiveSupport::TestCase
 
     # Create a new result
     new_result = roll.results.create!(name: 'New Result', value: 4)
+
     assert_equal initial_count + 1, roll.results.count
     assert_includes roll.results, new_result
 
@@ -230,6 +232,7 @@ class RollTest < ActiveSupport::TestCase
 
     # Result should be excluded from association
     roll.results.reload
+
     assert_equal initial_count, roll.results.count
     assert_not_includes roll.results, new_result
   end

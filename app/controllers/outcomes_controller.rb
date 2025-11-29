@@ -30,10 +30,10 @@ class OutcomesController < ApplicationController
     # Also verify it belongs to this randomizer
     roll_id = params.expect(:id)
     @roll = Roll.kept.find(roll_id)
-    
+
     # Ensure the roll belongs to this randomizer
-    if @roll.randomizer_id != @randomizer.id
-      raise ActiveRecord::RecordNotFound
-    end
+    return unless @roll.randomizer_id != @randomizer.id
+
+    raise ActiveRecord::RecordNotFound
   end
 end

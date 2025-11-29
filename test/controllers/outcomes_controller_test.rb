@@ -46,18 +46,19 @@ class OutcomesControllerTest < ActionDispatch::IntegrationTest
     assert_no_match(/Discarded Roll/, response.body)
     # Only active rolls should be shown
     active_rolls_count = @randomizer.rolls.count
-    assert active_rolls_count > 0, 'Should have active rolls'
+
+    assert_predicate active_rolls_count, :positive?, 'Should have active rolls'
   end
 
   test 'reroll should not work for discarded roll' do
     roll_id = @roll.id
-    
+
     # Discard a roll
     @roll.discard!
-    
+
     # Verify the roll is discarded
     assert_predicate @roll.reload, :discarded?
-    
+
     # Verify the roll cannot be found using kept scope
     assert_raises(ActiveRecord::RecordNotFound) do
       Roll.kept.find(roll_id)
@@ -66,7 +67,7 @@ class OutcomesControllerTest < ActionDispatch::IntegrationTest
     # Attempting to reroll a discarded roll should return 404
     # The set_roll before_action should raise RecordNotFound which Rails converts to 404
     post "/randomizers/#{@randomizer.slug}/outcomes/#{roll_id}/reroll", as: :turbo_stream
-    
+
     assert_response :not_found
   end
 
