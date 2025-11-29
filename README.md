@@ -1,5 +1,6 @@
 # TODO
-- terms of service, privacy policy, etc.
+- admin interface
+- creating and editing randomizers could use some more handholding
 - we can't collect emails from twitter SSO until we have a public site with privacy policy URL
 - imagery; would be cool if pages looked like old D&D manuals with black & white ink art filling dead space on the page
     - the AI got way off the rails with this one and somehow managed to break a lot of functionality with just "style" changes so the branch was abandoned; we'll have to revisit this later
@@ -108,3 +109,4 @@
         - rails already did that by default (yay)
     - test on sandbox virtual machine
         - http://localhost:4080/
+- terms of service, privacy policy, etc.
