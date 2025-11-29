@@ -17,3 +17,5 @@
 # Screenshots
 
 <img src="screenshots/randomizers.png" alt="Landing page showing the list of random tables" width="49%"> <img src="screenshots/outcomes.png" alt="Outcomes page showing roll results" width="49%">
+
+See [TODO > Done](TODO.md#done) for more details on features and lessons learned.

@@ -19,12 +19,12 @@
 - distribution graphs for multi-dice rolls, informative eye candy
 - re-enable github ci workflow
 
-# Mobile
+## Mobile
 - responsive/mobile screens
 - PWA
 - hotwire native
 
-# Hosting
+## Hosting
 - get SSL working (enforced) with free cert generation
 - free hosting?
     - https://render.com/docs/deploy-rails-8
@@ -36,7 +36,7 @@
 - hardening (scan tools?)
 - accessibility (scan tools?)
 
-# Monetization
+## Monetization
 - donations / patreon
     - https://buymeacoffee.com/
     - https://ko-fi.com/
