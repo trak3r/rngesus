@@ -1,4 +1,6 @@
 # frozen_string_literal: true
 
-class Avo::ResultsController < Avo::ResourcesController
+module Avo
+  class ResultsController < Avo::ResourcesController
+  end
 end

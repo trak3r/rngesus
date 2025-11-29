@@ -41,7 +41,7 @@ class Randomizer < ApplicationRecord
   def to_param
     # Use ID in Avo admin, slug everywhere else
     return id.to_s if defined?(Avo) && caller.any? { |line| line.include?('avo') }
-    
+
     slug
   end
 

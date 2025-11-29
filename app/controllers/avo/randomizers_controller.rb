@@ -1,4 +1,6 @@
 # frozen_string_literal: true
 
-class Avo::RandomizersController < Avo::ResourcesController
+module Avo
+  class RandomizersController < Avo::ResourcesController
+  end
 end
