@@ -2,6 +2,10 @@
 - if there's a gem that handles this, let's use it
 - make sure this doesn't screw up the Avo admin interface
 
+Models: Update all 5 models to include Discard::Model.
+Avo: Avo has built-in support for discard. I will verify that "Discard" and "Restore" actions appear automatically or configure them if needed.
+Verification: I will write a test to confirm that records can be discarded and restored, and manually verify the behavior in the Avo admin panel.
+
 ---
 
 # Test Guidelines
