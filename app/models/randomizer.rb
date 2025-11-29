@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Randomizer < ApplicationRecord
+  include Discard::Model
   include ImmutableAttributes
 
   acts_as_votable

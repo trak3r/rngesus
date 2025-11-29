@@ -138,4 +138,31 @@ class RollTest < ActiveSupport::TestCase
     # Verify we got at least one nil case (statistically very likely in 20 rolls)
     # This is a probabilistic test but should pass >99.9% of the time
   end
+
+  test 'can discard a roll' do
+    roll = rolls(:encounter_distance)
+
+    assert_not roll.discarded?
+    roll.discard
+    assert roll.discarded?
+    assert_not_nil roll.discarded_at
+  end
+
+  test 'can restore a discarded roll' do
+    roll = rolls(:encounter_distance)
+    roll.discard
+
+    assert roll.discarded?
+    roll.undiscard
+    assert_not roll.discarded?
+    assert_nil roll.discarded_at
+  end
+
+  test 'discarded roll is excluded from default scope' do
+    roll = rolls(:encounter_distance)
+    roll.discard
+
+    assert_not_includes Roll.kept, roll
+    assert_includes Roll.with_discarded, roll
+  end
 end

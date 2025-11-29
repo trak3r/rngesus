@@ -44,4 +44,31 @@ class TagTest < ActiveSupport::TestCase
       tag.destroy
     end
   end
+
+  test 'can discard a tag' do
+    tag = tags(:forest)
+
+    assert_not tag.discarded?
+    tag.discard
+    assert tag.discarded?
+    assert_not_nil tag.discarded_at
+  end
+
+  test 'can restore a discarded tag' do
+    tag = tags(:forest)
+    tag.discard
+
+    assert tag.discarded?
+    tag.undiscard
+    assert_not tag.discarded?
+    assert_nil tag.discarded_at
+  end
+
+  test 'discarded tag is excluded from default scope' do
+    tag = tags(:forest)
+    tag.discard
+
+    assert_not_includes Tag.kept, tag
+    assert_includes Tag.with_discarded, tag
+  end
 end

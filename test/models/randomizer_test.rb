@@ -97,4 +97,31 @@ class RandomizerTest < ActiveSupport::TestCase
     assert_includes Randomizer.tagged_with(%w[Dungeon Monster]), randomizers(:dungeon_crawler)
     assert_not_includes Randomizer.tagged_with(%w[Dungeon Monster]), randomizers(:treasure_hunt)
   end
+
+  test 'can discard a randomizer' do
+    randomizer = randomizers(:encounter)
+
+    assert_not randomizer.discarded?
+    randomizer.discard
+    assert randomizer.discarded?
+    assert_not_nil randomizer.discarded_at
+  end
+
+  test 'can restore a discarded randomizer' do
+    randomizer = randomizers(:encounter)
+    randomizer.discard
+
+    assert randomizer.discarded?
+    randomizer.undiscard
+    assert_not randomizer.discarded?
+    assert_nil randomizer.discarded_at
+  end
+
+  test 'discarded randomizer is excluded from default scope' do
+    randomizer = randomizers(:encounter)
+    randomizer.discard
+
+    assert_not_includes Randomizer.kept, randomizer
+    assert_includes Randomizer.with_discarded, randomizer
+  end
 end
