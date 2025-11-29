@@ -57,7 +57,8 @@ class UserTest < ActiveSupport::TestCase
 
     assert_not user.discarded?
     user.discard
-    assert user.discarded?
+
+    assert_predicate user, :discarded?
     assert_not_nil user.discarded_at
   end
 
@@ -65,8 +66,9 @@ class UserTest < ActiveSupport::TestCase
     user = users(:ted)
     user.discard
 
-    assert user.discarded?
+    assert_predicate user, :discarded?
     user.undiscard
+
     assert_not user.discarded?
     assert_nil user.discarded_at
   end

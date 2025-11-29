@@ -50,7 +50,8 @@ class ResultTest < ActiveSupport::TestCase
 
     assert_not result.discarded?
     result.discard
-    assert result.discarded?
+
+    assert_predicate result, :discarded?
     assert_not_nil result.discarded_at
   end
 
@@ -58,8 +59,9 @@ class ResultTest < ActiveSupport::TestCase
     result = results(:encounter_distance_close)
     result.discard
 
-    assert result.discarded?
+    assert_predicate result, :discarded?
     result.undiscard
+
     assert_not result.discarded?
     assert_nil result.discarded_at
   end

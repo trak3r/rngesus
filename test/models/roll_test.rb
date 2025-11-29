@@ -144,7 +144,8 @@ class RollTest < ActiveSupport::TestCase
 
     assert_not roll.discarded?
     roll.discard
-    assert roll.discarded?
+
+    assert_predicate roll, :discarded?
     assert_not_nil roll.discarded_at
   end
 
@@ -152,8 +153,9 @@ class RollTest < ActiveSupport::TestCase
     roll = rolls(:encounter_distance)
     roll.discard
 
-    assert roll.discarded?
+    assert_predicate roll, :discarded?
     roll.undiscard
+
     assert_not roll.discarded?
     assert_nil roll.discarded_at
   end

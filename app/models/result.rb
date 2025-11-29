@@ -2,6 +2,7 @@
 
 class Result < ApplicationRecord
   include Discard::Model
+
   belongs_to :roll
 
   validates :name, presence: true, profanity: true

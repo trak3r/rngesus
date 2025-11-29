@@ -50,7 +50,8 @@ class TagTest < ActiveSupport::TestCase
 
     assert_not tag.discarded?
     tag.discard
-    assert tag.discarded?
+
+    assert_predicate tag, :discarded?
     assert_not_nil tag.discarded_at
   end
 
@@ -58,8 +59,9 @@ class TagTest < ActiveSupport::TestCase
     tag = tags(:forest)
     tag.discard
 
-    assert tag.discarded?
+    assert_predicate tag, :discarded?
     tag.undiscard
+
     assert_not tag.discarded?
     assert_nil tag.discarded_at
   end

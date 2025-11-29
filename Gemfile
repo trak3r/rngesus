@@ -101,4 +101,4 @@ gem 'omniauth-facebook', '~> 10.0'
 
 gem 'avo' # Modern admin interface
 
-gem "discard", "~> 1.4"
+gem 'discard', '~> 1.4'

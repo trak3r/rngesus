@@ -103,7 +103,8 @@ class RandomizerTest < ActiveSupport::TestCase
 
     assert_not randomizer.discarded?
     randomizer.discard
-    assert randomizer.discarded?
+
+    assert_predicate randomizer, :discarded?
     assert_not_nil randomizer.discarded_at
   end
 
@@ -111,8 +112,9 @@ class RandomizerTest < ActiveSupport::TestCase
     randomizer = randomizers(:encounter)
     randomizer.discard
 
-    assert randomizer.discarded?
+    assert_predicate randomizer, :discarded?
     randomizer.undiscard
+
     assert_not randomizer.discarded?
     assert_nil randomizer.discarded_at
   end
