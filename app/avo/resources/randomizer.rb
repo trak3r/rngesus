@@ -3,6 +3,7 @@
 module Avo
   module Resources
     class Randomizer < Avo::BaseResource
+      include DiscardableResource
       self.includes = []
 
       # Override to use database ID instead of slug in Avo URLs
@@ -18,14 +19,8 @@ module Avo
         field :user, as: :belongs_to
         field :tags, as: :has_many, through: :randomizer_tags
         field :rolls, as: :has_many
-        field :discarded_at, as: :date_time, readonly: true
         field :created_at, as: :date_time, readonly: true
         field :updated_at, as: :date_time, readonly: true
-      end
-
-      # Show all records including discarded ones in Avo admin
-      def query
-        super.with_discarded
       end
     end
   end

@@ -3,6 +3,7 @@
 module Avo
   module Resources
     class Tag < Avo::BaseResource
+      include DiscardableResource
       # self.includes = []
       # self.attachments = []
       # self.search = {
@@ -13,14 +14,8 @@ module Avo
         field :id, as: :id
         field :name, as: :text
         field :randomizers, as: :has_many, through: :randomizer_tags
-        field :discarded_at, as: :date_time, readonly: true
         field :created_at, as: :date_time, readonly: true
         field :updated_at, as: :date_time, readonly: true
-      end
-
-      # Show all records including discarded ones in Avo admin
-      def query
-        super.with_discarded
       end
     end
   end
