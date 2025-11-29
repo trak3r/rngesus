@@ -1,0 +1,95 @@
+<% content_for :title, t('pages.privacy.title') %>
+
+<div class="max-w-4xl mx-auto py-10 px-4">
+  <h1 class="text-4xl font-bold font-typewriter text-base-content mb-8">
+    <%= t('pages.privacy.title') %>
+  </h1>
+
+  <div class="prose prose-lg max-w-none text-base-content">
+    <p class="text-sm text-base-content/60 mb-6">
+      <%= t('pages.privacy.last_updated') %>
+    </p>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-bold font-typewriter text-base-content mb-4">
+        <%= t('pages.privacy.intro.title') %>
+      </h2>
+      <p class="font-handwriting text-xl mb-4">
+        <%= t('pages.privacy.intro.content') %>
+      </p>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-bold font-typewriter text-base-content mb-4">
+        <%= t('pages.privacy.data_collected.title') %>
+      </h2>
+      <p class="font-handwriting text-xl mb-4">
+        <%= t('pages.privacy.data_collected.intro') %>
+      </p>
+      <ul class="list-disc ml-8 font-handwriting text-xl mb-4">
+        <% t('pages.privacy.data_collected.items').each do |item| %>
+          <li class="mb-2"><%= item %></li>
+        <% end %>
+      </ul>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-bold font-typewriter text-base-content mb-4">
+        <%= t('pages.privacy.data_usage.title') %>
+      </h2>
+      <p class="font-handwriting text-xl mb-4">
+        <%= t('pages.privacy.data_usage.content') %>
+      </p>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-bold font-typewriter text-base-content mb-4">
+        <%= t('pages.privacy.third_party.title') %>
+      </h2>
+      <p class="font-handwriting text-xl mb-4">
+        <%= t('pages.privacy.third_party.content') %>
+      </p>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-bold font-typewriter text-base-content mb-4">
+        <%= t('pages.privacy.cookies.title') %>
+      </h2>
+      <p class="font-handwriting text-xl mb-4">
+        <%= t('pages.privacy.cookies.content') %>
+      </p>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-bold font-typewriter text-base-content mb-4">
+        <%= t('pages.privacy.user_rights.title') %>
+      </h2>
+      <p class="font-handwriting text-xl mb-4">
+        <%= t('pages.privacy.user_rights.intro') %>
+      </p>
+      <ul class="list-disc ml-8 font-handwriting text-xl mb-4">
+        <% t('pages.privacy.user_rights.items').each do |item| %>
+          <li class="mb-2"><%= item %></li>
+        <% end %>
+      </ul>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-bold font-typewriter text-base-content mb-4">
+        <%= t('pages.privacy.data_retention.title') %>
+      </h2>
+      <p class="font-handwriting text-xl mb-4">
+        <%= t('pages.privacy.data_retention.content') %>
+      </p>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-bold font-typewriter text-base-content mb-4">
+        <%= t('pages.privacy.contact.title') %>
+      </h2>
+      <p class="font-handwriting text-xl mb-4">
+        <%= t('pages.privacy.contact.content_html') %>
+      </p>
+    </section>
+  </div>
+</div>

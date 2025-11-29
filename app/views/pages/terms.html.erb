@@ -1,0 +1,87 @@
+<% content_for :title, t('pages.terms.title') %>
+
+<div class="max-w-4xl mx-auto py-10 px-4">
+  <h1 class="text-4xl font-bold font-typewriter text-base-content mb-8">
+    <%= t('pages.terms.title') %>
+  </h1>
+
+  <div class="prose prose-lg max-w-none text-base-content">
+    <p class="text-sm text-base-content/60 mb-6">
+      <%= t('pages.terms.last_updated') %>
+    </p>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-bold font-typewriter text-base-content mb-4">
+        <%= t('pages.terms.acceptance.title') %>
+      </h2>
+      <p class="font-handwriting text-xl mb-4">
+        <%= t('pages.terms.acceptance.content') %>
+      </p>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-bold font-typewriter text-base-content mb-4">
+        <%= t('pages.terms.user_content.title') %>
+      </h2>
+      <p class="font-handwriting text-xl mb-4">
+        <%= t('pages.terms.user_content.ownership') %>
+      </p>
+      <p class="font-handwriting text-xl mb-4">
+        <%= t('pages.terms.user_content.license') %>
+      </p>
+      <p class="font-handwriting text-xl mb-4">
+        <%= t('pages.terms.user_content.responsibility') %>
+      </p>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-bold font-typewriter text-base-content mb-4">
+        <%= t('pages.terms.prohibited_content.title') %>
+      </h2>
+      <p class="font-handwriting text-xl mb-4">
+        <%= t('pages.terms.prohibited_content.intro') %>
+      </p>
+      <ul class="list-disc ml-8 font-handwriting text-xl mb-4">
+        <% t('pages.terms.prohibited_content.items').each do |item| %>
+          <li class="mb-2"><%= item %></li>
+        <% end %>
+      </ul>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-bold font-typewriter text-base-content mb-4">
+        <%= t('pages.terms.disclaimer.title') %>
+      </h2>
+      <p class="font-handwriting text-xl mb-4">
+        <%= t('pages.terms.disclaimer.content') %>
+      </p>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-bold font-typewriter text-base-content mb-4">
+        <%= t('pages.terms.termination.title') %>
+      </h2>
+      <p class="font-handwriting text-xl mb-4">
+        <%= t('pages.terms.termination.content') %>
+      </p>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-bold font-typewriter text-base-content mb-4">
+        <%= t('pages.terms.changes.title') %>
+      </h2>
+      <p class="font-handwriting text-xl mb-4">
+        <%= t('pages.terms.changes.content') %>
+      </p>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-bold font-typewriter text-base-content mb-4">
+        <%= t('pages.terms.contact.title') %>
+      </h2>
+      <p class="font-handwriting text-xl mb-4">
+        <%= t('pages.terms.contact.content_html') %>
+      </p>
+    </section>
+  </div>
+</div>

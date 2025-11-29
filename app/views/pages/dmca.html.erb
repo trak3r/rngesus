@@ -1,0 +1,66 @@
+<% content_for :title, t('pages.dmca.title') %>
+
+<div class="max-w-4xl mx-auto py-10 px-4">
+  <h1 class="text-4xl font-bold font-typewriter text-base-content mb-8">
+    <%= t('pages.dmca.title') %>
+  </h1>
+
+  <div class="prose prose-lg max-w-none text-base-content">
+    <p class="text-sm text-base-content/60 mb-6">
+      <%= t('pages.dmca.last_updated') %>
+    </p>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-bold font-typewriter text-base-content mb-4">
+        <%= t('pages.dmca.intro.title') %>
+      </h2>
+      <p class="font-handwriting text-xl mb-4">
+        <%= t('pages.dmca.intro.content') %>
+      </p>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-bold font-typewriter text-base-content mb-4">
+        <%= t('pages.dmca.filing_notice.title') %>
+      </h2>
+      <p class="font-handwriting text-xl mb-4">
+        <%= t('pages.dmca.filing_notice.intro') %>
+      </p>
+      <ul class="list-disc ml-8 font-handwriting text-xl mb-4">
+        <% t('pages.dmca.filing_notice.requirements').each do |item| %>
+          <li class="mb-2"><%= item %></li>
+        <% end %>
+      </ul>
+      <p class="font-handwriting text-xl mb-4">
+        <%= t('pages.dmca.filing_notice.send_to_html') %>
+      </p>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-bold font-typewriter text-base-content mb-4">
+        <%= t('pages.dmca.counter_notice.title') %>
+      </h2>
+      <p class="font-handwriting text-xl mb-4">
+        <%= t('pages.dmca.counter_notice.content') %>
+      </p>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-bold font-typewriter text-base-content mb-4">
+        <%= t('pages.dmca.repeat_infringers.title') %>
+      </h2>
+      <p class="font-handwriting text-xl mb-4">
+        <%= t('pages.dmca.repeat_infringers.content') %>
+      </p>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-bold font-typewriter text-base-content mb-4">
+        <%= t('pages.dmca.contact.title') %>
+      </h2>
+      <p class="font-handwriting text-xl mb-4">
+        <%= t('pages.dmca.contact.content_html') %>
+      </p>
+    </section>
+  </div>
+</div>
