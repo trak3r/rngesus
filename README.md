@@ -27,7 +27,9 @@
 # Hosting
 - get SSL working (enforced) with free cert generation
 - free hosting?
-    - database backups
+    - https://render.com/docs/deploy-rails-8
+    - https://fly.io/docs/rails/getting-started/
+- database backups
 - set up email exceptions so i'm notified of bugs i don't see myself
 - SEO
 - google analytics
