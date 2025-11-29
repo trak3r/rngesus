@@ -1,6 +1,7 @@
 # What is it?
 - A tool for creating tabletop role-playing game (TTRPG) random dice roll tables and rolling on them to get results
 - With some added cool features like uploading a photo or screenshot from a book and automatically building everything 
+- When a result contains an embedded roll, like "2d6 goblins", it will roll that and insert the result into the text
 
 # Why am I building it?
 - Free-time project to play with some technologies I don't get to use at my day job
@@ -15,4 +16,3 @@
 ![Landing page showing the list of random tables](screenshots/randomizers.png)
 
 ![Outcomes page showing roll results](screenshots/outcomes.png)
-
