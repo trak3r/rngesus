@@ -8,6 +8,10 @@ Verification: I will write a test to confirm that records can be discarded and r
 
 - is it possible to see deleted items in Avo?
 
+- i deleted a randomizer from the web interface and don't see it as discarded in the admin. i'm worried it was full deleted. please audit the randomizer controller (and others) so see if they are getting full deleted. if so, fix it. include test coverage.
+
+- i deleted a randomizer in Avo and it seems to have been full deleted rather than discarded. the purpose of soft delete is that data can't be full deleted ANYWHERE in the site. please audit and fix. thanks!
+
 ---
 
 # Test Guidelines
