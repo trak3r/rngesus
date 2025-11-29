@@ -52,11 +52,15 @@ class ResultsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to result_url(@result)
   end
 
-  test 'should destroy result' do
-    assert_difference('Result.count', -1) do
+  test 'should discard result (soft delete)' do
+    assert_not @result.discarded?
+    assert_no_difference('Result.with_discarded.count') do
       delete result_url(@result)
     end
 
+    @result.reload
+    assert_predicate @result, :discarded?
+    assert_not_nil @result.discarded_at
     assert_redirected_to roll_url(@result.roll)
   end
 
@@ -85,9 +89,12 @@ class ResultsControllerTest < ActionDispatch::IntegrationTest
     other_user = users(:other_user)
     ResultsController.any_instance.stubs(:current_user).returns(other_user)
 
-    assert_no_difference('Result.count') do
+    assert_not @result.discarded?
+    assert_no_difference('Result.with_discarded.count') do
       delete result_url(@result)
     end
+    @result.reload
+    assert_not @result.discarded?
     assert_redirected_to randomizers_path
     assert_equal "You don't have permission to do that.", flash[:alert]
   end

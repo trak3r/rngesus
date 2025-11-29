@@ -52,12 +52,15 @@ class RollsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to roll_url(@roll)
   end
 
-  test 'should destroy roll' do
-    assert_difference('Roll.count', -1) do
+  test 'should discard roll (soft delete)' do
+    assert_not @roll.discarded?
+    assert_no_difference('Roll.with_discarded.count') do
       delete roll_url(@roll)
     end
 
-    # assert_redirected_to rolls_url
+    @roll.reload
+    assert_predicate @roll, :discarded?
+    assert_not_nil @roll.discarded_at
     assert_redirected_to randomizer_rolls_url(@roll.randomizer)
   end
 
@@ -86,9 +89,12 @@ class RollsControllerTest < ActionDispatch::IntegrationTest
     other_user = users(:other_user)
     RollsController.any_instance.stubs(:current_user).returns(other_user)
 
-    assert_no_difference('Roll.count') do
+    assert_not @roll.discarded?
+    assert_no_difference('Roll.with_discarded.count') do
       delete roll_url(@roll)
     end
+    @roll.reload
+    assert_not @roll.discarded?
     assert_redirected_to randomizers_path
     assert_equal "You don't have permission to do that.", flash[:alert]
   end

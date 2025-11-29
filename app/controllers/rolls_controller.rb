@@ -46,7 +46,7 @@ class RollsController < ApplicationController
 
   # DELETE /rolls/1
   def destroy
-    @roll.destroy!
+    @roll.discard!
     redirect_to randomizer_rolls_path(@roll.randomizer),
                 notice: t('rolls.create.success'),
                 status: :see_other
