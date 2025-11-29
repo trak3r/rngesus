@@ -21,7 +21,7 @@ Verification: I will write a test to confirm that records can be discarded and r
 # Test Guidelines
 - write test coverage for any logic changes
 - write test coverage for any functionality changes
-- never create/build/update in a test unless those functions are explicitly being tested; use fixtures instead
+- never create/build/update models and relations in a test unless those functions are explicitly being tested; use fixtures instead
 - name fixtures descriptive of their test purpose, for example: "user_with_vulgar_nickname"
 - make sure all tests pass before telling me you are finished
 
