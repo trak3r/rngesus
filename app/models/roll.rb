@@ -4,7 +4,7 @@ class Roll < ApplicationRecord
   include Discard::Model
 
   belongs_to :randomizer
-  has_many :results, dependent: :destroy
+  has_many :results, -> { kept }, dependent: :destroy
 
   validates :name, presence: true, profanity: true
   validates :dice, presence: true

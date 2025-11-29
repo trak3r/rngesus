@@ -12,6 +12,10 @@ Verification: I will write a test to confirm that records can be discarded and r
 
 - i deleted a randomizer in Avo and it seems to have been full deleted rather than discarded. the purpose of soft delete is that data can't be full deleted ANYWHERE in the site. please audit and fix. thanks!
 
+- test the outcomes page doesn't use discarded rolls, and rolls don't use discarded results
+
+- is "dependents: :destroy" in relations an issue for the discarded gem logic?
+
 ---
 
 # Test Guidelines

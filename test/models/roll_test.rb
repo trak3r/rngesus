@@ -167,4 +167,70 @@ class RollTest < ActiveSupport::TestCase
     assert_not_includes Roll.kept, roll
     assert_includes Roll.with_discarded, roll
   end
+
+  test 'outcome method excludes discarded results' do
+    roll = rolls(:encounter_distance)
+    # Create a result that would normally be selected
+    high_result = roll.results.create!(name: 'High Result', value: 10)
+
+    # Discard the high result
+    high_result.discard!
+
+    # The outcome method should not use the discarded result
+    # Since we're using D6 (1-6 range), and we discarded the high result,
+    # the outcome should use other results or return nil
+    rolled, result = roll.outcome
+
+    assert_not_nil rolled
+    # The discarded result should not be returned
+    assert_not_equal high_result, result if result
+    # Discarded result should not be in the eligible results
+    roll.results.reload
+    assert_not_includes roll.results, high_result
+  end
+
+  test 'outcome method only uses active results' do
+    roll = Roll.create!(name: 'Test Roll', dice: 'D6', randomizer: randomizers(:encounter))
+
+    # Create active results
+    active_result_1 = roll.results.create!(name: 'Active 1', value: 3)
+    active_result_2 = roll.results.create!(name: 'Active 2', value: 5)
+
+    # Create and discard a result
+    discarded_result = roll.results.create!(name: 'Discarded', value: 6)
+    discarded_result.discard!
+
+    # Verify discarded result is not in the association
+    assert_not_includes roll.results, discarded_result
+    assert_equal 2, roll.results.count
+
+    # Run outcome multiple times - should never return discarded result
+    10.times do
+      rolled, result = roll.outcome
+
+      assert_not_nil rolled
+      if result
+        assert_includes [active_result_1, active_result_2], result
+        assert_not_equal discarded_result, result
+      end
+    end
+  end
+
+  test 'roll results association excludes discarded results' do
+    roll = rolls(:encounter_distance)
+    initial_count = roll.results.count
+
+    # Create a new result
+    new_result = roll.results.create!(name: 'New Result', value: 4)
+    assert_equal initial_count + 1, roll.results.count
+    assert_includes roll.results, new_result
+
+    # Discard the result
+    new_result.discard!
+
+    # Result should be excluded from association
+    roll.results.reload
+    assert_equal initial_count, roll.results.count
+    assert_not_includes roll.results, new_result
+  end
 end
