@@ -194,8 +194,8 @@ class RollTest < ActiveSupport::TestCase
     roll = Roll.create!(name: 'Test Roll', dice: 'D6', randomizer: randomizers(:encounter))
 
     # Create active results
-    active_result_1 = roll.results.create!(name: 'Active 1', value: 3)
-    active_result_2 = roll.results.create!(name: 'Active 2', value: 5)
+    active_result_first = roll.results.create!(name: 'Active 1', value: 3)
+    active_result_second = roll.results.create!(name: 'Active 2', value: 5)
 
     # Create and discard a result
     discarded_result = roll.results.create!(name: 'Discarded', value: 6)
@@ -211,7 +211,7 @@ class RollTest < ActiveSupport::TestCase
 
       assert_not_nil rolled
       if result
-        assert_includes [active_result_1, active_result_2], result
+        assert_includes [active_result_first, active_result_second], result
         assert_not_equal discarded_result, result
       end
     end
@@ -235,5 +235,22 @@ class RollTest < ActiveSupport::TestCase
 
     assert_equal initial_count, roll.results.count
     assert_not_includes roll.results, new_result
+  end
+
+  test 'discarding roll does not destroy associated results' do
+    roll = rolls(:encounter_distance)
+    result = roll.results.first || roll.results.create!(name: 'Test Result', value: 1)
+    result_id = result.id
+    initial_result_count = Result.with_discarded.where(roll_id: roll.id).count
+
+    # Discard the roll (soft delete)
+    roll.discard!
+
+    # Result should still exist in database (not destroyed by dependent: :destroy)
+    # dependent: :destroy only triggers on actual destroy, not discard
+    assert Result.with_discarded.exists?(result_id)
+    assert_equal initial_result_count, Result.with_discarded.where(roll_id: roll.id).count
+    # Result should still be active (not discarded)
+    assert_not Result.with_discarded.find(result_id).discarded?
   end
 end

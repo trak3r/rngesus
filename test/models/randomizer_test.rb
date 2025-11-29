@@ -126,4 +126,21 @@ class RandomizerTest < ActiveSupport::TestCase
     assert_not_includes Randomizer.kept, randomizer
     assert_includes Randomizer.with_discarded, randomizer
   end
+
+  test 'discarding randomizer does not destroy associated rolls' do
+    randomizer = randomizers(:encounter)
+    roll = randomizer.rolls.first || randomizer.rolls.create!(name: 'Test Roll', dice: 'D6')
+    roll_id = roll.id
+    initial_roll_count = Roll.with_discarded.where(randomizer_id: randomizer.id).count
+
+    # Discard the randomizer (soft delete)
+    randomizer.discard!
+
+    # Roll should still exist in database (not destroyed by dependent: :destroy)
+    # dependent: :destroy only triggers on actual destroy, not discard
+    assert Roll.with_discarded.exists?(roll_id)
+    assert_equal initial_roll_count, Roll.with_discarded.where(randomizer_id: randomizer.id).count
+    # Roll should still be active (not discarded)
+    assert_not Roll.with_discarded.find(roll_id).discarded?
+  end
 end
