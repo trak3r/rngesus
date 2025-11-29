@@ -164,10 +164,12 @@
       <% @randomizers.each_with_index do |randomizer, index| %>
         <% if index + 2 == artwork_position %>
           <!-- D&D Artwork Card (randomly positioned, hidden on mobile) -->
+          <% offset = artwork_vertical_offset(artwork) %>
           <div class="hidden lg:flex card-index flex-col items-center justify-center p-4 min-h-[220px] max-h-[220px] overflow-hidden transition-transform hover:rotate-1 grayscale hover:grayscale-0 transition-all duration-300">
             <%= image_tag "cards/#{artwork}.png", 
                           alt: "D&D #{artwork.titleize}", 
-                          class: "w-full h-full object-cover" %>
+                          class: "w-full h-full object-cover",
+                          style: (offset > 0 ? "object-position: center #{offset}%" : nil) %>
           </div>
         <% end %>
         <div id="<%= dom_id(randomizer) %>" class="card-index flex flex-col group p-4 min-h-[220px] transition-transform hover:-rotate-1 relative">

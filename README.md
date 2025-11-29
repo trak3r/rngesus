@@ -2,9 +2,6 @@
 - does Avo support filter, search, sort?
 - creating and editing randomizers could use some more handholding
 - we can't collect emails from twitter SSO until we have a public site with privacy policy URL
-- imagery; would be cool if pages looked like old D&D manuals with black & white ink art filling dead space on the page
-    - the AI got way off the rails with this one and somehow managed to break a lot of functionality with just "style" changes so the branch was abandoned; we'll have to revisit this later
-    - got a couple good images for the cards page but apparently the art generation tokens burn up real quick so we'll have to do these in small infrequent batches
 - animate cool 3d dice roll on screen
     - only showing on the reroll, not the initial roll (not working consistently)
     - often have to hard-reload a page to see the dice; seems navigating around causes them to stop working
@@ -113,3 +110,4 @@
 - terms of service, privacy policy, etc.
 - admin tools
 - soft delete
+- imagery; would be cool if pages looked like old D&D manuals with black & white ink art filling dead space on the page
