@@ -4,6 +4,7 @@ module Avo
   module Resources
     class Randomizer < Avo::BaseResource
       include DiscardableResource
+
       self.includes = []
 
       # Override to use database ID instead of slug in Avo URLs

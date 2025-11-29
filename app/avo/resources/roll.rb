@@ -4,6 +4,7 @@ module Avo
   module Resources
     class Roll < Avo::BaseResource
       include DiscardableResource
+
       # self.includes = []
       # self.attachments = []
       # self.search = {
