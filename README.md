@@ -10,6 +10,9 @@
 - Tailwind CSS & DaisyUI (I use Bootstrap at work)
 - Avo for admin (I have experience with Rails Admin)
 - Omniauth without Devise and exclusively third-party authentication
+- Experiment with optical character recognition (OCR) 
+- Rails new Kamal & Docker deploy strategy (used Capistrano forever)
+- Test the potential of AI and vibe coding
 
 # Screenshots
 
