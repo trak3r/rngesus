@@ -13,12 +13,14 @@ module Avo
 
     test 'destroy action uses discard instead of destroy' do
       randomizer = randomizers(:encounter)
+
       assert_not randomizer.discarded?
 
       # Simulate Avo destroy action - Avo uses DELETE /resources/:resource_name/:id
       delete "/avo/resources/randomizers/#{randomizer.id}"
 
       randomizer.reload
+
       assert_predicate randomizer, :discarded?
       assert_not_nil randomizer.discarded_at
       # Verify record still exists in database
@@ -37,8 +39,7 @@ module Avo
       # Record should still exist in database
       assert Randomizer.with_discarded.exists?(original_id)
       # But should be discarded
-      assert Randomizer.with_discarded.find(original_id).discarded?
+      assert_predicate Randomizer.with_discarded.find(original_id), :discarded?
     end
   end
 end
-
