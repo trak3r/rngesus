@@ -3,6 +3,8 @@
 module Avo
   module Resources
     class User < Avo::BaseResource
+      include DiscardableResource
+
       # self.includes = []
       # self.attachments = []
       # self.search = {

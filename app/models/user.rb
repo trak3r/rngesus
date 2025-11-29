@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  include Discard::Model
+
   acts_as_voter
 
   has_many :randomizers, dependent: :destroy

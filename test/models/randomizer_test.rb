@@ -97,4 +97,50 @@ class RandomizerTest < ActiveSupport::TestCase
     assert_includes Randomizer.tagged_with(%w[Dungeon Monster]), randomizers(:dungeon_crawler)
     assert_not_includes Randomizer.tagged_with(%w[Dungeon Monster]), randomizers(:treasure_hunt)
   end
+
+  test 'can discard a randomizer' do
+    randomizer = randomizers(:encounter)
+
+    assert_not randomizer.discarded?
+    randomizer.discard
+
+    assert_predicate randomizer, :discarded?
+    assert_not_nil randomizer.discarded_at
+  end
+
+  test 'can restore a discarded randomizer' do
+    randomizer = randomizers(:encounter)
+    randomizer.discard
+
+    assert_predicate randomizer, :discarded?
+    randomizer.undiscard
+
+    assert_not randomizer.discarded?
+    assert_nil randomizer.discarded_at
+  end
+
+  test 'discarded randomizer is excluded from default scope' do
+    randomizer = randomizers(:encounter)
+    randomizer.discard
+
+    assert_not_includes Randomizer.kept, randomizer
+    assert_includes Randomizer.with_discarded, randomizer
+  end
+
+  test 'discarding randomizer does not destroy associated rolls' do
+    randomizer = randomizers(:encounter)
+    roll = randomizer.rolls.first || randomizer.rolls.create!(name: 'Test Roll', dice: 'D6')
+    roll_id = roll.id
+    initial_roll_count = Roll.with_discarded.where(randomizer_id: randomizer.id).count
+
+    # Discard the randomizer (soft delete)
+    randomizer.discard!
+
+    # Roll should still exist in database (not destroyed by dependent: :destroy)
+    # dependent: :destroy only triggers on actual destroy, not discard
+    assert Roll.with_discarded.exists?(roll_id)
+    assert_equal initial_roll_count, Roll.with_discarded.where(randomizer_id: randomizer.id).count
+    # Roll should still be active (not discarded)
+    assert_not Roll.with_discarded.find(roll_id).discarded?
+  end
 end

@@ -130,6 +130,8 @@ GEM
     debug (1.11.0)
       irb (~> 1.10)
       reline (>= 0.3.8)
+    discard (1.4.0)
+      activerecord (>= 4.2, < 9.0)
     docile (1.4.1)
     dotenv (3.1.8)
     drb (2.2.3)
@@ -537,6 +539,7 @@ DEPENDENCIES
   capybara
   csv
   debug
+  discard (~> 1.4)
   guard
   guard-minitest
   image_processing (~> 1.2)

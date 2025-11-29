@@ -44,4 +44,33 @@ class ResultTest < ActiveSupport::TestCase
       result.name_with_rolls
     )
   end
+
+  test 'can discard a result' do
+    result = results(:encounter_distance_close)
+
+    assert_not result.discarded?
+    result.discard
+
+    assert_predicate result, :discarded?
+    assert_not_nil result.discarded_at
+  end
+
+  test 'can restore a discarded result' do
+    result = results(:encounter_distance_close)
+    result.discard
+
+    assert_predicate result, :discarded?
+    result.undiscard
+
+    assert_not result.discarded?
+    assert_nil result.discarded_at
+  end
+
+  test 'discarded result is excluded from default scope' do
+    result = results(:encounter_distance_close)
+    result.discard
+
+    assert_not_includes Result.kept, result
+    assert_includes Result.with_discarded, result
+  end
 end

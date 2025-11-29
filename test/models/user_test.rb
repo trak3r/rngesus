@@ -51,4 +51,33 @@ class UserTest < ActiveSupport::TestCase
 
     assert_predicate user, :valid?
   end
+
+  test 'can discard a user' do
+    user = users(:ted)
+
+    assert_not user.discarded?
+    user.discard
+
+    assert_predicate user, :discarded?
+    assert_not_nil user.discarded_at
+  end
+
+  test 'can restore a discarded user' do
+    user = users(:ted)
+    user.discard
+
+    assert_predicate user, :discarded?
+    user.undiscard
+
+    assert_not user.discarded?
+    assert_nil user.discarded_at
+  end
+
+  test 'discarded user is excluded from default scope' do
+    user = users(:ted)
+    user.discard
+
+    assert_not_includes User.kept, user
+    assert_includes User.with_discarded, user
+  end
 end

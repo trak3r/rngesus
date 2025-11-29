@@ -3,6 +3,8 @@
 module Avo
   module Resources
     class Result < Avo::BaseResource
+      include DiscardableResource
+
       self.includes = []
 
       def fields

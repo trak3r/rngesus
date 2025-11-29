@@ -30,6 +30,10 @@
 en:
   errors:
     unauthorized: "You don't have permission to do that."
+  avo:
+    authentication:
+      login_required: "You must be logged in to access the admin panel."
+      permission_denied: "You don't have permission to access the admin panel."
   examples:
     create:
       success: "Example was successfully created."

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_11_25_113848) do
+ActiveRecord::Schema[8.1].define(version: 2025_11_29_080000) do
   create_table "examples", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "name"
@@ -30,47 +30,57 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_25_113848) do
     t.integer "cached_votes_total", default: 0
     t.integer "cached_votes_up", default: 0
     t.datetime "created_at", null: false
+    t.datetime "discarded_at"
     t.string "name"
     t.string "slug", limit: 5, null: false
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
+    t.index ["discarded_at"], name: "index_randomizers_on_discarded_at"
     t.index ["slug"], name: "index_randomizers_on_slug", unique: true
     t.index ["user_id"], name: "index_randomizers_on_user_id"
   end
 
   create_table "results", force: :cascade do |t|
     t.datetime "created_at", null: false
+    t.datetime "discarded_at"
     t.string "name"
     t.integer "roll_id", null: false
     t.datetime "updated_at", null: false
     t.integer "value"
+    t.index ["discarded_at"], name: "index_results_on_discarded_at"
     t.index ["roll_id"], name: "index_results_on_roll_id"
   end
 
   create_table "rolls", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "dice"
+    t.datetime "discarded_at"
     t.string "name"
     t.integer "randomizer_id", null: false
     t.datetime "updated_at", null: false
+    t.index ["discarded_at"], name: "index_rolls_on_discarded_at"
     t.index ["randomizer_id"], name: "index_rolls_on_randomizer_id"
   end
 
   create_table "tags", force: :cascade do |t|
     t.datetime "created_at", null: false
+    t.datetime "discarded_at"
     t.string "name"
     t.datetime "updated_at", null: false
+    t.index ["discarded_at"], name: "index_tags_on_discarded_at"
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
+    t.datetime "discarded_at"
     t.string "email"
     t.string "name"
     t.string "nickname"
     t.string "provider", null: false
     t.string "uid", null: false
     t.datetime "updated_at", null: false
+    t.index ["discarded_at"], name: "index_users_on_discarded_at"
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
   end
 

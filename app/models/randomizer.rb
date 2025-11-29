@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 class Randomizer < ApplicationRecord
+  include Discard::Model
   include ImmutableAttributes
 
   acts_as_votable
 
   belongs_to :user
-  has_many :rolls, dependent: :destroy
+  has_many :rolls, -> { kept }, dependent: :destroy, inverse_of: :randomizer
   has_many :randomizer_tags, dependent: :destroy
   has_many :tags, -> { order(:name) }, through: :randomizer_tags
 

@@ -63,19 +63,28 @@ class RandomizersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to randomizer_url(@randomizer)
   end
 
-  test 'should destroy randomizer' do
-    assert_difference('Randomizer.count', -1) do
+  test 'should discard randomizer (soft delete)' do
+    assert_not @randomizer.discarded?
+    assert_no_difference('Randomizer.with_discarded.count') do
       delete randomizer_url(@randomizer)
     end
 
+    @randomizer.reload
+
+    assert_predicate @randomizer, :discarded?
+    assert_not_nil @randomizer.discarded_at
     assert_redirected_to randomizers_url
   end
 
-  test 'should destroy randomizer and redirect to specific tab' do
-    assert_difference('Randomizer.count', -1) do
+  test 'should discard randomizer and redirect to specific tab' do
+    assert_not @randomizer.discarded?
+    assert_no_difference('Randomizer.with_discarded.count') do
       delete randomizer_url(@randomizer), params: { tab: 'your_randomizers' }
     end
 
+    @randomizer.reload
+
+    assert_predicate @randomizer, :discarded?
     assert_redirected_to randomizers_url(tab: 'your_randomizers')
   end
 
@@ -110,11 +119,24 @@ class RandomizersControllerTest < ActionDispatch::IntegrationTest
     other_user = users(:other_user)
     RandomizersController.any_instance.stubs(:current_user).returns(other_user)
 
-    assert_no_difference('Randomizer.count') do
+    assert_not @randomizer.discarded?
+    assert_no_difference('Randomizer.with_discarded.count') do
       delete randomizer_url(@randomizer)
     end
+    @randomizer.reload
+
+    assert_not @randomizer.discarded?
     assert_redirected_to randomizers_path
     assert_equal "You don't have permission to do that.", flash[:alert]
+  end
+
+  test 'discarded randomizer is excluded from index' do
+    @randomizer.discard!
+    get randomizers_url
+
+    assert_response :success
+    # Discarded randomizer should not appear in the list
+    assert_select 'body', text: /#{@randomizer.name}/, count: 0
   end
 
   test 'should create randomizer with multiple tags' do
