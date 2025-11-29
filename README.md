@@ -13,6 +13,4 @@
 
 # Screenshots
 
-![Landing page showing the list of random tables](screenshots/randomizers.png)
-
-![Outcomes page showing roll results](screenshots/outcomes.png)
+<img src="screenshots/randomizers.png" alt="Landing page showing the list of random tables" width="49%"> <img src="screenshots/outcomes.png" alt="Outcomes page showing roll results" width="49%">
