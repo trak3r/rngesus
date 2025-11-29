@@ -1,0 +1,115 @@
+# TODO
+- does Avo support filter, search, sort?
+- creating and editing randomizers could use some more handholding
+- we can't collect emails from twitter SSO until we have a public site with privacy policy URL
+- animate cool 3d dice roll on screen
+    - only showing on the reroll, not the initial roll (not working consistently)
+    - often have to hard-reload a page to see the dice; seems navigating around causes them to stop working
+    - 3d dice don't roll to same result as returned from server
+    - pages with multiple rolls should have a flurry of dice
+    - what are our options for dice colors and textures?
+- private flag for randomizers, or published_at timestamp
+- pagination of randomizers
+- toggle to disable animations on settings page
+- user option to hide / report offensive items
+- combine randomizers (e.g. forest encounters + reaction rolls)
+    - copy rather than symlink?
+- would we need to support "with advantage" rolls?
+    - is there a standard syntax for it? 2d20kh1
+- distribution graphs for multi-dice rolls, informative eye candy
+- re-enable github ci workflow
+
+# Mobile
+- responsive/mobile screens
+- PWA
+- hotwire native
+
+# Hosting
+- get SSL working (enforced) with free cert generation
+- free hosting?
+    - https://render.com/docs/deploy-rails-8
+    - https://fly.io/docs/rails/getting-started/
+- database backups
+- set up email exceptions so i'm notified of bugs i don't see myself
+- SEO
+- google analytics
+- hardening (scan tools?)
+- accessibility (scan tools?)
+
+# Monetization
+- donations / patreon
+    - https://buymeacoffee.com/
+    - https://ko-fi.com/
+- affiliate links to buy real dice
+- sponsors
+
+# Done
+- rails new
+- randomizers
+- rolls
+- favicon dice icon
+    - https://fontawesome.com/icons/dice?f=duotone&s=solid
+    - https://game-icons.net/1x1/delapouite/dice-twenty-faces-twenty.html#download
+    - https://favicon.io/favicon-converter/
+- results
+- dice types
+- is this the proper way to do edit-in-place?
+    - https://nts.strzibny.name/single-attribute-in-place-editing-turbo/
+- audit for vestigal scaffold files (and controller actions)
+- too many rubocop rules disabled; not cleaning up code
+- https://tabler.io/icons
+- special dice types (2d6, with-advantage, etc.)
+- `erb-format app/views/**/*.html.erb --write`
+- support d100 logic (digit position not sum)
+- upload screenshot of printed table automatically built (ocr)
+    - add "import results" button to Roll show
+    - prompts for drag or upload file (image or csv)
+    - submit uploads the file, converts it to result objects, back to Roll show
+- better styling with daisyui https://daisyui.com/components/list/
+- tests (once there's complicated enough logic to warrant)
+- discovered by accident that (a) tailwind supports OS dark mode toggle and (b) it's broken as fugg on my pages
+- add helper tips on screnshot upload for cropping and layout with example image
+- user registration
+    - prefer to use third-party exclusively - no password management internally
+    - (x) https://guides.rubyonrails.org/security.html#authentication
+    - (x) https://github.com/heartcombo/devise
+    - https://github.com/omniauth/omniauth
+        - https://github.com/omniauth/omniauth/wiki/List-of-Strategies
+- support for rolls within results like "1d4 treants"
+    - recognize patterns like "XdY" and link them to impromptu roller
+    - a pop-up modal or just a hover tooltip might be slick (client-side JS)
+- test with a dolmenwood table since it has different font and colors than shadowdark
+- find and disable the rubocop that effs up block comments
+- add alt names for rolls (e.g. "Coin Flip" for d2)
+- add JAGS roll 4d6-4
+- try larger zoomed test image, and if it helps add to upload tips
+- `erb_lint -a app/views`
+- (x) see if we can fix the OCR smushing the first letter of sentence with second word, like "A cat" always comes through as "Acat"
+- ownership of randomizers
+- likes / favorites
+    - https://github.com/ryanto/acts_as_votable
+- search, type-ahead quick find
+- on the outcomes page of a multi-roll randomizer, allow clicking on any single roll to re-roll just that result
+- animate spin results like a slot machine
+- promotion lists: newest, most liked, my favorites, my randomizers
+- share rollable randomizers via links with guid not raw id
+- share buttons, link, social media
+- weird roll type: d4 + d10 as digit positions
+- d40 NPCs in the City of Masks
+    - does not OCR and parse
+- avatar; is gravatar still a thing?
+- settings page (nickname, avatar)
+- profanity / vulgarity detector
+- upload multiple screenshots at once; the carousing benefits is 4 pages
+- tagging / categories, searchable and browsable
+- delete confirmation broken and AI just running in circles so we'll come back to that later (somehow magically working now)
+- pivot tagging from brands to generic; don't want to deal with potential headache of takedowns and C&D
+- kamal deploy
+    - remember to put data on external volume so ya don't lose it
+        - rails already did that by default (yay)
+    - test on sandbox virtual machine
+        - http://localhost:4080/
+- terms of service, privacy policy, etc.
+- admin tools
+- soft delete
+- imagery; would be cool if pages looked like old D&D manuals with black & white ink art filling dead space on the page
