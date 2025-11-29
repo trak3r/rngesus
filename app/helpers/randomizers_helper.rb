@@ -6,6 +6,7 @@ module RandomizersHelper
     wizard
     battle
     moon_bats
+    castle_road
   ].freeze
 
   def random_card_artwork
@@ -13,7 +14,7 @@ module RandomizersHelper
   end
 
   def random_artwork_position
-    rand(3..6)
+    rand(3..7)
   end
 
   def toggle_tag_url(tag_name, current_tags: nil)
