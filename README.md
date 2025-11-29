@@ -9,3 +9,10 @@
 - Tailwind CSS & DaisyUI (I use Bootstrap at work)
 - Avo for admin (I have experience with Rails Admin)
 - Omniauth without Devise and exclusively third-party authentication
+
+# Screenshots
+
+![Landing page showing the list of random tables](screenshots/randomizers.png)
+
+![Outcomes page showing roll results](screenshots/outcomes.png)
+
