@@ -17,8 +17,14 @@ module Avo
         field :name, as: :text
         field :nickname, as: :text
         field :randomizers, as: :has_many
+        field :discarded_at, as: :date_time, readonly: true
         field :created_at, as: :date_time, readonly: true
         field :updated_at, as: :date_time, readonly: true
+      end
+
+      # Show all records including discarded ones in Avo admin
+      def query
+        super.with_discarded
       end
     end
   end
