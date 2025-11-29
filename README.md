@@ -1,5 +1,4 @@
 # TODO
-- admin interface
 - creating and editing randomizers could use some more handholding
 - we can't collect emails from twitter SSO until we have a public site with privacy policy URL
 - imagery; would be cool if pages looked like old D&D manuals with black & white ink art filling dead space on the page
@@ -110,3 +109,4 @@
     - test on sandbox virtual machine
         - http://localhost:4080/
 - terms of service, privacy policy, etc.
+- admin tools

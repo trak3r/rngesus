@@ -1,9 +1,7 @@
-- add a terms of service page
-    - ensure i am not liable for any content created by users
-- add a privacy policy page
-    - ensure i comply with all relevant privacy regulations
-- add a contact page unless the footer link is sufficient
-- are there other CYA pages i should add?
+- let's add some admin tools
+- if rails_admin is still the best option, let's do that
+- if not, let's look at something else
+- set up the ability to browse and manage all the models and relationships
 
 ---
 
