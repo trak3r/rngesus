@@ -3,7 +3,7 @@ require "test_helper"
 class Avo::HomeControllerTest < ActionDispatch::IntegrationTest
   test "should redirect guest to root" do
     get "/avo"
-    assert_redirected_to root_path
+    assert_redirected_to "/"
     follow_redirect!
     assert_equal "You must be logged in to access the admin panel.", flash[:alert]
   end
@@ -13,7 +13,7 @@ class Avo::HomeControllerTest < ActionDispatch::IntegrationTest
     login_as(user)
     
     get "/avo"
-    assert_redirected_to root_path
+    assert_redirected_to "/"
     follow_redirect!
     assert_equal "You don't have permission to access the admin panel.", flash[:alert]
   end

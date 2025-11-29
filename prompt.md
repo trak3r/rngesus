@@ -11,6 +11,9 @@
     - UID 105389714176102520548
     - this record is not guarenteed to have the same ID in each environment so don't rely on it
 
+- trying to access /avo without being logged in results in infinite redirect loop
+- trying to access /avo being logged in as a non-admin results in infinite redirect loop
+
 ---
 
 # Test Guidelines
