@@ -100,3 +100,5 @@ gem 'omniauth-twitter2', '~> 1.0'
 gem 'omniauth-facebook', '~> 10.0'
 
 gem 'avo' # Modern admin interface
+
+gem "discard", "~> 1.4"

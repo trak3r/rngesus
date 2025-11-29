@@ -1,18 +1,6 @@
-- let's add some admin tools
-- if rails_admin is still the best option, let's do that
-- if not, let's look at something else
-- set up the ability to browse and manage all the models and relationships
-
-- the GUIDs in URLs for models seems to be an issue with Avo. can you make it so it uses the raw IDs instead?
-
-- how is admin access being determined?
-- only the trak3r@gmail.com account should have admin access
-    - from provider google_oauth2
-    - UID 105389714176102520548
-    - this record is not guarenteed to have the same ID in each environment so don't rely on it
-
-- trying to access /avo without being logged in results in infinite redirect loop
-- trying to access /avo being logged in as a non-admin results in infinite redirect loop
+- let's add soft deletion to all models
+- if there's a gem that handles this, let's use it
+- make sure this doesn't screw up the Avo admin interface
 
 ---
 
