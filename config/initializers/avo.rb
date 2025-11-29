@@ -18,12 +18,17 @@ Avo.configure do |config|
   end
 
   ## == Authentication ==
-  # config.current_user_method = :current_user
-  # config.authenticate_with do
-  # end
+  config.current_user_method = :current_user
+  config.authenticate_with do
+    if !current_user
+      redirect_to root_path, alert: "You must be logged in to access the admin panel."
+    elsif !current_user.admin?
+      redirect_to root_path, alert: "You don't have permission to access the admin panel."
+    end
+  end
 
   ## == Authorization ==
-  # config.is_admin_method = :is_admin
+  config.is_admin_method = :admin?
   # config.is_developer_method = :is_developer
   # config.authorization_methods = {
   #   index: 'index?',

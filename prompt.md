@@ -5,6 +5,12 @@
 
 - the GUIDs in URLs for models seems to be an issue with Avo. can you make it so it uses the raw IDs instead?
 
+- how is admin access being determined?
+- only the trak3r@gmail.com account should have admin access
+    - from provider google_oauth2
+    - UID 105389714176102520548
+    - this record is not guarenteed to have the same ID in each environment so don't rely on it
+
 ---
 
 # Test Guidelines
