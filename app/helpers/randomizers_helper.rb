@@ -5,7 +5,7 @@ module RandomizersHelper
   RANDOM_CARD_ART = {
     'dragon' => 0,
     'wizard' => 0,
-    'battle' => 0,
+    'battle' => -2,
     'moon_bats' => 30,
     'castle_road' => 15
   }.freeze
