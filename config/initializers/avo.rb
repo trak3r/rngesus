@@ -23,9 +23,9 @@ Avo.configure do |config|
   config.current_user_method = :current_user
   config.authenticate_with do
     if !current_user
-      redirect_to main_app.root_path, alert: 'You must be logged in to access the admin panel.'
+      redirect_to main_app.root_path, alert: I18n.t('avo.authentication.login_required')
     elsif !current_user.admin?
-      redirect_to main_app.root_path, alert: "You don't have permission to access the admin panel."
+      redirect_to main_app.root_path, alert: I18n.t('avo.authentication.permission_denied')
     end
   end
 
