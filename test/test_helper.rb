@@ -20,6 +20,7 @@ module ActionDispatch
   class IntegrationTest
     def login_as(user)
       ApplicationController.any_instance.stubs(:current_user).returns(user)
+      Avo::ApplicationController.any_instance.stubs(:current_user).returns(user) if defined?(Avo::ApplicationController)
     end
   end
 end
