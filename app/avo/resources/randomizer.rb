@@ -2,6 +2,11 @@
 
 class Avo::Resources::Randomizer < Avo::BaseResource
   self.includes = []
+  
+  # Override to use database ID instead of slug in Avo URLs
+  def record_path
+    avo.resources_randomizer_path(record.id)
+  end
 
   def fields
     field :id, as: :id
