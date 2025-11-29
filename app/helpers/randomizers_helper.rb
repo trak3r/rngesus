@@ -2,16 +2,16 @@
 
 module RandomizersHelper
   # Artwork names with their vertical offset percentages
-  DND_ARTWORKS = {
+  RANDOM_CARD_ART = {
     'dragon' => 0,
     'wizard' => 0,
     'battle' => 0,
-    'moon_bats' => 20,
-    'castle_road' => 20
+    'moon_bats' => 30,
+    'castle_road' => 15
   }.freeze
 
   def random_card_artwork
-    DND_ARTWORKS.keys.sample
+    RANDOM_CARD_ART.keys.sample
   end
 
   def random_artwork_position
@@ -19,7 +19,7 @@ module RandomizersHelper
   end
 
   def artwork_vertical_offset(artwork_name)
-    DND_ARTWORKS[artwork_name] || 0
+    RANDOM_CARD_ART[artwork_name] || 0
   end
 
   def toggle_tag_url(tag_name, current_tags: nil)
