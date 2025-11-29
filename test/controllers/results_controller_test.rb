@@ -59,6 +59,7 @@ class ResultsControllerTest < ActionDispatch::IntegrationTest
     end
 
     @result.reload
+
     assert_predicate @result, :discarded?
     assert_not_nil @result.discarded_at
     assert_redirected_to roll_url(@result.roll)
@@ -94,6 +95,7 @@ class ResultsControllerTest < ActionDispatch::IntegrationTest
       delete result_url(@result)
     end
     @result.reload
+
     assert_not @result.discarded?
     assert_redirected_to randomizers_path
     assert_equal "You don't have permission to do that.", flash[:alert]

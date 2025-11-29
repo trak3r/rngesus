@@ -70,6 +70,7 @@ class RandomizersControllerTest < ActionDispatch::IntegrationTest
     end
 
     @randomizer.reload
+
     assert_predicate @randomizer, :discarded?
     assert_not_nil @randomizer.discarded_at
     assert_redirected_to randomizers_url
@@ -82,6 +83,7 @@ class RandomizersControllerTest < ActionDispatch::IntegrationTest
     end
 
     @randomizer.reload
+
     assert_predicate @randomizer, :discarded?
     assert_redirected_to randomizers_url(tab: 'your_randomizers')
   end
@@ -122,6 +124,7 @@ class RandomizersControllerTest < ActionDispatch::IntegrationTest
       delete randomizer_url(@randomizer)
     end
     @randomizer.reload
+
     assert_not @randomizer.discarded?
     assert_redirected_to randomizers_path
     assert_equal "You don't have permission to do that.", flash[:alert]
