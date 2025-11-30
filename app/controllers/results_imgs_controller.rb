@@ -13,7 +13,7 @@ class ResultsImgsController < ApplicationController
     if files.empty?
       @results_img = ResultsImg.new
       @results_img.errors.add(:file, "can't be blank")
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
       return
     end
 
