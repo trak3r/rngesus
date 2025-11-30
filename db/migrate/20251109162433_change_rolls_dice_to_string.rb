@@ -2,7 +2,9 @@
 
 class ChangeRollsDiceToString < ActiveRecord::Migration[8.1]
   def change
-    remove_column :rolls, :dice
-    add_column :rolls, :dice, :string
+    change_table :rolls, bulk: true do |t|
+      t.remove :dice
+      t.string :dice
+    end
   end
 end

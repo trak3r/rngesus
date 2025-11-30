@@ -2,10 +2,12 @@
 
 class AddCachedVotesToRandomizers < ActiveRecord::Migration[8.1]
   def change
-    add_column :randomizers, :cached_votes_total, :integer, default: 0
-    add_column :randomizers, :cached_votes_score, :integer, default: 0
-    add_column :randomizers, :cached_votes_up, :integer, default: 0
-    add_column :randomizers, :cached_votes_down, :integer, default: 0
+    change_table :randomizers, bulk: true do |t|
+      t.integer :cached_votes_total, default: 0
+      t.integer :cached_votes_score, default: 0
+      t.integer :cached_votes_up, default: 0
+      t.integer :cached_votes_down, default: 0
+    end
 
     # Update cached votes for existing randomizers
     reversible do |dir|
