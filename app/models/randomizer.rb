@@ -20,7 +20,7 @@ class Randomizer < ApplicationRecord
   validates :slug, presence: true, uniqueness: true, format: { with: /\A[a-zA-Z0-9]{5}\z/ }
   validate :maximum_tags_limit
 
-  scope :search, ->(query) { where('randomizers.name LIKE ?', "%#{query}%") if query.present? }
+  scope :search, ->(query) { where('randomizers.name ILIKE ?', "%#{query}%") if query.present? }
   scope :newest, -> { order(created_at: :desc) }
   scope :most_liked, -> { order(cached_votes_total: :desc) }
   scope :tagged_with, lambda { |tag_names|
