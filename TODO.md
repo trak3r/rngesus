@@ -1,6 +1,8 @@
 # TODO
 - does Avo support filter, search, sort?
 - creating and editing randomizers could use some more handholding
+- ability to drag and reorder rolls
+- attention-needed icon on rolls missing results or results outside of dice range, etc.
 - we can't collect emails from twitter SSO until we have a public site with privacy policy URL
 - animate cool 3d dice roll on screen
     - only showing on the reroll, not the initial roll (not working consistently)

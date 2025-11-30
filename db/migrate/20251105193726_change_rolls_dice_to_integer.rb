@@ -2,7 +2,9 @@
 
 class ChangeRollsDiceToInteger < ActiveRecord::Migration[8.1]
   def change
-    remove_column :rolls, :dice
-    add_column :rolls, :dice, :integer
+    change_table :rolls, bulk: true do |t|
+      t.remove :dice
+      t.integer :dice
+    end
   end
 end
