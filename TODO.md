@@ -11,6 +11,7 @@
 - private flag for randomizers, or published_at timestamp
 - pagination of randomizers
 - toggle to disable animations on settings page
+- community can add notes or propose typo fixes to other user's data (like pull requests)
 - user option to hide / report offensive items
 - combine randomizers (e.g. forest encounters + reaction rolls)
     - copy rather than symlink?
