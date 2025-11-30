@@ -31,6 +31,7 @@
 - get SSL working (enforced) with free cert generation
 - free hosting?
     - https://render.com/docs/deploy-rails-8
+        - *after* you get your site up and running, they tell you they are going to delete your database in 30 days if you don't upgrade to a paid plan (dirty)
     - https://fly.io/docs/rails/getting-started/
 - database backups
 - set up email exceptions so i'm notified of bugs i don't see myself

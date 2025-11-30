@@ -4,8 +4,6 @@
 - When a result contains an embedded roll, like "2d6 goblins", it will roll that and insert the result into the text
 - The results spin like a slot machine while rolling
 - On a re-roll, 3D dice will roll across the page
-- https://rngesus.onrender.com
-    - *"free instance will spin down with inactivity, which can delay requests by 50 seconds or more."*
 
 # Why am I building it?
 - Free-time project to play with some technologies I don't get to use at my day job
