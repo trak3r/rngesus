@@ -1,4 +1,8 @@
 # TODO
+- does Discord have SSO?
+- integration as a discord bot?
+- golden tickets (inspired by Fizzy)
+- stamps on cards, like top ten, rising star, etc.
 - does Avo support filter, search, sort?
 - creating and editing randomizers could use some more handholding
 - ability to drag and reorder rolls
