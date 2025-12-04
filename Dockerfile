@@ -54,9 +54,11 @@ RUN bundle exec bootsnap precompile -j 1 app/ lib/
 RUN SECRET_KEY_BASE_DUMMY=1 \
     GOOGLE_CLIENT_ID=dummy \
     GOOGLE_CLIENT_SECRET=dummy \
+    TWITTER_CLIENT_ID=dummy \
+    TWITTER_CLIENT_SECRET=dummy \
+    FACEBOOK_APP_ID=dummy \
+    FACEBOOK_APP_SECRET=dummy \
     ./bin/rails assets:precompile
-
-
 
 
 # Final stage for app image
