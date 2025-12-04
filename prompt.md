@@ -1,17 +1,17 @@
-i'm getting this error on the server:
+now i'm getting this error on the server:
 
-[87a8acf9-5534-48a5-b8e0-6b3351a72aec] Completed 500 Internal Server Error in 22ms (ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.7ms)
-[87a8acf9-5534-48a5-b8e0-6b3351a72aec]
-[87a8acf9-5534-48a5-b8e0-6b3351a72aec] MiniMagick::Error (`mogrify -colorspace Gray /tmp/mini_magick20251204-14-tyfnym.png` failed with status: 127 and error:
-executable not found: "mogrify"):
-[87a8acf9-5534-48a5-b8e0-6b3351a72aec]
-[87a8acf9-5534-48a5-b8e0-6b3351a72aec] app/services/results_img_processor.rb:14:in 'ResultsImgProcessor#to_s'
-[87a8acf9-5534-48a5-b8e0-6b3351a72aec] app/services/results_img_processor.rb:39:in 'ResultsImgProcessor#to_a'
-[87a8acf9-5534-48a5-b8e0-6b3351a72aec] app/services/results_img_processor.rb:53:in 'ResultsImgProcessor#parsed_list'
-[87a8acf9-5534-48a5-b8e0-6b3351a72aec] app/services/results_img_processor.rb:95:in 'ResultsImgProcessor#call'
-[87a8acf9-5534-48a5-b8e0-6b3351a72aec] app/controllers/results_imgs_controller.rb:22:in 'block in ResultsImgsController#create'
-[87a8acf9-5534-48a5-b8e0-6b3351a72aec] app/controllers/results_imgs_controller.rb:21:in 'Array#each'
-[87a8acf9-5534-48a5-b8e0-6b3351a72aec] app/controllers/results_imgs_controller.rb:21:in 'ResultsImgsController#create'
+[52e1b045-e7a4-4a90-a66e-d36d9d7230d0] Completed 500 Internal Server Error in 6985ms (ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 6.4ms)
+[52e1b045-e7a4-4a90-a66e-d36d9d7230d0]
+[52e1b045-e7a4-4a90-a66e-d36d9d7230d0] Errno::ENOENT (No such file or directory - tesseract):
+[52e1b045-e7a4-4a90-a66e-d36d9d7230d0]
+[52e1b045-e7a4-4a90-a66e-d36d9d7230d0] app/services/results_img_processor.rb:33:in 'block in ResultsImgProcessor#to_s'
+[52e1b045-e7a4-4a90-a66e-d36d9d7230d0] app/services/results_img_processor.rb:23:in 'ResultsImgProcessor#to_s'
+[52e1b045-e7a4-4a90-a66e-d36d9d7230d0] app/services/results_img_processor.rb:39:in 'ResultsImgProcessor#to_a'
+[52e1b045-e7a4-4a90-a66e-d36d9d7230d0] app/services/results_img_processor.rb:53:in 'ResultsImgProcessor#parsed_list'
+[52e1b045-e7a4-4a90-a66e-d36d9d7230d0] app/services/results_img_processor.rb:95:in 'ResultsImgProcessor#call'
+[52e1b045-e7a4-4a90-a66e-d36d9d7230d0] app/controllers/results_imgs_controller.rb:22:in 'block in ResultsImgsController#create'
+[52e1b045-e7a4-4a90-a66e-d36d9d7230d0] app/controllers/results_imgs_controller.rb:21:in 'Array#each'
+[52e1b045-e7a4-4a90-a66e-d36d9d7230d0] app/controllers/results_imgs_controller.rb:21:in 'ResultsImgsController#create'
 
 
 ---
