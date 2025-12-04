@@ -27,9 +27,9 @@ ssh:
 #
 # Don't use this when deploying to multiple web servers (then you have to terminate SSL at your load balancer).
 #
-# proxy:
-#   ssl: true
-#   host: app.example.com
+proxy:
+  ssl: true
+  host: rngesus.rudiment.net
 
 # Where you keep your container images.
 registry:
