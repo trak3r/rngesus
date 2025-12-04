@@ -1,8 +1,18 @@
-configure the kamal deploy for ssh certificate management.
-the domain will be rngesus.rudiment.net
-remember the latest version of kamal uses the basecame kamal proxy, NOT traefix.
-i think it supports let's encrypt for the certificate management - use whatever is standard practice.
-https should be required and non-https should be redirected to https.
+i'm getting this error on the server:
+
+[87a8acf9-5534-48a5-b8e0-6b3351a72aec] Completed 500 Internal Server Error in 22ms (ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.7ms)
+[87a8acf9-5534-48a5-b8e0-6b3351a72aec]
+[87a8acf9-5534-48a5-b8e0-6b3351a72aec] MiniMagick::Error (`mogrify -colorspace Gray /tmp/mini_magick20251204-14-tyfnym.png` failed with status: 127 and error:
+executable not found: "mogrify"):
+[87a8acf9-5534-48a5-b8e0-6b3351a72aec]
+[87a8acf9-5534-48a5-b8e0-6b3351a72aec] app/services/results_img_processor.rb:14:in 'ResultsImgProcessor#to_s'
+[87a8acf9-5534-48a5-b8e0-6b3351a72aec] app/services/results_img_processor.rb:39:in 'ResultsImgProcessor#to_a'
+[87a8acf9-5534-48a5-b8e0-6b3351a72aec] app/services/results_img_processor.rb:53:in 'ResultsImgProcessor#parsed_list'
+[87a8acf9-5534-48a5-b8e0-6b3351a72aec] app/services/results_img_processor.rb:95:in 'ResultsImgProcessor#call'
+[87a8acf9-5534-48a5-b8e0-6b3351a72aec] app/controllers/results_imgs_controller.rb:22:in 'block in ResultsImgsController#create'
+[87a8acf9-5534-48a5-b8e0-6b3351a72aec] app/controllers/results_imgs_controller.rb:21:in 'Array#each'
+[87a8acf9-5534-48a5-b8e0-6b3351a72aec] app/controllers/results_imgs_controller.rb:21:in 'ResultsImgsController#create'
+
 
 ---
 
