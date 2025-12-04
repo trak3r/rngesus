@@ -84,6 +84,10 @@
     - (x) https://github.com/heartcombo/devise
     - https://github.com/omniauth/omniauth
         - https://github.com/omniauth/omniauth/wiki/List-of-Strategies
+- oauth quick links
+    - https://console.cloud.google.com/auth/clients/1053062972408-d6i1n0jdmp6bj87fpraqrrv8m7u0048s.apps.googleusercontent.com?project=rngesus-478311
+    - https://developer.x.com/en/portal/projects/1994394487171264512/apps/31898686/settings
+    - https://developers.facebook.com/apps/852906317290024/dashboard/?business_id=694712267051378
 - support for rolls within results like "1d4 treants"
     - recognize patterns like "XdY" and link them to impromptu roller
     - a pop-up modal or just a hover tooltip might be slick (client-side JS)
