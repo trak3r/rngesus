@@ -4,6 +4,7 @@
 - When a result contains an embedded roll, like "2d6 goblins", it will roll that and insert the result into the text
 - The results spin like a slot machine while rolling
 - On a re-roll, 3D dice will roll across the page
+- Tentatively live at https://rngesus.rudiment.net/
 
 # Why am I building it?
 - Free-time project to play with some technologies I don't get to use at my day job
