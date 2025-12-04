@@ -8,7 +8,6 @@ new environment secrets:
     FACEBOOK_APP_SECRET
 
 
-
 Setting up local registry port forwarding to 34.205.65.173...
  ERROR Error setting up port forwarding to 34.205.65.173: Net::SSH::ConnectionTimeout: Net::SSH::ConnectionTimeout
  ERROR /Users/ted/.rvm/gems/ruby-3.4.1/gems/net-ssh-7.3.0/lib/net/ssh/transport/session.rb:91:in 'Net::SSH::Transport::Session#initialize'
