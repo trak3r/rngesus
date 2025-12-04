@@ -1,3 +1,11 @@
+update my kamal deploy config.
+username: ubuntu
+host 34.205.65.173
+new environment secrets:
+    TWITTER_CLIENT_ID
+    TWITTER_CLIENT_SECRET
+    FACEBOOK_APP_ID
+    FACEBOOK_APP_SECRET
 
 ---
 
