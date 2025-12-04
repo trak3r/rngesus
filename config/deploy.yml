@@ -11,7 +11,7 @@ servers:
 
 ssh:
   user: ubuntu
-  port: 3034
+  port: 22
   keys_only: true
   keys:
     - ~/.ssh/rngesus-2025-12-04a.pem
