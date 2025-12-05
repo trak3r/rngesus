@@ -32,15 +32,24 @@ echo ""
 BACKUP_SUBDIR="$BACKUP_DIR/backup_$TIMESTAMP"
 mkdir -p "$BACKUP_SUBDIR"
 
-# Backup each database
+# Backup each database using SQLite's .backup command
 for db in "${DATABASES[@]}"; do
   echo "Backing up $db..."
   
-  # Copy database from container
-  docker cp "$CONTAINER_NAME:/rails/storage/$db" "$BACKUP_SUBDIR/$db" 2>/dev/null || {
+  # Use SQLite's .backup command for safe, consistent backups
+  docker exec "$CONTAINER_NAME" sqlite3 "/rails/storage/$db" ".backup '/tmp/$db'" 2>/dev/null || {
     echo "  Warning: Could not backup $db (file may not exist)"
     continue
   }
+  
+  # Copy the backup from container to host
+  docker cp "$CONTAINER_NAME:/tmp/$db" "$BACKUP_SUBDIR/$db" 2>/dev/null || {
+    echo "  Warning: Could not copy backup for $db"
+    continue
+  }
+  
+  # Clean up temporary backup file in container
+  docker exec "$CONTAINER_NAME" rm -f "/tmp/$db" 2>/dev/null
   
   # Verify the backup file exists and has size > 0
   if [ -s "$BACKUP_SUBDIR/$db" ]; then
