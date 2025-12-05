@@ -35,7 +35,7 @@
 - hotwire native
 
 ## Hosting
-- database backups
+- database backups (offsite)
 - set up email exceptions so i'm notified of bugs i don't see myself
 - SEO
 - google analytics
