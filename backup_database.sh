@@ -12,13 +12,8 @@ CONTAINER_NAME="rngesus-web-1"
 VOLUME_NAME="rngesus_storage"
 RETENTION_DAYS=30
 
-# Database files to backup
-DATABASES=(
-  "production.sqlite3"
-  "production_cache.sqlite3"
-  "production_queue.sqlite3"
-  "production_cable.sqlite3"
-)
+# Database file to backup (only main production DB, not transient cache/queue/cable)
+DB_FILE="production.sqlite3"
 
 # Create backup directory if it doesn't exist
 mkdir -p "$BACKUP_DIR"
@@ -32,34 +27,32 @@ echo ""
 BACKUP_SUBDIR="$BACKUP_DIR/backup_$TIMESTAMP"
 mkdir -p "$BACKUP_SUBDIR"
 
-# Backup each database using SQLite's .backup command
-for db in "${DATABASES[@]}"; do
-  echo "Backing up $db..."
-  
-  # Use SQLite's .backup command for safe, consistent backups
-  docker exec "$CONTAINER_NAME" sqlite3 "/rails/storage/$db" ".backup '/tmp/$db'" 2>/dev/null || {
-    echo "  Warning: Could not backup $db (file may not exist)"
-    continue
-  }
-  
-  # Copy the backup from container to host
-  docker cp "$CONTAINER_NAME:/tmp/$db" "$BACKUP_SUBDIR/$db" 2>/dev/null || {
-    echo "  Warning: Could not copy backup for $db"
-    continue
-  }
-  
-  # Clean up temporary backup file in container
-  docker exec "$CONTAINER_NAME" rm -f "/tmp/$db" 2>/dev/null
-  
-  # Verify the backup file exists and has size > 0
-  if [ -s "$BACKUP_SUBDIR/$db" ]; then
-    SIZE=$(du -h "$BACKUP_SUBDIR/$db" | cut -f1)
-    echo "  ✓ Backed up $db ($SIZE)"
-  else
-    echo "  ✗ Failed to backup $db"
-    rm -f "$BACKUP_SUBDIR/$db"
-  fi
-done
+# Backup database using SQLite's .backup command
+echo "Backing up $DB_FILE..."
+
+# Use SQLite's .backup command for safe, consistent backups
+docker exec "$CONTAINER_NAME" sqlite3 "/rails/storage/$DB_FILE" ".backup '/tmp/$DB_FILE'" || {
+  echo "  ✗ Failed to create backup of $DB_FILE"
+  exit 1
+}
+
+# Copy the backup from container to host
+docker cp "$CONTAINER_NAME:/tmp/$DB_FILE" "$BACKUP_SUBDIR/$DB_FILE" || {
+  echo "  ✗ Failed to copy backup from container"
+  exit 1
+}
+
+# Clean up temporary backup file in container
+docker exec "$CONTAINER_NAME" rm -f "/tmp/$DB_FILE"
+
+# Verify the backup file exists and has size > 0
+if [ -s "$BACKUP_SUBDIR/$DB_FILE" ]; then
+  SIZE=$(du -h "$BACKUP_SUBDIR/$DB_FILE" | cut -f1)
+  echo "  ✓ Backed up $DB_FILE ($SIZE)"
+else
+  echo "  ✗ Backup file is empty or missing"
+  exit 1
+fi
 
 # Create a compressed archive of all databases
 echo ""
