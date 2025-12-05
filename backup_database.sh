@@ -8,7 +8,13 @@ set -e  # Exit on error
 # Configuration
 BACKUP_DIR="/home/ubuntu/backups/rngesus"
 TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
-CONTAINER_NAME="rngesus-web-1"
+# Find the rngesus web container (has hash suffix from Kamal deployment)
+CONTAINER_NAME=$(docker ps --format '{{.Names}}' | grep '^rngesus-web-' | head -n 1)
+
+if [ -z "$CONTAINER_NAME" ]; then
+  echo "Error: Could not find rngesus-web container"
+  exit 1
+fi
 VOLUME_NAME="rngesus_storage"
 RETENTION_DAYS=30
 
