@@ -1,13 +1,15 @@
 # TODO
-- does Discord have SSO?
-- integration as a discord bot?
-- golden tickets (inspired by Fizzy)
-- stamps on cards, like top ten, rising star, etc.
-- does Avo support filter, search, sort?
+- we can't collect emails from twitter SSO until we have a public site with privacy policy URL
+- update result should go back to roll, not result show page
+    - kill the result#show action, view, route
 - creating and editing randomizers could use some more handholding
+- does Discord have SSO?
+- golden tickets (inspired by Fizzy)
+- stamps on cards, like top ten, rising star, missing stuff / needs attention, etc.
+- does Avo support filter, search, sort?
 - ability to drag and reorder rolls
 - attention-needed icon on rolls missing results or results outside of dice range, etc.
-- we can't collect emails from twitter SSO until we have a public site with privacy policy URL
+- integration as a discord bot?
 - animate cool 3d dice roll on screen
     - only showing on the reroll, not the initial roll (not working consistently)
     - often have to hard-reload a page to see the dice; seems navigating around causes them to stop working
