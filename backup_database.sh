@@ -60,15 +60,19 @@ else
   exit 1
 fi
 
-# Verify backup integrity by querying it
-echo "  Verifying backup integrity..."
-INTEGRITY_CHECK=$(sqlite3 "$BACKUP_SUBDIR/$DB_FILE" "SELECT COUNT(*) FROM users LIMIT 1;" 2>&1)
-
-if [ $? -eq 0 ]; then
-  echo "  ✓ Backup integrity verified (users table accessible, $INTEGRITY_CHECK records)"
+# Verify backup integrity by querying it (if sqlite3 is available on host)
+if command -v sqlite3 &> /dev/null; then
+  echo "  Verifying backup integrity..."
+  INTEGRITY_CHECK=$(sqlite3 "$BACKUP_SUBDIR/$DB_FILE" "PRAGMA integrity_check;" 2>&1)
+  
+  if [ $? -eq 0 ] && [ "$INTEGRITY_CHECK" = "ok" ]; then
+    echo "  ✓ Backup integrity verified"
+  else
+    echo "  ✗ Backup integrity check failed: $INTEGRITY_CHECK"
+    exit 1
+  fi
 else
-  echo "  ✗ Backup integrity check failed: $INTEGRITY_CHECK"
-  exit 1
+  echo "  ⚠ Skipping integrity check (sqlite3 not available on host)"
 fi
 
 # Create a compressed archive of all databases
