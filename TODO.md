@@ -1,4 +1,5 @@
 # TODO
+- let user copy somebody else's randomizer as their own
 - we can't collect emails from twitter SSO until we have a public site with privacy policy URL
 - update result should go back to roll, not result show page
     - kill the result#show action, view, route
