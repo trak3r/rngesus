@@ -1,0 +1,5 @@
+# RNGesus Database Backup Cron Job
+# Runs daily at 2:00 AM server time
+# Logs output to /home/ubuntu/backup.log
+
+0 2 * * * /home/ubuntu/backup_database.sh >> /home/ubuntu/backup.log 2>&1
