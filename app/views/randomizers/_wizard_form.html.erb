@@ -68,16 +68,7 @@
       </div>
 
       <div class="my-5">
-        <%= roll_form.label :dice, class: "label" %>
-        <%= roll_form.text_field :dice,
-                        class: [
-                          "input-handwritten w-full",
-                          {
-                            "border-red-500": roll_form.object.errors[:dice].any?,
-                          },
-                        ],
-                        placeholder: t('.dice_placeholder') %>
-        <p class="text-sm text-base-content/60 mt-1 font-handwriting"><%= t('.dice_help') %></p>
+        <%= render 'rolls/form_dice', form: roll_form, roll: roll_form.object %>
       </div>
 
       <!-- Section 3: Results -->
