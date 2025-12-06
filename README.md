@@ -24,3 +24,10 @@
 ![Outcomes page showing roll results](screenshots/outcomes.png)
 
 See [TODO > Done](TODO.md#done) for more details on features and lessons learned.
+
+# License
+
+This project is licensed under the [PolyForm Noncommercial License 1.0.0](LICENSE).
+
+- Free to use for personal, educational, or noncommercial projects.
+- Commercial use requires a separate license. Please contact [YOUR CONTACT INFO] for inquiries.
