@@ -142,10 +142,11 @@ class RandomizersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def randomizer_params
+    # rubocop:disable Rails/StrongParametersExpect
     params.require(:randomizer).permit(
       :name,
-      tag_ids: [],
-      rolls_attributes: [
+      { tag_ids: [] },
+      { rolls_attributes: [
         :id,
         :name,
         :dice,
@@ -156,8 +157,9 @@ class RandomizersController < ApplicationController
           value
           _destroy
         ] }
-      ]
+      ] }
     )
+    # rubocop:enable Rails/StrongParametersExpect
   end
 
   def check_ownership
