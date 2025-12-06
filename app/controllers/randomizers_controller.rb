@@ -59,7 +59,7 @@ class RandomizersController < ApplicationController
   def create_with_upload
     # Create a dummy randomizer and roll for upload flow
     @randomizer = current_user.randomizers.build(name: "New Randomizer")
-    @roll = @randomizer.rolls.build(name: "New Roll", dice: "1d6")
+    @roll = @randomizer.rolls.build(name: "New Roll", dice: "D20")
     
     if @randomizer.save
       # Redirect to upload page (step 1.5)
