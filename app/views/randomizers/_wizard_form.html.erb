@@ -114,19 +114,21 @@
         <% else %>
           <!-- Manual Entry Mode -->
           <div data-randomizer-wizard-target="resultsContainer">
+            <% ordinals = ['First', 'Second', 'Third', 'Fourth', 'Fifth', 'Sixth', 'Seventh', 'Eighth', 'Ninth', 'Tenth'] %>
             <%= roll_form.fields_for :results do |result_form| %>
+              <% index = result_form.index %>
               <div class="flex gap-4 mb-4" data-randomizer-wizard-target="resultField">
+                <div class="w-32">
+                  <%= result_form.label :value, t('.result_value'), class: "label text-sm" %>
+                  <%= result_form.text_field :value,
+                                  class: "input-handwritten w-full",
+                                  placeholder: (index + 1).to_s %>
+                </div>
                 <div class="flex-1">
                   <%= result_form.label :name, t('.result_name'), class: "label text-sm" %>
                   <%= result_form.text_field :name,
                                   class: "input-handwritten w-full",
-                                  placeholder: t('.result_name_placeholder') %>
-                </div>
-                <div class="w-32">
-                  <%= result_form.label :value, t('.result_value'), class: "label text-sm" %>
-                  <%= result_form.number_field :value,
-                                  class: "input-handwritten w-full",
-                                  placeholder: "1" %>
+                                  placeholder: ordinals[index] || "Result #{index + 1}" %>
                 </div>
                 <div class="flex items-end">
                   <button type="button" 
