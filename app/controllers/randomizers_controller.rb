@@ -2,7 +2,7 @@
 
 class RandomizersController < ApplicationController
   before_action :require_login, except: %i[index show]
-  before_action :set_randomizer, except: %i[index new create]
+  before_action :set_randomizer, except: %i[index new create choose_method]
   before_action :check_ownership, only: %i[edit update destroy]
 
   # the old man CRUD soul in me thinks this should be in
