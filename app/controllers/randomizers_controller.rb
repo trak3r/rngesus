@@ -66,7 +66,7 @@ class RandomizersController < ApplicationController
       redirect_to new_roll_results_img_path(@roll)
     else
       # If save fails, go back to choose method
-      redirect_to choose_method_randomizers_path, alert: 'Failed to create randomizer'
+      redirect_to choose_method_randomizers_path, alert: t('.create_failed')
     end
   end
 

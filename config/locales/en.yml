@@ -72,6 +72,8 @@ en:
       result_value: "Value"
       add_result: "Add Another Result"
       submit: "Create Randomizer"
+    create_with_upload:
+      create_failed: "Failed to create randomizer"
     create:
       success: "Randomizer was successfully created."
     destroy:
