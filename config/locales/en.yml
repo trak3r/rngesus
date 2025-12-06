@@ -47,6 +47,8 @@ en:
       create_by_hand: "Create By Hand"
       manual_description: "Manually enter your randomizer data"
       back: ""
+    index:
+      deleted: "DELETED"
     new:
       title: "New Randomizer"
       heading: "Create Your Randomizer"
