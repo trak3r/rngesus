@@ -202,6 +202,8 @@ class RandomizersControllerTest < ActionDispatch::IntegrationTest
       } }
     end
 
+    assert_redirected_to randomizer_path(@randomizer)
+
     # Verify the roll was updated, not replaced
     roll.reload
     assert_equal original_roll_id, roll.id, "Roll ID should not change"
