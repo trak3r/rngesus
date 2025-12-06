@@ -1,10 +1,11 @@
 # TODO
-- let user copy somebody else's randomizer as their own
-- we can't collect emails from twitter SSO until we have a public site with privacy policy URL
+- disable facebook; it's not working and who uses it?
+- creating and editing randomizers could use some more handholding
+    - consider a wizard-style flow
 - update result should go back to roll, not result show page
     - kill the result#show action, view, route
-- creating and editing randomizers could use some more handholding
 - does Discord have SSO?
+- let user copy somebody else's randomizer as their own
 - golden tickets (inspired by Fizzy)
 - stamps on cards, like top ten, rising star, missing stuff / needs attention, etc.
 - does Avo support filter, search, sort?
@@ -129,3 +130,5 @@
         - and the database never did connect despite configuring the DATABASE_URL environment variable as per their instructions
     - https://fly.io/docs/rails/getting-started/ (cheap but not free)
 - get SSL working (enforced) with free cert generation
+- we can't collect emails from twitter SSO until we have a public site with privacy policy URL
+    - i enabled it but don't seem them coming over - oh well
