@@ -76,6 +76,8 @@ en:
       create_failed: "Failed to create randomizer"
     create:
       success: "Randomizer was successfully created."
+    update:
+      success: "Randomizer was successfully updated."
     destroy:
       success: "Randomizer was successfully destroyed."
   rolls:
