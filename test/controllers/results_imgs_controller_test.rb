@@ -18,7 +18,7 @@ class ResultsImgsControllerTest < ActionDispatch::IntegrationTest
       }
     end
 
-    assert_redirected_to roll_path(@roll)
+    assert_redirected_to new_randomizer_path(method: 'upload', upload_randomizer_id: @roll.randomizer.id)
     assert_equal 'Screenshot was successfully processed.', flash[:notice]
   end
 end

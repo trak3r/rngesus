@@ -84,6 +84,16 @@ en:
     create:
       success: "CSV was successfully processed."
   results_imgs:
+    form:
+      upload_title: "Upload Screenshots"
+      error_prevented: "prevented this file from uploading:"
+      multiple_files_help: "You can select multiple screenshots to upload at once"
+      submit_button: "Process Screenshots"
+      tips_title: "For Best Results"
+      tip_crop: "Crop your screenshot to just a two-column table"
+      tip_zoom: "Zoom in as much as possible; the bigger, the better"
+      example_label: "Example:"
+      example_alt: "Example screenshot showing a two-column table"
     create:
       success:
         one: "Screenshot was successfully processed."

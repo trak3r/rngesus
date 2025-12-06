@@ -1,51 +1,60 @@
-<div class="flex flex-col md:flex-row items-start justify-center gap-6 px-4 py-8">
+<div class="max-w-4xl mx-auto px-4">
+  <div class="grid md:grid-cols-2 gap-6">
+    <!-- Upload Form -->
+    <div class="card-index">
+      <h2 class="font-typewriter text-2xl font-bold text-pencil mb-6">
+        <%= t('.upload_title') %>
+      </h2>
 
-  <!-- Upload Form -->
-  <div class="w-full md:w-1/2 p-4 rounded-lg bg-base-100 dark:bg-base-200 shadow-sm">
-    <%= form_with(model: @results_img, url: roll_results_imgs_path(@roll), local: true, html: { multipart: true }) do |form| %>
+      <%= form_with(model: @results_img, url: roll_results_imgs_path(@roll), local: true, html: { multipart: true }) do |form| %>
 
-      <% if @results_img.errors.any? %>
-        <div class="mb-3 text-error">
-          <h2 class="font-semibold mb-1"><%= pluralize(@results_img.errors.count, "error") %> prevented this file from uploading:</h2>
-          <ul class="list-disc ml-5 text-sm">
-            <% @results_img.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
+        <% if @results_img.errors.any? %>
+          <div class="alert alert-error mb-6">
+            <div>
+              <h3 class="font-semibold mb-2">
+                <%= pluralize(@results_img.errors.count, "error") %> <%= t('.error_prevented') %>
+              </h3>
+              <ul class="list-disc ml-6 text-sm">
+                <% @results_img.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        <% end %>
+
+        <div class="mb-6">
+          <%= form.file_field :file,
+            accept: ".png,.jpg,.jpeg",
+            multiple: true,
+            class: "file-input file-input-bordered w-full" %>
+          <p class="text-sm text-base-content/60 mt-2 font-handwriting">
+            <%= t('.multiple_files_help') %>
+          </p>
         </div>
+
+        <%= form.submit t('.submit_button'),
+          class: "btn-doodle cursor-pointer w-full" %>
+
       <% end %>
+    </div>
 
-      <div class="mb-3">
-        <%= form.file_field :file,
-          accept: ".png,.jpg,.jpeg",
-          multiple: true,
-          class: "file-input file-input-primary w-full" %>
-        <label class="label">
-          <span class="label-text-alt text-base-content/60">
-            You can select multiple screenshots to upload at once
-          </span>
-        </label>
-      </div>
+    <!-- Tips Card -->
+    <div class="card-index">
+      <h3 class="font-typewriter text-2xl font-bold text-pencil mb-4">
+        <%= t('.tips_title') %>
+      </h3>
 
-      <%= form.submit "Upload screenshot(s)",
-        class: "btn btn-primary w-full text-base font-medium py-2" %>
+      <ul class="list-disc list-inside text-base-content/70 space-y-2 mb-4 font-handwriting text-lg">
+        <li><%= t('.tip_crop') %></li>
+        <li><%= t('.tip_zoom') %></li>
+      </ul>
 
-    <% end %>
+      <p class="text-sm text-base-content/60 mb-3 font-handwriting">
+        <%= t('.example_label') %>
+      </p>
+
+      <%= image_tag "forest_encounters_p154.png", alt: t('.example_alt'), class: "w-full rounded border-2 border-pencil/20" %>
+    </div>
   </div>
-
-  <!-- "For Best Results" Box -->
-  <div class="w-full md:w-1/2 p-4 rounded-lg bg-base-200 dark:bg-base-300 shadow-sm flex flex-col">
-
-<h3 class="text-base font-semibold mb-2">For Best Results!</h3>
-
-<ul class="list-disc list-inside text-sm text-base-content/70 space-y-1 mb-3">
-  <li>Crop your screenshot to just a two-column table </li>
-  <li>Zoom in as much as possible; the bigger, the better</li>
-</ul>
-
-<p class="text-sm text-base-content/70">Example:</p>
-
-    <%= image_tag "forest_encounters_p154.png", alt: "Example screenshot", class: "w-full" %>
-  </div>
-
 </div>
