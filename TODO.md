@@ -11,9 +11,6 @@
 - pagination of randomizers
 
 ## Nice to Have
-- allow user to attach/associate image with their randomizer
-    - we don't want to be hosting images obviously
-    - would need to integrate with third-party like imgur
 - user option to hide / report offensive items
 - animate cool 3d dice roll on screen
     - only showing on the reroll, not the initial roll (not working consistently)
@@ -22,6 +19,12 @@
     - pages with multiple rolls should have a flurry of dice
     - what are our options for dice colors and textures?
 - toggle to disable animations on settings page
+
+## User Requests
+- (marco) U should be able to upload a picture to go along with the table
+- (phil) Allow a copy paste of the table. Greatly improves time so a user doesnt have to screen shot, save an image then upload. They can just snip it and paste it.
+- (phil) If there is no roll on table that would be crucial. Something so. Result 12: You find a [[Roll on Metal Table]] Sword. And that Roll on Metal table would be like, iron, steel, cold iron, silver etc.
+- (marco) Needs a Misc category.
 
 ## Pie in the Sky
 - let user copy somebody else's randomizer as their own
