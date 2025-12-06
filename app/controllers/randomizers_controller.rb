@@ -104,14 +104,16 @@ class RandomizersController < ApplicationController
 
   # PATCH/PUT /randomizers/1
   def update
+    # Extract method parameter (not a model attribute) before permitting params
+    @method = params[:randomizer][:method] if params[:randomizer][:method].present?
+    
     if @randomizer.update(randomizer_params)
       redirect_to @randomizer,
-                  notice: t('randomizers.create.success'),
+                  notice: t('.success'),
                   status: :see_other
     else
-      # If this came from wizard flow (has method param), render wizard
-      if params[:randomizer][:method].present?
-        @method = params[:randomizer][:method]
+      # If this came from wizard flow, render wizard
+      if @method.present?
         render :new, status: :unprocessable_content
       else
         render :edit, status: :unprocessable_content

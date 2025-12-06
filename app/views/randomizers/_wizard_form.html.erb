@@ -50,22 +50,19 @@
     </div>
   </div>
 
-  <!-- Section 2: First Roll -->
-  <%= form.fields_for :rolls do |roll_form| %>
-    <div class="card-index mb-6">
-      <h2 class="font-typewriter text-2xl font-bold text-pencil mb-4">
-        <%= t('.first_roll') %>
-      </h2>
+  <!-- Section 2: Roll Details -->
+  <div class="card-index mb-6">
+    <h2 class="font-typewriter text-2xl font-bold text-pencil mb-4">
+      <%= t('.roll_details') %>
+    </h2>
 
-      <div class="my-5">
-        <%= roll_form.label :name, class: "label" %>
+    <%= form.fields_for :rolls do |roll_form| %>
+      <%= roll_form.hidden_field :id if roll_form.object.persisted? %>
+      
+      <div class="mb-4">
+        <%= roll_form.label :name, t('.roll_name'), class: "label text-sm" %>
         <%= roll_form.text_field :name,
-                        class: [
-                          "input-handwritten w-full",
-                          {
-                            "border-red-500": roll_form.object.errors[:name].any?,
-                          },
-                        ],
+                        class: "input-handwritten w-full",
                         placeholder: t('.roll_name_placeholder') %>
       </div>
 

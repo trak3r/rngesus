@@ -22,6 +22,8 @@ step 2
 
 where there's a validation error on the wizard page two - for example i selected 4 tags - i am taken to the edit page for the randomizer, but i should be taken back to the wizard page two.
 
+changing the roll name and dice on the wizard page two does not update the roll in the database.
+
 ---
 
 # Test Guidelines

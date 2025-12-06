@@ -2,6 +2,7 @@
 
 ## Must Have
 - on forms, instead of showing error at top of page, show it inline with the field
+- the non-CRUD controller actions still leave a bad taste in my mouth; let's audit them and considering refactoring
 - add a second language just to demonstrate i18n support
 - there's sometimes some lag before the slot machine animation starts
 - don't show incomplete, test, draft, randomizers (except to owner)

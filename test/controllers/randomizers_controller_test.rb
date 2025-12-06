@@ -179,4 +179,35 @@ class RandomizersControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :unprocessable_content
   end
+
+  test 'should update existing roll via nested attributes instead of creating new one' do
+    # Get the existing roll
+    roll = @randomizer.rolls.first
+    original_roll_id = roll.id
+    original_roll_name = roll.name
+    original_roll_dice = roll.dice
+
+    # Update randomizer with nested roll attributes (simulating wizard flow)
+    assert_no_difference('Roll.count') do
+      patch randomizer_url(@randomizer), params: { randomizer: {
+        name: @randomizer.name,
+        method: 'upload',  # Include method to simulate wizard flow
+        rolls_attributes: {
+          '0' => {
+            id: roll.id,
+            name: 'Updated Roll Name',
+            dice: 'D20'
+          }
+        }
+      } }
+    end
+
+    # Verify the roll was updated, not replaced
+    roll.reload
+    assert_equal original_roll_id, roll.id, "Roll ID should not change"
+    assert_equal 'Updated Roll Name', roll.name, "Roll name should be updated"
+    assert_equal 'D20', roll.dice, "Roll dice should be updated"
+    assert_not_equal original_roll_name, roll.name
+    assert_not_equal original_roll_dice, roll.dice
+  end
 end
