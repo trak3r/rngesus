@@ -34,7 +34,7 @@
   <div class="my-5">
     <%= form.label :value, class: "label font-typewriter text-base-content" %>
     <%= form.select :value,
-          options_for_select(result.roll.dice_object.min..result.roll.dice_object.max, result.value),
+          options_for_select(result.roll.dice_object.min..result.roll.dice_object.max, selected: result.value),
           {},
           class: [
             "input-handwritten w-full",

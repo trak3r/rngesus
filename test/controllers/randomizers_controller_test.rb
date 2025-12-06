@@ -40,7 +40,7 @@ class RandomizersControllerTest < ActionDispatch::IntegrationTest
       } }
     end
 
-    assert_redirected_to randomizer_url(Randomizer.last)
+    assert_redirected_to randomizer_outcomes_path(Randomizer.last)
   end
 
   test 'should show randomizer' do
@@ -152,7 +152,7 @@ class RandomizersControllerTest < ActionDispatch::IntegrationTest
     assert_equal 2, randomizer.tags.count
     assert_includes randomizer.tags, tags(:forest)
     assert_includes randomizer.tags, tags(:dungeon)
-    assert_redirected_to randomizer_url(randomizer)
+    assert_redirected_to randomizer_outcomes_path(randomizer)
   end
 
   test 'should create randomizer with 3 tags (maximum)' do
@@ -166,7 +166,7 @@ class RandomizersControllerTest < ActionDispatch::IntegrationTest
     randomizer = Randomizer.last
 
     assert_equal 3, randomizer.tags.count
-    assert_redirected_to randomizer_url(randomizer)
+    assert_redirected_to randomizer_outcomes_path(randomizer)
   end
 
   test 'should not create randomizer with more than 3 tags' do
@@ -178,5 +178,39 @@ class RandomizersControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_response :unprocessable_content
+  end
+
+  test 'should update existing roll via nested attributes instead of creating new one' do
+    # Get the existing roll
+    roll = @randomizer.rolls.first
+    original_roll_id = roll.id
+    original_roll_name = roll.name
+    original_roll_dice = roll.dice
+
+    # Update randomizer with nested roll attributes (simulating wizard flow)
+    assert_no_difference('Roll.count') do
+      patch randomizer_url(@randomizer), params: { randomizer: {
+        name: @randomizer.name,
+        method: 'upload', # Include method to simulate wizard flow
+        rolls_attributes: {
+          '0' => {
+            id: roll.id,
+            name: 'Updated Roll Name',
+            dice: 'D20'
+          }
+        }
+      } }
+    end
+
+    assert_redirected_to randomizer_outcomes_path(@randomizer)
+
+    # Verify the roll was updated, not replaced
+    roll.reload
+
+    assert_equal original_roll_id, roll.id, 'Roll ID should not change'
+    assert_equal 'Updated Roll Name', roll.name, 'Roll name should be updated'
+    assert_equal 'D20', roll.dice, 'Roll dice should be updated'
+    assert_not_equal original_roll_name, roll.name
+    assert_not_equal original_roll_dice, roll.dice
   end
 end

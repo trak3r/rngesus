@@ -18,7 +18,19 @@ class ResultsImgsControllerTest < ActionDispatch::IntegrationTest
       }
     end
 
-    assert_redirected_to roll_path(@roll)
+    assert_redirected_to new_randomizer_path(method: 'upload', upload_randomizer_id: @roll.randomizer.id)
+    assert_equal 'Screenshot was successfully processed.', flash[:notice]
+  end
+
+  test 'should redirect to roll page when source is roll' do
+    post roll_results_imgs_path(@roll), params: {
+      source: 'roll',
+      results_img: {
+        file: [fixture_file_upload(@file_path, 'image/png')]
+      }
+    }
+
+    assert_redirected_to @roll
     assert_equal 'Screenshot was successfully processed.', flash[:notice]
   end
 end

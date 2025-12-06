@@ -38,8 +38,46 @@ en:
     create:
       success: "Example was successfully created."
   randomizers:
+    choose_method:
+      title: "Create Randomizer"
+      heading: "How would you like to create your randomizer?"
+      subtitle: ""
+      upload_screenshots: "Upload Screenshots"
+      upload_description: "Import tables from images"
+      create_by_hand: "Create By Hand"
+      manual_description: "Manually enter your randomizer data"
+      back: ""
+    index:
+      deleted: "DELETED"
+    new:
+      title: "New Randomizer"
+      heading: "Create Your Randomizer"
+      back: ""
+    wizard_form:
+      randomizer_details: "1. Randomizer Details"
+      name_placeholder: "e.g., Encounter Tables"
+      tags_label: "Tags (optional, max 3)"
+      tags_help: "Select up to 3 game systems for this randomizer"
+      first_roll: "2. First Roll"
+      roll_name_placeholder: "e.g., Encounter Distance"
+      dice_placeholder: "e.g., 1d6 or 2d10"
+      dice_help: "Enter dice notation like 1d20, 2d6, etc."
+      results: "3. Results"
+      upload_note: "After creating the randomizer, you'll be able to upload screenshots to import results."
+      upload_instructions: "You can upload images from the roll page after creation."
+      upload_help: "Select one or more images containing tables to import"
+      upload_submit: "Process Screenshots"
+      result_name: "Name"
+      result_name_placeholder: "e.g., Close"
+      result_value: "Value"
+      add_result: "Add Another Result"
+      submit: "Create Randomizer"
+    create_with_upload:
+      create_failed: "Failed to create randomizer"
     create:
       success: "Randomizer was successfully created."
+    update:
+      success: "Randomizer was successfully updated."
     destroy:
       success: "Randomizer was successfully destroyed."
   rolls:
@@ -52,6 +90,20 @@ en:
     create:
       success: "CSV was successfully processed."
   results_imgs:
+    new:
+      title: "Upload Screenshots"
+      heading: "Upload Screenshots"
+      back: ""
+    form:
+      upload_title: "Upload Screenshots"
+      error_prevented: "prevented this file from uploading:"
+      multiple_files_help: "You can select multiple screenshots to upload at once"
+      submit_button: "Process Screenshots"
+      tips_title: "For Best Results"
+      tip_crop: "Crop your screenshot to just a two-column table"
+      tip_zoom: "Zoom in as much as possible; the bigger, the better"
+      example_label: "Example:"
+      example_alt: "Example screenshot showing a two-column table"
     create:
       success:
         one: "Screenshot was successfully processed."

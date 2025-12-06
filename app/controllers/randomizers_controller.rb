@@ -2,7 +2,7 @@
 
 class RandomizersController < ApplicationController
   before_action :require_login, except: %i[index show]
-  before_action :set_randomizer, except: %i[index new create]
+  before_action :set_randomizer, except: %i[index new create choose_method create_with_upload]
   before_action :check_ownership, only: %i[edit update destroy]
 
   # the old man CRUD soul in me thinks this should be in
@@ -50,10 +50,40 @@ class RandomizersController < ApplicationController
   # GET /randomizers/1
   def show; end
 
+  # GET /randomizers/new/choose_method
+  def choose_method
+    # Wizard step 1: choose creation method
+  end
+
+  # POST /randomizers/create_with_upload
+  def create_with_upload
+    # Create a dummy randomizer and roll for upload flow
+    @randomizer = current_user.randomizers.build(name: 'New Randomizer')
+    @roll = @randomizer.rolls.build(name: 'New Roll', dice: 'D20')
+
+    if @randomizer.save
+      # Redirect to upload page (step 1.5)
+      redirect_to new_roll_results_img_path(@roll)
+    else
+      # If save fails, go back to choose method
+      redirect_to choose_method_randomizers_path, alert: t('.create_failed')
+    end
+  end
+
   # GET /randomizers/new
   def new
-    # @randomizer = Randomizer.new
-    @randomizer = current_user.randomizers.build
+    @method = params[:method] || 'manual' # 'upload' or 'manual'
+
+    if params[:upload_randomizer_id].present?
+      # Load the existing randomizer created for upload flow
+      @randomizer = current_user.randomizers.find(params[:upload_randomizer_id])
+    else
+      # Build new randomizer for manual flow
+      @randomizer = current_user.randomizers.build
+      # Build nested roll with 3 empty results for manual entry
+      roll = @randomizer.rolls.build
+      3.times { roll.results.build } if @method == 'manual'
+    end
   end
 
   # GET /randomizers/1/edit
@@ -61,23 +91,30 @@ class RandomizersController < ApplicationController
 
   # POST /randomizers
   def create
-    # @randomizer = Randomizer.new(randomizer_params)
     @randomizer = current_user.randomizers.build(randomizer_params)
 
     if @randomizer.save
-      redirect_to @randomizer,
+      redirect_to randomizer_outcomes_path(@randomizer),
                   notice: t('.success')
     else
+      @method = params[:randomizer][:method] || 'manual'
       render :new, status: :unprocessable_content
     end
   end
 
   # PATCH/PUT /randomizers/1
   def update
+    # Extract method parameter (not a model attribute) before permitting params
+    @method = params[:randomizer][:method] if params[:randomizer][:method].present?
+
     if @randomizer.update(randomizer_params)
-      redirect_to @randomizer,
-                  notice: t('randomizers.create.success'),
+      redirect_path = @method.present? ? randomizer_outcomes_path(@randomizer) : @randomizer
+      redirect_to redirect_path,
+                  notice: t('.success'),
                   status: :see_other
+    elsif @method.present?
+      # If this came from wizard flow, render wizard
+      render :new, status: :unprocessable_content
     else
       render :edit, status: :unprocessable_content
     end
@@ -85,7 +122,13 @@ class RandomizersController < ApplicationController
 
   # DELETE /randomizers/1
   def destroy
-    @randomizer.discard!
+    if @randomizer.discarded?
+      return redirect_to randomizers_path(tab: params[:tab]),
+                         notice: t('.success'),
+                         status: :see_other
+    end
+
+    @randomizer.discard
     redirect_to randomizers_path(tab: params[:tab]),
                 notice: t('.success'),
                 status: :see_other
@@ -100,7 +143,24 @@ class RandomizersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def randomizer_params
-    params.expect(randomizer: [:name, { tag_ids: [] }])
+    # rubocop:disable Rails/StrongParametersExpect
+    params.require(:randomizer).permit(
+      :name,
+      { tag_ids: [] },
+      { rolls_attributes: [
+        :id,
+        :name,
+        :dice,
+        :_destroy,
+        { results_attributes: %i[
+          id
+          name
+          value
+          _destroy
+        ] }
+      ] }
+    )
+    # rubocop:enable Rails/StrongParametersExpect
   end
 
   def check_ownership

@@ -6,6 +6,8 @@ class Roll < ApplicationRecord
   belongs_to :randomizer
   has_many :results, -> { kept }, dependent: :destroy, inverse_of: :roll
 
+  accepts_nested_attributes_for :results, allow_destroy: true, reject_if: :all_blank
+
   validates :name, presence: true, profanity: true
   validates :dice, presence: true
   validate :dice_must_be_valid

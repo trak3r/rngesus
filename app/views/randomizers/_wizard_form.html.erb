@@ -1,0 +1,158 @@
+<%= form_with(model: randomizer, class: "contents", data: { controller: "randomizer-wizard" }) do |form| %>
+  <%= form.hidden_field :method, value: method %>
+  
+  <% if randomizer.errors.any? %>
+    <div id="error_explanation" class="alert alert-error mb-6">
+      <div>
+        <h2><%= pluralize(randomizer.errors.count, "error") %> prohibited this randomizer from being saved:</h2>
+
+        <ul class="list-disc ml-6 mt-2">
+          <% randomizer.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <!-- Section 1: Randomizer Details -->
+  <div class="card-index mb-6">
+    <h2 class="font-typewriter text-2xl font-bold text-pencil mb-4">
+      <%= t('.randomizer_details') %>
+    </h2>
+
+    <div class="my-5">
+      <%= form.label :name, class: "label" %>
+      <%= form.text_field :name,
+                      class: [
+                        "input-handwritten w-full",
+                        {
+                          "border-red-500": randomizer.errors[:name].any?,
+                        },
+                      ],
+                      placeholder: t('.name_placeholder') %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :tag_ids, t('.tags_label'), class: "label font-typewriter text-base-content" %>
+      <%= hidden_field_tag 'randomizer[tag_ids][]', '' %>
+      <div class="flex flex-wrap gap-3 p-4 border-2 border-dashed border-pencil/30 rounded-lg bg-base-100">
+        <% Tag.order(:name).each do |tag| %>
+          <label class="flex items-center gap-2 cursor-pointer hover:bg-base-200 p-2 rounded transition-colors">
+            <%= check_box_tag 'randomizer[tag_ids][]', tag.id, randomizer.tag_ids.include?(tag.id), 
+                              class: "checkbox checkbox-sm",
+                              id: "randomizer_tag_ids_#{tag.id}" %>
+            <span class="font-handwriting text-base"><%= tag.name %></span>
+          </label>
+        <% end %>
+      </div>
+      <p class="text-sm text-base-content/60 mt-1 font-handwriting"><%= t('.tags_help') %></p>
+    </div>
+  </div>
+
+  <!-- Section 2: Roll Details -->
+  <div class="card-index mb-6">
+    <h2 class="font-typewriter text-2xl font-bold text-pencil mb-4">
+      <%= t('.roll_details') %>
+    </h2>
+
+    <%= form.fields_for :rolls do |roll_form| %>
+      <%= roll_form.hidden_field :id if roll_form.object.persisted? %>
+      
+      <div class="mb-4">
+        <%= roll_form.label :name, t('.roll_name'), class: "label text-sm" %>
+        <%= roll_form.text_field :name,
+                        class: "input-handwritten w-full",
+                        placeholder: t('.roll_name_placeholder') %>
+      </div>
+
+      <div class="my-5">
+        <%= render 'rolls/form_dice', form: roll_form, roll: roll_form.object %>
+      </div>
+
+      <!-- Section 3: Results -->
+      <div class="mt-8">
+        <h3 class="font-typewriter text-xl font-bold text-pencil mb-4">
+          <%= t('.results') %>
+        </h3>
+
+        <% if method == 'upload' %>
+          <!-- Upload Screenshots Mode - Show imported results as editable fields -->
+          <div data-randomizer-wizard-target="resultsContainer">
+            <%= roll_form.fields_for :results do |result_form| %>
+              <div class="flex gap-4 mb-4" data-randomizer-wizard-target="resultField">
+                <div class="flex-1">
+                  <%= result_form.label :name, t('.result_name'), class: "label text-sm" %>
+                  <%= result_form.text_field :name,
+                                  class: "input-handwritten w-full",
+                                  placeholder: t('.result_name_placeholder') %>
+                </div>
+                <div class="w-32">
+                  <%= result_form.label :value, t('.result_value'), class: "label text-sm" %>
+                  <%= result_form.number_field :value,
+                                  class: "input-handwritten w-full",
+                                  placeholder: "1" %>
+                </div>
+                <div class="flex items-end">
+                  <button type="button" 
+                          class="btn-doodle-sm text-red-500 hover:text-red-700"
+                          data-action="click->randomizer-wizard#removeResult">
+                    <%= icon('x', class: "w-5 h-5") %>
+                  </button>
+                </div>
+              </div>
+            <% end %>
+          </div>
+
+          <button type="button"
+                  class="btn-doodle-sm mt-4"
+                  data-action="click->randomizer-wizard#addResult">
+            <%= icon('plus', class: "w-4 h-4 inline") %>
+            <%= t('.add_result') %>
+          </button>
+        <% else %>
+          <!-- Manual Entry Mode -->
+          <div data-randomizer-wizard-target="resultsContainer">
+            <% ordinals = ['First', 'Second', 'Third', 'Fourth', 'Fifth', 'Sixth', 'Seventh', 'Eighth', 'Ninth', 'Tenth'] %>
+            <%= roll_form.fields_for :results do |result_form| %>
+              <% index = result_form.index %>
+              <div class="flex gap-4 mb-4" data-randomizer-wizard-target="resultField">
+                <div class="w-32">
+                  <%= result_form.label :value, t('.result_value'), class: "label text-sm" %>
+                  <%= result_form.number_field :value,
+                                  class: "input-handwritten w-full",
+                                  placeholder: (index + 1).to_s %>
+                </div>
+                <div class="flex-1">
+                  <%= result_form.label :name, t('.result_name'), class: "label text-sm" %>
+                  <%= result_form.text_field :name,
+                                  class: "input-handwritten w-full",
+                                  placeholder: ordinals[index] || "Result #{index + 1}" %>
+                </div>
+                <div class="flex items-end">
+                  <button type="button" 
+                          class="btn-doodle-sm text-red-500 hover:text-red-700"
+                          data-action="click->randomizer-wizard#removeResult">
+                    <%= icon('x', class: "w-5 h-5") %>
+                  </button>
+                </div>
+              </div>
+            <% end %>
+          </div>
+
+          <button type="button"
+                  class="btn-doodle-sm mt-4"
+                  data-action="click->randomizer-wizard#addResult">
+            <%= icon('plus', class: "w-4 h-4 inline") %>
+            <%= t('.add_result') %>
+          </button>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <!-- Submit Button -->
+  <div class="mt-8">
+    <%= form.submit t('.submit'), class: "btn-doodle cursor-pointer" %>
+  </div>
+<% end %>
