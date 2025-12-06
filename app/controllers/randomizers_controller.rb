@@ -58,22 +58,22 @@ class RandomizersController < ApplicationController
   # POST /randomizers/create_with_upload
   def create_with_upload
     # Create a dummy randomizer and roll for upload flow
-    @randomizer = current_user.randomizers.build(name: "New Randomizer")
-    @roll = @randomizer.rolls.build(name: "New Roll", dice: "D20")
-    
+    @randomizer = current_user.randomizers.build(name: 'New Randomizer')
+    @roll = @randomizer.rolls.build(name: 'New Roll', dice: 'D20')
+
     if @randomizer.save
       # Redirect to upload page (step 1.5)
       redirect_to new_roll_results_img_path(@roll)
     else
       # If save fails, go back to choose method
-      redirect_to choose_method_randomizers_path, alert: "Failed to create randomizer"
+      redirect_to choose_method_randomizers_path, alert: 'Failed to create randomizer'
     end
   end
 
   # GET /randomizers/new
   def new
     @method = params[:method] || 'manual' # 'upload' or 'manual'
-    
+
     if params[:upload_randomizer_id].present?
       # Load the existing randomizer created for upload flow
       @randomizer = current_user.randomizers.find(params[:upload_randomizer_id])
@@ -116,11 +116,11 @@ class RandomizersController < ApplicationController
   # DELETE /randomizers/1
   def destroy
     if @randomizer.discarded?
-      return redirect_to randomizers_path(tab: params[:tab]), 
+      return redirect_to randomizers_path(tab: params[:tab]),
                          notice: t('.success'),
                          status: :see_other
     end
-    
+
     @randomizer.discard
     redirect_to randomizers_path(tab: params[:tab]),
                 notice: t('.success'),
