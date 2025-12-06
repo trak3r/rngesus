@@ -52,7 +52,7 @@ en:
     new:
       title: "New Randomizer"
       heading: "Create Your Randomizer"
-      back: "Back to method selection"
+      back: ""
     wizard_form:
       randomizer_details: "1. Randomizer Details"
       name_placeholder: "e.g., Encounter Tables"
@@ -93,7 +93,7 @@ en:
     new:
       title: "Upload Screenshots"
       heading: "Upload Screenshots"
-      back: "Back to method selection"
+      back: ""
     form:
       upload_title: "Upload Screenshots"
       error_prevented: "prevented this file from uploading:"
