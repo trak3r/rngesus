@@ -191,7 +191,7 @@ class RandomizersControllerTest < ActionDispatch::IntegrationTest
     assert_no_difference('Roll.count') do
       patch randomizer_url(@randomizer), params: { randomizer: {
         name: @randomizer.name,
-        method: 'upload',  # Include method to simulate wizard flow
+        method: 'upload', # Include method to simulate wizard flow
         rolls_attributes: {
           '0' => {
             id: roll.id,
@@ -206,9 +206,10 @@ class RandomizersControllerTest < ActionDispatch::IntegrationTest
 
     # Verify the roll was updated, not replaced
     roll.reload
-    assert_equal original_roll_id, roll.id, "Roll ID should not change"
-    assert_equal 'Updated Roll Name', roll.name, "Roll name should be updated"
-    assert_equal 'D20', roll.dice, "Roll dice should be updated"
+
+    assert_equal original_roll_id, roll.id, 'Roll ID should not change'
+    assert_equal 'Updated Roll Name', roll.name, 'Roll name should be updated'
+    assert_equal 'D20', roll.dice, 'Roll dice should be updated'
     assert_not_equal original_roll_name, roll.name
     assert_not_equal original_roll_dice, roll.dice
   end

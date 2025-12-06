@@ -106,18 +106,16 @@ class RandomizersController < ApplicationController
   def update
     # Extract method parameter (not a model attribute) before permitting params
     @method = params[:randomizer][:method] if params[:randomizer][:method].present?
-    
+
     if @randomizer.update(randomizer_params)
       redirect_to @randomizer,
                   notice: t('.success'),
                   status: :see_other
-    else
+    elsif @method.present?
       # If this came from wizard flow, render wizard
-      if @method.present?
-        render :new, status: :unprocessable_content
-      else
-        render :edit, status: :unprocessable_content
-      end
+      render :new, status: :unprocessable_content
+    else
+      render :edit, status: :unprocessable_content
     end
   end
 
@@ -144,21 +142,21 @@ class RandomizersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def randomizer_params
-    params.require(:randomizer).permit(
-      :name,
-      tag_ids: [],
-      rolls_attributes: [
-        :id,
-        :name,
-        :dice,
-        :_destroy,
-        { results_attributes: %i[
-          id
-          name
-          value
-          _destroy
-        ] }
-      ]
+    params.expect(
+      randomizer: [:name,
+                   { tag_ids: [],
+                     rolls_attributes: [
+                       :id,
+                       :name,
+                       :dice,
+                       :_destroy,
+                       { results_attributes: %i[
+                         id
+                         name
+                         value
+                         _destroy
+                       ] }
+                     ] }]
     )
   end
 
