@@ -84,6 +84,10 @@ en:
     create:
       success: "CSV was successfully processed."
   results_imgs:
+    new:
+      title: "Upload Screenshots"
+      heading: "Upload Screenshots"
+      back: "Back to method selection"
     form:
       upload_title: "Upload Screenshots"
       error_prevented: "prevented this file from uploading:"

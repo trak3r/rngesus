@@ -1,60 +1,58 @@
-<div class="max-w-4xl mx-auto px-4">
-  <div class="grid md:grid-cols-2 gap-6">
-    <!-- Upload Form -->
-    <div class="card-index">
-      <h2 class="font-typewriter text-2xl font-bold text-pencil mb-6">
-        <%= t('.upload_title') %>
-      </h2>
+<div class="grid md:grid-cols-2 gap-6">
+  <!-- Upload Form -->
+  <div class="card-index">
+    <h2 class="font-typewriter text-2xl font-bold text-pencil mb-6">
+      <%= t('.upload_title') %>
+    </h2>
 
-      <%= form_with(model: @results_img, url: roll_results_imgs_path(@roll), local: true, html: { multipart: true }) do |form| %>
+    <%= form_with(model: @results_img, url: roll_results_imgs_path(@roll), local: true, html: { multipart: true }) do |form| %>
 
-        <% if @results_img.errors.any? %>
-          <div class="alert alert-error mb-6">
-            <div>
-              <h3 class="font-semibold mb-2">
-                <%= pluralize(@results_img.errors.count, "error") %> <%= t('.error_prevented') %>
-              </h3>
-              <ul class="list-disc ml-6 text-sm">
-                <% @results_img.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-                <% end %>
-              </ul>
-            </div>
+      <% if @results_img.errors.any? %>
+        <div class="alert alert-error mb-6">
+          <div>
+            <h3 class="font-semibold mb-2">
+              <%= pluralize(@results_img.errors.count, "error") %> <%= t('.error_prevented') %>
+            </h3>
+            <ul class="list-disc ml-6 text-sm">
+              <% @results_img.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
           </div>
-        <% end %>
-
-        <div class="mb-6">
-          <%= form.file_field :file,
-            accept: ".png,.jpg,.jpeg",
-            multiple: true,
-            class: "file-input file-input-bordered w-full" %>
-          <p class="text-sm text-base-content/60 mt-2 font-handwriting">
-            <%= t('.multiple_files_help') %>
-          </p>
         </div>
-
-        <%= form.submit t('.submit_button'),
-          class: "btn-doodle cursor-pointer w-full" %>
-
       <% end %>
-    </div>
 
-    <!-- Tips Card -->
-    <div class="card-index">
-      <h3 class="font-typewriter text-2xl font-bold text-pencil mb-4">
-        <%= t('.tips_title') %>
-      </h3>
+      <div class="mb-6">
+        <%= form.file_field :file,
+          accept: ".png,.jpg,.jpeg",
+          multiple: true,
+          class: "file-input file-input-bordered w-full" %>
+        <p class="text-sm text-base-content/60 mt-2 font-handwriting">
+          <%= t('.multiple_files_help') %>
+        </p>
+      </div>
 
-      <ul class="list-disc list-inside text-base-content/70 space-y-2 mb-4 font-handwriting text-lg">
-        <li><%= t('.tip_crop') %></li>
-        <li><%= t('.tip_zoom') %></li>
-      </ul>
+      <%= form.submit t('.submit_button'),
+        class: "btn-doodle cursor-pointer w-full" %>
 
-      <p class="text-sm text-base-content/60 mb-3 font-handwriting">
-        <%= t('.example_label') %>
-      </p>
+    <% end %>
+  </div>
 
-      <%= image_tag "forest_encounters_p154.png", alt: t('.example_alt'), class: "w-full rounded border-2 border-pencil/20" %>
-    </div>
+  <!-- Tips Card -->
+  <div class="card-index">
+    <h3 class="font-typewriter text-2xl font-bold text-pencil mb-4">
+      <%= t('.tips_title') %>
+    </h3>
+
+    <ul class="list-disc list-inside text-base-content/70 space-y-2 mb-4 font-handwriting text-lg">
+      <li><%= t('.tip_crop') %></li>
+      <li><%= t('.tip_zoom') %></li>
+    </ul>
+
+    <p class="text-sm text-base-content/60 mb-3 font-handwriting">
+      <%= t('.example_label') %>
+    </p>
+
+    <%= image_tag "forest_encounters_p154.png", alt: t('.example_alt'), class: "w-full rounded border-2 border-pencil/20" %>
   </div>
 </div>
