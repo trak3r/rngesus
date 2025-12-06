@@ -22,3 +22,9 @@ i think you neglected these files:
 
 # Internationalization & Localization Guidelines
 - any verbiage presented to a user should come from the en.yml file
+
+# Deployment Guidelines
+- remember any changes related to environment variables should be reflected in:
+    - .kamal/secrets
+    - config/deploy.yml
+    - Dockerfile
