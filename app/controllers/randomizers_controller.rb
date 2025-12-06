@@ -108,7 +108,8 @@ class RandomizersController < ApplicationController
     @method = params[:randomizer][:method] if params[:randomizer][:method].present?
 
     if @randomizer.update(randomizer_params)
-      redirect_to @randomizer,
+      redirect_path = @method.present? ? randomizer_outcomes_path(@randomizer) : @randomizer
+      redirect_to redirect_path,
                   notice: t('.success'),
                   status: :see_other
     elsif @method.present?

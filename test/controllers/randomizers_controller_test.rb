@@ -202,7 +202,7 @@ class RandomizersControllerTest < ActionDispatch::IntegrationTest
       } }
     end
 
-    assert_redirected_to randomizer_path(@randomizer)
+    assert_redirected_to randomizer_outcomes_path(@randomizer)
 
     # Verify the roll was updated, not replaced
     roll.reload
