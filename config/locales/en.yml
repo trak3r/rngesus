@@ -41,12 +41,12 @@ en:
     choose_method:
       title: "Create Randomizer"
       heading: "How would you like to create your randomizer?"
-      subtitle: "Choose the method that works best for you"
+      subtitle: ""
       upload_screenshots: "Upload Screenshots"
       upload_description: "Import tables from images using OCR"
       create_by_hand: "Create By Hand"
       manual_description: "Manually enter your randomizer data"
-      back: "Back to randomizers"
+      back: ""
     new:
       title: "New Randomizer"
       heading: "Create Your Randomizer"
