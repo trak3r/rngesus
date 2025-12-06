@@ -3,20 +3,23 @@
 ## Must Have
 - creating and editing randomizers could use some more handholding
     - consider a wizard-style flow
+- there's sometimes some lag before the slot machine animation starts
 - don't show incomplete, test, draft, randomizers (except to owner)
 - attention-needed icon on rolls missing results or results outside of dice range, etc.
+- private, published, public flag or timestamp for randomizers
+- pagination of randomizers
+
+## Nice to Have
+- user option to hide / report offensive items
 - animate cool 3d dice roll on screen
     - only showing on the reroll, not the initial roll (not working consistently)
     - often have to hard-reload a page to see the dice; seems navigating around causes them to stop working
     - 3d dice don't roll to same result as returned from server
     - pages with multiple rolls should have a flurry of dice
     - what are our options for dice colors and textures?
-- private, published, public flag or timestamp for randomizers
-- pagination of randomizers
-- user option to hide / report offensive items
 - toggle to disable animations on settings page
 
-## Nice to Have
+## Pie in the Sky
 - let user copy somebody else's randomizer as their own
 - stamps on cards, like top ten, rising star, missing stuff / needs attention, etc.
 - golden tickets (inspired by Fizzy)
