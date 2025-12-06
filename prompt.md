@@ -2,6 +2,11 @@ add discord SSO.
 copy the code strategy from twitter and google for consistency.
 the env variables are already set up as DISCORD_CLIENT_ID and DISCORD_CLIENT_SECRET.
 
+i think you neglected these files:
+- .kamal/secrets
+- config/deploy.yml
+- Dockerfile
+
 ---
 
 # Test Guidelines
