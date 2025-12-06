@@ -1,27 +1,32 @@
 # TODO
+
+## Must Have
 - creating and editing randomizers could use some more handholding
     - consider a wizard-style flow
-- let user copy somebody else's randomizer as their own
-- golden tickets (inspired by Fizzy)
-- stamps on cards, like top ten, rising star, missing stuff / needs attention, etc.
-- does Avo support filter, search, sort?
-- ability to drag and reorder rolls
+- don't show incomplete, test, draft, randomizers (except to owner)
 - attention-needed icon on rolls missing results or results outside of dice range, etc.
-- integration as a discord bot?
 - animate cool 3d dice roll on screen
     - only showing on the reroll, not the initial roll (not working consistently)
     - often have to hard-reload a page to see the dice; seems navigating around causes them to stop working
     - 3d dice don't roll to same result as returned from server
     - pages with multiple rolls should have a flurry of dice
     - what are our options for dice colors and textures?
-- private flag for randomizers, or published_at timestamp
+- private, published, public flag or timestamp for randomizers
 - pagination of randomizers
-- toggle to disable animations on settings page
-- community can add notes or propose typo fixes to other user's data (like pull requests)
 - user option to hide / report offensive items
+- toggle to disable animations on settings page
+
+## Nice to Have
+- let user copy somebody else's randomizer as their own
+- stamps on cards, like top ten, rising star, missing stuff / needs attention, etc.
+- golden tickets (inspired by Fizzy)
+- does Avo support filter, search, sort?
+- ability to drag and reorder rolls
+- integration as a discord bot?
+- community can add notes or propose typo fixes to other user's data (like pull requests)
 - combine randomizers (e.g. forest encounters + reaction rolls)
     - copy rather than symlink?
-- would we need to support "with advantage" rolls?
+- do we need to support "with advantage" rolls?
     - is there a standard syntax for it? 2d20kh1
 - distribution graphs for multi-dice rolls, informative eye candy
 - re-enable github ci workflow
@@ -33,13 +38,14 @@
 
 ## Hosting
 - database backups (offsite)
-- set up email exceptions so i'm notified of bugs i don't see myself
+- set up email notifications for exceptions so i'm notified of bugs i don't see myself
 - SEO
 - google analytics
 - hardening (scan tools?)
 - accessibility (scan tools?)
 
 ## Monetization
+- just to cover hosting costs
 - donations / patreon
     - https://buymeacoffee.com/
     - https://ko-fi.com/
