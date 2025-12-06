@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ResultsController < ApplicationController
-  before_action :set_result, only: %i[show edit update destroy]
+  before_action :set_result, only: %i[edit update destroy]
   before_action :set_roll, only: %i[new create index]
   before_action :check_ownership, only: %i[edit update destroy]
 
@@ -9,9 +9,6 @@ class ResultsController < ApplicationController
   def index
     # @results = Result.all
   end
-
-  # GET /results/1
-  def show; end
 
   # GET /results/new
   def new
@@ -26,7 +23,7 @@ class ResultsController < ApplicationController
     @result = @roll.results.build(result_params)
 
     if @result.save
-      redirect_to @result,
+      redirect_to @result.roll,
                   notice: t('.success')
     else
       render :new, status: :unprocessable_content
@@ -36,7 +33,7 @@ class ResultsController < ApplicationController
   # PATCH/PUT /results/1
   def update
     if @result.update(result_params)
-      redirect_to @result,
+      redirect_to @result.roll,
                   notice: t('results.create.success'),
                   status: :see_other
     else

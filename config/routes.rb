@@ -28,7 +28,7 @@ Rails.application.routes.draw do
       member do
         get 'edit_name'
       end
-      resources :results, shallow: true
+      resources :results, shallow: true, except: [:show]
       resources :results_csvs
       resources :results_imgs
     end

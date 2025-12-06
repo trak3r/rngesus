@@ -28,13 +28,7 @@ class ResultsControllerTest < ActionDispatch::IntegrationTest
       } }
     end
 
-    assert_redirected_to result_url(Result.last)
-  end
-
-  test 'should show result' do
-    get result_url(@result)
-
-    assert_response :success
+    assert_redirected_to roll_url(@result.roll)
   end
 
   test 'should get edit' do
@@ -49,7 +43,7 @@ class ResultsControllerTest < ActionDispatch::IntegrationTest
       value: 2
     } }
 
-    assert_redirected_to result_url(@result)
+    assert_redirected_to roll_url(@result.roll)
   end
 
   test 'should discard result (soft delete)' do
