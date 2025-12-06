@@ -12,6 +12,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     OmniAuth.config.mock_auth[:google_oauth2] = nil
     OmniAuth.config.mock_auth[:twitter2] = nil
     OmniAuth.config.mock_auth[:facebook] = nil
+    OmniAuth.config.mock_auth[:discord] = nil
   end
 
   test 'should get login page' do
@@ -80,5 +81,25 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     assert_equal 'Signed in!', flash[:notice]
     assert_equal User.last.id, session[:user_id]
     assert_equal 'Facebook User', User.last.name
+  end
+
+  test 'should create user and login with discord' do
+    OmniAuth.config.mock_auth[:discord] = OmniAuth::AuthHash.new({
+                                                                   provider: 'discord',
+                                                                   uid: '111111',
+                                                                   info: {
+                                                                     name: 'Discord User',
+                                                                     email: 'discord@example.com'
+                                                                   }
+                                                                 })
+
+    assert_difference('User.count') do
+      get '/auth/discord/callback'
+    end
+
+    assert_redirected_to root_path
+    assert_equal 'Signed in!', flash[:notice]
+    assert_equal User.last.id, session[:user_id]
+    assert_equal 'Discord User', User.last.name
   end
 end

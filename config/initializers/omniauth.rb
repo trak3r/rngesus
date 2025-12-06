@@ -27,12 +27,21 @@ if (facebook_app_id.blank? || facebook_app_secret.blank?) && !Rails.env.test?
   raise 'Missing FACEBOOK_APP_ID or FACEBOOK_APP_SECRET environment variables!'
 end
 
+discord_client_id = ENV.fetch('DISCORD_CLIENT_ID', nil)
+discord_client_secret = ENV.fetch('DISCORD_CLIENT_SECRET', nil)
+
+if (discord_client_id.blank? || discord_client_secret.blank?) && !Rails.env.test?
+  raise 'Missing DISCORD_CLIENT_ID or DISCORD_CLIENT_SECRET environment variables!'
+end
+
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :google_oauth2, google_client_id, google_client_secret
   provider :twitter2, twitter_client_id, twitter_client_secret,
            scope: 'tweet.read users.read'
   provider :facebook, facebook_app_id, facebook_app_secret,
            scope: 'email,public_profile'
+  provider :discord, discord_client_id, discord_client_secret,
+           scope: 'identify email'
 end
 
 OmniAuth.config.allowed_request_methods = %i[get post]

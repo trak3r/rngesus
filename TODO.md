@@ -4,7 +4,6 @@
     - consider a wizard-style flow
 - update result should go back to roll, not result show page
     - kill the result#show action, view, route
-- does Discord have SSO?
 - let user copy somebody else's randomizer as their own
 - golden tickets (inspired by Fizzy)
 - stamps on cards, like top ten, rising star, missing stuff / needs attention, etc.
@@ -132,3 +131,5 @@
 - get SSL working (enforced) with free cert generation
 - we can't collect emails from twitter SSO until we have a public site with privacy policy URL
     - i enabled it but don't seem them coming over - oh well
+- does Discord have SSO?
+    - https://discord.com/developers/applications/1446913336456515654/oauth2
