@@ -17,6 +17,9 @@ Rails.application.routes.draw do
 
   resources :examples
   resources :randomizers do
+    # Wizard step 1: choose creation method
+    get 'new/choose_method', on: :collection, action: :choose_method, as: :choose_method
+
     post :toggle_like, on: :member
 
     resources :outcomes, only: [:index] do

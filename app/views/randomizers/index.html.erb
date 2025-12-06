@@ -131,7 +131,7 @@
       <% if @tab == 'your_randomizers' %>
         <!-- New Randomizer Card (only on 'Your Randomizers' tab) -->
         <div class="card-index flex flex-col group p-4 min-h-[220px] transition-transform hover:-rotate-1">
-          <%= link_to new_randomizer_path,
+          <%= link_to choose_method_randomizers_path,
                       class: "flex-1 flex flex-col no-underline text-inherit",
                       data: { turbo_frame: "_top" } do %>
 

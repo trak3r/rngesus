@@ -38,6 +38,36 @@ en:
     create:
       success: "Example was successfully created."
   randomizers:
+    choose_method:
+      title: "Create Randomizer"
+      heading: "How would you like to create your randomizer?"
+      subtitle: "Choose the method that works best for you"
+      upload_screenshots: "Upload Screenshots"
+      upload_description: "Import tables from images using OCR"
+      create_by_hand: "Create By Hand"
+      manual_description: "Manually enter your randomizer data"
+      back: "Back to randomizers"
+    new:
+      title: "New Randomizer"
+      heading: "Create Your Randomizer"
+      back: "Back to method selection"
+    wizard_form:
+      randomizer_details: "1. Randomizer Details"
+      name_placeholder: "e.g., Encounter Tables"
+      tags_label: "Tags (optional, max 3)"
+      tags_help: "Select up to 3 game systems for this randomizer"
+      first_roll: "2. First Roll"
+      roll_name_placeholder: "e.g., Encounter Distance"
+      dice_placeholder: "e.g., 1d6 or 2d10"
+      dice_help: "Enter dice notation like 1d20, 2d6, etc."
+      results: "3. Results"
+      upload_note: "After creating the randomizer, you'll be able to upload screenshots to import results."
+      upload_instructions: "You can upload images from the roll page after creation."
+      result_name: "Name"
+      result_name_placeholder: "e.g., Close"
+      result_value: "Value"
+      add_result: "Add Another Result"
+      submit: "Create Randomizer"
     create:
       success: "Randomizer was successfully created."
     destroy:
