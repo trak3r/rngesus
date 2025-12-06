@@ -142,21 +142,21 @@ class RandomizersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def randomizer_params
-    params.expect(
-      randomizer: [:name,
-                   { tag_ids: [],
-                     rolls_attributes: [
-                       :id,
-                       :name,
-                       :dice,
-                       :_destroy,
-                       { results_attributes: %i[
-                         id
-                         name
-                         value
-                         _destroy
-                       ] }
-                     ] }]
+    params.require(:randomizer).permit(
+      :name,
+      tag_ids: [],
+      rolls_attributes: [
+        :id,
+        :name,
+        :dice,
+        :_destroy,
+        { results_attributes: %i[
+          id
+          name
+          value
+          _destroy
+        ] }
+      ]
     )
   end
 
