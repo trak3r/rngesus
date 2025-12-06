@@ -115,7 +115,11 @@ class RandomizersController < ApplicationController
 
   # DELETE /randomizers/1
   def destroy
-    return redirect_to randomizers_path(tab: params[:tab]), notice: t('.success') if @randomizer.discarded?
+    if @randomizer.discarded?
+      return redirect_to randomizers_path(tab: params[:tab]), 
+                         notice: t('.success'),
+                         status: :see_other
+    end
     
     @randomizer.discard
     redirect_to randomizers_path(tab: params[:tab]),
