@@ -286,6 +286,8 @@ GEM
       logger
       rack (>= 2.2.3)
       rack-protection
+    omniauth-discord (1.2.0)
+      omniauth-oauth2 (~> 1.6)
     omniauth-facebook (10.0.0)
       bigdecimal
       omniauth-oauth2 (>= 1.2, < 3)
@@ -549,6 +551,7 @@ DEPENDENCIES
   mini_magick
   mocha
   omniauth
+  omniauth-discord
   omniauth-facebook (~> 10.0)
   omniauth-google-oauth2
   omniauth-rails_csrf_protection

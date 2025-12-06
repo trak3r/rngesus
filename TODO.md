@@ -4,7 +4,6 @@
     - consider a wizard-style flow
 - update result should go back to roll, not result show page
     - kill the result#show action, view, route
-- does Discord have SSO?
 - let user copy somebody else's randomizer as their own
 - golden tickets (inspired by Fizzy)
 - stamps on cards, like top ten, rising star, missing stuff / needs attention, etc.
@@ -85,6 +84,7 @@
 - oauth quick links
     - https://console.cloud.google.com/auth/clients/1053062972408-d6i1n0jdmp6bj87fpraqrrv8m7u0048s.apps.googleusercontent.com?project=rngesus-478311
     - https://developer.x.com/en/portal/projects/1994394487171264512/apps/31898686/settings
+    - https://discord.com/developers/applications/1446913336456515654/oauth2
     - https://developers.facebook.com/apps/852906317290024/dashboard/?business_id=694712267051378
 - support for rolls within results like "1d4 treants"
     - recognize patterns like "XdY" and link them to impromptu roller
@@ -132,3 +132,4 @@
 - get SSL working (enforced) with free cert generation
 - we can't collect emails from twitter SSO until we have a public site with privacy policy URL
     - i enabled it but don't seem them coming over - oh well
+- does Discord have SSO? yup, done

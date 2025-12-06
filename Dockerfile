@@ -58,6 +58,8 @@ RUN SECRET_KEY_BASE_DUMMY=1 \
     TWITTER_CLIENT_SECRET=dummy \
     FACEBOOK_APP_ID=dummy \
     FACEBOOK_APP_SECRET=dummy \
+    DISCORD_CLIENT_ID=dummy \
+    DISCORD_CLIENT_SECRET=dummy \
     ./bin/rails assets:precompile
 
 

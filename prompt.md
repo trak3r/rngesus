@@ -1,18 +1,11 @@
-now i'm getting this error on the server:
+add discord SSO.
+copy the code strategy from twitter and google for consistency.
+the env variables are already set up as DISCORD_CLIENT_ID and DISCORD_CLIENT_SECRET.
 
-[52e1b045-e7a4-4a90-a66e-d36d9d7230d0] Completed 500 Internal Server Error in 6985ms (ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 6.4ms)
-[52e1b045-e7a4-4a90-a66e-d36d9d7230d0]
-[52e1b045-e7a4-4a90-a66e-d36d9d7230d0] Errno::ENOENT (No such file or directory - tesseract):
-[52e1b045-e7a4-4a90-a66e-d36d9d7230d0]
-[52e1b045-e7a4-4a90-a66e-d36d9d7230d0] app/services/results_img_processor.rb:33:in 'block in ResultsImgProcessor#to_s'
-[52e1b045-e7a4-4a90-a66e-d36d9d7230d0] app/services/results_img_processor.rb:23:in 'ResultsImgProcessor#to_s'
-[52e1b045-e7a4-4a90-a66e-d36d9d7230d0] app/services/results_img_processor.rb:39:in 'ResultsImgProcessor#to_a'
-[52e1b045-e7a4-4a90-a66e-d36d9d7230d0] app/services/results_img_processor.rb:53:in 'ResultsImgProcessor#parsed_list'
-[52e1b045-e7a4-4a90-a66e-d36d9d7230d0] app/services/results_img_processor.rb:95:in 'ResultsImgProcessor#call'
-[52e1b045-e7a4-4a90-a66e-d36d9d7230d0] app/controllers/results_imgs_controller.rb:22:in 'block in ResultsImgsController#create'
-[52e1b045-e7a4-4a90-a66e-d36d9d7230d0] app/controllers/results_imgs_controller.rb:21:in 'Array#each'
-[52e1b045-e7a4-4a90-a66e-d36d9d7230d0] app/controllers/results_imgs_controller.rb:21:in 'ResultsImgsController#create'
-
+i think you neglected these files:
+- .kamal/secrets
+- config/deploy.yml
+- Dockerfile
 
 ---
 
@@ -29,3 +22,9 @@ now i'm getting this error on the server:
 
 # Internationalization & Localization Guidelines
 - any verbiage presented to a user should come from the en.yml file
+
+# Deployment Guidelines
+- remember any changes related to environment variables should be reflected in:
+    - .kamal/secrets
+    - config/deploy.yml
+    - Dockerfile
