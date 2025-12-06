@@ -78,15 +78,23 @@
         </h3>
 
         <% if method == 'upload' %>
-          <!-- Upload Screenshots Mode -->
-          <div class="border-2 border-dashed border-pencil/30 rounded-lg p-6 bg-base-100">
-            <p class="text-center text-base-content/70 font-handwriting mb-4">
-              <%= t('.upload_note') %>
-            </p>
-            <p class="text-sm text-center text-base-content/50 font-handwriting">
-              <%= t('.upload_instructions') %>
-            </p>
-          </div>
+          <!-- Upload Screenshots Mode - Results already imported -->
+          <% if randomizer.rolls.any? && randomizer.rolls.first.results.any? %>
+            <div class="border-2 border-dashed border-pencil/30 rounded-lg p-6 bg-base-100">
+              <p class="text-center text-base-content/70 font-handwriting mb-2">
+                ✓ <%= randomizer.rolls.first.results.count %> results imported from screenshots
+              </p>
+              <p class="text-sm text-center text-base-content/50 font-handwriting">
+                You can edit the randomizer name, tags, roll name, and dice above before submitting.
+              </p>
+            </div>
+          <% else %>
+            <div class="border-2 border-dashed border-pencil/30 rounded-lg p-6 bg-base-100">
+              <p class="text-center text-base-content/70 font-handwriting">
+                No results imported yet. You can add them manually after creating the randomizer.
+              </p>
+            </div>
+          <% end %>
         <% else %>
           <!-- Manual Entry Mode -->
           <div data-randomizer-wizard-target="resultsContainer">

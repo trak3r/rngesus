@@ -23,7 +23,8 @@ class ResultsImgsController < ApplicationController
       processed_count += 1
     end
 
-    redirect_to @roll,
+    # After upload, redirect to wizard form to complete randomizer details
+    redirect_to new_randomizer_path(method: 'upload', upload_randomizer_id: @roll.randomizer.id),
                 notice: t('.success', count: processed_count)
   end
 

@@ -2,7 +2,7 @@
 
 class RandomizersController < ApplicationController
   before_action :require_login, except: %i[index show]
-  before_action :set_randomizer, except: %i[index new create choose_method]
+  before_action :set_randomizer, except: %i[index new create choose_method create_with_upload]
   before_action :check_ownership, only: %i[edit update destroy]
 
   # the old man CRUD soul in me thinks this should be in
@@ -55,14 +55,35 @@ class RandomizersController < ApplicationController
     # Wizard step 1: choose creation method
   end
 
+  # POST /randomizers/create_with_upload
+  def create_with_upload
+    # Create a dummy randomizer and roll for upload flow
+    @randomizer = current_user.randomizers.build(name: "New Randomizer")
+    @roll = @randomizer.rolls.build(name: "New Roll", dice: "1d6")
+    
+    if @randomizer.save
+      # Redirect to upload page (step 1.5)
+      redirect_to new_roll_results_img_path(@roll)
+    else
+      # If save fails, go back to choose method
+      redirect_to choose_method_randomizers_path, alert: "Failed to create randomizer"
+    end
+  end
+
   # GET /randomizers/new
   def new
-    @randomizer = current_user.randomizers.build
     @method = params[:method] || 'manual' # 'upload' or 'manual'
-
-    # Build nested roll with 3 empty results for manual entry
-    roll = @randomizer.rolls.build
-    3.times { roll.results.build } if @method == 'manual'
+    
+    if params[:upload_randomizer_id].present?
+      # Load the existing randomizer created for upload flow
+      @randomizer = current_user.randomizers.find(params[:upload_randomizer_id])
+    else
+      # Build new randomizer for manual flow
+      @randomizer = current_user.randomizers.build
+      # Build nested roll with 3 empty results for manual entry
+      roll = @randomizer.rolls.build
+      3.times { roll.results.build } if @method == 'manual'
+    end
   end
 
   # GET /randomizers/1/edit
