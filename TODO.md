@@ -1,6 +1,7 @@
 # TODO
 
 ## Must Have
+- on forms, instead of showing error at top of page, show it inline with the field
 - add a second language just to demonstrate i18n support
 - there's sometimes some lag before the slot machine animation starts
 - don't show incomplete, test, draft, randomizers (except to owner)
