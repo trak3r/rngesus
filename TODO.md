@@ -11,6 +11,9 @@
 - pagination of randomizers
 
 ## Nice to Have
+- allow user to attach/associate image with their randomizer
+    - we don't want to be hosting images obviously
+    - would need to integrate with third-party like imgur
 - user option to hide / report offensive items
 - animate cool 3d dice roll on screen
     - only showing on the reroll, not the initial roll (not working consistently)
