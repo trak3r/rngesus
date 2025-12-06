@@ -59,7 +59,7 @@ class RandomizersController < ApplicationController
   def new
     @randomizer = current_user.randomizers.build
     @method = params[:method] || 'manual' # 'upload' or 'manual'
-    
+
     # Build nested roll with 3 empty results for manual entry
     roll = @randomizer.rolls.build
     3.times { roll.results.build } if @method == 'manual'
@@ -110,21 +110,21 @@ class RandomizersController < ApplicationController
   # Only allow a list of trusted parameters through.
   def randomizer_params
     params.expect(randomizer: [
-      :name,
-      { tag_ids: [] },
-      { rolls_attributes: [
-        :id,
-        :name,
-        :dice,
-        :_destroy,
-        { results_attributes: [
-          :id,
-          :name,
-          :value,
-          :_destroy
-        ] }
-      ] }
-    ])
+                    :name,
+                    { tag_ids: [] },
+                    { rolls_attributes: [
+                      :id,
+                      :name,
+                      :dice,
+                      :_destroy,
+                      { results_attributes: %i[
+                        id
+                        name
+                        value
+                        _destroy
+                      ] }
+                    ] }
+                  ])
   end
 
   def check_ownership
