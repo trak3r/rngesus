@@ -7,6 +7,7 @@
 
   <%= render "form", roll: @roll, results_img: @results_img %>
 
-  <%= link_to t('.back'), choose_method_randomizers_path, 
+  <% back_path = params[:source] == 'roll' ? roll_path(@roll) : choose_method_randomizers_path %>
+  <%= link_to t('.back'), back_path, 
               class: "w-full sm:w-auto text-center mt-4 sm:ml-2 rounded-md px-3.5 py-2.5 text-pencil/50 hover:text-pencil inline-block font-handwriting text-xl transition-colors" %>
 </div>

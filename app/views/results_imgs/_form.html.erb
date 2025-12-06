@@ -6,6 +6,7 @@
     </h2>
 
     <%= form_with(model: @results_img, url: roll_results_imgs_path(@roll), local: true, html: { multipart: true }) do |form| %>
+      <%= hidden_field_tag :source, params[:source] %>
 
       <% if @results_img.errors.any? %>
         <div class="alert alert-error mb-6">

@@ -24,6 +24,9 @@ where there's a validation error on the wizard page two - for example i selected
 
 changing the roll name and dice on the wizard page two does not update the roll in the database.
 
+we've got an alternate flow issue.
+when i come from a roll show to import from screenshot, i should be taken back to the roll show, not the wizard. but if i come from the wizard, i should be taken to the wizard page two.
+
 ---
 
 # Test Guidelines
