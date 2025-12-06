@@ -18,9 +18,10 @@
     <span>Login with Twitter</span>
   <% end %>
 
-  <%= link_to '/auth/facebook', class: "btn-doodle w-full flex items-center justify-center space-x-2" do %>
+  <div class="btn-doodle w-full flex items-center justify-center space-x-2 opacity-50 cursor-not-allowed" title="Under Maintenance">
     <%= icon('brand-facebook', class: "w-5 h-5") %>
     <span>Login with Facebook</span>
-  <% end %>
+    <span class="text-xs ml-2">(Under Maintenance)</span>
+  </div>
 
 </div>
