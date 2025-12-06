@@ -91,13 +91,13 @@ class RandomizersController < ApplicationController
 
   # POST /randomizers
   def create
-    # @randomizer = Randomizer.new(randomizer_params)
     @randomizer = current_user.randomizers.build(randomizer_params)
 
     if @randomizer.save
-      redirect_to @randomizer,
+      redirect_to randomizer_outcomes_path(@randomizer),
                   notice: t('.success')
     else
+      @method = params[:randomizer][:method] || 'manual'
       render :new, status: :unprocessable_content
     end
   end
@@ -109,7 +109,13 @@ class RandomizersController < ApplicationController
                   notice: t('randomizers.create.success'),
                   status: :see_other
     else
-      render :edit, status: :unprocessable_content
+      # If this came from wizard flow (has method param), render wizard
+      if params[:randomizer][:method].present?
+        @method = params[:randomizer][:method]
+        render :new, status: :unprocessable_content
+      else
+        render :edit, status: :unprocessable_content
+      end
     end
   end
 

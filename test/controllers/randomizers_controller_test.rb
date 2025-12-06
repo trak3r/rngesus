@@ -40,7 +40,7 @@ class RandomizersControllerTest < ActionDispatch::IntegrationTest
       } }
     end
 
-    assert_redirected_to randomizer_url(Randomizer.last)
+    assert_redirected_to randomizer_outcomes_path(Randomizer.last)
   end
 
   test 'should show randomizer' do
@@ -152,7 +152,7 @@ class RandomizersControllerTest < ActionDispatch::IntegrationTest
     assert_equal 2, randomizer.tags.count
     assert_includes randomizer.tags, tags(:forest)
     assert_includes randomizer.tags, tags(:dungeon)
-    assert_redirected_to randomizer_url(randomizer)
+    assert_redirected_to randomizer_outcomes_path(randomizer)
   end
 
   test 'should create randomizer with 3 tags (maximum)' do
@@ -166,7 +166,7 @@ class RandomizersControllerTest < ActionDispatch::IntegrationTest
     randomizer = Randomizer.last
 
     assert_equal 3, randomizer.tags.count
-    assert_redirected_to randomizer_url(randomizer)
+    assert_redirected_to randomizer_outcomes_path(randomizer)
   end
 
   test 'should not create randomizer with more than 3 tags' do

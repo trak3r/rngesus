@@ -1,4 +1,6 @@
 <%= form_with(model: randomizer, class: "contents", data: { controller: "randomizer-wizard" }) do |form| %>
+  <%= form.hidden_field :method, value: method %>
+  
   <% if randomizer.errors.any? %>
     <div id="error_explanation" class="alert alert-error mb-6">
       <div>

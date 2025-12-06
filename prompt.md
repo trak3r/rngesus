@@ -19,6 +19,9 @@ step 2
         - or 3 dummy placeholders
 4. if everything saved without errors, show a success message and load the outcomes page for that randomizer
 
+
+where there's a validation error on the wizard page two - for example i selected 4 tags - i am taken to the edit page for the randomizer, but i should be taken back to the wizard page two.
+
 ---
 
 # Test Guidelines
