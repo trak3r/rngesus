@@ -9,6 +9,7 @@
 - attention-needed icon on rolls missing results or results outside of dice range, etc.
 - private, published, public flag or timestamp for randomizers
 - pagination of randomizers
+- let users specify any dice type (e.g. 3d12)
 
 ## Nice to Have
 - user option to hide / report offensive items
