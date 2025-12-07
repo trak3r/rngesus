@@ -13,6 +13,7 @@
 - let users specify any dice type (e.g. 3d12)
 
 ## Nice to Have
+- let users merge accounts, e.g. log in with twitter then link discord so both work
 - user option to hide / report offensive items
 - animate cool 3d dice roll on screen
     - only showing on the reroll, not the initial roll (not working consistently)
