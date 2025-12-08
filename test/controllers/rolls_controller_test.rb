@@ -14,14 +14,35 @@ class RollsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get index with tabs' do
+    # Newest tab
+    # Create a brand new roll to be the newest
+    new_roll = Roll.create!(
+      name: 'The Newest Roll',
+      dice: 'D20',
+      user: users(:ted), 
+      slug: 'new01'
+    )
+    
     get rolls_url(tab: 'newest')
     assert_response :success
+    assert_select 'a', text: /The Newest Roll/
+
+    # Most Liked tab
+    # Add votes to a specific roll
+    liked_roll = rolls(:encounter_forest)
+    liked_roll.liked_by users(:ted)
+    liked_roll.liked_by users(:other_user)
     
     get rolls_url(tab: 'most_liked')
     assert_response :success
+    assert_select 'a', text: /Monster/ # encounter_forest name
 
+    # Your Rolls tab
+    # Logged in as 'ted' (set in setup), should see ted's rolls but not other_user's
     get rolls_url(tab: 'your_rolls')
     assert_response :success
+    assert_select 'a', text: /Distance/ # ted's roll
+    assert_select 'a', text: /Other User Roll/, count: 0 # other_user's roll
   end
 
   test 'should redirect protected tabs if not logged in' do

@@ -21,3 +21,9 @@ roll_with_dice_notation:
   slug: notat
   name: Test Roll
   dice: D6
+
+other_user_roll:
+  user: other_user
+  slug: other
+  name: Other User Roll
+  dice: D20
