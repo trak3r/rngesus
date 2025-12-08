@@ -1,33 +1,36 @@
-<% content_for :title, "#{@roll.randomizer.name} > #{@roll.name}" %>
+<% content_for :title, @roll.name %>
 
-<div id="<%= dom_id @roll %>" class="card-index w-full my-5 flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
-  <div class="flex items-center text-2xl sm:text-3xl font-bold font-typewriter gap-2">
-    <%= link_to @roll.randomizer.name, @roll.randomizer, class: "text-base-content/60 hover:text-base-content transition-colors" %>
-    <span class="text-base-content/40">></span>
-    <%= @roll.name %>
-    <% if current_user == @roll.randomizer.user %>
-      <%= link_to edit_roll_path(@roll),
-                  class: "text-base-content/50 hover:text-base-content p-2 rounded " do %>
-        <%= icon(:edit, class: "w-5 h-5") %>
+<div class="max-w-4xl mx-auto py-10 px-4">
+
+  <div class="relative flex items-center justify-between gap-3 mb-6">
+    <div class="flex items-center gap-4">
+      <div class="text-2xl sm:text-3xl font-bold font-typewriter text-base-content">
+        <%= @roll.name %>
+      </div>
+      <% if current_user == @roll.user %>
+        <%= link_to edit_roll_path(@roll), class: "btn btn-ghost btn-sm" do %>
+          <%= icon(:edit) %>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
+    
+    <%= render "like_button", roll: @roll %>
   </div>
 
-  <div class="text-lg sm:text-xl text-base-content/80 flex items-center space-x-2 font-handwriting">
-    <span class="font-medium"><%= @roll.dice_object.try(:name) || 'Missing' %></span>
-    <span class="text-base-content/60">
-      (<%= @roll.dice_object.try(:min) || '?' %>&#8209;<%= @roll.dice_object.try(:max) || '?' %>)
-    </span>
+  <div class="w-full max-w-lg mx-auto">
+    <% # Ensure we have something to render if not rolled yet (e.g. initial load without JS rolling?) %>
+    <% # Controller sets @rolled, @result %>
+    <%= render "outcome_card", roll: @roll, rolled: @rolled, result: @result, animate: true %>
   </div>
+
+  <% if current_user == @roll.user %>
+     <div class="mt-8 text-center text-sm opacity-50">
+        <%= link_to "Manage Results", edit_roll_path(@roll, anchor: "results"), class: "link link-hover" %>
+     </div>
+  <% end %>
+  
+  <div class="mt-4 text-center">
+    <%= link_to "Back to Rolls", rolls_path, class: "link link-hover text-sm opacity-50" %>
+  </div>
+
 </div>
-
-<%= render 'results/index', results: @roll.results %>
-
-<% if current_user == @roll.randomizer.user %>
-  <div class="mt-4">
-    <%= link_to "New result", new_roll_result_path(@roll), class: "btn-doodle" %>
-    <%= link_to "Import from Screenshot", new_roll_results_img_path(@roll, source: 'roll'), class: "btn-doodle" %>
-    <%= link_to "Import from CSV", new_roll_results_csv_path(@roll), class: "btn-doodle" %>
-    <%= button_to "Destroy this roll", @roll, method: :delete, form_class: "inline-block", class: "btn-doodle cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
-  </div>
-<% end %>

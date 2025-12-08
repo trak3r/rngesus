@@ -37,33 +37,31 @@ en:
   examples:
     create:
       success: "Example was successfully created."
-  randomizers:
+  rolls:
     choose_method:
-      title: "Create Randomizer"
-      heading: "How would you like to create your randomizer?"
+      title: "Create Roll"
+      heading: "How would you like to create your roll?"
       subtitle: ""
       upload_screenshots: "Upload Screenshots"
       upload_description: "Import tables from images"
       create_by_hand: "Create By Hand"
-      manual_description: "Manually enter your randomizer data"
+      manual_description: "Manually enter your roll data"
       back: ""
     index:
       deleted: "DELETED"
     new:
-      title: "New Randomizer"
-      heading: "Create Your Randomizer"
+      title: "New Roll"
+      heading: "Create Your Roll"
       back: ""
     wizard_form:
-      randomizer_details: "1. Randomizer Details"
-      name_placeholder: "e.g., Encounter Tables"
+      roll_details: "1. Roll Details"
+      name_placeholder: "e.g., Encounter Distance"
       tags_label: "Tags (optional, max 3)"
-      tags_help: "Select up to 3 game systems for this randomizer"
-      first_roll: "2. First Roll"
-      roll_name_placeholder: "e.g., Encounter Distance"
-      dice_placeholder: "e.g., 1d6 or 2d10"
+      tags_help: "Select up to 3 game systems for this roll"
+      dice_placeholder: "e.g. 1d6 or 2d10"
       dice_help: "Enter dice notation like 1d20, 2d6, etc."
-      results: "3. Results"
-      upload_note: "After creating the randomizer, you'll be able to upload screenshots to import results."
+      results: "2. Results"
+      upload_note: "After creating the roll, you'll be able to upload screenshots to import results."
       upload_instructions: "You can upload images from the roll page after creation."
       upload_help: "Select one or more images containing tables to import"
       upload_submit: "Process Screenshots"
@@ -71,18 +69,15 @@ en:
       result_name_placeholder: "e.g., Close"
       result_value: "Value"
       add_result: "Add Another Result"
-      submit: "Create Randomizer"
+      submit: "Create Roll"
     create_with_upload:
-      create_failed: "Failed to create randomizer"
-    create:
-      success: "Randomizer was successfully created."
-    update:
-      success: "Randomizer was successfully updated."
-    destroy:
-      success: "Randomizer was successfully destroyed."
-  rolls:
+      create_failed: "Failed to create roll"
     create:
       success: "Roll was successfully created."
+    update:
+      success: "Roll was successfully updated."
+    destroy:
+      success: "Roll was successfully destroyed."
   results:
     create:
       success: "Result was successfully created."

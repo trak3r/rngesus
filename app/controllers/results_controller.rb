@@ -69,8 +69,8 @@ class ResultsController < ApplicationController
   end
 
   def check_ownership
-    return if @result.roll.randomizer.user == current_user
+    return if @result.roll.user == current_user
 
-    redirect_to randomizers_path, alert: t('errors.unauthorized')
+    redirect_to rolls_path, alert: t('errors.unauthorized')
   end
 end

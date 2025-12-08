@@ -28,7 +28,7 @@ class ResultsImgsController < ApplicationController
       redirect_to @roll, notice: t('.success', count: processed_count)
     else
       # Wizard flow
-      redirect_to new_randomizer_path(method: 'upload', upload_randomizer_id: @roll.randomizer.id),
+      redirect_to new_roll_path(method: 'upload', upload_roll_id: @roll.id),
                   notice: t('.success', count: processed_count)
     end
   end

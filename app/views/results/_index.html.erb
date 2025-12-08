@@ -5,7 +5,7 @@
 <li class="flex items-center space-x-4 py-3 px-3
            border-b border-base-300
            hover:bg-base-200 transition-colors group">
-  <% if current_user == result.roll.randomizer.user %>
+  <% if current_user == result.roll.user %>
     <%= link_to edit_result_path(result), class: "flex-1 flex items-center space-x-4 text-inherit no-underline" do %>
       <div class="w-18 text-4xl font-handwriting opacity-50 tabular-nums text-right text-base-content group-hover:opacity-80 transition-opacity">
         <%= result.value %>

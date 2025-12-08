@@ -1,0 +1,3 @@
+<%= turbo_stream.replace dom_id(@roll, :outcome) do %>
+  <%= render "outcome_card", roll: @roll, rolled: @rolled, result: @result, animate: true %>
+<% end %>

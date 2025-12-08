@@ -1,0 +1,11 @@
+<% position_classes = local_assigns.fetch(:position_classes, "absolute top-4 right-4 z-10") %>
+<div id="<%= dom_id(roll, :like_button) %>" class="<%= position_classes %>">
+  <%= button_to toggle_like_roll_path(roll),
+        method: :post,
+        data: { turbo_stream: true },
+        class: "text-base-content hover:text-red-600 transition flex items-center gap-1 px-2 py-1" do %>
+    <span class="text-sm font-bold font-typewriter"><%= roll.cached_votes_total %></span>
+    <% icon_variant = current_user&.voted_for?(roll) ? :filled : :outline %>
+    <%= icon 'thumb-up', variant: icon_variant, class: "w-4 h-4" %>
+  <% end %>
+</div>

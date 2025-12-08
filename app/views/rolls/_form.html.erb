@@ -1,11 +1,4 @@
-<%= form_with(
-      model: roll,
-      url: roll.persisted? ?
-           roll_path(roll) :
-           randomizer_rolls_path(roll.randomizer),
-      method: roll.persisted? ? :patch : :post,
-      class: "contents"
-    ) do |form| %>
+<%= form_with(model: roll, class: "contents") do |form| %>
   <% if roll.errors.any? %>
     <div id="error_explanation" class="alert alert-error">
       <div>
@@ -32,10 +25,53 @@
   </div>
 
   <div class="my-5">
+    <%= form.label :tag_ids, "Tags (optional, max 3)", class: "label font-typewriter text-base-content" %>
+    <%= hidden_field_tag 'roll[tag_ids][]', '' %>
+    <div class="flex flex-wrap gap-3 p-4 border-2 border-dashed border-pencil/30 rounded-lg bg-base-100">
+      <% Tag.order(:name).each do |tag| %>
+        <label class="flex items-center gap-2 cursor-pointer hover:bg-base-200 p-2 rounded transition-colors">
+          <%= check_box_tag 'roll[tag_ids][]', tag.id, roll.tag_ids.include?(tag.id), 
+                            class: "checkbox checkbox-sm",
+                            id: "roll_tag_ids_#{tag.id}" %>
+          <span class="font-handwriting text-base"><%= tag.name %></span>
+        </label>
+      <% end %>
+    </div>
+    <p class="text-sm text-base-content/60 mt-1 font-handwriting">Select up to 3 game systems for this roll</p>
+  </div>
+
+  <div class="my-5">
     <%= render 'form_dice', form: form, roll: roll %>
+  </div>
+  
+  <div class="my-5">
+    <h3 class="font-bold text-xl font-typewriter mb-4">Results</h3>
+    <div class="space-y-4">
+      <%= form.fields_for :results do |result_form| %>
+        <div class="flex items-center gap-4 p-4 border rounded-lg bg-base-100/50">
+          <div class="flex-1">
+             <%= result_form.label :value, "Dice Roll", class: "label text-sm" %>
+             <%= result_form.number_field :value, class: "input-handwritten w-full", placeholder: "e.g. 20" %>
+          </div>
+          <div class="flex-[3]">
+             <%= result_form.label :name, "Outcome Description", class: "label text-sm" %>
+             <%= result_form.text_field :name, class: "input-handwritten w-full", placeholder: "e.g. Critical Hit!" %>
+          </div>
+          <% if result_form.object.persisted? %>
+            <div class="flex items-center pt-8">
+              <label class="cursor-pointer flex items-center gap-2 text-error">
+                <%= result_form.check_box :_destroy, class: "checkbox checkbox-error checkbox-sm" %>
+                <span class="text-sm">Delete</span>
+              </label>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <p class="text-sm text-base-content/60 mt-2 font-handwriting">Leave empty to ignore.</p>
   </div>
 
   <div class="inline">
-    <%= form.submit "Submit", class: "btn-doodle cursor-pointer" %>
+    <%= form.submit "Save Roll", class: "btn-doodle cursor-pointer" %>
   </div>
 <% end %>
