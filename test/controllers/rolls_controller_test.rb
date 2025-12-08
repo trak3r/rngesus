@@ -94,7 +94,24 @@ class RollsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should toggle like' do
-    skip "Flaky test with acts_as_votable and mocha"
+    # Ensure starting state: user has NOT liked the roll
+    user = @roll.user
+    @roll.unliked_by user
+    
+    # We check the direct Vote count to avoid caching update timing issues in tests
+    assert_difference('ActsAsVotable::Vote.count', 1) do
+      post toggle_like_roll_url(@roll), as: :turbo_stream
+    end
+    
+    # Reload validation
+    @roll.reload
+    assert_equal 1, @roll.votes_for.where(voter: user).count
+    
+    assert_difference('ActsAsVotable::Vote.count', -1) do
+      post toggle_like_roll_url(@roll), as: :turbo_stream
+    end
+    
+    assert_equal 0, @roll.votes_for.where(voter: user).count
   end
 
   test 'should get edit' do
