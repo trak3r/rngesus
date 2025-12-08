@@ -60,7 +60,7 @@ class ResultsController < ApplicationController
   end
 
   def set_roll
-    @roll = Roll.find(params.expect(:roll_id))
+    @roll = Roll.find_by!(slug: params.expect(:roll_id))
   end
 
   # Only allow a list of trusted parameters through.

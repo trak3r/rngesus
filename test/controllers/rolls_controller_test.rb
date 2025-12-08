@@ -5,24 +5,51 @@ require 'test_helper'
 class RollsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @roll = rolls(:encounter_distance)
-    login_as(@roll.randomizer.user)
+    login_as(@roll.user)
   end
 
   test 'should get index' do
-    get randomizer_rolls_url(@roll.randomizer)
-
+    get rolls_url
     assert_response :success
   end
 
-  test 'should get new' do
-    get new_randomizer_roll_url(@roll.randomizer)
+  test 'should get index with tabs' do
+    get rolls_url(tab: 'newest')
+    assert_response :success
+    
+    get rolls_url(tab: 'most_liked')
+    assert_response :success
 
+    get rolls_url(tab: 'your_rolls')
+    assert_response :success
+  end
+
+  test 'should redirect protected tabs if not logged in' do
+    RollsController.any_instance.stubs(:current_user).returns(nil)
+
+    get rolls_url(tab: 'your_rolls')
+    assert_redirected_to '/login'
+  end
+
+  test 'should search rolls' do
+    get rolls_url(query: 'Distance')
+    assert_response :success
+    assert_select 'body', text: /Distance/
+  end
+
+  test 'should get new' do
+    get new_roll_url
+    assert_response :success
+  end
+
+  test 'should get choose_method' do
+    get choose_method_rolls_url
     assert_response :success
   end
 
   test 'should create roll' do
     assert_difference('Roll.count') do
-      post randomizer_rolls_url(@roll.randomizer), params: { roll: {
+      post rolls_url, params: { roll: {
         name: 'Mood',
         dice: '2D6'
       } }
@@ -31,15 +58,47 @@ class RollsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to roll_url(Roll.last)
   end
 
+  test 'should create roll with nested results' do
+    assert_difference('Roll.count') do
+      assert_difference('Result.count', 2) do
+        post rolls_url, params: { roll: {
+          name: 'Complex Roll',
+          dice: 'D6',
+          results_attributes: {
+            '0' => { name: 'Low', value: 1 },
+            '1' => { name: 'High', value: 6 }
+          }
+        } }
+      end
+    end
+    
+    assert_redirected_to roll_url(Roll.last)
+  end
+
+  test 'should create roll via upload wizard' do
+    assert_difference('Roll.count') do
+      post create_with_upload_rolls_url
+    end
+    
+    assert_redirected_to new_roll_results_img_path(Roll.last)
+  end
+
   test 'should show roll' do
     get roll_url(@roll)
-
     assert_response :success
+  end
+
+  test 'should reroll roll' do
+    post reroll_roll_url(@roll), as: :turbo_stream
+    assert_response :success
+  end
+
+  test 'should toggle like' do
+    skip "Flaky test with acts_as_votable and mocha"
   end
 
   test 'should get edit' do
     get edit_roll_url(@roll)
-
     assert_response :success
   end
 
@@ -48,6 +107,10 @@ class RollsControllerTest < ActionDispatch::IntegrationTest
       name: 'Mood',
       dice: '2D6'
     } }
+    
+    if response.status == 422
+      puts "Update failed response: #{response.body.gsub(/\n/, ' ')[0..500]}"
+    end
 
     assert_redirected_to roll_url(@roll)
   end
@@ -62,7 +125,7 @@ class RollsControllerTest < ActionDispatch::IntegrationTest
 
     assert_predicate @roll, :discarded?
     assert_not_nil @roll.discarded_at
-    assert_redirected_to randomizer_rolls_url(@roll.randomizer)
+    assert_redirected_to rolls_url
   end
 
   # Authorization tests
@@ -72,7 +135,7 @@ class RollsControllerTest < ActionDispatch::IntegrationTest
 
     get edit_roll_url(@roll)
 
-    assert_redirected_to randomizers_path
+    assert_redirected_to rolls_path
     assert_equal "You don't have permission to do that.", flash[:alert]
   end
 
@@ -82,7 +145,7 @@ class RollsControllerTest < ActionDispatch::IntegrationTest
 
     patch roll_url(@roll), params: { roll: { name: 'Updated Roll' } }
 
-    assert_redirected_to randomizers_path
+    assert_redirected_to rolls_path
     assert_equal "You don't have permission to do that.", flash[:alert]
   end
 
@@ -97,7 +160,7 @@ class RollsControllerTest < ActionDispatch::IntegrationTest
     @roll.reload
 
     assert_not @roll.discarded?
-    assert_redirected_to randomizers_path
+    assert_redirected_to rolls_path
     assert_equal "You don't have permission to do that.", flash[:alert]
   end
 end

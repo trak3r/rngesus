@@ -10,34 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_08_193159) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_08_194931) do
   create_table "examples", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "name"
     t.datetime "updated_at", null: false
     t.integer "value"
-  end
-
-  create_table "randomizer_tags", force: :cascade do |t|
-    t.integer "randomizer_id", null: false
-    t.integer "tag_id", null: false
-    t.index ["randomizer_id", "tag_id"], name: "index_randomizer_tags_on_randomizer_id_and_tag_id", unique: true
-  end
-
-  create_table "randomizers", force: :cascade do |t|
-    t.integer "cached_votes_down", default: 0
-    t.integer "cached_votes_score", default: 0
-    t.integer "cached_votes_total", default: 0
-    t.integer "cached_votes_up", default: 0
-    t.datetime "created_at", null: false
-    t.datetime "discarded_at"
-    t.string "name"
-    t.string "slug", limit: 5, null: false
-    t.datetime "updated_at", null: false
-    t.integer "user_id", null: false
-    t.index ["discarded_at"], name: "index_randomizers_on_discarded_at"
-    t.index ["slug"], name: "index_randomizers_on_slug", unique: true
-    t.index ["user_id"], name: "index_randomizers_on_user_id"
   end
 
   create_table "results", force: :cascade do |t|
@@ -68,12 +46,10 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_08_193159) do
     t.string "dice"
     t.datetime "discarded_at"
     t.string "name"
-    t.integer "randomizer_id", null: false
     t.string "slug", limit: 5, null: false
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
     t.index ["discarded_at"], name: "index_rolls_on_discarded_at"
-    t.index ["randomizer_id"], name: "index_rolls_on_randomizer_id"
     t.index ["slug"], name: "index_rolls_on_slug", unique: true
     t.index ["user_id"], name: "index_rolls_on_user_id"
   end
@@ -116,10 +92,8 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_08_193159) do
     t.index ["voter_type", "voter_id"], name: "index_votes_on_voter"
   end
 
-  add_foreign_key "randomizers", "users"
   add_foreign_key "results", "rolls"
   add_foreign_key "roll_tags", "rolls"
   add_foreign_key "roll_tags", "tags"
-  add_foreign_key "rolls", "randomizers"
   add_foreign_key "rolls", "users"
 end

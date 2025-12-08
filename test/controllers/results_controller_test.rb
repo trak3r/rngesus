@@ -5,7 +5,7 @@ require 'test_helper'
 class ResultsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @result = results(:encounter_distance_close)
-    login_as(@result.roll.randomizer.user)
+    login_as(@result.roll.user)
   end
 
   test 'should get index' do
@@ -66,7 +66,7 @@ class ResultsControllerTest < ActionDispatch::IntegrationTest
 
     get edit_result_url(@result)
 
-    assert_redirected_to randomizers_path
+    assert_redirected_to rolls_path
     assert_equal "You don't have permission to do that.", flash[:alert]
   end
 
@@ -76,7 +76,7 @@ class ResultsControllerTest < ActionDispatch::IntegrationTest
 
     patch result_url(@result), params: { result: { name: 'Updated Result' } }
 
-    assert_redirected_to randomizers_path
+    assert_redirected_to rolls_path
     assert_equal "You don't have permission to do that.", flash[:alert]
   end
 
@@ -91,7 +91,7 @@ class ResultsControllerTest < ActionDispatch::IntegrationTest
     @result.reload
 
     assert_not @result.discarded?
-    assert_redirected_to randomizers_path
+    assert_redirected_to rolls_path
     assert_equal "You don't have permission to do that.", flash[:alert]
   end
 end

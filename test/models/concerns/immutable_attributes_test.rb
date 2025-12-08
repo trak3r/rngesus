@@ -5,7 +5,7 @@ require 'test_helper'
 class ImmutableAttributesTest < ActiveSupport::TestCase
   # Create a test model to verify the concern works
   class TestModel < ApplicationRecord
-    self.table_name = 'randomizers'
+    self.table_name = 'rolls'
     include ImmutableAttributes
 
     attr_immutable :slug
@@ -43,7 +43,7 @@ class ImmutableAttributesTest < ActiveSupport::TestCase
     # Verify it can be called with multiple arguments
     assert_nothing_raised do
       Class.new(ApplicationRecord) do
-        self.table_name = 'randomizers'
+        self.table_name = 'rolls'
         include ImmutableAttributes
 
         attr_immutable :slug, :name

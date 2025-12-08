@@ -25,22 +25,22 @@ class TagTest < ActiveSupport::TestCase
     assert tag.save
   end
 
-  test 'should have many randomizers through randomizer_tags' do
+  test 'should have many rolls through roll_tags' do
     tag = Tag.create!(name: 'Adventure')
-    randomizer = randomizers(:encounter)
+    roll = rolls(:encounter_distance)
 
-    randomizer.tags << tag
+    roll.tags << tag
 
-    assert_includes tag.randomizers, randomizer
-    assert_equal 1, tag.randomizers.count
+    assert_includes tag.rolls, roll
+    assert_equal 1, tag.rolls.count
   end
 
-  test 'should destroy randomizer_tags when tag is destroyed' do
+  test 'should destroy roll_tags when tag is destroyed' do
     tag = Tag.create!(name: 'Horror')
-    randomizer = randomizers(:encounter)
-    randomizer.tags << tag
+    roll = rolls(:encounter_distance)
+    roll.tags << tag
 
-    assert_difference('RandomizerTag.count', -1) do
+    assert_difference('RollTag.count', -1) do
       tag.destroy
     end
   end

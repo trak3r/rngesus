@@ -3,7 +3,7 @@
 class Roll < ApplicationRecord
   include Discard::Model
 
-  belongs_to :randomizer, optional: true
+
   belongs_to :user
   
   has_many :roll_tags, dependent: :destroy

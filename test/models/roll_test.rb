@@ -4,21 +4,21 @@ require 'test_helper'
 
 class RollTest < ActiveSupport::TestCase
   test 'should require name' do
-    roll = Roll.new(dice: 'D6', randomizer: randomizers(:encounter))
+    roll = Roll.new(dice: 'D6', user: users(:ted))
 
     assert_not roll.valid?
     assert_includes roll.errors[:name], "can't be blank"
   end
 
   test 'should require dice' do
-    roll = Roll.new(name: 'Test Roll', randomizer: randomizers(:encounter))
+    roll = Roll.new(name: 'Test Roll', user: users(:ted))
 
     assert_not roll.valid?
     assert_includes roll.errors[:dice], "can't be blank"
   end
 
   test 'should validate dice format' do
-    roll = Roll.new(name: 'Test Roll', dice: 'INVALID', randomizer: randomizers(:encounter))
+    roll = Roll.new(name: 'Test Roll', dice: 'INVALID', user: users(:ted))
 
     assert_not roll.valid?
     assert_match(/Could not parse INVALID/, roll.errors[:dice].first)
@@ -28,14 +28,14 @@ class RollTest < ActiveSupport::TestCase
     valid_formats = %w[D6 2D6 d20 3d8 D100]
 
     valid_formats.each do |dice_format|
-      roll = Roll.new(name: 'Test Roll', dice: dice_format, randomizer: randomizers(:encounter))
+      roll = Roll.new(name: 'Test Roll', dice: dice_format, user: users(:ted))
 
       assert_predicate roll, :valid?, "#{dice_format} should be valid but got errors: #{roll.errors.full_messages}"
     end
   end
 
   test 'should reject profane names' do
-    roll = Roll.new(name: 'fuck', dice: 'D6', randomizer: randomizers(:encounter))
+    roll = Roll.new(name: 'fuck', dice: 'D6', user: users(:ted))
 
     assert_not roll.valid?
     assert_match(/contains inappropriate language/, roll.errors[:name].first)
@@ -53,7 +53,7 @@ class RollTest < ActiveSupport::TestCase
   end
 
   test 'outcome returns nil when no results' do
-    roll = Roll.create!(name: 'Empty Roll', dice: 'D6', randomizer: randomizers(:encounter))
+    roll = Roll.create!(name: 'Empty Roll', dice: 'D6', user: users(:ted))
 
     rolled, result = roll.outcome
 
@@ -85,7 +85,7 @@ class RollTest < ActiveSupport::TestCase
   end
 
   test 'outcome selects result with highest value not exceeding roll' do
-    roll = Roll.create!(name: 'Test Roll', dice: 'D6', randomizer: randomizers(:encounter))
+    roll = Roll.create!(name: 'Test Roll', dice: 'D6', user: users(:ted))
 
     # Create results with specific values for D6 (1-6)
     result_low = roll.results.create!(name: 'Low', value: 2)
@@ -113,7 +113,7 @@ class RollTest < ActiveSupport::TestCase
   end
 
   test 'outcome returns nil result when rolled below all values' do
-    roll = Roll.create!(name: 'Test Roll', dice: 'D6', randomizer: randomizers(:encounter))
+    roll = Roll.create!(name: 'Test Roll', dice: 'D6', user: users(:ted))
 
     # Create results all with high values (5 and 6)
     roll.results.create!(name: 'High1', value: 5)
@@ -191,7 +191,7 @@ class RollTest < ActiveSupport::TestCase
   end
 
   test 'outcome method only uses active results' do
-    roll = Roll.create!(name: 'Test Roll', dice: 'D6', randomizer: randomizers(:encounter))
+    roll = Roll.create!(name: 'Test Roll', dice: 'D6', user: users(:ted))
 
     # Create active results
     active_result_first = roll.results.create!(name: 'Active 1', value: 3)
