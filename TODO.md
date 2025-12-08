@@ -1,6 +1,7 @@
 # TODO
 
 ## Must Have
+- move slugging into a concern
 - when we switched to wizard flow we lost CSV upload option
 - on forms, instead of showing error at top of page, show it inline with the field
 - the non-CRUD controller actions still leave a bad taste in my mouth; let's audit them and considering refactoring
