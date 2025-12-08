@@ -12,20 +12,21 @@
 # Testing
 - when logical, randomizer tests should be refactored to roll tests
 # Cleanup
-- we want to remove all references to randomizers from the codebase (routes, controllers, models, views, fixtures, javascript, etc.) HOWEVER do not yet drop the table from the database - we'll wait until we're 1000% sure the project is completed before deleting any data!
+- we want to remove all references to randomizers from the codebase (routes, controllers, models, views, fixtures, javascript, en.yml, etc.) HOWEVER do not yet drop the table from the database - we'll wait until we're 1000% sure the project is completed before deleting any data!
 
 ---
 
 # Test Guidelines
 - write test coverage for any logic changes
 - write test coverage for any functionality changes
+- if you're fixing a bug, write a test first that replicates the bug, then fix the bug and leave the test in place
 - never create/build/update models and relations in a test unless those functions are explicitly being tested; use fixtures instead
 - name fixtures descriptive of their test purpose, for example: "user_with_vulgar_nickname"
 - make sure all tests pass before telling me you are finished
 
 # Style Guidelines
 - always consider dark mode and light mode
-- always consider mobile and desktop
+- always consider mobile screens (touch not click, swipe, hover doesn't work, more focus on vertical vs. horizontal layout)
 
 # Internationalization & Localization Guidelines
 - any verbiage presented to a user should come from the en.yml file
