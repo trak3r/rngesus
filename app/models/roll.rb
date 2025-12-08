@@ -52,10 +52,7 @@ class Roll < ApplicationRecord
     slug
   end
 
-  # Returns the first tag for single-tag UI display
-  def primary_tag
-    tags.first
-  end
+
 
   def dice_object
     @dice_object = Dice.new dice
