@@ -55,7 +55,8 @@ class RollsControllerTest < ActionDispatch::IntegrationTest
   test 'should search rolls' do
     get rolls_url(query: 'Distance')
     assert_response :success
-    assert_select 'body', text: /Distance/
+    assert_select 'a', text: /Distance/
+    assert_select 'a', text: /Monster/, count: 0
   end
 
   test 'should get new' do
