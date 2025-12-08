@@ -1,31 +1,16 @@
-we need to make the creation of randomizers more user friendly. 
-let's consider a wizard-style step-by-step walk-through (or recommend a better flow).
-if there's a good modern active gem that does this, let's use it.
-the steps would be as follows (or recommend a better flow):
-step 1
-1. ask the user if they want to upload screenshots of a table or create a randomizer manually
-    - two big side-by-side buttons: "Upload Screenshots" and "Create By Hand"
-2. if they choose to upload screenshots, ask them to upload them
-step 2
-3. show a form in three sections: 
-    1. randomizer 
-        - name
-        - tags
-    2. roll
-        - name
-        - dice
-    3. results
-        - imported from screenshots
-        - or 3 dummy placeholders
-4. if everything saved without errors, show a success message and load the outcomes page for that randomizer
-
-
-where there's a validation error on the wizard page two - for example i selected 4 tags - i am taken to the edit page for the randomizer, but i should be taken back to the wizard page two.
-
-changing the roll name and dice on the wizard page two does not update the roll in the database.
-
-we've got an alternate flow issue.
-when i come from a roll show to import from screenshot, i should be taken back to the roll show, not the wizard. but if i come from the wizard, i should be taken to the wizard page two.
+# Plan
+- OK this next project is going to be big, complicated, and potentially messy.
+- so we need to be meticulous and careful.
+- short version: we're going to completely remove Randomizers and promote Rolls to top-level entities.
+# Data
+- IMPORTANT we need to perserve existing data, so we should probably tackle that first.
+- we'll need to change the ownership from randomizers to rolls.
+- we'll need to remap tags from randomizers to rolls.
+- we'll need to add slugs to rolls. in the case of a one-to-one relationship between a randomizer and a roll, copy the slug from the randomizer to the roll.
+# Interface
+- we'll need to change all front-end representations (cards, search, outcomes, filters, etc.) of randomizers to rolls.
+# Cleanup
+- we went to remove all references to randomizers from the codebase (routes, controllers, models, views, javascript, etc.) HOWEVER do not yet drop the table from the database - we'll wait until we're 1000% sure the project is completed before deleting any data!
 
 ---
 
