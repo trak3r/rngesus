@@ -146,10 +146,6 @@ class RollsControllerTest < ActionDispatch::IntegrationTest
       name: 'Mood',
       dice: '2D6'
     } }
-    
-    if response.status == 422
-      puts "Update failed response: #{response.body.gsub(/\n/, ' ')[0..500]}"
-    end
 
     assert_redirected_to roll_url(@roll)
   end
