@@ -59,7 +59,7 @@ class MigrateRandomizersData < ActiveRecord::Migration[8.1]
 
           # Move Votes
           Vote.where(votable_type: 'Randomizer', votable_id: randomizer.id)
-              .update_all(votable_type: 'Roll', votable_id: roll.id)
+              .update_all(votable_type: 'Roll', votable_id: roll.id) # rubocop:disable Rails/SkipsModelValidations
 
           Rails.logger.debug { "  - Primary Roll (ID: #{roll.id}): Inheriting slug '#{randomizer.slug}'." }
         else
@@ -75,7 +75,7 @@ class MigrateRandomizersData < ActiveRecord::Migration[8.1]
         end
 
         # Bypass validations and readonly checks
-        roll.update_columns(attrs)
+        roll.update_columns(attrs) # rubocop:disable Rails/SkipsModelValidations
 
         # Copy tags
         randomizer.tags.each do |tag|
