@@ -123,15 +123,15 @@ class RollsController < ApplicationController
   private
 
   def set_roll
-    @roll = Roll.find_by!(slug: params.expect(:id))
+    @roll = Roll.find_by!(slug: params[:id])
   end
 
   def roll_params
-    params.expect(
-      roll: [:name,
-             :dice,
-             { tag_ids: [] },
-             { results_attributes: %i[id name value _destroy] }]
+    params.require(:roll).permit(
+      :name,
+      :dice,
+      { tag_ids: [] },
+      results_attributes: [:id, :name, :value, :_destroy]
     )
   end
 
