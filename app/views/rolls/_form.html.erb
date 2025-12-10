@@ -2,7 +2,7 @@
   <% if roll.errors.any? %>
     <div id="error_explanation" class="alert alert-error">
       <div>
-        <h2><%= pluralize(roll.errors.count, "error") %> prohibited this roll from being saved:</h2>
+        <h2><%= t('activerecord.errors.models.roll', count: roll.errors.count) %></h2>
 
         <ul class="list-disc ml-6 mt-2">
           <% roll.errors.each do |error| %>
@@ -25,7 +25,7 @@
   </div>
 
   <div class="my-5">
-    <%= form.label :tag_ids, "Tags (optional, max 3)", class: "label font-typewriter text-base-content" %>
+    <%= form.label :tag_ids, t('rolls.wizard_form.tags_label'), class: "label font-typewriter text-base-content" %>
     <%= hidden_field_tag 'roll[tag_ids][]', '' %>
     <div class="flex flex-wrap gap-3 p-4 border-2 border-dashed border-pencil/30 rounded-lg bg-base-100">
       <% Tag.order(:name).each do |tag| %>
@@ -37,7 +37,7 @@
         </label>
       <% end %>
     </div>
-    <p class="text-sm text-base-content/60 mt-1 font-handwriting">Select up to 3 game systems for this roll</p>
+    <p class="text-sm text-base-content/60 mt-1 font-handwriting"><%= t('rolls.wizard_form.tags_help') %></p>
   </div>
 
   <div class="my-5">
@@ -45,21 +45,21 @@
   </div>
   
   <div class="my-5" data-controller="nested-fields" data-nested-fields-wrapper-value="roll[results_attributes]">
-    <h3 class="font-bold text-xl font-typewriter mb-4">Results</h3>
+    <h3 class="font-bold text-xl font-typewriter mb-4"><%= t('rolls.form.results') %></h3>
     
     <template data-nested-fields-target="template">
       <div class="flex items-center gap-4 p-4 border rounded-lg bg-base-100/50" data-nested-field>
         <div class="flex-1">
-          <label class="label text-sm">Dice Roll</label>
-          <input type="number" name="roll[results_attributes][NEW_RECORD][value]" class="input-handwritten w-full" placeholder="e.g. 20" />
+          <label class="label text-sm"><%= t('rolls.form.dice_roll_label') %></label>
+          <input type="number" name="roll[results_attributes][NEW_RECORD][value]" class="input-handwritten w-full" placeholder="<%= t('rolls.form.dice_roll_placeholder') %>" />
         </div>
         <div class="flex-[3]">
-          <label class="label text-sm">Outcome Description</label>
-          <input type="text" name="roll[results_attributes][NEW_RECORD][name]" class="input-handwritten w-full" placeholder="e.g. Critical Hit!" />
+          <label class="label text-sm"><%= t('rolls.form.outcome_description_label') %></label>
+          <input type="text" name="roll[results_attributes][NEW_RECORD][name]" class="input-handwritten w-full" placeholder="<%= t('rolls.form.outcome_description_placeholder') %>" />
         </div>
         <div class="flex items-center pt-8">
           <button type="button" data-action="click->nested-fields#remove" class="text-error hover:text-error/80 text-sm font-handwriting cursor-pointer">
-            Remove
+            <%= t('rolls.form.remove') %>
           </button>
         </div>
       </div>
@@ -69,12 +69,12 @@
       <%= form.fields_for :results do |result_form| %>
         <div class="flex items-center gap-4 p-4 border rounded-lg bg-base-100/50" data-nested-field>
           <div class="flex-1">
-             <%= result_form.label :value, "Dice Roll", class: "label text-sm" %>
-             <%= result_form.number_field :value, class: "input-handwritten w-full", placeholder: "e.g. 20" %>
+             <%= result_form.label :value, t('rolls.form.dice_roll_label'), class: "label text-sm" %>
+             <%= result_form.number_field :value, class: "input-handwritten w-full", placeholder: t('rolls.form.dice_roll_placeholder') %>
           </div>
           <div class="flex-[3]">
-             <%= result_form.label :name, "Outcome Description", class: "label text-sm" %>
-             <%= result_form.text_field :name, class: "input-handwritten w-full", placeholder: "e.g. Critical Hit!" %>
+             <%= result_form.label :name, t('rolls.form.outcome_description_label'), class: "label text-sm" %>
+             <%= result_form.text_field :name, class: "input-handwritten w-full", placeholder: t('rolls.form.outcome_description_placeholder') %>
           </div>
           <div class="flex items-center pt-8">
             <% if result_form.object.persisted? %>
@@ -82,7 +82,7 @@
               <%= result_form.hidden_field :_destroy, value: false, id: nil %>
             <% end %>
             <button type="button" data-action="click->nested-fields#remove" class="text-error hover:text-error/80 text-sm font-handwriting cursor-pointer">
-              Remove
+              <%= t('rolls.form.remove') %>
             </button>
           </div>
         </div>
@@ -97,6 +97,6 @@
   </div>
 
   <div class="mt-8 inline">
-    <%= form.submit "Save Roll", class: "btn-doodle cursor-pointer" %>
+    <%= form.submit t('rolls.form.save'), class: "btn-doodle cursor-pointer" %>
   </div>
 <% end %>

@@ -78,6 +78,14 @@ en:
       success: "Roll was successfully updated."
     destroy:
       success: "Roll was successfully destroyed."
+    form:
+      results: "Results"
+      dice_roll_label: "Dice Roll"
+      outcome_description_label: "Outcome Description"
+      dice_roll_placeholder: "e.g. 20"
+      outcome_description_placeholder: "e.g. Critical Hit!"
+      remove: "Remove"
+      save: "Save Roll"
   results:
     create:
       success: "Result was successfully created."
@@ -109,7 +117,12 @@ en:
   activerecord:
     errors:
       models:
+        roll:
+          one: "1 error prohibited this roll from being saved:"
+          other: "%{count} errors prohibited this roll from being saved:"
         result:
+          one: "1 error prohibited this result from being saved:"
+          other: "%{count} errors prohibited this result from being saved:"
           attributes:
             value:
               taken: "This value has already been used for this roll."
