@@ -8,7 +8,7 @@ class Roll < ApplicationRecord
   
   has_many :roll_tags, dependent: :destroy
   has_many :tags, through: :roll_tags
-  has_many :results, -> { kept }, dependent: :destroy, inverse_of: :roll
+  has_many :results, -> { kept.order(:value) }, dependent: :destroy, inverse_of: :roll
   
   acts_as_votable
   

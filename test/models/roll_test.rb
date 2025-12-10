@@ -253,4 +253,23 @@ class RollTest < ActiveSupport::TestCase
     # Result should still be active (not discarded)
     assert_not Result.with_discarded.find(result_id).discarded?
   end
+
+  test 'results are ordered by value' do
+    roll = Roll.create!(name: 'Test Roll', dice: 'D20', user: users(:ted))
+
+    # Create results in random order
+    roll.results.create!(name: 'High', value: 20)
+    roll.results.create!(name: 'Low', value: 1)
+    roll.results.create!(name: 'Mid', value: 10)
+    roll.results.create!(name: 'Very Low', value: 5)
+
+    # Reload to get ordered results
+    roll.reload
+
+    # Results should be ordered by value ascending
+    values = roll.results.map(&:value)
+    assert_equal [1, 5, 10, 20], values, 'Results should be ordered by value ascending'
+    assert_equal 'Low', roll.results.first.name
+    assert_equal 'High', roll.results.last.name
+  end
 end

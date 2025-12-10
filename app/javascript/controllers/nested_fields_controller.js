@@ -69,4 +69,23 @@ export default class extends Controller {
       requestAnimationFrame(() => firstInput.focus())
     }
   }
+
+  remove(event) {
+    event.preventDefault()
+    const field = event.currentTarget.closest('[data-nested-field]')
+    if (field) {
+      // Check if this is a persisted record (has an id field)
+      const idField = field.querySelector('input[name*="[id]"]')
+      const destroyField = field.querySelector('input[name*="[_destroy]"]')
+      
+      if (idField && destroyField) {
+        // For persisted records, set _destroy to true and hide the field
+        destroyField.value = '1'
+        field.style.display = 'none'
+      } else {
+        // For new records, just remove the field from the DOM
+        field.remove()
+      }
+    }
+  }
 }
