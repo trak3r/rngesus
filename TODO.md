@@ -33,6 +33,7 @@
 - (phil) If there is no roll on table that would be crucial. Something so. Result 12: You find a [[Roll on Metal Table]] Sword. And that Roll on Metal table would be like, iron, steel, cold iron, silver etc.
 - (eric) I should be able to cutty pasty from the roll!
 - (marco) Needs a Misc category.
+- (todd) recommend a < or something next to the roll name to save me 10ms mousing over to the site logo to get back to the front page
 
 ## Pie in the Sky
 - let user copy somebody else's randomizer as their own
