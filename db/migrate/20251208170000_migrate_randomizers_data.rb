@@ -35,6 +35,7 @@ class MigrateRandomizersData < ActiveRecord::Migration[8.1]
 
     Rails.logger.debug 'Starting migration...'
 
+    # rubocop:disable Metrics/BlockLength
     Randomizer.find_each do |randomizer|
       Rails.logger.debug { "Processing Randomizer: #{randomizer.name} (ID: #{randomizer.id})" }
 
@@ -85,6 +86,7 @@ class MigrateRandomizersData < ActiveRecord::Migration[8.1]
         Rails.logger.debug { "  - Processed Roll #{roll.id}" }
       end
     end
+    # rubocop:enable Metrics/BlockLength
     Rails.logger.debug 'Migration complete!'
   end
 
