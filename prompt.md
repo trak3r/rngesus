@@ -14,6 +14,12 @@
 # Cleanup
 - we want to remove all references to randomizers from the codebase (routes, controllers, models, views, fixtures, javascript, en.yml, etc.) HOWEVER do not yet drop the table from the database - we'll wait until we're 1000% sure the project is completed before deleting any data!
 
+
+http://localhost:3000/rolls/5jQZ8/edit
+this roll edit form has no results and no way to add some
+there used to be an "add new result" functionality before the randomizers were dropped (you can check the git diff for this branch if necessary)
+
+
 ---
 
 # Test Guidelines

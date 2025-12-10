@@ -150,6 +150,27 @@ class RollsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to roll_url(@roll)
   end
 
+  test 'should update roll with new nested results' do
+    # Use a roll with no existing results
+    empty_roll = rolls(:empty_roll)
+    initial_count = empty_roll.results.count
+    
+    assert_difference('Result.count', 2) do
+      patch roll_url(empty_roll), params: { roll: {
+        name: empty_roll.name,
+        dice: empty_roll.dice,
+        results_attributes: {
+          '0' => { name: 'New Result 1', value: 1 },
+          '1' => { name: 'New Result 2', value: 2 }
+        }
+      } }
+    end
+
+    assert_redirected_to roll_url(empty_roll)
+    empty_roll.reload
+    assert_equal initial_count + 2, empty_roll.results.count
+  end
+
   test 'should discard roll (soft delete)' do
     assert_not @roll.discarded?
     assert_no_difference('Roll.with_discarded.count') do
