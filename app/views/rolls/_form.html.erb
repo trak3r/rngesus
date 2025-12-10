@@ -45,12 +45,7 @@
   </div>
   
   <div class="my-5" data-controller="nested-fields" data-nested-fields-wrapper-value="roll[results_attributes]">
-    <div class="flex items-center justify-between mb-4">
-      <h3 class="font-bold text-xl font-typewriter">Results</h3>
-      <button type="button" data-action="click->nested-fields#add" class="btn-doodle text-sm">
-        <%= t('rolls.wizard_form.add_result') %>
-      </button>
-    </div>
+    <h3 class="font-bold text-xl font-typewriter mb-4">Results</h3>
     
     <template data-nested-fields-target="template">
       <div class="flex items-center gap-4 p-4 border rounded-lg bg-base-100/50" data-nested-field>
@@ -87,9 +82,15 @@
         </div>
       <% end %>
     </div>
+    
+    <div class="mt-4">
+      <button type="button" data-action="click->nested-fields#add" class="btn-doodle text-sm">
+        <%= t('rolls.wizard_form.add_result') %>
+      </button>
+    </div>
   </div>
 
-  <div class="inline">
+  <div class="mt-8 inline">
     <%= form.submit "Save Roll", class: "btn-doodle cursor-pointer" %>
   </div>
 <% end %>

@@ -20,6 +20,9 @@ this roll edit form has no results and no way to add some
 there used to be an "add new result" functionality before the randomizers were dropped (you can check the git diff for this branch if necessary)
 
 
+- that's great but users will expect to see the "add another result" button at the bottom left of the results list (not above it)
+- add some separation between it and the save/back buttons also at the bottom of the page
+
 ---
 
 # Test Guidelines
