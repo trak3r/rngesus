@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/BlockLength
 Rails.application.routes.draw do
   mount_avo
   # for omniauth
@@ -48,4 +47,3 @@ Rails.application.routes.draw do
   # root "posts#index"
   root 'rolls#index'
 end
-# rubocop:enable Metrics/BlockLength

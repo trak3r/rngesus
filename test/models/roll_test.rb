@@ -257,6 +257,7 @@ class RollTest < ActiveSupport::TestCase
 
     # Results should be ordered by value ascending (fixtures created in random order)
     values = roll.results.map(&:value)
+
     assert_equal [1, 5, 10, 20], values, 'Results should be ordered by value ascending'
     assert_equal 'Low', roll.results.first.name
     assert_equal 'High', roll.results.last.name

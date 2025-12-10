@@ -3,18 +3,18 @@
 class Roll < ApplicationRecord
   include Discard::Model
 
-
   belongs_to :user
-  
+
   has_many :roll_tags, dependent: :destroy
   has_many :tags, through: :roll_tags
   has_many :results, -> { kept.order(:value) }, dependent: :destroy, inverse_of: :roll
-  
+
   acts_as_votable
-  
+
   include ImmutableAttributes
+
   attr_immutable :slug
-  
+
   before_validation :generate_slug_if_blank
 
   accepts_nested_attributes_for :results, allow_destroy: true, reject_if: :all_blank
@@ -51,8 +51,6 @@ class Roll < ApplicationRecord
 
     slug
   end
-
-
 
   def dice_object
     @dice_object = Dice.new dice

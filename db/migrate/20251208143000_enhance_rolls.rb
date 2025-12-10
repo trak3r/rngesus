@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class EnhanceRolls < ActiveRecord::Migration[8.1]
   def change
     add_reference :rolls, :user, foreign_key: true
@@ -12,7 +14,9 @@ class EnhanceRolls < ActiveRecord::Migration[8.1]
     create_table :roll_tags do |t|
       t.references :roll, null: false, foreign_key: true
       t.references :tag, null: false, foreign_key: true
-      t.index [:roll_id, :tag_id], unique: true
+      t.index %i[roll_id tag_id], unique: true
+
+      t.timestamps
     end
   end
 end

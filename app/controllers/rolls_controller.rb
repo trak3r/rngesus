@@ -35,9 +35,7 @@ class RollsController < ApplicationController
                current_user.get_voted(Roll).search(params[:query]).tagged_with(@tags).newest
              when 'your_rolls'
                current_user.rolls.search(params[:query]).tagged_with(@tags).newest
-             else
-               Roll.search(params[:query]).tagged_with(@tags).where('cached_votes_total > 0').most_liked
-             end
+             end || Roll.search(params[:query]).tagged_with(@tags).where('cached_votes_total > 0').most_liked
   end
 
   # GET /rolls/1
@@ -49,7 +47,7 @@ class RollsController < ApplicationController
   # POST /rolls/1/reroll
   def reroll
     @rolled, @result = @roll.outcome
-    
+
     respond_to do |format|
       format.turbo_stream
     end
@@ -116,9 +114,7 @@ class RollsController < ApplicationController
 
   # DELETE /rolls/1
   def destroy
-    if @roll.discarded?
-      return redirect_to rolls_path(tab: params[:tab]), notice: t('.success'), status: :see_other
-    end
+    return redirect_to rolls_path(tab: params[:tab]), notice: t('.success'), status: :see_other if @roll.discarded?
 
     @roll.discard
     redirect_to rolls_path(tab: params[:tab]), notice: t('.success'), status: :see_other
