@@ -219,27 +219,25 @@ class RollTest < ActiveSupport::TestCase
 
   test 'roll results association excludes discarded results' do
     roll = rolls(:encounter_distance)
+    result = results(:encounter_distance_medium)
     initial_count = roll.results.count
 
-    # Create a new result
-    new_result = roll.results.create!(name: 'New Result', value: 4)
-
-    assert_equal initial_count + 1, roll.results.count
-    assert_includes roll.results, new_result
+    assert_equal initial_count, roll.results.count
+    assert_includes roll.results, result
 
     # Discard the result
-    new_result.discard!
+    result.discard!
 
     # Result should be excluded from association
     roll.results.reload
 
-    assert_equal initial_count, roll.results.count
-    assert_not_includes roll.results, new_result
+    assert_equal initial_count - 1, roll.results.count
+    assert_not_includes roll.results, result
   end
 
   test 'discarding roll does not destroy associated results' do
     roll = rolls(:encounter_distance)
-    result = roll.results.first || roll.results.create!(name: 'Test Result', value: 1)
+    result = results(:encounter_distance_close)
     result_id = result.id
     initial_result_count = Result.with_discarded.where(roll_id: roll.id).count
 
@@ -255,18 +253,9 @@ class RollTest < ActiveSupport::TestCase
   end
 
   test 'results are ordered by value' do
-    roll = Roll.create!(name: 'Test Roll', dice: 'D20', user: users(:ted))
+    roll = rolls(:roll_with_ordered_results)
 
-    # Create results in random order
-    roll.results.create!(name: 'High', value: 20)
-    roll.results.create!(name: 'Low', value: 1)
-    roll.results.create!(name: 'Mid', value: 10)
-    roll.results.create!(name: 'Very Low', value: 5)
-
-    # Reload to get ordered results
-    roll.reload
-
-    # Results should be ordered by value ascending
+    # Results should be ordered by value ascending (fixtures created in random order)
     values = roll.results.map(&:value)
     assert_equal [1, 5, 10, 20], values, 'Results should be ordered by value ascending'
     assert_equal 'Low', roll.results.first.name

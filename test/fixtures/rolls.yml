@@ -27,3 +27,9 @@ other_user_roll:
   slug: other
   name: Other User Roll
   dice: D20
+
+roll_with_ordered_results:
+  user: ted
+  slug: order1
+  name: Roll With Ordered Results
+  dice: D20

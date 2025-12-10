@@ -7,3 +7,28 @@ dice_notation_result:
   roll: roll_with_dice_notation
   name: 1d6 goblins attack
   value: 5
+
+encounter_distance_medium:
+  roll: encounter_distance
+  name: Medium
+  value: 4
+
+roll_with_ordered_results_high:
+  roll: roll_with_ordered_results
+  name: High
+  value: 20
+
+roll_with_ordered_results_low:
+  roll: roll_with_ordered_results
+  name: Low
+  value: 1
+
+roll_with_ordered_results_mid:
+  roll: roll_with_ordered_results
+  name: Mid
+  value: 10
+
+roll_with_ordered_results_very_low:
+  roll: roll_with_ordered_results
+  name: Very Low
+  value: 5
