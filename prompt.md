@@ -23,6 +23,10 @@ there used to be an "add new result" functionality before the randomizers were d
 - that's great but users will expect to see the "add another result" button at the bottom left of the results list (not above it)
 - add some separation between it and the save/back buttons also at the bottom of the page
 
+
+- on the roll form, the results should be ordered by their "value" values
+- when i add a new result on the roll form there's no way to delete it before attempting to save
+
 ---
 
 # Test Guidelines
