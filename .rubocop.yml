@@ -36,3 +36,6 @@ Rails/ThreeStateBooleanColumn:
   Enabled: false
 Metrics/ClassLength:
   Enabled: false
+Rails/StrongParametersExpect:
+  # auto-correct writes broken code
+  Enabled: false

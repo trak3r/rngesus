@@ -127,10 +127,11 @@ class RollsController < ApplicationController
   end
 
   def roll_params
-    params.require(:roll).permit(
-      :name, :dice,
-      { tag_ids: [] },
-      { results_attributes: %i[id name value _destroy] }
+    params.expect(
+      roll: [:name,
+             :dice,
+             { tag_ids: [] },
+             { results_attributes: %i[id name value _destroy] }]
     )
   end
 
