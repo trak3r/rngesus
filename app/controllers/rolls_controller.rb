@@ -131,7 +131,7 @@ class RollsController < ApplicationController
       :name,
       :dice,
       { tag_ids: [] },
-      results_attributes: [:id, :name, :value, :_destroy]
+      results_attributes: %i[id name value _destroy]
     )
   end
 
