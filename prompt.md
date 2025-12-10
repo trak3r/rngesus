@@ -27,6 +27,10 @@ there used to be an "add new result" functionality before the randomizers were d
 - on the roll form, the results should be ordered by their "value" values
 - when i add a new result on the roll form there's no way to delete it before attempting to save
 
+
+- as part of the randomizer removal it seems outcomes controller was also removed but seems some of its views are still there
+- audit all the view files to ensure they are actually needed
+
 ---
 
 # Test Guidelines

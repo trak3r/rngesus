@@ -15,7 +15,7 @@
     </div>
   <% end %>
 
-  <% if current_user == roll.randomizer.user %>
+  <% if current_user == roll.user %>
     <div class="flex flex-row space-x-2 w-auto opacity-0 group-hover:opacity-100 transition-opacity">
       <%= button_to roll_path(roll), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "text-base-content/30 hover:text-base-content p-2 rounded" do %>
         <%= icon(:trash, class: "w-5 h-5") %>
