@@ -17,7 +17,7 @@
     <%= render "like_button", roll: @roll %>
   </div>
 
-  <div class="w-full max-w-lg mx-auto">
+  <div class="w-full mx-auto">
     <% # Ensure we have something to render if not rolled yet (e.g. initial load without JS rolling?) %>
     <% # Controller sets @rolled, @result %>
     <%= render "outcome_card", roll: @roll, rolled: @rolled, result: @result, animate: true %>
