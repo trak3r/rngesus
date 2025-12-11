@@ -51,6 +51,7 @@ class MigrateRandomizersData < ActiveRecord::Migration[8.1]
         attrs = { user_id: randomizer.user_id }
 
         if index.zero?
+          attrs[:name] = randomizer.name
           # Primary Roll: Inherit slug and votes
           attrs[:slug] = randomizer.slug
           attrs[:cached_votes_total] = randomizer.cached_votes_total

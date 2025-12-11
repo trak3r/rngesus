@@ -30,8 +30,10 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_08_194931) do
   end
 
   create_table "roll_tags", force: :cascade do |t|
+    t.datetime "created_at", null: false
     t.integer "roll_id", null: false
     t.integer "tag_id", null: false
+    t.datetime "updated_at", null: false
     t.index ["roll_id", "tag_id"], name: "index_roll_tags_on_roll_id_and_tag_id", unique: true
     t.index ["roll_id"], name: "index_roll_tags_on_roll_id"
     t.index ["tag_id"], name: "index_roll_tags_on_tag_id"
