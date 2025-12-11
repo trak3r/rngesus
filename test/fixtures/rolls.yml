@@ -1,19 +1,35 @@
 encounter_distance:
-  randomizer: encounter
+  user: ted
+  slug: enco1
   name: Distance
   dice: 2D6
 
 encounter_forest:
-  randomizer: encounter
+  user: ted
+  slug: fore1
   name: Monster
   dice: D100
 
 empty_roll:
-  randomizer: encounter
+  user: ted
+  slug: emty1
   name: Empty Roll
   dice: D6
 
 roll_with_dice_notation:
-  randomizer: encounter
+  user: ted
+  slug: notat
   name: Test Roll
   dice: D6
+
+other_user_roll:
+  user: other_user
+  slug: other
+  name: Other User Roll
+  dice: D20
+
+roll_with_ordered_results:
+  user: ted
+  slug: order1
+  name: Roll With Ordered Results
+  dice: D20

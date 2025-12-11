@@ -4,13 +4,13 @@
                        controller: "slot-machine dice",
                        slot_machine_final_result_value: result.try(:name_with_rolls) || 'No match',
                        slot_machine_all_results_value: roll.results.map(&:name).to_json,
-                       slot_machine_index_value: index,
+                       slot_machine_index_value: local_assigns.fetch(:index, 0),
                        dice_dice_value: roll.dice,
                        dice_result_value: result.try(:name_with_rolls) || 'No match',
                        dice_rolled_value: rolled,
                        dice_animate_value: local_assigns.fetch(:animate, true)
                      } do %>
-  <%= button_to reroll_randomizer_outcome_path(randomizer, roll),
+  <%= button_to reroll_roll_path(roll),
                 method: :post,
                 class: "card-index w-full hover:shadow-lg transition-all duration-300 flex flex-col items-center cursor-pointer hover:scale-[1.02] active:scale-[0.98] relative overflow-hidden",
                 form: { class: "w-full" } do %>

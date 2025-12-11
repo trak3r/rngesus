@@ -1,7 +1,10 @@
 # TODO
 
 ## Must Have
-- now that real people are using it, i over-engineered it to support crazy cool functionality that most users will not need and made the learning curve too steep. smush it all down into single roll tables.
+- move slugging into a concern
+- what is expecte behavior when re-uploading into an existing roll?
+    - replace matching values? dupe everything?
+    - actually the new roll edit form doesn't even offer to re-upload
 - when we switched to wizard flow we lost CSV upload option
 - on forms, instead of showing error at top of page, show it inline with the field
 - the non-CRUD controller actions still leave a bad taste in my mouth; let's audit them and considering refactoring
@@ -30,6 +33,7 @@
 - (phil) If there is no roll on table that would be crucial. Something so. Result 12: You find a [[Roll on Metal Table]] Sword. And that Roll on Metal table would be like, iron, steel, cold iron, silver etc.
 - (eric) I should be able to cutty pasty from the roll!
 - (marco) Needs a Misc category.
+- (todd) recommend a < or something next to the roll name to save me 10ms mousing over to the site logo to get back to the front page
 
 ## Pie in the Sky
 - let user copy somebody else's randomizer as their own
@@ -156,3 +160,4 @@
     - kill the result#show action, view, route
 - creating and editing randomizers could use some more handholding
     - consider a wizard-style flow
+- now that real people are using it, i over-engineered it to support crazy cool functionality that most users will not need and made the learning curve too steep. smush it all down into single roll tables.

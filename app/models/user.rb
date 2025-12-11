@@ -5,7 +5,7 @@ class User < ApplicationRecord
 
   acts_as_voter
 
-  has_many :randomizers, dependent: :destroy
+  has_many :rolls, dependent: :destroy
   validates :provider, :uid, presence: true
   validates :nickname, length: { maximum: 50 }, allow_blank: true, profanity: true
 

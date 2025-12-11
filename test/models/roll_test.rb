@@ -4,21 +4,21 @@ require 'test_helper'
 
 class RollTest < ActiveSupport::TestCase
   test 'should require name' do
-    roll = Roll.new(dice: 'D6', randomizer: randomizers(:encounter))
+    roll = Roll.new(dice: 'D6', user: users(:ted))
 
     assert_not roll.valid?
     assert_includes roll.errors[:name], "can't be blank"
   end
 
   test 'should require dice' do
-    roll = Roll.new(name: 'Test Roll', randomizer: randomizers(:encounter))
+    roll = Roll.new(name: 'Test Roll', user: users(:ted))
 
     assert_not roll.valid?
     assert_includes roll.errors[:dice], "can't be blank"
   end
 
   test 'should validate dice format' do
-    roll = Roll.new(name: 'Test Roll', dice: 'INVALID', randomizer: randomizers(:encounter))
+    roll = Roll.new(name: 'Test Roll', dice: 'INVALID', user: users(:ted))
 
     assert_not roll.valid?
     assert_match(/Could not parse INVALID/, roll.errors[:dice].first)
@@ -28,14 +28,14 @@ class RollTest < ActiveSupport::TestCase
     valid_formats = %w[D6 2D6 d20 3d8 D100]
 
     valid_formats.each do |dice_format|
-      roll = Roll.new(name: 'Test Roll', dice: dice_format, randomizer: randomizers(:encounter))
+      roll = Roll.new(name: 'Test Roll', dice: dice_format, user: users(:ted))
 
       assert_predicate roll, :valid?, "#{dice_format} should be valid but got errors: #{roll.errors.full_messages}"
     end
   end
 
   test 'should reject profane names' do
-    roll = Roll.new(name: 'fuck', dice: 'D6', randomizer: randomizers(:encounter))
+    roll = Roll.new(name: 'fuck', dice: 'D6', user: users(:ted))
 
     assert_not roll.valid?
     assert_match(/contains inappropriate language/, roll.errors[:name].first)
@@ -53,7 +53,7 @@ class RollTest < ActiveSupport::TestCase
   end
 
   test 'outcome returns nil when no results' do
-    roll = Roll.create!(name: 'Empty Roll', dice: 'D6', randomizer: randomizers(:encounter))
+    roll = Roll.create!(name: 'Empty Roll', dice: 'D6', user: users(:ted))
 
     rolled, result = roll.outcome
 
@@ -85,7 +85,7 @@ class RollTest < ActiveSupport::TestCase
   end
 
   test 'outcome selects result with highest value not exceeding roll' do
-    roll = Roll.create!(name: 'Test Roll', dice: 'D6', randomizer: randomizers(:encounter))
+    roll = Roll.create!(name: 'Test Roll', dice: 'D6', user: users(:ted))
 
     # Create results with specific values for D6 (1-6)
     result_low = roll.results.create!(name: 'Low', value: 2)
@@ -113,7 +113,7 @@ class RollTest < ActiveSupport::TestCase
   end
 
   test 'outcome returns nil result when rolled below all values' do
-    roll = Roll.create!(name: 'Test Roll', dice: 'D6', randomizer: randomizers(:encounter))
+    roll = Roll.create!(name: 'Test Roll', dice: 'D6', user: users(:ted))
 
     # Create results all with high values (5 and 6)
     roll.results.create!(name: 'High1', value: 5)
@@ -191,7 +191,7 @@ class RollTest < ActiveSupport::TestCase
   end
 
   test 'outcome method only uses active results' do
-    roll = Roll.create!(name: 'Test Roll', dice: 'D6', randomizer: randomizers(:encounter))
+    roll = Roll.create!(name: 'Test Roll', dice: 'D6', user: users(:ted))
 
     # Create active results
     active_result_first = roll.results.create!(name: 'Active 1', value: 3)
@@ -219,27 +219,25 @@ class RollTest < ActiveSupport::TestCase
 
   test 'roll results association excludes discarded results' do
     roll = rolls(:encounter_distance)
+    result = results(:encounter_distance_medium)
     initial_count = roll.results.count
 
-    # Create a new result
-    new_result = roll.results.create!(name: 'New Result', value: 4)
-
-    assert_equal initial_count + 1, roll.results.count
-    assert_includes roll.results, new_result
+    assert_equal initial_count, roll.results.count
+    assert_includes roll.results, result
 
     # Discard the result
-    new_result.discard!
+    result.discard!
 
     # Result should be excluded from association
     roll.results.reload
 
-    assert_equal initial_count, roll.results.count
-    assert_not_includes roll.results, new_result
+    assert_equal initial_count - 1, roll.results.count
+    assert_not_includes roll.results, result
   end
 
   test 'discarding roll does not destroy associated results' do
     roll = rolls(:encounter_distance)
-    result = roll.results.first || roll.results.create!(name: 'Test Result', value: 1)
+    result = results(:encounter_distance_close)
     result_id = result.id
     initial_result_count = Result.with_discarded.where(roll_id: roll.id).count
 
@@ -252,5 +250,16 @@ class RollTest < ActiveSupport::TestCase
     assert_equal initial_result_count, Result.with_discarded.where(roll_id: roll.id).count
     # Result should still be active (not discarded)
     assert_not Result.with_discarded.find(result_id).discarded?
+  end
+
+  test 'results are ordered by value' do
+    roll = rolls(:roll_with_ordered_results)
+
+    # Results should be ordered by value ascending (fixtures created in random order)
+    values = roll.results.map(&:value)
+
+    assert_equal [1, 5, 10, 20], values, 'Results should be ordered by value ascending'
+    assert_equal 'Low', roll.results.first.name
+    assert_equal 'High', roll.results.last.name
   end
 end

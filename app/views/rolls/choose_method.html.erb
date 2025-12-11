@@ -11,7 +11,7 @@
   <div class="grid md:grid-cols-2 gap-8">
     <!-- Upload Screenshots Card -->
     <div class="card-index hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer group">
-      <%= button_to create_with_upload_randomizers_path,
+      <%= button_to create_with_upload_rolls_path,
                     method: :post,
                     class: "text-center p-8 w-full border-0 bg-transparent cursor-pointer" do %>
         <%= icon('photo-up', class: "w-24 h-24 mx-auto mb-6 text-pencil group-hover:scale-110 transition-transform") %>
@@ -25,7 +25,7 @@
     </div>
 
     <!-- Create By Hand Card -->
-    <%= link_to new_randomizer_path(method: 'manual'),
+    <%= link_to new_roll_path(method: 'manual'),
                 class: "card-index hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer group" do %>
       <div class="text-center p-8">
         <%= icon('pencil', class: "w-24 h-24 mx-auto mb-6 text-pencil group-hover:scale-110 transition-transform") %>
@@ -39,6 +39,6 @@
     <% end %>
   </div>
 
-  <%= link_to t('.back'), randomizers_path, 
+  <%= link_to t('.back'), rolls_path, 
               class: "block text-center mt-8 text-pencil/50 hover:text-pencil font-handwriting text-xl transition-colors" %>
 </div>

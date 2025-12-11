@@ -1,15 +1,8 @@
-<%= form_with(
-      model: roll,
-      url: roll.persisted? ?
-           roll_path(roll) :
-           randomizer_rolls_path(roll.randomizer),
-      method: roll.persisted? ? :patch : :post,
-      class: "contents"
-    ) do |form| %>
+<%= form_with(model: roll, class: "contents") do |form| %>
   <% if roll.errors.any? %>
     <div id="error_explanation" class="alert alert-error">
       <div>
-        <h2><%= pluralize(roll.errors.count, "error") %> prohibited this roll from being saved:</h2>
+        <h2><%= t('activerecord.errors.models.roll', count: roll.errors.count) %></h2>
 
         <ul class="list-disc ml-6 mt-2">
           <% roll.errors.each do |error| %>
@@ -32,10 +25,78 @@
   </div>
 
   <div class="my-5">
-    <%= render 'form_dice', form: form, roll: roll %>
+    <%= form.label :tag_ids, t('rolls.wizard_form.tags_label'), class: "label font-typewriter text-base-content" %>
+    <%= hidden_field_tag 'roll[tag_ids][]', '' %>
+    <div class="flex flex-wrap gap-3 p-4 border-2 border-dashed border-pencil/30 rounded-lg bg-base-100">
+      <% Tag.order(:name).each do |tag| %>
+        <label class="flex items-center gap-2 cursor-pointer hover:bg-base-200 p-2 rounded transition-colors">
+          <%= check_box_tag 'roll[tag_ids][]', tag.id, roll.tag_ids.include?(tag.id), 
+                            class: "checkbox checkbox-sm",
+                            id: "roll_tag_ids_#{tag.id}" %>
+          <span class="font-handwriting text-base"><%= tag.name %></span>
+        </label>
+      <% end %>
+    </div>
+    <p class="text-sm text-base-content/60 mt-1 font-handwriting"><%= t('rolls.wizard_form.tags_help') %></p>
   </div>
 
-  <div class="inline">
-    <%= form.submit "Submit", class: "btn-doodle cursor-pointer" %>
+  <div class="my-5">
+    <%= render 'form_dice', form: form, roll: roll %>
+  </div>
+  
+  <div class="my-5" data-controller="nested-fields" data-nested-fields-wrapper-value="roll[results_attributes]">
+    <h3 class="font-bold text-xl font-typewriter mb-4"><%= t('rolls.form.results') %></h3>
+    
+    <template data-nested-fields-target="template">
+      <div class="flex items-center gap-4 p-4 border rounded-lg bg-base-100/50" data-nested-field>
+        <div class="flex-1">
+          <label class="label text-sm"><%= t('rolls.form.dice_roll_label') %></label>
+          <input type="number" name="roll[results_attributes][NEW_RECORD][value]" class="input-handwritten w-full" placeholder="<%= t('rolls.form.dice_roll_placeholder') %>" />
+        </div>
+        <div class="flex-[3]">
+          <label class="label text-sm"><%= t('rolls.form.outcome_description_label') %></label>
+          <input type="text" name="roll[results_attributes][NEW_RECORD][name]" class="input-handwritten w-full" placeholder="<%= t('rolls.form.outcome_description_placeholder') %>" />
+        </div>
+        <div class="flex items-center pt-8">
+          <button type="button" data-action="click->nested-fields#remove" class="text-error hover:text-error/80 text-sm font-handwriting cursor-pointer">
+            <%= t('rolls.form.remove') %>
+          </button>
+        </div>
+      </div>
+    </template>
+    
+    <div class="space-y-4" data-nested-fields-target="container">
+      <%= form.fields_for :results do |result_form| %>
+        <div class="flex items-center gap-4 p-4 border rounded-lg bg-base-100/50" data-nested-field>
+          <div class="flex-1">
+             <%= result_form.label :value, t('rolls.form.dice_roll_label'), class: "label text-sm" %>
+             <%= result_form.number_field :value, class: "input-handwritten w-full", placeholder: t('rolls.form.dice_roll_placeholder') %>
+          </div>
+          <div class="flex-[3]">
+             <%= result_form.label :name, t('rolls.form.outcome_description_label'), class: "label text-sm" %>
+             <%= result_form.text_field :name, class: "input-handwritten w-full", placeholder: t('rolls.form.outcome_description_placeholder') %>
+          </div>
+          <div class="flex items-center pt-8">
+            <% if result_form.object.persisted? %>
+              <%= result_form.hidden_field :id %>
+              <%= result_form.hidden_field :_destroy, value: false, id: nil %>
+            <% end %>
+            <button type="button" data-action="click->nested-fields#remove" class="text-error hover:text-error/80 text-sm font-handwriting cursor-pointer">
+              <%= t('rolls.form.remove') %>
+            </button>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    
+    <div class="mt-4">
+      <button type="button" data-action="click->nested-fields#add" class="btn-doodle text-sm">
+        <%= t('rolls.wizard_form.add_result') %>
+      </button>
+    </div>
+  </div>
+
+  <div class="mt-8 inline">
+    <%= form.submit t('rolls.form.save'), class: "btn-doodle cursor-pointer" %>
   </div>
 <% end %>

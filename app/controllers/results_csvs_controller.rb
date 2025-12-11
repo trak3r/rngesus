@@ -21,7 +21,7 @@ class ResultsCsvsController < ApplicationController
   private
 
   def set_roll
-    @roll = Roll.find(params.expect(:roll_id))
+    @roll = Roll.find_by!(slug: params.expect(:roll_id))
   end
 
   def import_params

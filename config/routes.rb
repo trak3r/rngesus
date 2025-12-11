@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/BlockLength
 Rails.application.routes.draw do
   mount_avo
   # for omniauth
@@ -16,28 +15,24 @@ Rails.application.routes.draw do
   resource :user, only: %i[edit update]
 
   resources :examples
-  resources :randomizers do
+  resources :rolls do
     # Wizard step 1: choose creation method
     get 'new/choose_method', on: :collection, action: :choose_method, as: :choose_method
-    # Wizard upload flow: create dummy randomizer and redirect to upload
+    # Wizard upload flow: create dummy roll and redirect to upload
     post 'create_with_upload', on: :collection, action: :create_with_upload
 
     post :toggle_like, on: :member
 
-    resources :outcomes, only: [:index] do
-      member do
-        post :reroll
-      end
+    member do
+      post :reroll
+      get 'edit_name'
     end
-    resources :rolls, shallow: true do
-      member do
-        get 'edit_name'
-      end
-      resources :results, shallow: true, except: [:show]
-      resources :results_csvs
-      resources :results_imgs
-    end
+
+    resources :results, shallow: true, except: [:show]
+    resources :results_csvs
+    resources :results_imgs
   end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -50,6 +45,5 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  root 'randomizers#index'
+  root 'rolls#index'
 end
-# rubocop:enable Metrics/BlockLength
