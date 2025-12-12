@@ -1,23 +1,23 @@
 # TODO
 
 ## Must Have
-- move slugging into a concern
-- what is expecte behavior when re-uploading into an existing roll?
-    - replace matching values? dupe everything?
-    - actually the new roll edit form doesn't even offer to re-upload
 - when we switched to wizard flow we lost CSV upload option
-- on forms, instead of showing error at top of page, show it inline with the field
-- the non-CRUD controller actions still leave a bad taste in my mouth; let's audit them and considering refactoring
-- add a second language just to demonstrate i18n support
 - there's sometimes some lag before the slot machine animation starts
 - don't show incomplete, test, draft, randomizers (except to owner)
 - attention-needed icon on rolls missing results or results outside of dice range, etc.
 - private, published, public flag or timestamp for randomizers
+- move slugging into a concern
+- what is expected behavior when re-uploading into an existing roll?
+    - replace matching values? dupe everything?
+    - actually the new roll edit form doesn't even offer to re-upload
+- on forms, instead of showing error at top of page, show it inline with the field
+- the non-CRUD controller actions still leave a bad taste in my mouth; let's audit them and considering refactoring
+- add a second (exotic) language just to demonstrate i18n support
 - pagination of randomizers
-- let users specify any dice type (e.g. 3d12)
+- let users specify any dice type with a recognizable shorthand (e.g. 3d12)
 
 ## Nice to Have
-- let users merge accounts, e.g. log in with twitter then link discord so both work
+- let users link accounts, e.g. log in with twitter then link discord so both work
 - user option to hide / report offensive items
 - animate cool 3d dice roll on screen
     - only showing on the reroll, not the initial roll (not working consistently)
