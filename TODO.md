@@ -1,6 +1,7 @@
 # TODO
 
 ## Must Have
+- if user logged in, default to "your rolls", else "most liked"
 - there's sometimes some lag before the slot machine animation starts
 - don't show incomplete, test, draft, randomizers (except to owner)
 - attention-needed icon on rolls missing results or results outside of dice range, etc.
