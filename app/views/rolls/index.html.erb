@@ -10,30 +10,30 @@
         <div class="w-full">
           <!-- Desktop Tabs -->
           <div role="tablist" class="hidden lg:flex tabs tabs-lifted tabs-lg">
-            <%= link_to rolls_path(tab: 'newest', query: params[:query], tags: @tags), 
-                class: "tab font-semibold #{@tab == 'newest' ? 'tab-active [--tab-bg:hsl(var(--b2))] [--tab-border-color:hsl(var(--b3))]' : ''}", 
+            <%= link_to rolls_path(tab: 'newest', query: params[:query], tags: @tags),
+                class: "tab font-semibold #{@tab == 'newest' ? 'tab-active [--tab-bg:hsl(var(--b2))] [--tab-border-color:hsl(var(--b3))]' : ''}",
                 data: { turbo_frame: "rolls", turbo_action: "advance" } do %>
               Newest
             <% end %>
-            
-            <%= link_to rolls_path(tab: 'most_liked', query: params[:query], tags: @tags), 
-                class: "tab font-semibold #{@tab == 'most_liked' ? 'tab-active [--tab-bg:hsl(var(--b2))] [--tab-border-color:hsl(var(--b3))]' : ''}", 
+
+            <%= link_to rolls_path(tab: 'most_liked', query: params[:query], tags: @tags),
+                class: "tab font-semibold #{@tab == 'most_liked' ? 'tab-active [--tab-bg:hsl(var(--b2))] [--tab-border-color:hsl(var(--b3))]' : ''}",
                 data: { turbo_frame: "rolls", turbo_action: "advance" } do %>
               Most Liked
             <% end %>
-            
-            <%= link_to rolls_path(tab: 'your_likes', query: params[:query], tags: @tags), 
-                class: "tab font-semibold #{@tab == 'your_likes' ? 'tab-active [--tab-bg:hsl(var(--b2))] [--tab-border-color:hsl(var(--b3))]' : ''}", 
+
+            <%= link_to rolls_path(tab: 'your_likes', query: params[:query], tags: @tags),
+                class: "tab font-semibold #{@tab == 'your_likes' ? 'tab-active [--tab-bg:hsl(var(--b2))] [--tab-border-color:hsl(var(--b3))]' : ''}",
                 data: { turbo_frame: current_user ? "rolls" : "_top", turbo_action: current_user ? "advance" : "replace" } do %>
               Your Likes
             <% end %>
-            
-            <%= link_to rolls_path(tab: 'your_rolls', query: params[:query], tags: @tags), 
-                class: "tab font-semibold #{@tab == 'your_rolls' ? 'tab-active [--tab-bg:hsl(var(--b2))] [--tab-border-color:hsl(var(--b3))]' : ''}", 
+
+            <%= link_to rolls_path(tab: 'your_rolls', query: params[:query], tags: @tags),
+                class: "tab font-semibold #{@tab == 'your_rolls' ? 'tab-active [--tab-bg:hsl(var(--b2))] [--tab-border-color:hsl(var(--b3))]' : ''}",
                 data: { turbo_frame: current_user ? "rolls" : "_top", turbo_action: current_user ? "advance" : "replace" } do %>
               Your Rolls
             <% end %>
-            
+
 
           </div>
 
@@ -51,15 +51,15 @@
 
         <!-- Search Bar -->
         <div data-controller="search" class="w-full lg:w-auto">
-          <%= form_with url: rolls_path, method: :get, 
+          <%= form_with url: rolls_path, method: :get,
               data: { search_target: "form", turbo_frame: "rolls", turbo_action: "advance" } do |f| %>
             <%= f.hidden_field :tab, value: @tab %>
             <% Array(@tags).each do |tag| %>
               <%= hidden_field_tag 'tags[]', tag %>
             <% end %>
             <div class="relative">
-              <%= f.text_field :query, 
-                  placeholder: "Search rolls...", 
+              <%= f.text_field :query,
+                  placeholder: "Search rolls...",
                   class: "input input-bordered input-handwritten w-full lg:w-72 pl-10 pr-10",
                   value: params[:query],
                   data: { action: "input->search#submit input->search#toggleClear", search_target: "input" } %>
@@ -68,7 +68,7 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
               </div>
-              <button type="button" 
+              <button type="button"
                       data-action="click->search#clear"
                       data-search-target="clearButton"
                       class="absolute inset-y-0 right-0 pr-3 flex items-center text-base-content/50 hover:text-base-content transition-colors <%= 'hidden' unless params[:query].present? %>">
@@ -165,23 +165,23 @@
           <!-- D&D Artwork Card (randomly positioned, hidden on mobile) -->
           <% offset = artwork_vertical_offset(artwork) %>
           <div class="hidden lg:flex card-index flex-col items-center justify-center p-4 min-h-[220px] max-h-[220px] overflow-hidden transition-transform hover:rotate-1 grayscale hover:grayscale-0 transition-all duration-300">
-            <%= image_tag "cards/#{artwork}.png", 
-                          alt: "D&D #{artwork.titleize}", 
+            <%= image_tag "cards/#{artwork}.png",
+                          alt: "D&D #{artwork.titleize}",
                           class: "w-full h-full object-cover",
                           style: (offset > 0 ? "object-position: center #{offset}%" : nil) %>
           </div>
         <% end %>
         <div id="<%= dom_id(roll) %>" class="card-index flex flex-col group p-4 min-h-[220px] transition-transform hover:-rotate-1 relative <%= 'opacity-60 grayscale' if roll.discarded? %>">
-        
+
         <!-- Deleted Stamp (for discarded rolls) -->
         <% if roll.discarded? && current_user == roll.user %>
           <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-30">
-            <div class="transform -rotate-12 border-8 border-red-600 text-red-600 font-bold text-5xl px-8 py-4 rounded-lg opacity-80 font-typewriter">
+            <div class="transform -rotate-14 border-8 border-red-600 text-red-600 font-bold text-5xl px-6 py-4 pt-6 rounded-lg opacity-80 font-typewriter">
               <%= t('rolls.index.deleted') %>
             </div>
           </div>
         <% end %>
-        
+
         <!-- Tag Badges (Push Pin Style) -->
         <% if roll.tags.any? %>
           <div class="absolute -top-3 left-1/2 -translate-x-1/2 z-20 flex gap-2">
@@ -194,7 +194,7 @@
             <% end %>
           </div>
         <% end %>
-        
+
         <!-- Like Button (Top Right) -->
         <div class="absolute top-4 right-4 z-10" id="<%= dom_id(roll, :like_button) %>">
           <%= button_to toggle_like_roll_path(roll),
@@ -235,7 +235,7 @@
                             title: "Created by #{roll.user.display_name}",
                             class: "w-8 h-8 rounded-full border border-gray-400 grayscale hover:grayscale-0 transition-all" %>
             <% end %>
-            
+
             <% if current_user == roll.user %>
               <%= link_to edit_roll_path(roll),
                           class: "p-1 rounded flex items-center gap-1 transition-colors #{roll.discarded? ? 'opacity-30 pointer-events-none' : 'text-base-content/50 hover:text-base-content'}",
