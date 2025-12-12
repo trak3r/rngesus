@@ -1,18 +1,46 @@
-<%= form_with(model: @results_csv, url: roll_results_csvs_path(@roll), local: true, html: { multipart: true }) do |form| %>
-  <% if @results_csv.errors.any? %>
-    <div class="mb-4 text-red-500">
-      <h2><%= pluralize(@results_csv.errors.count, "error") %> prevented this file from uploading:</h2>
-      <ul class="list-disc ml-6">
-        <% @results_csv.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div class="grid md:grid-cols-2 gap-6">
+  <!-- Upload Form -->
+  <div class="card-index">
+    <h2 class="font-typewriter text-2xl font-bold text-pencil mb-6">
+      <%= t('.upload_title') %>
+    </h2>
 
-  <%= form.file_field :file,
-    accept: ".csv",
-    class: "file-input file-input-primary w-full max-w-xs" %>
-  <%= form.submit "Upload CSV",
-    class: "btn btn-primary w-full max-w-xs" %>
-<% end %>
+    <%= form_with(model: @results_csv, url: roll_results_csvs_path(@roll), local: true, html: { multipart: true }) do |form| %>
+      <%= hidden_field_tag :source, params[:source] %>
+
+      <% if @results_csv.errors.any? %>
+        <div class="alert alert-error mb-6">
+          <div>
+            <h3 class="font-semibold mb-2">
+              <%= pluralize(@results_csv.errors.count, "error") %> <%= t('.error_prevented') %>
+            </h3>
+            <ul class="list-disc ml-6 text-sm">
+              <% @results_csv.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="mb-6">
+        <%= form.file_field :file,
+          accept: ".png,.jpg,.jpeg",
+          multiple: true,
+          class: "file-input file-input-bordered w-full" %>
+        <p class="text-sm text-base-content/60 mt-2 font-handwriting">
+          <%= t('.multiple_files_help') %>
+        </p>
+      </div>
+
+      <%= form.submit t('.submit_button'),
+        class: "btn-doodle cursor-pointer w-full" %>
+
+    <% end %>
+  </div>
+
+  <!-- Tips Card -->
+  <div class="card-index">
+    <%= image_tag "cards/castle_road.png", alt: t('.example_alt'), class: "w-full rounded border-2 border-pencil/20" %>
+  </div>
+</div>
