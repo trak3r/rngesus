@@ -9,7 +9,7 @@ class ResultsCsvsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'creates results from uploaded CSV' do
-    file = fixture_file_upload(@file_path, 'text/csv')
+    fixture_file_upload(@file_path, 'text/csv')
 
     assert_difference('@roll.results.count', 23) do
       post roll_results_csvs_path(@roll), params: {

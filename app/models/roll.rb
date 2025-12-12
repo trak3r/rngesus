@@ -70,8 +70,8 @@ class Roll < ApplicationRecord
   def needs_attention?
     !discarded? && (
     name == I18n.t('rolls.new.title') ||
-    results.count == 0
-    )
+    results.none?
+  )
   end
 
   private
