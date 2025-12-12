@@ -69,6 +69,17 @@ class RollsController < ApplicationController
     end
   end
 
+  # POST /rolls/create_with_csv_upload
+  def create_with_csv_upload
+    @roll = current_user.rolls.build(name: 'New Roll', dice: 'D20')
+
+    if @roll.save
+      redirect_to new_roll_results_csv_path(@roll)
+    else
+      redirect_to choose_method_rolls_path, alert: t('.create_failed')
+    end
+  end
+
   # GET /rolls/new
   def new
     @method = params[:method] || 'manual'

@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     get 'new/choose_method', on: :collection, action: :choose_method, as: :choose_method
     # Wizard upload flow: create dummy roll and redirect to upload
     post 'create_with_img_upload', on: :collection, action: :create_with_img_upload
+    post 'create_with_csv_upload', on: :collection, action: :create_with_csv_upload
 
     post :toggle_like, on: :member
 

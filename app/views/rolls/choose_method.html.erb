@@ -8,7 +8,7 @@
     <%= t('.subtitle') %>
   </p>
 
-  <div class="grid md:grid-cols-2 gap-8">
+  <div class="grid md:grid-cols-3 gap-8">
     <!-- Upload Screenshots Card -->
     <div class="card-index hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer group">
       <%= button_to create_with_img_upload_rolls_path,
@@ -26,7 +26,7 @@
 
     <!-- Upload CSV Card -->
     <div class="card-index hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer group">
-      <%= button_to create_with_img_upload_rolls_path,
+      <%= button_to create_with_csv_upload_rolls_path,
                     method: :post,
                     class: "text-center p-8 w-full border-0 bg-transparent cursor-pointer" do %>
         <%= icon('folder-up', class: "w-24 h-24 mx-auto mb-6 text-pencil group-hover:scale-110 transition-transform") %>
