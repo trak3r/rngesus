@@ -1,7 +1,6 @@
 # TODO
 
 ## Must Have
-- when we switched to wizard flow we lost CSV upload option
 - there's sometimes some lag before the slot machine animation starts
 - don't show incomplete, test, draft, randomizers (except to owner)
 - attention-needed icon on rolls missing results or results outside of dice range, etc.
@@ -161,3 +160,4 @@
 - creating and editing randomizers could use some more handholding
     - consider a wizard-style flow
 - now that real people are using it, i over-engineered it to support crazy cool functionality that most users will not need and made the learning curve too steep. smush it all down into single roll tables.
+- when we switched to wizard flow we lost CSV upload option

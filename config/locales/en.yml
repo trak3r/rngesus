@@ -43,6 +43,7 @@ en:
       heading: "How would you like to create your roll?"
       subtitle: ""
       upload_screenshots: "Upload Screenshots"
+      upload_csvs: "Upload CSV Files"
       upload_description: "Import tables from images"
       create_by_hand: "Create By Hand"
       manual_description: "Manually enter your roll data"
