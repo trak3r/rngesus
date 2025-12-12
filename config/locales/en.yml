@@ -100,7 +100,9 @@ en:
       submit_button: "Process CSV Files"
       example_alt: "Example screenshot showing a two-column table"
     create:
-      success: "CSV was successfully processed."
+      success:
+        one: "CSV was successfully processed."
+        other: "%{count} CSV files were successfully processed."
   results_imgs:
     new:
       title: "Upload Screenshots"

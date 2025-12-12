@@ -8,13 +8,28 @@ class ResultsCsvsController < ApplicationController
   end
 
   def create
-    @results_csv = ResultsCsv.new(import_params)
-    if @results_csv.valid?
-      ResultsCsvProcessor.new(@roll, @results_csv.file).call
-      redirect_to @roll,
-                  notice: t('.success')
-    else
+    files = Array(import_params[:file]).reject { |f| f.is_a?(String) && f.blank? }
+
+    if files.empty?
+      @results_csv = ResultsCsv.new
+      @results_csv.errors.add(:file, "can't be blank")
       render :new, status: :unprocessable_content
+      return
+    end
+
+    processed_count = 0
+    files.each do |file|
+      ResultsCsvProcessor.new(@roll, file).call
+      processed_count += 1
+    end
+
+    # Redirect based on source
+    if params[:source] == 'roll'
+      redirect_to @roll, notice: t('.success', count: processed_count)
+    else
+      # Wizard flow
+      redirect_to new_roll_path(method: 'upload', upload_roll_id: @roll.id),
+                  notice: t('.success', count: processed_count)
     end
   end
 
@@ -25,6 +40,6 @@ class ResultsCsvsController < ApplicationController
   end
 
   def import_params
-    params.expect(results_csv: [:file])
+    params.expect(results_csv: [file: []])
   end
 end
