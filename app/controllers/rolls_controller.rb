@@ -58,12 +58,23 @@ class RollsController < ApplicationController
     # Wizard step 1
   end
 
-  # POST /rolls/create_with_upload
-  def create_with_upload
+  # POST /rolls/create_with_img_upload
+  def create_with_img_upload
     @roll = current_user.rolls.build(name: 'New Roll', dice: 'D20')
 
     if @roll.save
       redirect_to new_roll_results_img_path(@roll)
+    else
+      redirect_to choose_method_rolls_path, alert: t('.create_failed')
+    end
+  end
+
+  # POST /rolls/create_with_csv_upload
+  def create_with_csv_upload
+    @roll = current_user.rolls.build(name: 'New Roll', dice: 'D20')
+
+    if @roll.save
+      redirect_to new_roll_results_csv_path(@roll)
     else
       redirect_to choose_method_rolls_path, alert: t('.create_failed')
     end

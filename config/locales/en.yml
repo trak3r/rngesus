@@ -43,9 +43,8 @@ en:
       heading: "How would you like to create your roll?"
       subtitle: ""
       upload_screenshots: "Upload Screenshots"
-      upload_description: "Import tables from images"
+      upload_csvs: "Upload CSV Files"
       create_by_hand: "Create By Hand"
-      manual_description: "Manually enter your roll data"
       back: ""
     index:
       deleted: "DELETED"
@@ -70,7 +69,7 @@ en:
       result_value: "Value"
       add_result: "Add Another Result"
       submit: "Create Roll"
-    create_with_upload:
+    create_with_img_upload:
       create_failed: "Failed to create roll"
     create:
       success: "Roll was successfully created."
@@ -90,8 +89,20 @@ en:
     create:
       success: "Result was successfully created."
   results_csvs:
+    new:
+      title: "Upload CSV Files"
+      heading: "Upload CSV Files"
+      back: ""
+    form:
+      upload_title: "Upload CSV Files"
+      error_prevented: "prevented this file from uploading:"
+      multiple_files_help: "You can select multiple CSV files to upload at once"
+      submit_button: "Process CSV Files"
+      example_alt: "Example screenshot showing a two-column table"
     create:
-      success: "CSV was successfully processed."
+      success:
+        one: "CSV was successfully processed."
+        other: "%{count} CSV files were successfully processed."
   results_imgs:
     new:
       title: "Upload Screenshots"
