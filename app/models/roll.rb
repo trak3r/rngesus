@@ -67,6 +67,13 @@ class Roll < ApplicationRecord
     [rolled, eligible.max_by(&:value)]
   end
 
+  def needs_attention?
+    !discarded? && (
+    name == I18n.t('rolls.new.title') ||
+    results.count == 0
+    )
+  end
+
   private
 
   def maximum_tags_limit

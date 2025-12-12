@@ -182,6 +182,15 @@
           </div>
         <% end %>
 
+        <!-- Attention Needed Stamp (for imcomplete rolls) -->
+        <% if roll.needs_attention? && current_user == roll.user %>
+          <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-30">
+            <div class="text-orange-600 opacity-60">
+              <%= icon('exclamation-circle', class: "w-40 h-40") %>
+            </div>
+          </div>
+        <% end %>
+
         <!-- Tag Badges (Push Pin Style) -->
         <% if roll.tags.any? %>
           <div class="absolute -top-3 left-1/2 -translate-x-1/2 z-20 flex gap-2">
