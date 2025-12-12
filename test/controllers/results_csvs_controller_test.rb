@@ -13,13 +13,13 @@ class ResultsCsvsControllerTest < ActionDispatch::IntegrationTest
 
     assert_difference('@roll.results.count', 23) do
       post roll_results_csvs_path(@roll), params: {
-        results_csv: { file: file }
+        results_csv: {
+          file: ['', fixture_file_upload(@file_path, 'text/csv')]
+        }
       }
     end
 
-    assert_redirected_to roll_path(@roll)
-    follow_redirect!
-
-    assert_match 'CSV was successfully processed.', response.body
+    assert_redirected_to new_roll_path(method: 'upload', upload_roll_id: @roll.id)
+    assert_equal 'CSV was successfully processed.', flash[:notice]
   end
 end
