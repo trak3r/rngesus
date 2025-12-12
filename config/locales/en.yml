@@ -71,7 +71,7 @@ en:
       result_value: "Value"
       add_result: "Add Another Result"
       submit: "Create Roll"
-    create_with_upload:
+    create_with_img_upload:
       create_failed: "Failed to create roll"
     create:
       success: "Roll was successfully created."

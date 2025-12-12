@@ -58,8 +58,8 @@ class RollsController < ApplicationController
     # Wizard step 1
   end
 
-  # POST /rolls/create_with_upload
-  def create_with_upload
+  # POST /rolls/create_with_img_upload
+  def create_with_img_upload
     @roll = current_user.rolls.build(name: 'New Roll', dice: 'D20')
 
     if @roll.save

@@ -107,7 +107,7 @@ class RollsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create roll via upload wizard' do
     assert_difference('Roll.count') do
-      post create_with_upload_rolls_url
+      post create_with_img_upload_rolls_url
     end
 
     assert_redirected_to new_roll_results_img_path(Roll.last)
