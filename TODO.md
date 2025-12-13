@@ -27,7 +27,10 @@
 ## User Requests
 - (marco) U should be able to upload a picture to go along with the table
 - (phil) Allow a copy paste of the table. Greatly improves time so a user doesnt have to screen shot, save an image then upload. They can just snip it and paste it.
-- (phil) If there is no roll on table that would be crucial. Something so. Result 12: You find a [[Roll on Metal Table]] Sword. And that Roll on Metal table would be like, iron, steel, cold iron, silver etc.
+- (phil) You find a "Roll on Metal Table" Sword. And that Roll on Metal table would be like, iron, steel, cold iron, silver etc.
+    - basically referential tables linked from results
+    - in his example he uses the Markdown syntax (ala Obsidian)
+    - note this could also be extended to cover the "roll again and combine results" style of results
 - (eric) I should be able to cutty pasty from the roll!
 - (marco) Needs a Misc category.
 - (todd) recommend a < or something next to the roll name to save me 10ms mousing over to the site logo to get back to the front page
