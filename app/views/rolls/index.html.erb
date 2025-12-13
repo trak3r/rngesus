@@ -180,10 +180,8 @@
               <%= t('rolls.index.deleted') %>
             </div>
           </div>
-        <% end %>
-
         <!-- Attention Needed Stamp (for imcomplete rolls) -->
-        <% if roll.needs_attention? && current_user == roll.user %>
+        <% elsif roll.needs_attention? && current_user == roll.user %>
           <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-30">
             <div class="text-orange-600 opacity-60">
               <%= icon('exclamation-circle', class: "w-40 h-40") %>
