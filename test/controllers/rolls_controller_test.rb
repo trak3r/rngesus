@@ -17,17 +17,20 @@ class RollsControllerTest < ActionDispatch::IntegrationTest
   test 'should get index with tabs' do
     # Newest tab
     # Create a brand new roll to be the newest
-    Roll.create!(
+    # FIXME: don't create models in tests; use fixtures
+    newest_roll = Roll.create!(
       name: 'The Newest Roll',
       dice: 'D20',
       user: users(:ted),
       slug: 'new01'
     )
+    # needs to have at least one results to be considered "populated"
+    newest_roll.results.create!(name: 'hello world', value: 42)
 
     get rolls_url(tab: 'newest')
 
     assert_response :success
-    assert_select 'a', text: /The Newest Roll/
+    assert_select 'h2.card-title', text: /The Newest Roll/
 
     # Most Liked tab
     # Add votes to a specific roll
