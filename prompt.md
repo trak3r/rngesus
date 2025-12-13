@@ -1,5 +1,25 @@
-- add "upload CSV file" to "choose method" screen
-- make it work the same as the "upload screenshots" but with the csv controller obviously
+i need a small subset of tags for ttrpg random roll tables.
+some examples are: monster, forest, carousing, magic, treasure, effects.
+there could be several dozen great tags but i need a list of only 9 that will cover most common cases.
+keep in mind generic tags would be applied to too many roll tables and thus become meaningless.
+build me that list please.
+
+consumable
+downtime
+dungeon (already have)
+effect
+encounter (already have)
+event
+location
+loot
+magic (already have)
+monster (already have)
+npc
+plot
+treasure (already have)
+urban
+weather
+wilderness (fka forest)
 
 ---
 
