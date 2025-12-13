@@ -2,6 +2,7 @@
 
 Rails.application.routes.draw do
   mount_avo
+
   # for omniauth
   get 'auth/:provider/callback', to: 'sessions#create'
   get '/login', to: 'sessions#new'
@@ -46,5 +47,5 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  root 'rolls#index'
+  root 'roots#index'
 end
