@@ -31,7 +31,6 @@
     - basically referential tables linked from results
     - in his example he uses the Markdown syntax (ala Obsidian)
     - note this could also be extended to cover the "roll again and combine results" style of results
-- (eric) I should be able to cutty pasty from the roll!
 - (marco) Needs a Misc category.
 - (todd) recommend a < or something next to the roll name to save me 10ms mousing over to the site logo to get back to the front page
 
@@ -165,3 +164,5 @@
 - if user logged in, default landing page / logo link to "your rolls", else "most liked"
 - attention-needed icon on rolls missing results or results outside of dice range, etc.
 - don't show incomplete, test, draft, randomizers (except to owner)
+- (eric) I should be able to cutty pasty from the roll!
+    - only the corner "reroll" ribbon is a click target now
