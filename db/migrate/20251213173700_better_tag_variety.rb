@@ -17,6 +17,6 @@ class BetterTagVariety < ActiveRecord::Migration[8.1]
     ].each do |tag_name|
       Tag.create!(name: tag_name.titleize)
     end
-    Tag.find(1).update(name: 'wilderness')
+    Tag.find(1).update(name: 'Wilderness')
   end
 end
