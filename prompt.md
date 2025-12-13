@@ -8,7 +8,7 @@ consumable
 downtime
 dungeon (already have)
 effect
-encounter
+encounter (already have)
 event
 location
 loot
