@@ -6,20 +6,20 @@ build me that list please.
 
 consumable
 downtime
-dungeon
+dungeon (already have)
 effect
 encounter
 event
 location
 loot
-magic
-monster
+magic (already have)
+monster (already have)
 npc
 plot
-treasure
+treasure (already have)
 urban
 weather
-wilderness
+wilderness (fka forest)
 
 ---
 
