@@ -28,14 +28,34 @@ class RollsController < ApplicationController
 
     @rolls = case @tab
              when 'newest'
-               Roll.search(params[:query]).tagged_with(@tags).newest
+               Roll.search(params[:query])
+                   .tagged_with(@tags)
+                   .populated
+                   .kept
+                   .newest
              when 'most_liked'
-               Roll.search(params[:query]).tagged_with(@tags).where('cached_votes_total > 0').most_liked
+               Roll.search(params[:query])
+                   .tagged_with(@tags)
+                   .where('cached_votes_total > 0')
+                   .populated
+                   .kept
+                   .most_liked
              when 'your_likes'
-               current_user.get_voted(Roll).search(params[:query]).tagged_with(@tags).newest
+               current_user.get_voted(Roll)
+                           .search(params[:query])
+                           .tagged_with(@tags)
+                           .populated
+                           .kept
+                           .newest
              when 'your_rolls'
-               current_user.rolls.search(params[:query]).tagged_with(@tags).newest
-             end || Roll.search(params[:query]).tagged_with(@tags).where('cached_votes_total > 0').most_liked
+               current_user.rolls
+                           .search(params[:query])
+                           .tagged_with(@tags)
+                           .newest
+             end || Roll.search(params[:query])
+                        .tagged_with(@tags)
+                        .where('cached_votes_total > 0')
+                        .most_liked
   end
 
   # GET /rolls/1

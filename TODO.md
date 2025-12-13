@@ -2,8 +2,6 @@
 
 ## Must Have
 - there's sometimes some lag before the slot machine animation starts
-- don't show incomplete, test, draft, randomizers (except to owner)
-- attention-needed icon on rolls missing results or results outside of dice range, etc.
 - private, published, public flag or timestamp for randomizers
 - move slugging into a concern
 - what is expected behavior when re-uploading into an existing roll?
@@ -162,3 +160,5 @@
 - now that real people are using it, i over-engineered it to support crazy cool functionality that most users will not need and made the learning curve too steep. smush it all down into single roll tables.
 - when we switched to wizard flow we lost CSV upload option
 - if user logged in, default landing page / logo link to "your rolls", else "most liked"
+- attention-needed icon on rolls missing results or results outside of dice range, etc.
+- don't show incomplete, test, draft, randomizers (except to owner)

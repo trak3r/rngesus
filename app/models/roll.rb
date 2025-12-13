@@ -45,6 +45,12 @@ class Roll < ApplicationRecord
     where(id: ids)
   }
 
+  # the inverse of needs_attention?
+  scope :populated, lambda {
+    where.not(name: I18n.t('rolls.new.title'))
+         .where.associated(:results)
+  }
+
   def to_param
     # Use ID in Avo admin, slug everywhere else
     return id.to_s if defined?(Avo) && caller.any? { |line| line.include?('avo') }
@@ -67,9 +73,10 @@ class Roll < ApplicationRecord
     [rolled, eligible.max_by(&:value)]
   end
 
+  # the inverse of the populated scope
   def needs_attention?
     name == I18n.t('rolls.new.title') ||
-    results.none?
+      results.none?
   end
 
   private
