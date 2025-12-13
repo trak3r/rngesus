@@ -49,8 +49,8 @@ class Roll < ApplicationRecord
   scope :populated, lambda {
     where.not(name: I18n.t('rolls.new.title'))
          .where.associated(:results)
+         .distinct
   }
-
   def to_param
     # Use ID in Avo admin, slug everywhere else
     return id.to_s if defined?(Avo) && caller.any? { |line| line.include?('avo') }
