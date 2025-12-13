@@ -31,11 +31,11 @@
     - basically referential tables linked from results
     - in his example he uses the Markdown syntax (ala Obsidian)
     - note this could also be extended to cover the "roll again and combine results" style of results
-- (marco) Needs a Misc category.
 - (todd) recommend a < or something next to the roll name to save me 10ms mousing over to the site logo to get back to the front page
 
 ## Pie in the Sky
 - let user copy somebody else's randomizer as their own
+    - be careful not to deep clone likes; just the basics
 - stamps on cards, like top ten, rising star, missing stuff / needs attention, etc.
 - golden tickets (inspired by Fizzy)
 - does Avo support filter, search, sort?
@@ -166,3 +166,5 @@
 - don't show incomplete, test, draft, randomizers (except to owner)
 - (eric) I should be able to cutty pasty from the roll!
     - only the corner "reroll" ribbon is a click target now
+- (marco) Needs a Misc category.
+    - a catch-all tag doesn't add any value to tagging, but i have added more variety
