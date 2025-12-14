@@ -56,7 +56,7 @@ en:
       roll_details: "1. Roll Details"
       name_placeholder: "e.g., Encounter Distance"
       tags_label: "Tags (optional, max 3)"
-      tags_help: "Select up to 3 game systems for this roll"
+      tags_help: ""
       dice_placeholder: "e.g. 1d6 or 2d10"
       dice_help: "Enter dice notation like 1d20, 2d6, etc."
       results: "2. Results"
