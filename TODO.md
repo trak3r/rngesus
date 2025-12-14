@@ -1,7 +1,6 @@
 # TODO
 
 ## Must Have / Bugs
-- the roll card design needs a revisit after randomizers were deprecated
 - the outcomes page could have a link to a read-only view of a roll
     - the current roll#show is the outcome so that needs to be rethought
 - make it more clear visually that resuls cover the range (gap) between values
@@ -26,12 +25,8 @@
 - let users specify *any* dice type with a parse-able shorthand (e.g. 3d12-5)
 - let users link accounts, e.g. log in with twitter then link discord so both work
 - user option to hide / report offensive items
-- animate cool 3d dice roll on screen
-    - only showing on the reroll, not the initial roll (not working consistently)
-    - often have to hard-reload a page to see the dice; seems navigating around causes them to stop working
-    - 3d dice don't roll to same result as returned from server
-    - pages with multiple rolls should have a flurry of dice
-    - what are our options for dice colors and textures?
+- the 3D dice aren't appearing on the hosted site (only on workstation)
+- 3D dice don't roll to same result as returned from server
 - toggle to disable animations on settings page
 - let user copy somebody else's randomizer as their own
     - be careful not to deep clone likes, guid/slug; just the basics
@@ -175,3 +170,5 @@
     - only the corner "reroll" ribbon is a click target now
 - (marco) Needs a Misc category.
     - a catch-all tag doesn't add any value to tagging, but i have added more variety
+- the roll card design needs a revisit after randomizers were deprecated
+    - the index-cards style is out of place now that the notebook paper background has been abandoned 

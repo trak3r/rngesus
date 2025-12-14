@@ -223,11 +223,15 @@
           </h2>
 
           <div class="flex-1 text-base-content/80 flex flex-col gap-1 font-handwriting text-lg">
-             <div class="leading-tight flex items-center gap-2">
-                <span class="font-medium text-2xl"><%= roll.dice %></span>
-             </div>
              <div class="text-sm text-base-content/60 mt-1">
-               <%= roll.results.count %> possible results
+               Sample of 
+               <%= roll.results.count %> 
+               (<%= roll.dice %>)
+               possible results
+             </div>
+             <div class="leading-tight flex items-center gap-2">
+             <% value, result = roll.outcome %>
+                <span class="font-small text-lg line-clamp-2"><%= result.name %></span>
              </div>
           </div>
 
@@ -248,7 +252,7 @@
                           class: "p-1 rounded flex items-center gap-1 transition-colors #{roll.discarded? ? 'opacity-30 pointer-events-none' : 'text-base-content/50 hover:text-base-content'}",
                           title: "Edit",
                           data: { turbo_frame: "_top" } do %>
-                <%= icon(:edit, class: "w-4 h-4") %>
+                <%= icon(:edit, class: "w-6 h-6") %>
               <% end %>
             <% end %>
           </div>
@@ -261,7 +265,7 @@
                             data: { turbo_confirm: "Are you sure you want to delete this roll?" },
                             class: "p-2 transition-colors flex items-center justify-center #{roll.discarded? ? 'opacity-30 pointer-events-none' : 'text-base-content/30 hover:text-red-600'}",
                             title: "Delete" do %>
-                <%= icon(:trash, class: "w-4 h-4") %>
+                <%= icon(:trash, class: "w-6 h-6") %>
               <% end %>
             <% end %>
           </div>
