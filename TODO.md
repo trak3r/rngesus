@@ -1,6 +1,9 @@
 # TODO
 
 ## Must Have / Bugs
+- the roll card design needs a revisit after randomizers were deprecated
+- the outcomes page could have a link to a read-only view of a roll
+    - the current roll#show is the outcome so that needs to be rethought
 - make it more clear visually that resuls cover the range (gap) between values
 - some new dark-mode issues have crept back in
     - how does this keep happening? theory: vanilla tailwind vs. daisyui
