@@ -1,6 +1,8 @@
 # TODO
 
 ## Must Have / Bugs
+- sometimes reloading the page on production results in 404 or "missing content" errors
+- gravatrs don't work without emails and some of the integrations aren't providing emails
 - the outcomes page could have a link to a read-only view of a roll
     - the current roll#show is the outcome so that needs to be rethought
 - make it more clear visually that resuls cover the range (gap) between values
@@ -171,4 +173,4 @@
 - (marco) Needs a Misc category.
     - a catch-all tag doesn't add any value to tagging, but i have added more variety
 - the roll card design needs a revisit after randomizers were deprecated
-    - the index-cards style is out of place now that the notebook paper background has been abandoned 
+    - the index-cards style is out of place now that the notebook paper background has been abandoned
