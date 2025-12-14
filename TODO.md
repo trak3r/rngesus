@@ -1,19 +1,26 @@
 # TODO
 
-## Must Have
+## Must Have / Bugs
+- make it more clear visually that resuls cover the range (gap) between values
+- some new dark-mode issues have crept back in
+    - how does this keep happening? theory: vanilla tailwind vs. daisyui
+    - can we automate and audit for these?
 - there's sometimes some lag before the slot machine animation starts
+- the slot spinning effect make the card shake when some results have more lines than others
 - private, published, public flag or timestamp for randomizers
 - move slugging into a concern
-- what is expected behavior when re-uploading into an existing roll?
+- latest version of roll edit form doesn't allow (re)upload img/csv
+    - what is expected behavior when re-uploading into an existing roll?
     - replace matching values? dupe everything?
-    - actually the new roll edit form doesn't even offer to re-upload
-- on forms, instead of showing error at top of page, show it inline with the field
-- the non-CRUD controller actions still leave a bad taste in my mouth; let's audit them and considering refactoring
 - add a second (exotic) language just to demonstrate i18n support
 - pagination of randomizers
-- let users specify any dice type with a recognizable shorthand (e.g. 3d12)
+- re-enable github ci workflow (as long as there's no cost involved)
 
 ## Nice to Have
+- on forms, instead of showing error at top of page, show it inline with the offending field
+- the non-CRUD controller-actions leave a bad taste in my mouth; let's audit them and considering refactoring
+- consider dice-less rolls; just random result from list that could be any size
+- let users specify *any* dice type with a parse-able shorthand (e.g. 3d12-5)
 - let users link accounts, e.g. log in with twitter then link discord so both work
 - user option to hide / report offensive items
 - animate cool 3d dice roll on screen
@@ -23,6 +30,19 @@
     - pages with multiple rolls should have a flurry of dice
     - what are our options for dice colors and textures?
 - toggle to disable animations on settings page
+- let user copy somebody else's randomizer as their own
+    - be careful not to deep clone likes, guid/slug; just the basics
+- stamps on cards, like top ten, rising star, missing stuff / needs attention, etc.
+- golden tickets (inspired by Fizzy) for promoted cards
+- does Avo support filter, search, sort?
+- ability to drag and reorder results; automatically change values?
+- integration as a discord bot?
+- community can add notes or propose typo fixes to other user's data (like pull requests)
+- combine randomizers (e.g. forest encounters + reaction rolls)
+    - copy rather than symlink?
+- do we need to support "with advantage" rolls?
+    - is there a standard syntax for it? 2d20kh1
+- distribution graphs for multi-dice rolls, informative eye candy
 
 ## User Requests
 - (marco) U should be able to upload a picture to go along with the table
@@ -32,22 +52,6 @@
     - in his example he uses the Markdown syntax (ala Obsidian)
     - note this could also be extended to cover the "roll again and combine results" style of results
 - (todd) recommend a < or something next to the roll name to save me 10ms mousing over to the site logo to get back to the front page
-
-## Pie in the Sky
-- let user copy somebody else's randomizer as their own
-    - be careful not to deep clone likes; just the basics
-- stamps on cards, like top ten, rising star, missing stuff / needs attention, etc.
-- golden tickets (inspired by Fizzy)
-- does Avo support filter, search, sort?
-- ability to drag and reorder rolls
-- integration as a discord bot?
-- community can add notes or propose typo fixes to other user's data (like pull requests)
-- combine randomizers (e.g. forest encounters + reaction rolls)
-    - copy rather than symlink?
-- do we need to support "with advantage" rolls?
-    - is there a standard syntax for it? 2d20kh1
-- distribution graphs for multi-dice rolls, informative eye candy
-- re-enable github ci workflow
 
 ## Mobile
 - responsive/mobile screens
