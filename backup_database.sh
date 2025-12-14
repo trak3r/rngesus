@@ -16,7 +16,7 @@ if [ -z "$CONTAINER_NAME" ]; then
   exit 1
 fi
 VOLUME_NAME="rngesus_storage"
-RETENTION_DAYS=30
+RETENTION_DAYS=5
 
 # Database file to backup (only main production DB, not transient cache/queue/cable)
 DB_FILE="production.sqlite3"
