@@ -3,18 +3,29 @@
 <div class="max-w-4xl mx-auto py-10 px-4">
 
   <div class="relative flex items-center justify-between gap-3 mb-6">
-    <div class="flex items-center gap-4">
-      <div class="text-2xl sm:text-3xl font-bold font-typewriter text-base-content">
-        <%= @roll.name %>
-      </div>
-      <% if current_user == @roll.user %>
-        <%= link_to edit_roll_path(@roll), class: "btn btn-ghost btn-sm" do %>
-          <%= icon(:edit) %>
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+      <div class="flex items-center gap-4">
+        <div class="text-2xl sm:text-3xl font-bold font-typewriter text-base-content">
+          <%= @roll.name %>
+        </div>
+        <% if current_user == @roll.user %>
+          <%= link_to edit_roll_path(@roll), class: "btn btn-ghost btn-sm", title: "Edit Roll" do %>
+            <%= icon(:edit) %>
+          <% end %>
         <% end %>
+      </div>
+
+      <% if @roll.tags.any? %>
+        <div class="flex flex-wrap gap-2">
+          <% @roll.tags.each do |tag| %>
+            <%= link_to tag.name, rolls_path(tag: tag.name), class: "badge badge-outline" %>
+          <% end %>
+        </div>
       <% end %>
     </div>
     
-    <%= render "like_button", roll: @roll %>
+    <% # Pass position_classes: 'static' or empty to prevent absolute positioning inside this flex header %>
+    <%= render "like_button", roll: @roll, position_classes: "" %>
   </div>
 
   <div class="w-full mx-auto">
@@ -23,14 +34,45 @@
     <%= render "outcome_card", roll: @roll, rolled: @rolled, result: @result, animate: true %>
   </div>
 
+  <div class="mt-8">
+    <details class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
+      <summary class="collapse-title text-xl font-medium font-handwriting text-center opacity-70 hover:opacity-100 transition-opacity">
+        <%= t('rolls.show.see_all_results') %>
+      </summary>
+      <div class="collapse-content">
+        <div class="overflow-x-auto">
+          <table class="table table-zebra w-full text-center">
+            <tbody>
+              <% 
+                 results = @roll.results.order(:value) 
+                 max_roll = @roll.dice_object.try(:max) || 20 # Fallback if max calculation fails
+              %>
+              <% results.each_with_index do |res, index| %>
+                <% 
+                   min_val = res.value 
+                   next_res = results[index + 1]
+                   # Upper bound is next result's value - 1, or max_roll if this is the last result
+                   max_val = next_res ? next_res.value - 1 : max_roll
+                   
+                   # Don't show range if min == max (e.g. D100 specific hits)
+                   display_val = min_val == max_val ? min_val : "#{min_val} - #{max_val}"
+                %>
+                <tr>
+                  <td class="font-mono text-center whitespace-nowrap px-4"><%= display_val %></td>
+                  <td class="font-bold text-left w-full"><%= res.name %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </details>
+  </div>
+
   <% if current_user == @roll.user %>
      <div class="mt-8 text-center text-sm opacity-50">
         <%= link_to "Manage Results", edit_roll_path(@roll, anchor: "results"), class: "link link-hover" %>
      </div>
   <% end %>
-  
-  <div class="mt-4 text-center">
-    <%= link_to "Back to Rolls", rolls_path, class: "link link-hover text-sm opacity-50" %>
-  </div>
 
 </div>
