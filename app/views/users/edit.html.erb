@@ -48,6 +48,28 @@
           <% end %>
         </div>
 
+        <div class="form-control">
+          <%= f.label :email, class: "label" do %>
+            <span class="label-text font-semibold font-typewriter text-pencil">Email</span>
+          <% end %>
+          <%= f.text_field :email,
+                          class: "input-handwritten w-full",
+                          placeholder: "Enter your email (optional)",
+                          maxlength: 50 %>
+          <label class="label">
+            <span class="label-text-alt text-pencil/60 font-handwriting">
+              This will be used for your Gravatar and not be visible to others.
+            </span>
+          </label>
+          <% if @user.errors[:email].any? %>
+            <label class="label">
+              <span class="label-text-alt text-red-500 font-handwriting">
+                <%= @user.errors[:email].first %>
+              </span>
+            </label>
+          <% end %>
+        </div>
+
         <div class="card-actions justify-end mt-6">
           <%= f.submit "Save Settings", class: "btn-doodle" %>
         </div>
