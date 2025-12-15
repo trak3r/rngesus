@@ -77,6 +77,10 @@ en:
       success: "Roll was successfully updated."
     destroy:
       success: "Roll was successfully destroyed."
+    show:
+      see_all_results: "See All Results"
+      dice_value: "Dice Value"
+      result: "Result"
     form:
       results: "Results"
       dice_roll_label: "Dice Roll"
