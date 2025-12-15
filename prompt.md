@@ -14,6 +14,12 @@ http://localhost:3000/rolls/8oSMY
 - center justify the dice value column
 - you didn't follow the directive to put all verbiage into the en.yml file
 
+http://localhost:3000/rolls/8oSMY
+- the dice value range column should not wrap
+- we don't need headers on the table of all results
+- left justify the resultes name column
+- the bubble crop was fixed but then the re-roll ribbon broke; the latter should not be extending outside of the card
+
 ---
 
 # Test Guidelines
