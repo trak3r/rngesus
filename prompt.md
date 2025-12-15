@@ -1,7 +1,10 @@
-app/views/users/edit.html.erb
-- for the "provider" display, use the service name rather than the internal code token. example: "google_oauth2" -> "Google"
-- add some basic validation on the email address to ensure it is a valid email address
-- migrate all the verbiage to the en.yml file
+http://localhost:3000/rolls/8oSMY
+- add a "show all results" button to the roll show page
+- add the roll tags to the roll show page
+- the roll name and like button don't line up vertically; fix that
+- make the card tallers so it doesn't sputter when the results are long
+- move the resulting value to the top left corner of the card overlapping it like a ping pong ball pulled for a lottery, and rotate it a bit
+- the 3D dice aren't showing on the deployed site; are there some files we have locally that aren't in the repository?
 
 ---
 
