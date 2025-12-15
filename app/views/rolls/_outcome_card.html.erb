@@ -10,26 +10,31 @@
                        dice_rolled_value: rolled,
                        dice_animate_value: local_assigns.fetch(:animate, true)
                      } do %>
-  <div class="card-index w-full hover:shadow-lg transition-all duration-300 flex flex-col items-center hover:scale-[1.02] active:scale-[0.98] relative">
+  <div class="card-index w-full hover:shadow-lg transition-all duration-300 flex flex-col items-center hover:scale-[1.02] active:scale-[0.98] relative min-h-[14rem]"> <!-- Added min-h here to ensure wrapper matches content -->
+    
+    <!-- Inner Container for Clipping (Background, Ribbon, Content) -->
+    <div class="absolute inset-0 overflow-hidden rounded-2xl border border-base-200 bg-base-100"> <!-- added border/bg/rounded matching card-index style -->
+        <!-- Re-roll Ribbon (always visible, touch-friendly) -->
+        <%= button_to reroll_roll_path(roll),
+                    method: :post,
+                    class: 'absolute bottom-[20px] right-[-66px] w-[200px] bg-pencil text-white text-xs font-typewriter py-1 text-center transform rotate-[-45deg] shadow-lg z-50 border border-white/20 cursor-pointer',
+                    form: { class: "w-full" } do %>
+          re-roll
+        <% end %>
 
-    <!-- Re-roll Ribbon (always visible, touch-friendly) -->
-    <%= button_to reroll_roll_path(roll),
-                method: :post,
-                class: 'absolute bottom-[20px] right-[-66px] w-[200px] bg-pencil text-white text-xs font-typewriter py-1 text-center transform rotate-[-45deg] shadow-lg z-50 border border-white/20 cursor-pointer',
-                form: { class: "w-full" } do %>
-      re-roll
-    <% end %>
-
-
-    <div class="relative group inline-block text-3xl font-bold font-typewriter mb-2 text-center text-base-content min-h-[12rem] flex items-center justify-center p-8">
-      <span class="block group-hover:hidden" data-slot-machine-target="result">
-        <%= result.try(:name_with_rolls) || 'No match' %>
-      </span>
-      <span class="hidden group-hover:block text-base-content/70">
-        <%= result.try(:name) || 'No match' %>
-      </span>
+        <div class="h-full flex flex-col items-center justify-center p-8">
+            <div class="relative group inline-block text-3xl font-bold font-typewriter text-center text-base-content">
+              <span class="block group-hover:hidden" data-slot-machine-target="result">
+                <%= result.try(:name_with_rolls) || 'No match' %>
+              </span>
+              <span class="hidden group-hover:block text-base-content/70">
+                <%= result.try(:name) || 'No match' %>
+              </span>
+            </div>
+        </div>
     </div>
 
+    <!-- Bubble (Outside Clipping) -->
     <div class="absolute top-[-20px] left-[-20px] w-16 h-16 rounded-full bg-base-100 border-4 border-base-content shadow-lg flex items-center justify-center transform -rotate-12 z-20 font-handwriting text-2xl font-bold text-base-content">
       <%= rolled %>
     </div>

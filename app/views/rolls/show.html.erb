@@ -42,12 +42,6 @@
       <div class="collapse-content">
         <div class="overflow-x-auto">
           <table class="table table-zebra w-full text-center">
-            <thead>
-              <tr>
-                <th class="text-center"><%= t('rolls.show.dice_value') %></th>
-                <th class="text-center"><%= t('rolls.show.result') %></th>
-              </tr>
-            </thead>
             <tbody>
               <% 
                  results = @roll.results.order(:value) 
@@ -64,8 +58,8 @@
                    display_val = min_val == max_val ? min_val : "#{min_val} - #{max_val}"
                 %>
                 <tr>
-                  <td class="font-mono"><%= display_val %></td>
-                  <td class="font-bold"><%= res.name %></td>
+                  <td class="font-mono text-center whitespace-nowrap px-4"><%= display_val %></td>
+                  <td class="font-bold text-left w-full"><%= res.name %></td>
                 </tr>
               <% end %>
             </tbody>
