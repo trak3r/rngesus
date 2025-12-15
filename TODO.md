@@ -9,7 +9,6 @@
     - how does this keep happening? theory: vanilla tailwind vs. daisyui
     - can we automate and audit for these?
 - there's sometimes some lag before the slot machine animation starts
-- the slot spinning effect make the card shake when some results have more lines than others
 - private, published, public flag or timestamp for randomizers
 - move slugging into a concern
 - latest version of roll edit form doesn't allow (re)upload img/csv
@@ -177,3 +176,4 @@
 - gravatars don't work without emails and some of the integrations aren't providing emails
 - the outcomes page could have a link to a read-only view of a roll
     - the current roll#show is the outcome so that needs to be rethought
+- the slot spinning effect make the card shake when some results have more lines than others
