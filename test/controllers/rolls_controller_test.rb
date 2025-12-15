@@ -235,4 +235,19 @@ class RollsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to rolls_path
     assert_equal "You don't have permission to do that.", flash[:alert]
   end
+  test 'should handle roll with no matching result gracefully' do
+    # Use fixture that has lowest result result_unreachable (value: 10)
+    # rolling a 1 will result in no matching result (1 < 10)
+    roll = rolls(:roll_with_unreachable_result)
+
+    # Force the dice roll to be 1
+    Dice.any_instance.stubs(:roll).returns(1)
+
+    # Use your_rolls tab to ensure we see our created roll
+    get rolls_url(tab: 'your_rolls')
+
+    assert_response :success
+    assert_select 'h2', text: /#{roll.name}/
+    assert_select 'span', text: /No Result/
+  end
 end
