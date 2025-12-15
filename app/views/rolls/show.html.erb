@@ -2,25 +2,62 @@
 
 <div class="max-w-4xl mx-auto py-10 px-4">
 
-  <div class="relative flex items-center justify-between gap-3 mb-6">
+  <div class="relative flex items-center justify-between gap-3 mb-4">
     <div class="flex items-center gap-4">
       <div class="text-2xl sm:text-3xl font-bold font-typewriter text-base-content">
         <%= @roll.name %>
       </div>
       <% if current_user == @roll.user %>
-        <%= link_to edit_roll_path(@roll), class: "btn btn-ghost btn-sm" do %>
+        <%= link_to edit_roll_path(@roll), class: "btn btn-ghost btn-sm", title: "Edit Roll" do %>
           <%= icon(:edit) %>
         <% end %>
       <% end %>
     </div>
     
-    <%= render "like_button", roll: @roll %>
+    <% # Pass position_classes: 'static' or empty to prevent absolute positioning inside this flex header %>
+    <%= render "like_button", roll: @roll, position_classes: "" %>
   </div>
+
+  <% if @roll.tags.any? %>
+    <div class="flex flex-wrap gap-2 mb-6">
+      <% @roll.tags.each do |tag| %>
+        <%= link_to tag.name, rolls_path(tag: tag.name), class: "badge badge-outline" %>
+      <% end %>
+    </div>
+  <% end %>
 
   <div class="w-full mx-auto">
     <% # Ensure we have something to render if not rolled yet (e.g. initial load without JS rolling?) %>
     <% # Controller sets @rolled, @result %>
     <%= render "outcome_card", roll: @roll, rolled: @rolled, result: @result, animate: true %>
+  </div>
+
+  <div class="mt-8">
+    <details class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
+      <summary class="collapse-title text-xl font-medium font-handwriting text-center opacity-70 hover:opacity-100 transition-opacity">
+        Show All Possible Results
+      </summary>
+      <div class="collapse-content">
+        <div class="overflow-x-auto max-h-96">
+          <table class="table table-zebra w-full">
+            <thead>
+              <tr>
+                <th>Dice Value</th>
+                <th>Result</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @roll.results.order(:value).each do |res| %>
+                <tr>
+                  <td class="font-mono"><%= res.value %></td>
+                  <td class="font-bold"><%= res.name %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </details>
   </div>
 
   <% if current_user == @roll.user %>

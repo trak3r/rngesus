@@ -21,7 +21,7 @@
     <% end %>
 
 
-    <div class="relative group inline-block text-3xl font-bold font-typewriter mb-2 text-center text-base-content min-h-[4.5rem] flex items-center justify-center">
+    <div class="relative group inline-block text-3xl font-bold font-typewriter mb-2 text-center text-base-content min-h-[12rem] flex items-center justify-center p-8">
       <span class="block group-hover:hidden" data-slot-machine-target="result">
         <%= result.try(:name_with_rolls) || 'No match' %>
       </span>
@@ -30,7 +30,7 @@
       </span>
     </div>
 
-    <div class="text-base-content/60 text-sm font-handwriting text-xl">
+    <div class="absolute top-[-20px] left-[-20px] w-16 h-16 rounded-full bg-base-100 border-4 border-base-content shadow-lg flex items-center justify-center transform -rotate-12 z-20 font-handwriting text-2xl font-bold text-base-content">
       <%= rolled %>
     </div>
   </div>
