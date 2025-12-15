@@ -1,9 +1,10 @@
 # TODO
 
 ## Must Have / Bugs
-- the outcomes page could have a link to a read-only view of a roll
-    - the current roll#show is the outcome so that needs to be rethought
-- make it more clear visually that resuls cover the range (gap) between values
+- need to audie the en.yml file for:
+    - keys that aren't referenced anywhere
+    - keys that are blank empty string can be removed *with* their referencing code
+- make it more clear visually that resuls cover the range (gap) between values on the roll results edit form
 - some new dark-mode issues have crept back in
     - how does this keep happening? theory: vanilla tailwind vs. daisyui
     - can we automate and audit for these?
@@ -174,3 +175,5 @@
     - the index-cards style is out of place now that the notebook paper background has been abandoned
 - sometimes reloading the page on production results in 404 or "missing content" errors
 - gravatars don't work without emails and some of the integrations aren't providing emails
+- the outcomes page could have a link to a read-only view of a roll
+    - the current roll#show is the outcome so that needs to be rethought
