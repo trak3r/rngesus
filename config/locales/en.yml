@@ -138,8 +138,25 @@ en:
             value:
               taken: "This value has already been used for this roll."
               too_small: "must be greater than or equal to %{min}"
+              too_small: "must be greater than or equal to %{min}"
               too_large: "must be less than or equal to %{max}"
-  flash:
+  providers:
+    google_oauth2: "Google"
+  users:
+    edit:
+      title: "Settings"
+      profile_header: "Profile"
+      avatar_alt: "%{name}'s avatar"
+      edit_avatar: "Edit avatar on Gravatar.com"
+      nickname_label: "Nickname"
+      nickname_placeholder: "Enter a nickname (optional)"
+      nickname_help: "This will be displayed instead of your %{provider} username"
+      email_label: "Email"
+      email_placeholder: "Enter your email (optional)"
+      email_help: "This will be used for your Gravatar and not be visible to others."
+      submit: "Save Settings"
+    update:
+      success: "Settings updated successfully."
     signed_in: "Signed in!"
     signed_out: "Signed out."
   pages:
