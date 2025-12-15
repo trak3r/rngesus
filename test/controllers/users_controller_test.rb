@@ -48,4 +48,24 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
     assert_predicate @user.nickname, :blank?
   end
+
+  test 'should update email' do
+    UsersController.any_instance.stubs(:current_user).returns(@user)
+    patch user_url, params: { user: { email: 'test@example.com' } }
+
+    assert_redirected_to edit_user_path
+    @user.reload
+
+    assert_equal 'test@example.com', @user.email
+  end
+
+  test 'should reject invalid email' do
+    UsersController.any_instance.stubs(:current_user).returns(@user)
+    patch user_url, params: { user: { email: 'invalid-email' } }
+
+    assert_response :unprocessable_content
+    @user.reload
+
+    assert_not_equal 'invalid-email', @user.email
+  end
 end

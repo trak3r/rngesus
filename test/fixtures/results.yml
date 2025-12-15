@@ -32,3 +32,8 @@ roll_with_ordered_results_very_low:
   roll: roll_with_ordered_results
   name: Very Low
   value: 5
+
+result_unreachable:
+  roll: roll_with_unreachable_result
+  name: Win
+  value: 10

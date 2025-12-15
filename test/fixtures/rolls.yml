@@ -33,3 +33,9 @@ roll_with_ordered_results:
   slug: order1
   name: Roll With Ordered Results
   dice: D20
+
+roll_with_unreachable_result:
+  user: ted
+  slug: bad01
+  name: Unlucky Roll
+  dice: D20

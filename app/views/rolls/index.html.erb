@@ -231,7 +231,7 @@
              </div>
              <div class="leading-tight flex items-center gap-2">
              <% value, result = roll.outcome %>
-                <span class="font-small text-lg line-clamp-2"><%= result.name %></span>
+                <span class="font-small text-lg line-clamp-2"><%= result&.name || "No Result" %></span>
              </div>
           </div>
 

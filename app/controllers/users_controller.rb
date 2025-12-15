@@ -20,6 +20,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.expect(user: [:nickname])
+    params.expect(user: %i[nickname email])
   end
 end

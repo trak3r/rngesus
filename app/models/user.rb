@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :rolls, dependent: :destroy
   validates :provider, :uid, presence: true
   validates :nickname, length: { maximum: 50 }, allow_blank: true, profanity: true
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, allow_blank: true
 
   # Returns the best display name for the user
   # Priority: nickname > name (as initials) > uid

@@ -1,21 +1,21 @@
-<% content_for :title, "Settings" %>
+<% content_for :title, t(".title") %>
 
 <div class="max-w-2xl mx-auto p-6">
-  <h1 class="text-3xl font-bold mb-6 font-typewriter text-pencil">Settings</h1>
+  <h1 class="text-3xl font-bold mb-6 font-typewriter text-pencil"><%= t(".title") %></h1>
 
   <div class="card-index p-6">
     <div class="card-body p-0">
-      <h2 class="card-title mb-4 font-typewriter text-2xl border-b border-red-300 pb-2">Profile</h2>
+      <h2 class="card-title mb-4 font-typewriter text-2xl border-b border-red-300 pb-2"><%= t(".profile_header") %></h2>
 
       <!-- Avatar Section -->
       <div class="flex items-center gap-4 mb-6 p-4 bg-yellow-50/50 rounded-sm border border-blue-200">
         <%= image_tag gravatar_url(@user, size: 80),
-                      alt: "#{@user.display_name}'s avatar",
+                      alt: t(".avatar_alt", name: @user.display_name),
                       class: "w-20 h-20 rounded-full border-2 border-gray-400 grayscale hover:grayscale-0 transition-all" %>
         <div>
           <p class="font-semibold font-handwriting text-xl"><%= @user.display_name %></p>
           <p class="text-sm text-pencil/70 font-handwriting">
-            <%= link_to "Edit avatar on Gravatar.com",
+            <%= link_to t(".edit_avatar"),
                         gravatar_profile_url(@user),
                         target: "_blank",
                         rel: "noopener noreferrer",
@@ -28,15 +28,15 @@
       <%= form_with model: @user, url: user_path, method: :patch, class: "space-y-4" do |f| %>
         <div class="form-control">
           <%= f.label :nickname, class: "label" do %>
-            <span class="label-text font-semibold font-typewriter text-pencil">Nickname</span>
+            <span class="label-text font-semibold font-typewriter text-pencil"><%= t(".nickname_label") %></span>
           <% end %>
           <%= f.text_field :nickname,
                           class: "input-handwritten w-full",
-                          placeholder: "Enter a nickname (optional)",
+                          placeholder: t(".nickname_placeholder"),
                           maxlength: 50 %>
           <label class="label">
             <span class="label-text-alt text-pencil/60 font-handwriting">
-              This will be displayed instead of your <%= @user.provider %> username
+              <%= t(".nickname_help", provider: t("providers.#{@user.provider}", default: @user.provider.titleize)) %>
             </span>
           </label>
           <% if @user.errors[:nickname].any? %>
@@ -48,8 +48,30 @@
           <% end %>
         </div>
 
+        <div class="form-control">
+          <%= f.label :email, class: "label" do %>
+            <span class="label-text font-semibold font-typewriter text-pencil"><%= t(".email_label") %></span>
+          <% end %>
+          <%= f.text_field :email,
+                          class: "input-handwritten w-full",
+                          placeholder: t(".email_placeholder"),
+                          maxlength: 50 %>
+          <label class="label">
+            <span class="label-text-alt text-pencil/60 font-handwriting">
+              <%= t(".email_help") %>
+            </span>
+          </label>
+          <% if @user.errors[:email].any? %>
+            <label class="label">
+              <span class="label-text-alt text-red-500 font-handwriting">
+                <%= @user.errors[:email].first %>
+              </span>
+            </label>
+          <% end %>
+        </div>
+
         <div class="card-actions justify-end mt-6">
-          <%= f.submit "Save Settings", class: "btn-doodle" %>
+          <%= f.submit t(".submit"), class: "btn-doodle" %>
         </div>
       <% end %>
     </div>
