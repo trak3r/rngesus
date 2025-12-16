@@ -1,6 +1,7 @@
 # TODO
 
 ## Must Have / Bugs
+- add email validation. when a user changes their email, consider it pending until they confirm receipt of an email with a link. devise probably has this.
 - need to audie the en.yml file for:
     - keys that aren't referenced anywhere
     - keys that are blank empty string can be removed *with* their referencing code
