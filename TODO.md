@@ -1,8 +1,12 @@
 # TODO
 
 ## Must Have / Bugs
-- add email validation. when a user changes their email, consider it pending until they confirm receipt of an email with a link. devise probably has this.
-- need to audie the en.yml file for:
+- add email address verification
+    - when a user changes their email, consider it pending until they confirm...
+    - via receipt of an email with a link
+    - devise probably has this functionality (or there's a plug-in)
+    - this is likely going to require setting up a GMail app key for outgoing mail through msmtp
+- need to audit the en.yml file for:
     - keys that aren't referenced anywhere
     - keys that are blank empty string can be removed *with* their referencing code
 - make it more clear visually that resuls cover the range (gap) between values on the roll results edit form
