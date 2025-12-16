@@ -13,9 +13,9 @@ class Roll < ApplicationRecord
 
   include ImmutableAttributes
 
-  attr_immutable :slug
+  include Sluggable
 
-  before_validation :generate_slug_if_blank
+  attr_immutable :slug
 
   accepts_nested_attributes_for :results, allow_destroy: true, reject_if: :all_blank
 
@@ -91,14 +91,5 @@ class Roll < ApplicationRecord
     Dice.new(dice)
   rescue StandardError => e
     errors.add(:dice, e.message)
-  end
-
-  def generate_slug_if_blank
-    return if slug.present?
-
-    loop do
-      self.slug = SecureRandom.alphanumeric(5)
-      break unless Roll.exists?(slug: slug)
-    end
   end
 end

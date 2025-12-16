@@ -262,4 +262,22 @@ class RollTest < ActiveSupport::TestCase
     assert_equal 'Low', roll.results.first.name
     assert_equal 'High', roll.results.last.name
   end
+
+  test 'should generate slug if blank' do
+    roll = Roll.new(name: 'Test Roll', dice: 'D6', user: users(:ted))
+
+    roll.valid? # triggers before_validation
+
+    assert_not_nil roll.slug
+    assert_match(/\A[a-zA-Z0-9]{5}\z/, roll.slug)
+  end
+
+  test 'should not overwrite existing slug' do
+    roll = rolls(:encounter_distance)
+    original_slug = roll.slug
+    assert_raises ActiveRecord::ReadonlyAttributeError do
+      roll.slug = 'changed'
+    end
+    assert_equal original_slug, roll.slug
+  end
 end

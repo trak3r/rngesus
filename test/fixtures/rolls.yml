@@ -39,3 +39,11 @@ roll_with_unreachable_result:
   slug: bad01
   name: Unlucky Roll
   dice: D20
+
+roll_without_slug:
+  user: ted
+  # DB requires slug to be NOT NULL, so we provide a dummy value here
+  # tests will use .dup and set slug = nil to test generation
+  slug: dummy
+  name: Slugless Roll
+  dice: D20
