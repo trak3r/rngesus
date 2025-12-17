@@ -16,6 +16,9 @@ test/controllers/rolls_controller_pagination_test.rb
 
 - disable the artwork card on the "your rolls" tab
 
+
+- looks like there might be a state issue with pagination and switching tabs
+
 ---
 
 # Test Guidelines
