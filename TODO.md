@@ -29,7 +29,6 @@
 - let users specify *any* dice type with a parse-able shorthand (e.g. 3d12-5)
 - let users link accounts, e.g. log in with twitter then link discord so both work
 - user option to hide / report offensive items
-- the 3D dice aren't appearing on the hosted site (only on workstation)
 - 3D dice don't roll to same result as returned from server
 - toggle to disable animations on settings page
 - let user copy somebody else's randomizer as their own
@@ -182,3 +181,4 @@
     - the current roll#show is the outcome so that needs to be rethought
 - the slot spinning effect make the card shake when some results have more lines than others
 - move slugging into a concern
+- the 3D dice aren't appearing on the hosted site (only on workstation)
