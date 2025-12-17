@@ -65,7 +65,7 @@ export default class extends Controller {
             // Additional themes would require downloading theme files to public/assets/dice-box/themes/
             const box = new DiceBox({
                 container: "#dice-box-container",
-                assetPath: "/assets/dice-box/",
+                assetPath: "/dice-box/",
                 theme: "default",
                 scale: 8, // Reduced scale to ~75% of previous
                 gravity: 1,

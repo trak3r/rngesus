@@ -1,7 +1,13 @@
-- conver slugging into a concern
+the 3d dice aren't appearing on the hosted site (only on workstation).
+this is in the javascript console:
 
-- these tests should be in the roll test or a dedicated slug concern test - not a one-off test file
-- do not create or update models in tests; use fixtures instead
+XHRGET
+https://rngesus.rudiment.net/assets/dice-box/ammo/ammo.wasm.wasm
+[HTTP/2 404  41ms]
+
+the double file extension looks suspicious. is that correct?
+should this file be in the repository? are other files missing from the repository?
+
 
 ---
 
