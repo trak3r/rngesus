@@ -1,0 +1,18 @@
+<%= turbo_stream.append "rolls_grid" do %>
+  <% @rolls.each do |roll| %>
+    <%= render partial: "rolls/roll", locals: { roll: roll } %>
+  <% end %>
+<% end %>
+
+<% if @pagy.next %>
+  <%= turbo_stream.replace "load_more" do %>
+    <div id="load_more" class="flex justify-center mt-8 pb-8">
+      <%= link_to "Show More Rolls",
+          rolls_path(page: @pagy.next, tab: @tab, query: params[:query], tags: @tags),
+          data: { turbo_stream: true },
+          class: "btn btn-outline btn-wide font-handwriting text-lg group hover:bg-base-content hover:text-base-100 transition-all" %>
+    </div>
+  <% end %>
+<% else %>
+  <%= turbo_stream.remove "load_more" %>
+<% end %>
