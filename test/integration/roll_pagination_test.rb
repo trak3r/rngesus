@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-class RollsControllerPaginationTest < ActionDispatch::IntegrationTest
+class RollPaginationTest < ActionDispatch::IntegrationTest
   setup do
     @user = users(:ted)
     login_as(@user)
@@ -30,14 +30,14 @@ class RollsControllerPaginationTest < ActionDispatch::IntegrationTest
     # Request page 1
     get rolls_url(tab: 'newest', tags: [@tag.name]) # Filter by our tag to isolate
     assert_response :success
-    
-    # Should see 6 rolls (limit)
+
+    # Should see 5 rolls (limit)
     # The grid items have class 'card-index'
     # But wait, the grid items are rendered. We added an ID 'rolls_grid'.
     # Inside 'rolls_grid', count the direct children or just check for roll names.
     
     assert_select "#rolls_grid" do
-       assert_select "div[id^='roll_']", count: 6
+       assert_select "div[id^='roll_']", count: 5
     end
     
     assert_select "a[href*='page=2']", text: "Show More Rolls"
@@ -49,7 +49,7 @@ class RollsControllerPaginationTest < ActionDispatch::IntegrationTest
     # Verify Turbo Stream response
     assert_select "turbo-stream[action='append'][target='rolls_grid']" do
       assert_select "template" do
-        assert_select "div[id^='roll_']", count: 1
+        assert_select "div[id^='roll_']", count: 2
       end
     end
     

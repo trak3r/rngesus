@@ -1,6 +1,21 @@
 <%= turbo_stream.append "rolls_grid" do %>
-  <% @rolls.each do |roll| %>
-    <%= render partial: "rolls/roll", locals: { roll: roll } %>
+  <% artwork = random_card_artwork %>
+  <% artwork_position = random_artwork_position %>
+  <%# Ensure artwork is injected by calculating dynamic index offset if needed, or just let randomness logic apply to this chunk %>
+
+  <% @rolls.each_with_index do |roll, index| %>
+    <% if index + 1 == artwork_position %>
+        <!-- D&D Artwork Card (randomly positioned, hidden on mobile) -->
+        <% offset = artwork_vertical_offset(artwork) %>
+        <div class="hidden lg:flex card-index flex-col items-center justify-center p-4 min-h-[220px] max-h-[220px] overflow-hidden transition-transform hover:rotate-1 grayscale hover:grayscale-0 transition-all duration-300">
+        <%= image_tag "cards/#{artwork}.png",
+                        alt: "D&D #{artwork.titleize}",
+                        class: "w-full h-full object-cover",
+                        style: (offset > 0 ? "object-position: center #{offset}%" : nil) %>
+        </div>
+    <% end %>
+
+    <%= render "roll_card", roll: roll, tab: @tab %>
   <% end %>
 <% end %>
 

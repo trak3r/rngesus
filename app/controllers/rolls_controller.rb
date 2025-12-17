@@ -57,7 +57,7 @@ class RollsController < ApplicationController
                         .where('cached_votes_total > 0')
                         .most_liked
 
-    @pagy, @rolls = pagy(@rolls, limit: 6)
+    @pagy, @rolls = pagy(@rolls, limit: 5)
 
     respond_to do |format|
       format.html
