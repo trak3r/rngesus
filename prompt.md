@@ -13,6 +13,9 @@ http://localhost:3000/rolls?tab=newest
 test/controllers/rolls_controller_pagination_test.rb
 - this looks like an integration test in the controllers directory
 
+
+- disable the artwork card on the "your rolls" tab
+
 ---
 
 # Test Guidelines
