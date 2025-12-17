@@ -4,6 +4,21 @@ http://localhost:3000/rolls?tab=newest
 - if it makes sense to use a gem for this, do so
 - use the "show more" pattern
 
+
+- i think you need to change the page size to 5 to account for the the artwork card
+- when i "show more" the new cards on the page are missing styling
+- if the show more has 5 more cards, include another artwork card
+
+
+test/controllers/rolls_controller_pagination_test.rb
+- this looks like an integration test in the controllers directory
+
+
+- disable the artwork card on the "your rolls" tab
+
+
+- looks like there might be a state issue with pagination and switching tabs
+
 ---
 
 # Test Guidelines

@@ -19,7 +19,6 @@
     - what is expected behavior when re-uploading into an existing roll?
     - replace matching values? dupe everything?
 - add a second (exotic) language just to demonstrate i18n support
-- pagination of randomizers
 - re-enable github ci workflow (as long as there's no cost involved)
 
 ## Nice to Have
@@ -182,3 +181,4 @@
 - the slot spinning effect make the card shake when some results have more lines than others
 - move slugging into a concern
 - the 3D dice aren't appearing on the hosted site (only on workstation)
+- pagination of randomizers

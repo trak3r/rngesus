@@ -1,0 +1,34 @@
+<%= turbo_stream.append "rolls_grid" do %>
+  <% artwork = random_card_artwork %>
+  <% artwork_position = random_artwork_position %>
+  <%# Ensure artwork is injected by calculating dynamic index offset if needed, or just let randomness logic apply to this chunk %>
+
+  <% @rolls.each_with_index do |roll, index| %>
+    <% unless @tab == 'your_rolls' %>
+    <% if index + 1 == artwork_position %>
+        <!-- Artwork Card (randomly positioned, hidden on mobile) -->
+        <% offset = artwork_vertical_offset(artwork) %>
+        <div class="hidden lg:flex card-index flex-col items-center justify-center p-4 min-h-[220px] max-h-[220px] overflow-hidden transition-transform hover:rotate-1 grayscale hover:grayscale-0 transition-all duration-300">
+        <%= image_tag "cards/#{artwork}.png",
+                        alt: "#{artwork.titleize}",
+                        class: "w-full h-full object-cover",
+                        style: (offset > 0 ? "object-position: center #{offset}%" : nil) %>
+        </div>
+      <% end %>
+    <% end %>
+    <%= render "roll_card", roll: roll, tab: @tab %>
+  <% end %>
+<% end %>
+
+<% if @pagy.next %>
+  <%= turbo_stream.replace "load_more" do %>
+    <div id="load_more" class="flex justify-center mt-8 pb-8">
+      <%= link_to "Show More Rolls",
+          rolls_path(page: @pagy.next, tab: @tab, query: params[:query], tags: @tags),
+          data: { turbo_stream: true },
+          class: "btn btn-outline btn-wide font-handwriting text-lg group hover:bg-base-content hover:text-base-100 transition-all" %>
+    </div>
+  <% end %>
+<% else %>
+  <%= turbo_stream.remove "load_more" %>
+<% end %>

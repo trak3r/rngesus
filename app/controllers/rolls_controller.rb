@@ -56,6 +56,13 @@ class RollsController < ApplicationController
                         .tagged_with(@tags)
                         .where('cached_votes_total > 0')
                         .most_liked
+
+    @pagy, @rolls = pagy(@rolls, limit: 5)
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   # GET /rolls/1

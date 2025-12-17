@@ -240,11 +240,12 @@ class RollsControllerTest < ActionDispatch::IntegrationTest
     # rolling a 1 will result in no matching result (1 < 10)
     roll = rolls(:roll_with_unreachable_result)
 
-    # Force the dice roll to be 1
-    Dice.any_instance.stubs(:roll).returns(1)
+    # Force the outcome to be [1, nil] (rolling a 1 with no matching result)
+    Roll.any_instance.stubs(:outcome).returns([1, nil])
 
     # Use your_rolls tab to ensure we see our created roll
-    get rolls_url(tab: 'your_rolls')
+    # Filter by name to ensure it's not paginated out
+    get rolls_url(tab: 'your_rolls', query: roll.name)
 
     assert_response :success
     assert_select 'h2', text: /#{roll.name}/

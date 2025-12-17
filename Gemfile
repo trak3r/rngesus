@@ -104,3 +104,5 @@ gem 'omniauth-discord'
 gem 'avo' # Modern admin interface
 
 gem 'discard', '~> 1.4'
+
+gem 'pagy', '~> 9.4'
