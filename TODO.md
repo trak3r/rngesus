@@ -70,9 +70,6 @@
 
 ## Monetization
 - just to cover hosting costs
-- donations / patreon
-    - https://buymeacoffee.com/
-    - https://ko-fi.com/
 - affiliate links to buy real dice
 - sponsors
 
@@ -188,3 +185,4 @@
     - how does this keep happening? theory: vanilla tailwind vs. daisyui
     - can we automate and audit for these?
 - there's sometimes some lag before the slot machine animation starts (haven't seen recently perhaps something else addressed it)
+- https://buymeacoffee.com/teflonted
