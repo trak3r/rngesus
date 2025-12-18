@@ -1,6 +1,6 @@
 # What is it?
 - A tool for creating tabletop role-playing game (TTRPG) random dice roll tables and rolling on them to get results
-- With some added cool features like **uploading a photo or screenshot from a book** and automatically building everything 
+- With some added cool features like **uploading a photo or screenshot from a book** and automatically building everything
 - When a result contains an embedded roll, like "2d6 goblins", it will roll that and insert the result into the text
 - The results spin like a slot machine while rolling
 - On a re-roll, 3D dice will roll across the page
@@ -13,7 +13,7 @@
 - Tailwind CSS & DaisyUI (I use Bootstrap at work)
 - Avo for admin (I have experience with Rails Admin)
 - Omniauth without Devise and exclusively third-party authentication
-- Experiment with optical character recognition (OCR) 
+- Experiment with optical character recognition (OCR)
 - Rails new Kamal & Docker deploy strategy (used Capistrano forever)
 - Test the potential of AI and vibe coding
 
@@ -30,4 +30,4 @@ See [TODO > Done](TODO.md#done) for more details on features and lessons learned
 This project is licensed under the [PolyForm Noncommercial License 1.0.0](LICENSE.md).
 
 - Free to use for personal, educational, or noncommercial projects.
-- Commercial use requires a separate license. Please contact [YOUR CONTACT INFO] for inquiries.
+- Commercial use requires a separate license. Please contact rngesus@rudiment.net for inquiries.

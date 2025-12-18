@@ -1,6 +1,7 @@
 # TODO
 
 ## Must Have / Bugs
+- (UI) move tabs into header?
 - (UI) the roll form page is left justified while all other pages are centered
 - (UI) roll results page: remove the "Manage Results" it's redundant of the edit icon
 - (UI) roll results page: move the tags to the top center of the card like they are for rolls
