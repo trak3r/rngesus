@@ -1,41 +1,42 @@
 # TODO
 
 ## Must Have / Bugs
-- add email address verification
+- (UI) the roll form page is left justified while all other pages are centered
+- (UI) roll results page: remove the "Manage Results" it's redundant of the edit icon
+- (UI) roll results page: move the tags to the top center of the card like they are for rolls
+- (UI) roll results page: make the roll result value number larger
+- (UI) roll results page: deemphasize the roll name, center it
+- (UX) add email address verification
     - when a user changes their email, consider it pending until they confirm...
     - via receipt of an email with a link
     - devise probably has this functionality (or there's a plug-in)
     - this is likely going to require setting up a GMail app key for outgoing mail through msmtp
-- need to audit the en.yml file for:
+- (tech debt) need to audit the en.yml file for:
     - keys that aren't referenced anywhere
     - keys that are blank empty string can be removed *with* their referencing code
-- make it more clear visually that resuls cover the range (gap) between values on the roll results edit form
-- some new dark-mode issues have crept back in
-    - how does this keep happening? theory: vanilla tailwind vs. daisyui
-    - can we automate and audit for these?
-- there's sometimes some lag before the slot machine animation starts
-- private, published, public flag or timestamp for randomizers
-- latest version of roll edit form doesn't allow (re)upload img/csv
+- (UI) make it more clear visually that resuls cover the range (gap) between values on the roll results edit form
+- (UX) private, published, public flag or timestamp for randomizers
+- (UX) latest version of roll edit form doesn't allow (re)upload img/csv
     - what is expected behavior when re-uploading into an existing roll?
     - replace matching values? dupe everything?
 - add a second (exotic) language just to demonstrate i18n support
-- re-enable github ci workflow (as long as there's no cost involved)
+- re-enable github ci workflow (as long as there's no costs involved)
 
 ## Nice to Have
-- on forms, instead of showing error at top of page, show it inline with the offending field
-- the non-CRUD controller-actions leave a bad taste in my mouth; let's audit them and considering refactoring
-- consider dice-less rolls; just random result from list that could be any size
-- let users specify *any* dice type with a parse-able shorthand (e.g. 3d12-5)
-- let users link accounts, e.g. log in with twitter then link discord so both work
-- user option to hide / report offensive items
-- 3D dice don't roll to same result as returned from server
-- toggle to disable animations on settings page
-- let user copy somebody else's randomizer as their own
+- (UI) on forms, instead of showing error at top of page, show it inline with the offending field
+- (tech debt) the non-CRUD controller-actions leave a bad taste in my mouth; let's audit them and considering refactoring
+- (UX) let users specify *any* dice type with a parse-able shorthand (e.g. 3d12-5)
+- (UX) let users link accounts, e.g. log in with twitter then link discord so both work
+- (UX) user option to hide / report offensive items
+- (UI) 3D dice don't roll to same result as returned from server
+- (UX) toggle to disable animations on settings page
+- (UX) let user copy somebody else's randomizer as their own
     - be careful not to deep clone likes, guid/slug; just the basics
-- stamps on cards, like top ten, rising star, missing stuff / needs attention, etc.
+- (UI) stamps on cards, like top ten, rising star, missing stuff / needs attention, etc.
+- (admin) does Avo support filter, search, sort?
+- (UX) ability to drag and reorder results; automatically change values?
+- consider dice-less rolls; just random result from list that could be any size
 - golden tickets (inspired by Fizzy) for promoted cards
-- does Avo support filter, search, sort?
-- ability to drag and reorder results; automatically change values?
 - integration as a discord bot?
 - community can add notes or propose typo fixes to other user's data (like pull requests)
 - combine randomizers (e.g. forest encounters + reaction rolls)
@@ -182,3 +183,7 @@
 - move slugging into a concern
 - the 3D dice aren't appearing on the hosted site (only on workstation)
 - pagination of randomizers
+- some new dark-mode issues have crept back in
+    - how does this keep happening? theory: vanilla tailwind vs. daisyui
+    - can we automate and audit for these?
+- there's sometimes some lag before the slot machine animation starts (haven't seen recently perhaps something else addressed it)
