@@ -24,6 +24,7 @@
 - re-enable github ci workflow (as long as there's no costs involved)
 
 ## Nice to Have
+- export to CSV?
 - (UI) on forms, instead of showing error at top of page, show it inline with the offending field
 - (tech debt) the non-CRUD controller-actions leave a bad taste in my mouth; let's audit them and considering refactoring
 - (UX) let users specify *any* dice type with a parse-able shorthand (e.g. 3d12-5)
@@ -62,7 +63,7 @@
 
 ## Hosting
 - database backups (offsite)
-- set up email notifications for exceptions so i'm notified of bugs i don't see myself
+- set up email notifications for exceptions so i'm notified of bugs i don't see myself (will require msmtp setup)
 - SEO
 - google analytics
 - hardening (scan tools?)
