@@ -41,32 +41,16 @@ en:
     choose_method:
       title: "Create Roll"
       heading: "How would you like to create your roll?"
-      subtitle: ""
       upload_screenshots: "Upload Screenshots"
       upload_csvs: "Upload CSV Files"
       create_by_hand: "Create By Hand"
-      back: ""
     index:
       deleted: "DELETED"
     new:
       title: "New Roll"
       heading: "Create Your Roll"
-      back: ""
     wizard_form:
-      roll_details: "1. Roll Details"
-      name_placeholder: "e.g., Encounter Distance"
       tags_label: "Tags (optional, max 3)"
-      tags_help: ""
-      dice_placeholder: "e.g. 1d6 or 2d10"
-      dice_help: "Enter dice notation like 1d20, 2d6, etc."
-      results: "2. Results"
-      upload_note: "After creating the roll, you'll be able to upload screenshots to import results."
-      upload_instructions: "You can upload images from the roll page after creation."
-      upload_help: "Select one or more images containing tables to import"
-      upload_submit: "Process Screenshots"
-      result_name: "Name"
-      result_name_placeholder: "e.g., Close"
-      result_value: "Value"
       add_result: "Add Another Result"
       submit: "Create Roll"
     create_with_img_upload:
@@ -79,8 +63,6 @@ en:
       success: "Roll was successfully destroyed."
     show:
       see_all_results: "See All Results"
-      dice_value: "Dice Value"
-      result: "Result"
     form:
       results: "Results"
       dice_roll_label: "Dice Roll"
@@ -96,7 +78,6 @@ en:
     new:
       title: "Upload CSV Files"
       heading: "Upload CSV Files"
-      back: ""
     form:
       upload_title: "Upload CSV Files"
       error_prevented: "prevented this file from uploading:"
@@ -111,7 +92,6 @@ en:
     new:
       title: "Upload Screenshots"
       heading: "Upload Screenshots"
-      back: ""
     form:
       upload_title: "Upload Screenshots"
       error_prevented: "prevented this file from uploading:"
@@ -152,12 +132,6 @@ en:
   users:
     edit:
       title: "Settings"
-      profile_header: "Profile"
-      avatar_alt: "%{name}'s avatar"
-      edit_avatar: "Edit avatar on Gravatar.com"
-      nickname_label: "Nickname"
-      nickname_placeholder: "Enter a nickname (optional)"
-      nickname_help: "This will be displayed instead of your %{provider} username"
       email_label: "Email"
       email_placeholder: "Enter your email (optional)"
       email_help: "This will be used for your Gravatar and not be visible to others."
