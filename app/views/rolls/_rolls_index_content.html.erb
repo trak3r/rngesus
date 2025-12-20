@@ -1,0 +1,14 @@
+<%= turbo_frame_tag "rolls" do %>
+  <%= render "rolls/index/tag_filters" %>
+  <%= render "rolls/index/grid" %>
+
+  <!-- Pagination / Load More -->
+  <% if @pagy.next %>
+    <div id="load_more" class="flex justify-center mt-8 pb-8">
+      <%= link_to "Show More Rolls",
+          rolls_path(page: @pagy.next, tab: @tab, query: params[:query], tags: @tags),
+          data: { turbo_stream: true },
+          class: "btn btn-outline btn-wide font-handwriting text-lg group hover:bg-base-content hover:text-base-100 transition-all" %>
+    </div>
+  <% end %>
+<% end %>

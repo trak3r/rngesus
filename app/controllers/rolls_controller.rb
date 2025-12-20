@@ -19,7 +19,7 @@ class RollsController < ApplicationController
 
   # GET /rolls
   def index
-    @tab = params[:tab] || 'most_liked'
+    @tab = params[:tab].presence || 'newest'
     @tags = Array(params[:tags])
     @tags << params[:tag] if params[:tag].present?
     @tags = @tags.compact_blank.uniq

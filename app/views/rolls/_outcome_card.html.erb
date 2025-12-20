@@ -13,7 +13,7 @@
   <div class="card-index w-full hover:shadow-lg transition-all duration-300 flex flex-col items-center hover:scale-[1.02] active:scale-[0.98] relative min-h-[14rem]"> <!-- Added min-h here to ensure wrapper matches content -->
     
     <!-- Inner Container for Clipping (Background, Ribbon, Content) -->
-    <div class="absolute inset-0 overflow-hidden rounded-2xl border border-base-200 bg-base-100"> <!-- added border/bg/rounded matching card-index style -->
+    <div class="absolute inset-0 overflow-hidden rounded-2xl border border-base-200 bg-base-100">
         <!-- Re-roll Ribbon (always visible, touch-friendly) -->
         <%= button_to reroll_roll_path(roll),
                     method: :post,
@@ -34,8 +34,19 @@
         </div>
     </div>
 
+    <!-- Tag Badges (Push Pin Style) -->
+    <% if roll.tags.any? %>
+      <div class="absolute -top-3 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+        <% roll.tags.each do |tag| %>
+          <span class="badge badge-outline border-2 border-base-content/20 bg-base-100 text-base-content/70 font-handwriting text-sm shadow-sm transform hover:scale-105">
+            <%= tag.name %>
+          </span>
+        <% end %>
+      </div>
+    <% end %>
+
     <!-- Bubble (Outside Clipping) -->
-    <div class="absolute top-[-20px] left-[-20px] w-16 h-16 rounded-full bg-base-100 border-4 border-base-content shadow-lg flex items-center justify-center transform -rotate-12 z-20 font-handwriting text-2xl font-bold text-base-content">
+    <div class="absolute top-[-25px] left-[-25px] w-20 h-20 rounded-full bg-base-100 border-4 border-base-content shadow-lg flex items-center justify-center transform -rotate-12 z-20 font-handwriting text-3xl font-bold text-base-content">
       <%= rolled %>
     </div>
   </div>

@@ -1,0 +1,55 @@
+<div class="flex items-center space-x-2 order-2 sm:order-3">
+  <%# Mobile Navigation Dropdown %>
+  <div id="header_mobile_nav" class="lg:hidden">
+    <select class="select select-bordered select-sm w-32 font-handwriting text-base" onchange="if (this.value) window.location.href=this.value">
+      <option value="<%= rolls_path(tab: 'newest') %>" <%= 'selected' if current_tab == 'newest' && on_index %>>Newest</option>
+      <option value="<%= rolls_path(tab: 'most_liked') %>" <%= 'selected' if current_tab == 'most_liked' && on_index %>>Most Liked</option>
+      <option value="<%= rolls_path(tab: 'your_likes') %>" <%= 'selected' if current_tab == 'your_likes' && on_index %>>Your Likes</option>
+      <option value="<%= rolls_path(tab: 'your_rolls') %>" <%= 'selected' if current_tab == 'your_rolls' && on_index %>>Your Rolls</option>
+    </select>
+  </div>
+
+  <%# User Dropdown or Login %>
+  <nav class="flex items-center">
+    <% if current_user %>
+      <div class="dropdown dropdown-end">
+        <div tabindex="0" role="button" class="btn btn-ghost flex items-center gap-2 px-2">
+          <%= image_tag gravatar_url(current_user, size: 40),
+                        alt: "#{current_user.display_name}'s avatar",
+                        class: "w-8 h-8 rounded-full border-2 border-gray-400 grayscale hover:grayscale-0 transition-all" %>
+          <span class="text-sm font-medium hidden xl:inline"><%= current_user.display_name %></span>
+          <%= icon('chevron-down', class: "w-4 h-4") %>
+        </div>
+        <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-sm z-[1] w-52 p-2 shadow-lg border border-base-300 mt-3 font-handwriting text-base-content">
+          <li>
+            <%= link_to edit_user_path, class: "flex items-center gap-2 hover:bg-yellow-50/50 active:bg-yellow-100 rounded-sm" do %>
+              <%= icon('settings', class: "w-4 h-4") %>
+              <span>Settings</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to gravatar_profile_url(current_user),
+                        target: "_blank",
+                        rel: "noopener noreferrer",
+                        class: "flex items-center gap-2 hover:bg-yellow-50/50 active:bg-yellow-100 rounded-sm" do %>
+              <%= icon('user-circle', class: "w-4 h-4") %>
+              <span>Edit Avatar</span>
+            <% end %>
+          </li>
+          <div class="divider my-0 border-blue-200"></div>
+          <li>
+            <%= button_to logout_path,
+                          method: :delete,
+                          class: "flex items-center gap-2 text-red-500/70 hover:text-red-600 hover:bg-red-50/50 rounded-sm",
+                          form: { data: { turbo: "false" } } do %>
+              <%= icon('logout', class: "w-4 h-4") %>
+              <span>Logout</span>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    <% else %>
+      <%= link_to "Log In", login_path, class: "btn btn-primary btn-sm" %>
+    <% end %>
+  </nav>
+</div>
