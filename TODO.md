@@ -12,9 +12,6 @@
     - via receipt of an email with a link
     - devise probably has this functionality (or there's a plug-in)
     - this is likely going to require setting up a GMail app key for outgoing mail through msmtp
-- (tech debt) need to audit the en.yml file for:
-    - keys that aren't referenced anywhere
-    - keys that are blank empty string can be removed *with* their referencing code
 - (UI) make it more clear visually that resuls cover the range (gap) between values on the roll results edit form
 - (UX) private, published, public flag or timestamp for randomizers
 - (UX) latest version of roll edit form doesn't allow (re)upload img/csv
@@ -187,3 +184,6 @@
     - can we automate and audit for these?
 - there's sometimes some lag before the slot machine animation starts (haven't seen recently perhaps something else addressed it)
 - https://buymeacoffee.com/teflonted
+- (tech debt) need to audit the en.yml file for:
+    - keys that aren't referenced anywhere
+    - keys that are blank empty string can be removed *with* their referencing code
