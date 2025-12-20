@@ -1,29 +1,10 @@
-- move tabs into header
-- roll results page: remove the "Manage Results" it's redundant of the edit icon (and the en.yml entry)
-- roll results page: move the tags to the top center of the card like they are for rolls
-- roll results page: make the roll result value number larger
-- roll results page: deemphasize the roll name, center it
+- the URL isn't changing when tabs are clicked in the header
 
-- it seems you made the text on the roll results card larger; i just wanted the number to be larger
-- the tags on top of the results card are not aligned to the top border; this might be corrected by revertig the font size change
-- the tab names in the header are pretty small; make them larger
-- there was a donation button in the header it seems you removed; you could put it in the footer if it can't be fit into the header
-- i think i want the search field in the headers too but it's not going to make sense on the pages that aren't roll cards; should be it be disabled for those pages? do what you think is best
+- "your rolls" tab is always showing as selected (gray background) when on other tabs
 
-- the tags on the roll results card still aren't the same style and position as the roll cards - they are smaller and not aligned to the top border; fix that 
-- the clear "X" on the search field isn't clickable
-- the "you rolls" tab always has the background when other tabs are selected
-- sometimes typing in the search field changes the tab to "your rolls"; fix that
-- on the roll results page align the like button to the right 
+- active tab gray background is still not working. it seems the first tab visited is always showing as active. switching to a non-index page (like results or form) clears it, but when a tab is selected again it sticks.
 
-- the tabs links in header don't work if you are on the roll results page; fix that
-- the search field can be a lot shorter; like half the width
-
-- the tabs links in the header still don't work when you are on the roll results page. i can see the request on the server so i suspect you're making a turbo update rather than change the page back to rolls index. same issue from rolls edit form page.
-
-these views are pretty large; should they be broken up into smaller views?
-app/views/rolls/_rolls_index_content.html.erb
-app/views/shared/_header.html.erb
+- still not working. i don't think your test is valid since you are makingn fresh GET requests to the index page while the browser is redrawing HTML on the page.
 
 ---
 

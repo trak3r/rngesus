@@ -1,6 +1,13 @@
 <% content_for :title, "Rolls" %>
 
+<turbo-stream action="replace" target="header_nav">
+  <template>
+    <%= render "shared/header/nav", on_index: true, current_tab: (@tab || 'newest') %>
+  </template>
+</turbo-stream>
+
 <div class="w-full">
   <!-- Tab Content -->
   <%= render partial: "rolls_index_content" %>
 </div>
+
