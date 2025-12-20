@@ -1,5 +1,14 @@
-- audit the en.yml file for keys that aren't referenced anywhere
-- audit the en.yml file for values that are blank empty string can be removed *with* their referencing code
+- move tabs into header
+- roll results page: remove the "Manage Results" it's redundant of the edit icon (and the en.yml entry)
+- roll results page: move the tags to the top center of the card like they are for rolls
+- roll results page: make the roll result value number larger
+- roll results page: deemphasize the roll name, center it
+
+- it seems you made the text on the roll results card larger; i just wanted the number to be larger
+- the tags on top of the results card are not aligned to the top border; this might be corrected by revertig the font size change
+- the tab names in the header are pretty small; make them larger
+- there was a donation button in the header it seems you removed; you could put it in the footer if it can't be fit into the header
+- i think i want the search field in the headers too but it's not going to make sense on the pages that aren't roll cards; should be it be disabled for those pages? do what you think is best
 
 ---
 

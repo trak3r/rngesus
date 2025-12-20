@@ -6,48 +6,6 @@
     <!-- Header Section with Border -->
     <div class="border-b border-base-300 pb-6 mb-8">
       <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-6">
-        <!-- Tab Navigation -->
-        <div class="w-full">
-          <!-- Desktop Tabs -->
-          <div role="tablist" class="hidden lg:flex tabs tabs-lifted tabs-lg">
-            <%= link_to rolls_path(tab: 'newest', query: params[:query], tags: @tags),
-                class: "tab font-semibold #{@tab == 'newest' ? 'tab-active [--tab-bg:hsl(var(--b2))] [--tab-border-color:hsl(var(--b3))]' : ''}",
-                data: { turbo_frame: "rolls", turbo_action: "advance" } do %>
-              Newest
-            <% end %>
-
-            <%= link_to rolls_path(tab: 'most_liked', query: params[:query], tags: @tags),
-                class: "tab font-semibold #{@tab == 'most_liked' ? 'tab-active [--tab-bg:hsl(var(--b2))] [--tab-border-color:hsl(var(--b3))]' : ''}",
-                data: { turbo_frame: "rolls", turbo_action: "advance" } do %>
-              Most Liked
-            <% end %>
-
-            <%= link_to rolls_path(tab: 'your_likes', query: params[:query], tags: @tags),
-                class: "tab font-semibold #{@tab == 'your_likes' ? 'tab-active [--tab-bg:hsl(var(--b2))] [--tab-border-color:hsl(var(--b3))]' : ''}",
-                data: { turbo_frame: current_user ? "rolls" : "_top", turbo_action: current_user ? "advance" : "replace" } do %>
-              Your Likes
-            <% end %>
-
-            <%= link_to rolls_path(tab: 'your_rolls', query: params[:query], tags: @tags),
-                class: "tab font-semibold #{@tab == 'your_rolls' ? 'tab-active [--tab-bg:hsl(var(--b2))] [--tab-border-color:hsl(var(--b3))]' : ''}",
-                data: { turbo_frame: current_user ? "rolls" : "_top", turbo_action: current_user ? "advance" : "replace" } do %>
-              Your Rolls
-            <% end %>
-
-
-          </div>
-
-          <!-- Mobile Dropdown -->
-          <div class="lg:hidden w-full">
-            <select class="select select-bordered w-full font-handwriting text-lg" onchange="if (this.value) window.location.href=this.value">
-              <option value="<%= rolls_path(tab: 'newest', query: params[:query], tags: @tags) %>" <%= 'selected' if @tab == 'newest' %>>Newest</option>
-              <option value="<%= rolls_path(tab: 'most_liked', query: params[:query], tags: @tags) %>" <%= 'selected' if @tab == 'most_liked' %>>Most Liked</option>
-              <option value="<%= rolls_path(tab: 'your_likes', query: params[:query], tags: @tags) %>" <%= 'selected' if @tab == 'your_likes' %>>Your Likes</option>
-              <option value="<%= rolls_path(tab: 'your_rolls', query: params[:query], tags: @tags) %>" <%= 'selected' if @tab == 'your_rolls' %>>Your Rolls</option>
-
-            </select>
-          </div>
-        </div>
 
         <!-- Search Bar -->
         <div data-controller="search" class="w-full lg:w-auto">

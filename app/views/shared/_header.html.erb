@@ -1,4 +1,4 @@
-<header class="border-b border-base-300 bg-base-100/80 backdrop-blur-sm py-4 px-6 flex justify-between items-center sticky top-0 z-50">
+<header class="border-b border-base-300 bg-base-100/80 backdrop-blur-sm py-4 px-6 flex flex-wrap justify-between items-center sticky top-0 z-50 gap-y-4">
 
 <h1 class="text-2xl font-bold font-typewriter">
   <%= link_to root_path,
@@ -8,53 +8,90 @@
   <% end %>
 </h1>
 
-
-<script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="teflonted" data-color="#e9eaf1" data-emoji="☕"  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#FFDD00" ></script>
-
-
-<nav class="flex items-center space-x-4">
-  <% if current_user %>
-    <div class="dropdown dropdown-end">
-      <div tabindex="0" role="button" class="btn btn-ghost flex items-center gap-2">
-        <%= image_tag gravatar_url(current_user, size: 40),
-                      alt: "#{current_user.display_name}'s avatar",
-                      class: "w-10 h-10 rounded-full border-2 border-gray-400 grayscale hover:grayscale-0 transition-all" %>
-        <span class="text-sm font-medium"><%= current_user.display_name %></span>
-        <%= icon('chevron-down', class: "w-4 h-4") %>
-      </div>
-      <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-sm z-[1] w-52 p-2 shadow-lg border border-base-300 mt-3 font-handwriting text-base-content">
-        <li>
-          <%= link_to edit_user_path, class: "flex items-center gap-2 hover:bg-yellow-50/50 active:bg-yellow-100 rounded-sm" do %>
-            <%= icon('settings', class: "w-4 h-4") %>
-            <span>Settings</span>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to gravatar_profile_url(current_user),
-                      target: "_blank",
-                      rel: "noopener noreferrer",
-                      class: "flex items-center gap-2 hover:bg-yellow-50/50 active:bg-yellow-100 rounded-sm" do %>
-            <%= icon('user-circle', class: "w-4 h-4") %>
-            <span>Edit Avatar</span>
-          <% end %>
-        </li>
-        <div class="divider my-0 border-blue-200"></div>
-        <li>
-          <%= button_to logout_path,
-                        method: :delete,
-                        class: "flex items-center gap-2 text-red-500/70 hover:text-red-600 hover:bg-red-50/50 rounded-sm",
-                        form: { data: { turbo: "false" } } do %>
-            <%= icon('logout', class: "w-4 h-4") %>
-            <span>Logout</span>
-          <% end %>
-        </li>
-      </ul>
-    </div>
-  <% else %>
-    <%= link_to "Log In",
-                login_path,
-                class: "btn btn-primary btn-sm" %>
+<div class="hidden md:flex items-center gap-1 mx-4 order-2 lg:order-none">
+  <%= link_to rolls_path(tab: 'newest'),
+      class: "btn btn-ghost btn-sm font-semibold #{(@tab == 'newest' || !@tab) && controller_name == 'rolls' && action_name == 'index' ? 'bg-base-300' : ''}",
+      data: { turbo_frame: "rolls", turbo_action: "advance" } do %>
+    Newest
   <% end %>
-</nav>
+
+  <%= link_to rolls_path(tab: 'most_liked'),
+      class: "btn btn-ghost btn-sm font-semibold #{@tab == 'most_liked' && controller_name == 'rolls' && action_name == 'index' ? 'bg-base-300' : ''}",
+      data: { turbo_frame: "rolls", turbo_action: "advance" } do %>
+    Most Liked
+  <% end %>
+
+  <%= link_to rolls_path(tab: 'your_likes'),
+      class: "btn btn-ghost btn-sm font-semibold #{@tab == 'your_likes' && controller_name == 'rolls' && action_name == 'index' ? 'bg-base-300' : ''}",
+      data: { turbo_frame: current_user ? "rolls" : "_top", turbo_action: current_user ? "advance" : "replace" } do %>
+    Your Likes
+  <% end %>
+
+  <%= link_to rolls_path(tab: 'your_rolls'),
+      class: "btn btn-ghost btn-sm font-semibold #{@tab == 'your_rolls' && controller_name == 'rolls' && action_name == 'index' ? 'bg-base-300' : ''}",
+      data: { turbo_frame: current_user ? "rolls" : "_top", turbo_action: current_user ? "advance" : "replace" } do %>
+    Your Rolls
+  <% end %>
+</div>
+
+<div class="md:hidden flex-1 px-4 order-3 w-full sm:w-auto">
+  <select class="select select-bordered select-sm w-full font-handwriting text-lg" onchange="if (this.value) window.location.href=this.value">
+    <option value="<%= rolls_path(tab: 'newest') %>" <%= 'selected' if (@tab == 'newest' || !@tab) && controller_name == 'rolls' && action_name == 'index' %>>Newest</option>
+    <option value="<%= rolls_path(tab: 'most_liked') %>" <%= 'selected' if @tab == 'most_liked' && controller_name == 'rolls' && action_name == 'index' %>>Most Liked</option>
+    <option value="<%= rolls_path(tab: 'your_likes') %>" <%= 'selected' if @tab == 'your_likes' && controller_name == 'rolls' && action_name == 'index' %>>Your Likes</option>
+    <option value="<%= rolls_path(tab: 'your_rolls') %>" <%= 'selected' if @tab == 'your_rolls' && controller_name == 'rolls' && action_name == 'index' %>>Your Rolls</option>
+  </select>
+</div>
+
+<div class="flex items-center space-x-4 order-2 sm:order-none">
+  <div class="hidden sm:block">
+    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="teflonted" data-color="#e9eaf1" data-emoji="☕"  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#FFDD00" ></script>
+  </div>
+
+  <nav class="flex items-center">
+    <% if current_user %>
+      <div class="dropdown dropdown-end">
+        <div tabindex="0" role="button" class="btn btn-ghost flex items-center gap-2">
+          <%= image_tag gravatar_url(current_user, size: 40),
+                        alt: "#{current_user.display_name}'s avatar",
+                        class: "w-10 h-10 rounded-full border-2 border-gray-400 grayscale hover:grayscale-0 transition-all" %>
+          <span class="text-sm font-medium hidden sm:inline"><%= current_user.display_name %></span>
+          <%= icon('chevron-down', class: "w-4 h-4") %>
+        </div>
+        <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-sm z-[1] w-52 p-2 shadow-lg border border-base-300 mt-3 font-handwriting text-base-content">
+          <li>
+            <%= link_to edit_user_path, class: "flex items-center gap-2 hover:bg-yellow-50/50 active:bg-yellow-100 rounded-sm" do %>
+              <%= icon('settings', class: "w-4 h-4") %>
+              <span>Settings</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to gravatar_profile_url(current_user),
+                        target: "_blank",
+                        rel: "noopener noreferrer",
+                        class: "flex items-center gap-2 hover:bg-yellow-50/50 active:bg-yellow-100 rounded-sm" do %>
+              <%= icon('user-circle', class: "w-4 h-4") %>
+              <span>Edit Avatar</span>
+            <% end %>
+          </li>
+          <div class="divider my-0 border-blue-200"></div>
+          <li>
+            <%= button_to logout_path,
+                          method: :delete,
+                          class: "flex items-center gap-2 text-red-500/70 hover:text-red-600 hover:bg-red-50/50 rounded-sm",
+                          form: { data: { turbo: "false" } } do %>
+              <%= icon('logout', class: "w-4 h-4") %>
+              <span>Logout</span>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    <% else %>
+      <%= link_to "Log In",
+                  login_path,
+                  class: "btn btn-primary btn-sm" %>
+    <% end %>
+  </nav>
+</div>
 
 </header>

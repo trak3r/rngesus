@@ -1,12 +1,6 @@
 # TODO
 
 ## Must Have / Bugs
-- (UI) move tabs into header?
-- (UI) the roll form page is left justified while all other pages are centered
-- (UI) roll results page: remove the "Manage Results" it's redundant of the edit icon
-- (UI) roll results page: move the tags to the top center of the card like they are for rolls
-- (UI) roll results page: make the roll result value number larger
-- (UI) roll results page: deemphasize the roll name, center it
 - (UX) add email address verification
     - when a user changes their email, consider it pending until they confirm...
     - via receipt of an email with a link
@@ -187,3 +181,9 @@
 - (tech debt) need to audit the en.yml file for:
     - keys that aren't referenced anywhere
     - keys that are blank empty string can be removed *with* their referencing code
+- (UI) the roll form page is left justified while all other pages are centered
+- (UI) move tabs into header
+- (UI) roll results page: remove the "Manage Results" it's redundant of the edit icon (and the en.yml entry)
+- (UI) roll results page: move the tags to the top center of the card like they are for rolls
+- (UI) roll results page: make the roll result value number larger
+- (UI) roll results page: deemphasize the roll name, center it
