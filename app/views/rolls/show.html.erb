@@ -2,7 +2,7 @@
 
 <div class="max-w-4xl mx-auto py-10 px-4">
 
-  <div class="relative flex flex-col items-center gap-2 mb-8">
+  <div class="relative flex items-center justify-center mb-8 w-full">
     <div class="flex items-center gap-3">
       <div class="text-xl sm:text-2xl font-bold font-typewriter text-base-content/60 text-center">
         <%= @roll.name %>
@@ -12,9 +12,11 @@
           <%= icon(:edit) %>
         <% end %>
       <% end %>
+    </div>
 
-      <% # Pass position_classes: 'static' or empty to prevent absolute positioning inside this flex header %>
-      <%= render "like_button", roll: @roll, position_classes: "" %>
+    <% # Pass position_classes: 'static' or empty to prevent absolute positioning inside this flex header %>
+    <div class="absolute right-0">
+      <%= render "like_button", roll: @roll, position_classes: "relative top-0 right-0" %>
     </div>
   </div>
 

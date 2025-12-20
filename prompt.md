@@ -15,7 +15,10 @@
 - the "you rolls" tab always has the background when other tabs are selected
 - sometimes typing in the search field changes the tab to "your rolls"; fix that
 - on the roll results page align the like button to the right 
+
 ---
+
+IMPORTANT: do not edit TODO.md and prompt.md files!
 
 # Test Guidelines
 - write test coverage for any logic changes

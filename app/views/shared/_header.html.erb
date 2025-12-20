@@ -9,28 +9,28 @@
       <% end %>
     </h1>
 
-    <div class="hidden lg:flex items-center gap-1 mx-2">
+    <div id="header_nav" class="hidden lg:flex items-center gap-1 mx-2">
       <%= link_to rolls_path(tab: 'newest'),
           class: "btn btn-ghost btn-md text-lg font-semibold #{(@tab == 'newest' || !@tab) && controller_name == 'rolls' && action_name == 'index' ? 'bg-base-300' : ''}",
-          data: { turbo_frame: "rolls", turbo_action: "advance" } do %>
+          data: { turbo_stream: true, turbo_action: "advance" } do %>
         Newest
       <% end %>
 
       <%= link_to rolls_path(tab: 'most_liked'),
           class: "btn btn-ghost btn-md text-lg font-semibold #{@tab == 'most_liked' && controller_name == 'rolls' && action_name == 'index' ? 'bg-base-300' : ''}",
-          data: { turbo_frame: "rolls", turbo_action: "advance" } do %>
+          data: { turbo_stream: true, turbo_action: "advance" } do %>
         Most Liked
       <% end %>
 
       <%= link_to rolls_path(tab: 'your_likes'),
           class: "btn btn-ghost btn-md text-lg font-semibold #{@tab == 'your_likes' && controller_name == 'rolls' && action_name == 'index' ? 'bg-base-300' : ''}",
-          data: { turbo_frame: current_user ? "rolls" : "_top", turbo_action: current_user ? "advance" : "replace" } do %>
+          data: { turbo_stream: current_user ? true : false, turbo_frame: current_user ? nil : "_top", turbo_action: current_user ? "advance" : "replace" } do %>
         Your Likes
       <% end %>
 
       <%= link_to rolls_path(tab: 'your_rolls'),
           class: "btn btn-ghost btn-md text-lg font-semibold #{@tab == 'your_rolls' && controller_name == 'rolls' && action_name == 'index' ? 'bg-base-300' : ''}",
-          data: { turbo_frame: current_user ? "rolls" : "_top", turbo_action: current_user ? "advance" : "replace" } do %>
+          data: { turbo_stream: current_user ? true : false, turbo_frame: current_user ? nil : "_top", turbo_action: current_user ? "advance" : "replace" } do %>
         Your Rolls
       <% end %>
     </div>
@@ -39,15 +39,20 @@
   <div class="flex-1 flex justify-center order-3 sm:order-2 px-2 min-w-[300px] sm:min-w-0">
     <div data-controller="search" class="w-full max-w-md">
       <%= form_with url: rolls_path, method: :get,
+          id: "header_search_form",
           data: { 
             search_target: "form", 
-            turbo_frame: (controller_name == 'rolls' && action_name == 'index') ? "rolls" : "_top", 
+            turbo_stream: true,
             turbo_action: "advance" 
           } do |f| %>
-        <%= f.hidden_field :tab, value: @tab %>
-        <% Array(@tags).each do |tag| %>
-          <%= hidden_field_tag 'tags[]', tag %>
-        <% end %>
+        
+        <div id="header_search_hidden_fields">
+          <%= f.hidden_field :tab, value: (@tab || 'newest'), id: "header_search_tab" %>
+          <% Array(@tags).each do |tag| %>
+            <%= hidden_field_tag 'tags[]', tag %>
+          <% end %>
+        </div>
+
         <div class="relative">
           <%= f.text_field :query,
               placeholder: "Search rolls...",
@@ -62,7 +67,7 @@
           <button type="button"
                   data-action="click->search#clear"
                   data-search-target="clearButton"
-                  class="absolute inset-y-0 right-0 pr-3 flex items-center text-base-content/50 hover:text-base-content transition-colors <%= 'hidden' unless params[:query].present? %>">
+                  class="absolute inset-y-0 right-0 pr-3 flex items-center text-base-content/50 hover:text-base-content transition-colors z-10 pointer-events-auto <%= 'hidden' unless params[:query].present? %>">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -73,7 +78,7 @@
   </div>
 
   <div class="flex items-center space-x-2 order-2 sm:order-3">
-    <div class="lg:hidden">
+    <div id="header_mobile_nav" class="lg:hidden">
       <select class="select select-bordered select-sm w-32 font-handwriting text-base" onchange="if (this.value) window.location.href=this.value">
         <option value="<%= rolls_path(tab: 'newest') %>" <%= 'selected' if (@tab == 'newest' || !@tab) && controller_name == 'rolls' && action_name == 'index' %>>Newest</option>
         <option value="<%= rolls_path(tab: 'most_liked') %>" <%= 'selected' if @tab == 'most_liked' && controller_name == 'rolls' && action_name == 'index' %>>Most Liked</option>
