@@ -1,3 +1,7 @@
+<% 
+  on_index = (controller_name == 'rolls' && action_name == 'index') 
+  current_tab = params[:tab].presence || 'newest'
+%>
 <header class="border-b border-base-300 bg-base-100/80 backdrop-blur-sm py-4 px-6 flex flex-wrap justify-between items-center sticky top-0 z-50 gap-y-4">
 
   <div class="flex items-center gap-4 order-1">
@@ -10,55 +14,60 @@
     </h1>
 
     <div id="header_nav" class="hidden lg:flex items-center gap-1 mx-2">
-      <%= link_to rolls_path(tab: 'newest'),
-          class: "btn btn-ghost btn-md text-lg font-semibold #{(@tab == 'newest' || !@tab) && controller_name == 'rolls' && action_name == 'index' ? 'bg-base-300' : ''}",
-          data: { turbo_stream: true, turbo_action: "advance" } do %>
-        Newest
-      <% end %>
-
-      <%= link_to rolls_path(tab: 'most_liked'),
-          class: "btn btn-ghost btn-md text-lg font-semibold #{@tab == 'most_liked' && controller_name == 'rolls' && action_name == 'index' ? 'bg-base-300' : ''}",
-          data: { turbo_stream: true, turbo_action: "advance" } do %>
-        Most Liked
-      <% end %>
-
-      <%= link_to rolls_path(tab: 'your_likes'),
-          class: "btn btn-ghost btn-md text-lg font-semibold #{@tab == 'your_likes' && controller_name == 'rolls' && action_name == 'index' ? 'bg-base-300' : ''}",
-          data: { turbo_stream: current_user ? true : false, turbo_frame: current_user ? nil : "_top", turbo_action: current_user ? "advance" : "replace" } do %>
-        Your Likes
-      <% end %>
-
-      <%= link_to rolls_path(tab: 'your_rolls'),
-          class: "btn btn-ghost btn-md text-lg font-semibold #{@tab == 'your_rolls' && controller_name == 'rolls' && action_name == 'index' ? 'bg-base-300' : ''}",
-          data: { turbo_stream: current_user ? true : false, turbo_frame: current_user ? nil : "_top", turbo_action: current_user ? "advance" : "replace" } do %>
-        Your Rolls
+      <% ['newest', 'most_liked', 'your_likes', 'your_rolls'].each do |tab_name| %>
+        <% 
+          is_active = (current_tab == tab_name && on_index)
+          is_restricted = ['your_likes', 'your_rolls'].include?(tab_name)
+          link_data = { turbo_action: "advance" }
+          
+          if on_index
+            if is_restricted && !current_user
+              link_data[:turbo_frame] = "_top"
+              link_data[:turbo_action] = "replace"
+            else
+              link_data[:turbo_stream] = true
+            end
+          end
+        %>
+        <%= link_to rolls_path(tab: tab_name),
+            class: "btn btn-ghost btn-md text-lg font-semibold #{is_active ? 'bg-base-300' : ''}",
+            data: link_data do %>
+          <%= tab_name.titleize %>
+        <% end %>
       <% end %>
     </div>
   </div>
 
   <div class="flex-1 flex justify-center order-3 sm:order-2 px-2 min-w-[300px] sm:min-w-0">
-    <div data-controller="search" class="w-full max-w-md">
+    <div data-controller="search" class="w-full max-w-xs">
       <%= form_with url: rolls_path, method: :get,
           id: "header_search_form",
           data: { 
             search_target: "form", 
-            turbo_stream: true,
+            turbo_stream: on_index,
             turbo_action: "advance" 
           } do |f| %>
         
         <div id="header_search_hidden_fields">
-          <%= f.hidden_field :tab, value: (@tab || 'newest'), id: "header_search_tab" %>
-          <% Array(@tags).each do |tag| %>
+          <%= f.hidden_field :tab, value: current_tab, id: "header_search_tab" %>
+          <% Array(params[:tags]).each do |tag| %>
             <%= hidden_field_tag 'tags[]', tag %>
           <% end %>
         </div>
 
         <div class="relative">
+          <% search_actions = ["input->search#toggleClear"] %>
+          <% search_actions << "input->search#submit" if on_index %>
+          
           <%= f.text_field :query,
               placeholder: "Search rolls...",
               class: "input input-bordered input-handwritten w-full pl-10 pr-10",
               value: params[:query],
-              data: { action: "input->search#submit input->search#toggleClear", search_target: "input" } %>
+              autocomplete: "off",
+              data: { 
+                action: search_actions.join(" "), 
+                search_target: "input" 
+              } %>
           <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-base-content/50">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -80,10 +89,10 @@
   <div class="flex items-center space-x-2 order-2 sm:order-3">
     <div id="header_mobile_nav" class="lg:hidden">
       <select class="select select-bordered select-sm w-32 font-handwriting text-base" onchange="if (this.value) window.location.href=this.value">
-        <option value="<%= rolls_path(tab: 'newest') %>" <%= 'selected' if (@tab == 'newest' || !@tab) && controller_name == 'rolls' && action_name == 'index' %>>Newest</option>
-        <option value="<%= rolls_path(tab: 'most_liked') %>" <%= 'selected' if @tab == 'most_liked' && controller_name == 'rolls' && action_name == 'index' %>>Most Liked</option>
-        <option value="<%= rolls_path(tab: 'your_likes') %>" <%= 'selected' if @tab == 'your_likes' && controller_name == 'rolls' && action_name == 'index' %>>Your Likes</option>
-        <option value="<%= rolls_path(tab: 'your_rolls') %>" <%= 'selected' if @tab == 'your_rolls' && controller_name == 'rolls' && action_name == 'index' %>>Your Rolls</option>
+        <option value="<%= rolls_path(tab: 'newest') %>" <%= 'selected' if current_tab == 'newest' && on_index %>>Newest</option>
+        <option value="<%= rolls_path(tab: 'most_liked') %>" <%= 'selected' if current_tab == 'most_liked' && on_index %>>Most Liked</option>
+        <option value="<%= rolls_path(tab: 'your_likes') %>" <%= 'selected' if current_tab == 'your_likes' && on_index %>>Your Likes</option>
+        <option value="<%= rolls_path(tab: 'your_rolls') %>" <%= 'selected' if current_tab == 'your_rolls' && on_index %>>Your Rolls</option>
       </select>
     </div>
 

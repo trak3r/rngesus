@@ -16,6 +16,11 @@
 - sometimes typing in the search field changes the tab to "your rolls"; fix that
 - on the roll results page align the like button to the right 
 
+- the tabs links in header don't work if you are on the roll results page; fix that
+- the search field can be a lot shorter; like half the width
+
+- the tabs links in the header still don't work when you are on the roll results page. i can see the request on the server so i suspect you're making a turbo update rather than change the page back to rolls index. same issue from rolls edit form page.
+
 ---
 
 IMPORTANT: do not edit TODO.md and prompt.md files!
