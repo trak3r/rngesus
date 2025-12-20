@@ -22,16 +22,16 @@
           re-roll
         <% end %>
 
-        <div class="h-full flex flex-col items-center justify-center p-12">
+        <div class="h-full flex flex-col items-center justify-center p-8">
             <% if roll.tags.any? %>
-              <div class="absolute top-4 left-0 right-0 flex justify-center gap-2 px-8">
+              <div class="absolute top-2 left-0 right-0 flex justify-center gap-2 px-4">
                 <% roll.tags.each do |tag| %>
-                  <span class="badge badge-outline badge-sm font-handwriting"><%= tag.name %></span>
+                  <span class="badge badge-outline badge-sm font-handwriting opacity-60"><%= tag.name %></span>
                 <% end %>
               </div>
             <% end %>
 
-            <div class="relative group inline-block text-4xl sm:text-5xl font-bold font-typewriter text-center text-base-content mt-4">
+            <div class="relative group inline-block text-3xl font-bold font-typewriter text-center text-base-content">
               <span class="block group-hover:hidden" data-slot-machine-target="result">
                 <%= result.try(:name_with_rolls) || 'No match' %>
               </span>

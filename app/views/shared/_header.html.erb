@@ -1,97 +1,131 @@
 <header class="border-b border-base-300 bg-base-100/80 backdrop-blur-sm py-4 px-6 flex flex-wrap justify-between items-center sticky top-0 z-50 gap-y-4">
 
-<h1 class="text-2xl font-bold font-typewriter">
-  <%= link_to root_path,
-      class: "flex items-center space-x-2 text-base-content hover:opacity-70 transition" do %>
-    <%= image_tag '/icon.svg', class: "w-6 h-6 flex-shrink-0", alt: "RNGesus dice icon" %>
-    <span class="leading-none">RNGesus</span>
-  <% end %>
-</h1>
+  <div class="flex items-center gap-4 order-1">
+    <h1 class="text-2xl font-bold font-typewriter">
+      <%= link_to root_path,
+          class: "flex items-center space-x-2 text-base-content hover:opacity-70 transition" do %>
+        <%= image_tag '/icon.svg', class: "w-6 h-6 flex-shrink-0", alt: "RNGesus dice icon" %>
+        <span class="leading-none">RNGesus</span>
+      <% end %>
+    </h1>
 
-<div class="hidden md:flex items-center gap-1 mx-4 order-2 lg:order-none">
-  <%= link_to rolls_path(tab: 'newest'),
-      class: "btn btn-ghost btn-sm font-semibold #{(@tab == 'newest' || !@tab) && controller_name == 'rolls' && action_name == 'index' ? 'bg-base-300' : ''}",
-      data: { turbo_frame: "rolls", turbo_action: "advance" } do %>
-    Newest
-  <% end %>
+    <div class="hidden lg:flex items-center gap-1 mx-2">
+      <%= link_to rolls_path(tab: 'newest'),
+          class: "btn btn-ghost btn-md text-lg font-semibold #{(@tab == 'newest' || !@tab) && controller_name == 'rolls' && action_name == 'index' ? 'bg-base-300' : ''}",
+          data: { turbo_frame: "rolls", turbo_action: "advance" } do %>
+        Newest
+      <% end %>
 
-  <%= link_to rolls_path(tab: 'most_liked'),
-      class: "btn btn-ghost btn-sm font-semibold #{@tab == 'most_liked' && controller_name == 'rolls' && action_name == 'index' ? 'bg-base-300' : ''}",
-      data: { turbo_frame: "rolls", turbo_action: "advance" } do %>
-    Most Liked
-  <% end %>
+      <%= link_to rolls_path(tab: 'most_liked'),
+          class: "btn btn-ghost btn-md text-lg font-semibold #{@tab == 'most_liked' && controller_name == 'rolls' && action_name == 'index' ? 'bg-base-300' : ''}",
+          data: { turbo_frame: "rolls", turbo_action: "advance" } do %>
+        Most Liked
+      <% end %>
 
-  <%= link_to rolls_path(tab: 'your_likes'),
-      class: "btn btn-ghost btn-sm font-semibold #{@tab == 'your_likes' && controller_name == 'rolls' && action_name == 'index' ? 'bg-base-300' : ''}",
-      data: { turbo_frame: current_user ? "rolls" : "_top", turbo_action: current_user ? "advance" : "replace" } do %>
-    Your Likes
-  <% end %>
+      <%= link_to rolls_path(tab: 'your_likes'),
+          class: "btn btn-ghost btn-md text-lg font-semibold #{@tab == 'your_likes' && controller_name == 'rolls' && action_name == 'index' ? 'bg-base-300' : ''}",
+          data: { turbo_frame: current_user ? "rolls" : "_top", turbo_action: current_user ? "advance" : "replace" } do %>
+        Your Likes
+      <% end %>
 
-  <%= link_to rolls_path(tab: 'your_rolls'),
-      class: "btn btn-ghost btn-sm font-semibold #{@tab == 'your_rolls' && controller_name == 'rolls' && action_name == 'index' ? 'bg-base-300' : ''}",
-      data: { turbo_frame: current_user ? "rolls" : "_top", turbo_action: current_user ? "advance" : "replace" } do %>
-    Your Rolls
-  <% end %>
-</div>
-
-<div class="md:hidden flex-1 px-4 order-3 w-full sm:w-auto">
-  <select class="select select-bordered select-sm w-full font-handwriting text-lg" onchange="if (this.value) window.location.href=this.value">
-    <option value="<%= rolls_path(tab: 'newest') %>" <%= 'selected' if (@tab == 'newest' || !@tab) && controller_name == 'rolls' && action_name == 'index' %>>Newest</option>
-    <option value="<%= rolls_path(tab: 'most_liked') %>" <%= 'selected' if @tab == 'most_liked' && controller_name == 'rolls' && action_name == 'index' %>>Most Liked</option>
-    <option value="<%= rolls_path(tab: 'your_likes') %>" <%= 'selected' if @tab == 'your_likes' && controller_name == 'rolls' && action_name == 'index' %>>Your Likes</option>
-    <option value="<%= rolls_path(tab: 'your_rolls') %>" <%= 'selected' if @tab == 'your_rolls' && controller_name == 'rolls' && action_name == 'index' %>>Your Rolls</option>
-  </select>
-</div>
-
-<div class="flex items-center space-x-4 order-2 sm:order-none">
-  <div class="hidden sm:block">
-    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="teflonted" data-color="#e9eaf1" data-emoji="☕"  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#FFDD00" ></script>
+      <%= link_to rolls_path(tab: 'your_rolls'),
+          class: "btn btn-ghost btn-md text-lg font-semibold #{@tab == 'your_rolls' && controller_name == 'rolls' && action_name == 'index' ? 'bg-base-300' : ''}",
+          data: { turbo_frame: current_user ? "rolls" : "_top", turbo_action: current_user ? "advance" : "replace" } do %>
+        Your Rolls
+      <% end %>
+    </div>
   </div>
 
-  <nav class="flex items-center">
-    <% if current_user %>
-      <div class="dropdown dropdown-end">
-        <div tabindex="0" role="button" class="btn btn-ghost flex items-center gap-2">
-          <%= image_tag gravatar_url(current_user, size: 40),
-                        alt: "#{current_user.display_name}'s avatar",
-                        class: "w-10 h-10 rounded-full border-2 border-gray-400 grayscale hover:grayscale-0 transition-all" %>
-          <span class="text-sm font-medium hidden sm:inline"><%= current_user.display_name %></span>
-          <%= icon('chevron-down', class: "w-4 h-4") %>
+  <div class="flex-1 flex justify-center order-3 sm:order-2 px-2 min-w-[300px] sm:min-w-0">
+    <div data-controller="search" class="w-full max-w-md">
+      <%= form_with url: rolls_path, method: :get,
+          data: { 
+            search_target: "form", 
+            turbo_frame: (controller_name == 'rolls' && action_name == 'index') ? "rolls" : "_top", 
+            turbo_action: "advance" 
+          } do |f| %>
+        <%= f.hidden_field :tab, value: @tab %>
+        <% Array(@tags).each do |tag| %>
+          <%= hidden_field_tag 'tags[]', tag %>
+        <% end %>
+        <div class="relative">
+          <%= f.text_field :query,
+              placeholder: "Search rolls...",
+              class: "input input-bordered input-handwritten w-full pl-10 pr-10",
+              value: params[:query],
+              data: { action: "input->search#submit input->search#toggleClear", search_target: "input" } %>
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-base-content/50">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
+          <button type="button"
+                  data-action="click->search#clear"
+                  data-search-target="clearButton"
+                  class="absolute inset-y-0 right-0 pr-3 flex items-center text-base-content/50 hover:text-base-content transition-colors <%= 'hidden' unless params[:query].present? %>">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
         </div>
-        <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-sm z-[1] w-52 p-2 shadow-lg border border-base-300 mt-3 font-handwriting text-base-content">
-          <li>
-            <%= link_to edit_user_path, class: "flex items-center gap-2 hover:bg-yellow-50/50 active:bg-yellow-100 rounded-sm" do %>
-              <%= icon('settings', class: "w-4 h-4") %>
-              <span>Settings</span>
-            <% end %>
-          </li>
-          <li>
-            <%= link_to gravatar_profile_url(current_user),
-                        target: "_blank",
-                        rel: "noopener noreferrer",
-                        class: "flex items-center gap-2 hover:bg-yellow-50/50 active:bg-yellow-100 rounded-sm" do %>
-              <%= icon('user-circle', class: "w-4 h-4") %>
-              <span>Edit Avatar</span>
-            <% end %>
-          </li>
-          <div class="divider my-0 border-blue-200"></div>
-          <li>
-            <%= button_to logout_path,
-                          method: :delete,
-                          class: "flex items-center gap-2 text-red-500/70 hover:text-red-600 hover:bg-red-50/50 rounded-sm",
-                          form: { data: { turbo: "false" } } do %>
-              <%= icon('logout', class: "w-4 h-4") %>
-              <span>Logout</span>
-            <% end %>
-          </li>
-        </ul>
-      </div>
-    <% else %>
-      <%= link_to "Log In",
-                  login_path,
-                  class: "btn btn-primary btn-sm" %>
-    <% end %>
-  </nav>
-</div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="flex items-center space-x-2 order-2 sm:order-3">
+    <div class="lg:hidden">
+      <select class="select select-bordered select-sm w-32 font-handwriting text-base" onchange="if (this.value) window.location.href=this.value">
+        <option value="<%= rolls_path(tab: 'newest') %>" <%= 'selected' if (@tab == 'newest' || !@tab) && controller_name == 'rolls' && action_name == 'index' %>>Newest</option>
+        <option value="<%= rolls_path(tab: 'most_liked') %>" <%= 'selected' if @tab == 'most_liked' && controller_name == 'rolls' && action_name == 'index' %>>Most Liked</option>
+        <option value="<%= rolls_path(tab: 'your_likes') %>" <%= 'selected' if @tab == 'your_likes' && controller_name == 'rolls' && action_name == 'index' %>>Your Likes</option>
+        <option value="<%= rolls_path(tab: 'your_rolls') %>" <%= 'selected' if @tab == 'your_rolls' && controller_name == 'rolls' && action_name == 'index' %>>Your Rolls</option>
+      </select>
+    </div>
+
+    <nav class="flex items-center">
+      <% if current_user %>
+        <div class="dropdown dropdown-end">
+          <div tabindex="0" role="button" class="btn btn-ghost flex items-center gap-2 px-2">
+            <%= image_tag gravatar_url(current_user, size: 40),
+                          alt: "#{current_user.display_name}'s avatar",
+                          class: "w-8 h-8 rounded-full border-2 border-gray-400 grayscale hover:grayscale-0 transition-all" %>
+            <span class="text-sm font-medium hidden xl:inline"><%= current_user.display_name %></span>
+            <%= icon('chevron-down', class: "w-4 h-4") %>
+          </div>
+          <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-sm z-[1] w-52 p-2 shadow-lg border border-base-300 mt-3 font-handwriting text-base-content">
+            <li>
+              <%= link_to edit_user_path, class: "flex items-center gap-2 hover:bg-yellow-50/50 active:bg-yellow-100 rounded-sm" do %>
+                <%= icon('settings', class: "w-4 h-4") %>
+                <span>Settings</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to gravatar_profile_url(current_user),
+                          target: "_blank",
+                          rel: "noopener noreferrer",
+                          class: "flex items-center gap-2 hover:bg-yellow-50/50 active:bg-yellow-100 rounded-sm" do %>
+                <%= icon('user-circle', class: "w-4 h-4") %>
+                <span>Edit Avatar</span>
+              <% end %>
+            </li>
+            <div class="divider my-0 border-blue-200"></div>
+            <li>
+              <%= button_to logout_path,
+                            method: :delete,
+                            class: "flex items-center gap-2 text-red-500/70 hover:text-red-600 hover:bg-red-50/50 rounded-sm",
+                            form: { data: { turbo: "false" } } do %>
+                <%= icon('logout', class: "w-4 h-4") %>
+                <span>Logout</span>
+              <% end %>
+            </li>
+          </ul>
+        </div>
+      <% else %>
+        <%= link_to "Log In",
+                    login_path,
+                    class: "btn btn-primary btn-sm" %>
+      <% end %>
+    </nav>
+  </div>
 
 </header>

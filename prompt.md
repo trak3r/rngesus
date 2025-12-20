@@ -10,6 +10,11 @@
 - there was a donation button in the header it seems you removed; you could put it in the footer if it can't be fit into the header
 - i think i want the search field in the headers too but it's not going to make sense on the pages that aren't roll cards; should be it be disabled for those pages? do what you think is best
 
+- the tags on the roll results card still aren't the same style and position as the roll cards - they are smaller and not aligned to the top border; fix that 
+- the clear "X" on the search field isn't clickable
+- the "you rolls" tab always has the background when other tabs are selected
+- sometimes typing in the search field changes the tab to "your rolls"; fix that
+- on the roll results page align the like button to the right 
 ---
 
 # Test Guidelines
