@@ -4,10 +4,6 @@
   <h1 class="font-bold text-4xl font-typewriter text-base-content mb-4 text-center">
     <%= t('.heading') %>
   </h1>
-  <p class="text-center text-base-content/70 mb-12 font-handwriting text-xl">
-    <%= t('.subtitle') %>
-  </p>
-
   <div class="grid md:grid-cols-3 gap-8">
     <!-- Upload Screenshots Card -->
     <div class="card-index hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer group">
@@ -44,7 +40,4 @@
       </div>
     <% end %>
   </div>
-
-  <%= link_to t('.back'), rolls_path,
-              class: "block text-center mt-8 text-base-content/50 hover:text-base-content font-handwriting text-xl transition-colors" %>
 </div>
