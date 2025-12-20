@@ -1,0 +1,47 @@
+<div data-controller="search" class="w-full max-w-64">
+  <%= form_with url: rolls_path, method: :get,
+      id: "header_search_form",
+      data: { 
+        search_target: "form", 
+        turbo_stream: on_index,
+        turbo_action: "advance" 
+      } do |f| %>
+    
+    <div id="header_search_hidden_fields">
+      <%= f.hidden_field :tab, value: current_tab, id: "header_search_tab" %>
+      <% Array(params[:tags]).each do |tag| %>
+        <%= hidden_field_tag 'tags[]', tag %>
+      <% end %>
+    </div>
+
+    <div class="relative">
+      <% 
+        search_actions = ["input->search#toggleClear"]
+        search_actions << "input->search#submit" if on_index
+      %>
+      
+      <%= f.text_field :query,
+          placeholder: "Search rolls...",
+          class: "input input-bordered input-handwritten w-full pl-10 pr-10",
+          value: params[:query],
+          autocomplete: "off",
+          data: { 
+            action: search_actions.join(" "), 
+            search_target: "input" 
+          } %>
+      <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-base-content/50">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+      </div>
+      <button type="button"
+              data-action="click->search#clear"
+              data-search-target="clearButton"
+              class="absolute inset-y-0 right-0 pr-3 flex items-center text-base-content/50 hover:text-base-content transition-colors z-10 pointer-events-auto <%= 'hidden' unless params[:query].present? %>">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  <% end %>
+</div>

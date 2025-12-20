@@ -21,6 +21,10 @@
 
 - the tabs links in the header still don't work when you are on the roll results page. i can see the request on the server so i suspect you're making a turbo update rather than change the page back to rolls index. same issue from rolls edit form page.
 
+these views are pretty large; should they be broken up into smaller views?
+app/views/rolls/_rolls_index_content.html.erb
+app/views/shared/_header.html.erb
+
 ---
 
 IMPORTANT: do not edit TODO.md and prompt.md files!
