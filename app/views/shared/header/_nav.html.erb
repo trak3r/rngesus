@@ -1,8 +1,12 @@
 <div id="header_nav" class="hidden lg:flex items-center gap-1 mx-2">
   <% ['newest', 'most_liked', 'your_likes', 'your_rolls'].each do |tab_name| %>
     <% 
-      is_active = (current_tab == tab_name && on_index)
-      is_restricted = ['your_likes', 'your_rolls'].include?(tab_name)
+      # Ensure consistent string comparison for active state
+      active_tab_name = current_tab.to_s
+      target_tab_name = tab_name.to_s
+      
+      is_active = (active_tab_name == target_tab_name && on_index)
+      is_restricted = ['your_likes', 'your_rolls'].include?(target_tab_name)
       
       link_data = { turbo_action: "advance" }
       if on_index
@@ -14,10 +18,11 @@
         end
       end
     %>
-    <%= link_to rolls_path(tab: tab_name),
+    <%= link_to rolls_path(tab: target_tab_name),
+        id: "nav_tab_#{target_tab_name}",
         class: "btn btn-ghost btn-md text-lg font-semibold #{is_active ? 'bg-base-300' : ''}",
         data: link_data do %>
-      <%= tab_name.titleize %>
+      <%= target_tab_name.titleize %>
     <% end %>
   <% end %>
 </div>

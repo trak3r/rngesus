@@ -1,3 +1,6 @@
+<%# Header sync is now handled in parent templates to avoid nesting turbo-streams %>
+
+
 <%= turbo_frame_tag "rolls" do %>
   <%= render "rolls/index/tag_filters" %>
   <%= render "rolls/index/grid" %>

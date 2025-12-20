@@ -1,61 +1,44 @@
 <% if params[:page].to_i > 1 %>
   <%= turbo_stream.append "rolls_grid" do %>
+    <%# Render only the new batch of rolls for pagination %>
     <% artwork = random_card_artwork %>
     <% artwork_position = random_artwork_position %>
-    <%# Ensure artwork is injected by calculating dynamic index offset if needed, or just let randomness logic apply to this chunk %>
-
     <% @rolls.each_with_index do |roll, index| %>
       <% unless @tab == 'your_rolls' %>
-      <% if index + 1 == artwork_position %>
-          <!-- Artwork Card (randomly positioned, hidden on mobile) -->
+        <% if index + 1 == artwork_position %>
           <% offset = artwork_vertical_offset(artwork) %>
           <div class="hidden lg:flex card-index flex-col items-center justify-center p-4 min-h-[220px] max-h-[220px] overflow-hidden transition-transform hover:rotate-1 grayscale hover:grayscale-0 transition-all duration-300">
-          <%= image_tag "cards/#{artwork}.png",
-                          alt: "#{artwork.titleize}",
-                          class: "w-full h-full object-cover",
-                          style: (offset > 0 ? "object-position: center #{offset}%" : nil) %>
+            <%= image_tag "cards/#{artwork}.png", alt: artwork.titleize, class: "w-full h-full object-cover", style: (offset > 0 ? "object-position: center #{offset}%" : nil) %>
           </div>
         <% end %>
       <% end %>
       <%= render "roll_card", roll: roll, tab: @tab %>
     <% end %>
   <% end %>
+
+  <%# Update Pagination link for the next page %>
+  <% if @pagy.next %>
+    <%= turbo_stream.replace "load_more" do %>
+      <div id="load_more" class="flex justify-center mt-8 pb-8">
+        <%= link_to "Show More Rolls", rolls_path(page: @pagy.next, tab: @tab, query: params[:query], tags: @tags), data: { turbo_stream: true }, class: "btn btn-outline btn-wide font-handwriting text-lg group hover:bg-base-content hover:text-base-100 transition-all" %>
+      </div>
+    <% end %>
+  <% else %>
+    <%= turbo_stream.remove "load_more" %>
+  <% end %>
+
 <% else %>
-  <%# Initial load or filter/search: replace the whole grid and update header %>
+  <%# Initial load or filter/search: replace the whole grid area %>
+  <%= turbo_stream.replace "header_nav" do %>
+    <%= render "shared/header/nav", on_index: true, current_tab: (@tab || 'newest') %>
+  <% end %>
+
   <%= turbo_stream.replace "rolls" do %>
     <%= render partial: "rolls_index_content" %>
   <% end %>
 
-  <%# Update Header Nav to reflect new tab highlight %>
-  <%= turbo_stream.replace "header_nav" do %>
-    <div id="header_nav" class="hidden lg:flex items-center gap-1 mx-2">
-      <%= link_to rolls_path(tab: 'newest'),
-          class: "btn btn-ghost btn-md text-lg font-semibold #{(@tab == 'newest' || !@tab) && controller_name == 'rolls' && action_name == 'index' ? 'bg-base-300' : ''}",
-          data: { turbo_stream: true, turbo_action: "advance" } do %>
-        Newest
-      <% end %>
 
-      <%= link_to rolls_path(tab: 'most_liked'),
-          class: "btn btn-ghost btn-md text-lg font-semibold #{@tab == 'most_liked' && controller_name == 'rolls' && action_name == 'index' ? 'bg-base-300' : ''}",
-          data: { turbo_stream: true, turbo_action: "advance" } do %>
-        Most Liked
-      <% end %>
-
-      <%= link_to rolls_path(tab: 'your_likes'),
-          class: "btn btn-ghost btn-md text-lg font-semibold #{@tab == 'your_likes' && controller_name == 'rolls' && action_name == 'index' ? 'bg-base-300' : ''}",
-          data: { turbo_stream: current_user ? true : false, turbo_frame: current_user ? nil : "_top", turbo_action: current_user ? "advance" : "replace" } do %>
-        Your Likes
-      <% end %>
-
-      <%= link_to rolls_path(tab: 'your_rolls'),
-          class: "btn btn-ghost btn-md text-lg font-semibold #{@tab == 'your_rolls' && controller_name == 'rolls' && action_name == 'index' ? 'bg-base-300' : ''}",
-          data: { turbo_stream: current_user ? true : false, turbo_frame: current_user ? nil : "_top", turbo_action: current_user ? "advance" : "replace" } do %>
-        Your Rolls
-      <% end %>
-    </div>
-  <% end %>
-
-  <%# Update Header Search hidden fields (tab and tags) %>
+  <%# Update Search form hidden fields to keep filter state in sync %>
   <%= turbo_stream.replace "header_search_hidden_fields" do %>
     <div id="header_search_hidden_fields">
       <%= hidden_field_tag :tab, @tab, id: "header_search_tab" %>
@@ -64,17 +47,4 @@
       <% end %>
     </div>
   <% end %>
-<% end %>
-
-<% if @pagy.next %>
-  <%= turbo_stream.replace "load_more" do %>
-    <div id="load_more" class="flex justify-center mt-8 pb-8">
-      <%= link_to "Show More Rolls",
-          rolls_path(page: @pagy.next, tab: @tab, query: params[:query], tags: @tags),
-          data: { turbo_stream: true },
-          class: "btn btn-outline btn-wide font-handwriting text-lg group hover:bg-base-content hover:text-base-100 transition-all" %>
-    </div>
-  <% end %>
-<% else %>
-  <%= turbo_stream.remove "load_more" %>
 <% end %>

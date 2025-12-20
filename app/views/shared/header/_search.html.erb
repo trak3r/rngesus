@@ -17,6 +17,7 @@
     <div class="relative">
       <% 
         search_actions = ["input->search#toggleClear"]
+        # Real-time search only on index page
         search_actions << "input->search#submit" if on_index
       %>
       
