@@ -35,7 +35,7 @@
   <%= link_to roll,
               class: "flex-1 flex items-center justify-center pt-6 no-underline text-inherit #{'pointer-events-none' if roll.discarded?}",
               data: { turbo_frame: "_top" } do %>
-    <h2 class="card-title text-2xl font-bold font-typewriter text-center line-clamp-2">
+    <h2 class="card-title text-2xl font-bold font-typewriter text-center line-clamp-2 pt-8">
       <%= roll.name %>
     </h2>
   <% end %>
