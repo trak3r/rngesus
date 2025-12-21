@@ -1,10 +1,7 @@
-- the URL isn't changing when tabs are clicked in the header
-
-- "your rolls" tab is always showing as selected (gray background) when on other tabs
-
-- active tab gray background is still not working. it seems the first tab visited is always showing as active. switching to a non-index page (like results or form) clears it, but when a tab is selected again it sticks.
-
-- still not working. i don't think your test is valid since you are makingn fresh GET requests to the index page while the browser is redrawing HTML on the page.
+http://localhost:3000/rolls?tab=your_likes
+http://localhost:3000/rolls/NcbJX
+find all instances of the "like" button and DRY them into a shared view.
+add a toggle to make it read-only and set that toggle from the rolls index view.
 
 ---
 
