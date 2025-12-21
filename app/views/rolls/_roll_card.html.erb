@@ -58,7 +58,7 @@
   <div class="card-actions grid grid-cols-3 items-center mt-4 border-t border-blue-200 pt-3">
     <!-- Owner Avatar and Edit Button (Left) -->
     <div class="flex items-center gap-2 justify-self-start">
-      <% if roll.user&.email.present? %>
+      <% if false # roll.user&.email.present? %>
         <%= image_tag gravatar_url(roll.user, size: 32),
                       alt: "#{roll.user.display_name}'s avatar",
                       title: "Created by #{roll.user.display_name}",
