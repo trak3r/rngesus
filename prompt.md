@@ -3,6 +3,9 @@ http://localhost:3000/rolls/NcbJX
 find all instances of the "like" button and DRY them into a shared view.
 add a toggle to make it read-only and set that toggle from the rolls index view.
 
+http://localhost:3000/rolls/wkauh
+clicking the like button causes it to shift locations on the page
+
 ---
 
 IMPORTANT: do not edit TODO.md and prompt.md files!

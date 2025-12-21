@@ -9,7 +9,7 @@
       <%= icon 'thumb-up', variant: :outline, class: "w-4 h-4 opacity-50" %>
     </div>
   <% else %>
-    <%= button_to toggle_like_roll_path(roll),
+    <%= button_to toggle_like_roll_path(roll, position_classes: position_classes),
           method: :post,
           data: { turbo_stream: true },
           class: "text-base-content hover:text-red-600 transition flex items-center gap-1 px-2 py-1" do %>
