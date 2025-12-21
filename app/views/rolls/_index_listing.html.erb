@@ -2,8 +2,8 @@
 
 
 <%= turbo_frame_tag "rolls" do %>
-  <%= render "rolls/index/tag_filters" %>
-  <%= render "rolls/index/grid" %>
+  <%= render "index_tag_filters" %>
+  <%= render "index_grid" %>
 
   <!-- Pagination / Load More -->
   <% if @pagy.next %>
