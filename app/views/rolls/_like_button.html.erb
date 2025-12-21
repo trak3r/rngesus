@@ -1,15 +1,12 @@
-<% 
-  position_classes = local_assigns.fetch(:position_classes, "absolute top-4 right-4 z-10") 
-  read_only = local_assigns.fetch(:read_only, false)
-%>
-<div id="<%= dom_id(roll, :like_button) %>" class="<%= position_classes %>">
+<% read_only = local_assigns.fetch(:read_only, false) %>
+<div id="<%= dom_id(roll, :like_button) %>">
   <% if read_only %>
     <div class="text-base-content/50 flex items-center gap-1 px-2 py-1 select-none cursor-default" title="<%= roll.cached_votes_total %> likes">
       <span class="text-sm font-bold font-typewriter"><%= roll.cached_votes_total %></span>
       <%= icon 'thumb-up', variant: :outline, class: "w-4 h-4 opacity-50" %>
     </div>
   <% else %>
-    <%= button_to toggle_like_roll_path(roll, position_classes: position_classes),
+    <%= button_to toggle_like_roll_path(roll),
           method: :post,
           data: { turbo_stream: true },
           class: "text-base-content hover:text-red-600 transition flex items-center gap-1 px-2 py-1" do %>

@@ -30,7 +30,10 @@
   <% end %>
 
   <!-- Like Button (Top Right) -->
-  <%= render "like_button", roll: roll, read_only: true %>
+  <div class="absolute top-4 right-4 z-10">
+    <%= render "like_button", roll: roll, read_only: true %>
+  </div>
+
 
   <%= link_to roll,
               class: "flex-1 flex items-center justify-center pt-6 no-underline text-inherit #{'pointer-events-none' if roll.discarded?}",
