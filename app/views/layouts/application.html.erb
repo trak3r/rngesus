@@ -9,7 +9,9 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <!-- intelligently diffs the old and new HTML and only updates what changed -->
     <meta name="turbo-refresh-method" content="morph">
+    <!-- keep the current scroll position when refreshing -->
     <meta name="turbo-refresh-scroll" content="preserve">
 
     <%= yield :head %>
