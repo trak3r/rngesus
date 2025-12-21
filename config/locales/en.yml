@@ -28,6 +28,9 @@
 #       enabled: "ON"
 
 en:
+  clipboard:
+    copied: "Copied!"
+    copy_title: "Copy link to clipboard"
   errors:
     unauthorized: "You don't have permission to do that."
   avo:

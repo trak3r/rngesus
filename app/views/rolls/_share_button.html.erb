@@ -1,0 +1,20 @@
+<%# locals: (roll:, container_class: nil) %>
+<% 
+  container_class ||= "flex items-center gap-2 relative justify-self-end"
+%>
+
+<div class="<%= container_class %>">
+  <div data-controller="clipboard" data-clipboard-url-value="<%= roll_url(roll) %>">
+    <!-- Copied Notification (Left of button) -->
+    <div data-clipboard-target="notification"
+         class="absolute right-full top-1/2 -translate-y-1/2 mr-3 bg-black text-white px-2 py-1 rounded text-xs whitespace-nowrap opacity-0 hidden pointer-events-none transition-all duration-200 z-20 font-typewriter">
+      <%= t('clipboard.copied') %>
+    </div>
+
+    <button data-action="click->clipboard#copy"
+            class="transition flex items-center gap-1 p-2 <%= roll.discarded? ? 'opacity-30 pointer-events-none' : 'text-base-content hover:text-blue-600' %>"
+            title="<%= t('clipboard.copy_title') %>">
+      <%= icon 'share', variant: :outline, class: "w-5 h-5" %>
+    </button>
+  </div>
+</div>
