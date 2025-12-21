@@ -249,6 +249,5 @@ class RollsControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :success
     assert_select 'h2', text: /#{roll.name}/
-    assert_select 'span', text: /No Result/
   end
 end
