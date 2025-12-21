@@ -41,27 +41,8 @@
   <% end %>
 
   <div class="card-actions grid grid-cols-3 items-center mt-4 pt-3">
-    <!-- Owner Avatar and Edit Button (Left) -->
-    <div class="flex items-center gap-2 justify-self-start">
-      <% if false # roll.user&.email.present? %>
-        <%= image_tag gravatar_url(roll.user, size: 32),
-                      alt: "#{roll.user.display_name}'s avatar",
-                      title: "Created by #{roll.user.display_name}",
-                      class: "w-8 h-8 rounded-full border border-gray-400 grayscale hover:grayscale-0 transition-all" %>
-      <% end %>
-
-      <% if current_user == roll.user %>
-        <%= link_to edit_roll_path(roll),
-                    class: "p-1 rounded flex items-center gap-1 transition-colors #{roll.discarded? ? 'opacity-30 pointer-events-none' : 'text-base-content/50 hover:text-base-content'}",
-                    title: "Edit",
-                    data: { turbo_frame: "_top" } do %>
-          <%= icon(:edit, class: "w-6 h-6") %>
-        <% end %>
-      <% end %>
-    </div>
-
-    <!-- Delete Button (Center) -->
-    <div class="justify-self-center">
+    <!-- Delete Button (Left) -->
+    <div class="justify-self-start">
       <% if current_user == roll.user && @tab == 'your_rolls' %>
         <%= button_to roll_path(roll, tab: @tab),
                       method: :delete,
@@ -73,6 +54,19 @@
       <% end %>
     </div>
 
-    <%#= render "share_button", roll: roll %>
+    <!-- Share Button (Center) -->
+    <%= render "share_button", roll: roll, container_class: "justify-self-center" %>
+
+    <!-- Edit Button (Right) -->
+    <div class="justify-self-end">
+      <% if current_user == roll.user %>
+        <%= link_to edit_roll_path(roll),
+                    class: "p-1 rounded flex items-center gap-1 transition-colors #{roll.discarded? ? 'opacity-30 pointer-events-none' : 'text-base-content/50 hover:text-base-content'}",
+                    title: "Edit",
+                    data: { turbo_frame: "_top" } do %>
+          <%= icon(:edit, class: "w-6 h-6") %>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
