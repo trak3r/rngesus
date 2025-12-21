@@ -1,7 +1,6 @@
 # TODO
 
 ## Must Have / Bugs
-- (bug) the bug of tabs not changing url has returned
 - inception test: if i take a screenshot of the "show all results" and feed it back into the screenshot uploads does it properly create the cloned roll?
 - (UX) add email address verification
     - when a user changes their email, consider it pending until they confirm...

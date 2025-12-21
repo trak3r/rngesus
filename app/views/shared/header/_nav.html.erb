@@ -8,11 +8,10 @@
       is_active = (active_tab_name == target_tab_name && on_index)
       is_restricted = ['your_likes', 'your_rolls'].include?(target_tab_name)
       
-      link_data = { turbo_action: "advance" }
-      if on_index && is_restricted && !current_user
-        link_data[:turbo_frame] = "_top"
-        link_data[:turbo_action] = "replace"
-      end
+      link_data = { 
+        turbo_action: "advance",
+        turbo_frame: "_top"
+      }
     %>
     <%= link_to rolls_path(tab: target_tab_name),
         id: "nav_tab_#{target_tab_name}",
