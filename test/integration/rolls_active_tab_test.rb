@@ -12,7 +12,7 @@ class RollsActiveTabTest < ActionDispatch::IntegrationTest
       s.assert_response :success
       s.assert_select '#nav_tab_newest.bg-base-300'
       s.assert_select '#nav_tab_most_liked:not(.bg-base-300)'
-      
+
       # Verify Morphing meta tags are present
       s.assert_select 'meta[name="turbo-refresh-method"][content="morph"]'
       s.assert_select 'meta[name="turbo-refresh-scroll"][content="preserve"]'
@@ -25,7 +25,7 @@ class RollsActiveTabTest < ActionDispatch::IntegrationTest
       # In a real browser this triggers a Visit, in integration test it's just a GET
       s.get rolls_url(tab: 'most_liked')
       s.assert_response :success
-      
+
       # URL should represent the new state
       s.assert_equal rolls_path(tab: 'most_liked'), s.request.fullpath
 
@@ -40,4 +40,3 @@ class RollsActiveTabTest < ActionDispatch::IntegrationTest
     end
   end
 end
-
