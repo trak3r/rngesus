@@ -6,6 +6,12 @@ add a toggle to make it read-only and set that toggle from the rolls index view.
 http://localhost:3000/rolls/wkauh
 clicking the like button causes it to shift locations on the page
 
+
+http://localhost:3000/rolls/Y6Icy
+when the roll name is really long, the edit and like button overlap each other
+http://localhost:3000/rolls?tab=your_likes
+don't show the buttom row of buttons on the card unless on the "your rolls" tab
+
 ---
 
 IMPORTANT: do not edit TODO.md and prompt.md files!

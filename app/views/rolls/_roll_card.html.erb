@@ -35,40 +35,42 @@
   <%= link_to roll,
               class: "flex-1 flex items-center justify-center pt-6 no-underline text-inherit #{'pointer-events-none' if roll.discarded?}",
               data: { turbo_frame: "_top" } do %>
-    <h2 class="card-title text-2xl font-bold font-typewriter text-center line-clamp-2 pt-8">
+    <h2 class="card-title text-2xl font-bold font-typewriter text-center line-clamp-2">
       <%= roll.name %>
     </h2>
   <% end %>
 
-  <div class="card-actions grid grid-cols-3 items-center mt-4 pt-3">
-    <!-- Delete Button (Left) -->
-    <div class="justify-self-start">
-      <% if current_user == roll.user && @tab == 'your_rolls' %>
-        <%= button_to roll_path(roll, tab: @tab),
-                      method: :delete,
-                      data: { turbo_confirm: "Are you sure you want to delete this roll?" },
-                      class: "p-2 transition-colors flex items-center justify-center #{roll.discarded? ? 'opacity-30 pointer-events-none' : 'text-base-content/30 hover:text-red-600'}",
-                      title: "Delete" do %>
-          <%= icon(:trash, class: "w-6 h-6") %>
+  <% if @tab == 'your_rolls' %>
+    <div class="card-actions grid grid-cols-3 items-center mt-4 pt-3">
+      <!-- Delete Button (Left) -->
+      <div class="justify-self-start">
+        <% if current_user == roll.user %>
+          <%= button_to roll_path(roll, tab: @tab),
+                        method: :delete,
+                        data: { turbo_confirm: "Are you sure you want to delete this roll?" },
+                        class: "p-2 transition-colors flex items-center justify-center #{roll.discarded? ? 'opacity-30 pointer-events-none' : 'text-base-content/30 hover:text-red-600'}",
+                        title: "Delete" do %>
+            <%= icon(:trash, class: "w-6 h-6") %>
+          <% end %>
         <% end %>
-      <% end %>
-    </div>
+      </div>
 
-    <!-- Share Button (Center) -->
-    <div class="justify-self-center">
-      <%= render "share_button", roll: roll %>
-    </div>
+      <!-- Share Button (Center) -->
+      <div class="justify-self-center">
+        <%#= render "share_button", roll: roll %>
+      </div>
 
-    <!-- Edit Button (Right) -->
-    <div class="justify-self-end">
-      <% if current_user == roll.user %>
-        <%= link_to edit_roll_path(roll),
-                    class: "p-1 rounded flex items-center gap-1 transition-colors #{roll.discarded? ? 'opacity-30 pointer-events-none' : 'text-base-content/50 hover:text-base-content'}",
-                    title: "Edit",
-                    data: { turbo_frame: "_top" } do %>
-          <%= icon(:edit, class: "w-6 h-6") %>
+      <!-- Edit Button (Right) -->
+      <div class="justify-self-end">
+        <% if current_user == roll.user %>
+          <%= link_to edit_roll_path(roll),
+                      class: "p-1 rounded flex items-center gap-1 transition-colors #{roll.discarded? ? 'opacity-30 pointer-events-none' : 'text-base-content/50 hover:text-base-content'}",
+                      title: "Edit",
+                      data: { turbo_frame: "_top" } do %>
+            <%= icon(:edit, class: "w-6 h-6") %>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
 </div>
