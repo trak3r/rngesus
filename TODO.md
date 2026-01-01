@@ -1,6 +1,8 @@
 # TODO
 
 ## Must Have / Bugs
+- reintroduce the concept of groups/collections of rolls
+    - how to make UX seamless between the two without single-table inheritance?
 - (UI) the like button and count needs some design love
 - inception test: if i take a screenshot of the "show all results" and feed it back into the screenshot uploads does it properly create the cloned roll?
 - (UX) add email address verification
