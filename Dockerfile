@@ -16,7 +16,7 @@ WORKDIR /rails
 
 # Install base packages
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y curl imagemagick libjemalloc2 libvips sqlite3 tesseract-ocr tesseract-ocr-eng && \
+    apt-get install --no-install-recommends -y curl imagemagick libjemalloc2 libvips sqlite3 tesseract-ocr tesseract-ocr-eng msmtp && \
     ln -s /usr/lib/$(uname -m)-linux-gnu/libjemalloc.so.2 /usr/local/lib/libjemalloc.so && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
@@ -25,7 +25,8 @@ ENV RAILS_ENV="production" \
     BUNDLE_DEPLOYMENT="1" \
     BUNDLE_PATH="/usr/local/bundle" \
     BUNDLE_WITHOUT="development" \
-    LD_PRELOAD="/usr/local/lib/libjemalloc.so"
+    LD_PRELOAD="/usr/local/lib/libjemalloc.so" \
+    MSMTPRC="/etc/msmtp/msmtprc"
 
 # Throw-away build stage to reduce size of final image
 FROM base AS build
@@ -45,6 +46,22 @@ RUN bundle install && \
 
 # Copy application code
 COPY . .
+
+# Configure msmtp
+RUN mkdir -p /etc/msmtp && \
+    echo "defaults\n\
+auth on\n\
+tls on\n\
+tls_trust_file /etc/ssl/certs/ca-certificates.crt\n\
+logfile /proc/self/fd/2\n\
+\n\
+account default\n\
+host \$SMTP_HOST\n\
+port \$SMTP_PORT\n\
+from \$SMTP_FROM\n\
+user \$SMTP_USER\n\
+password \$SMTP_PASSWORD\n\
+" > /etc/msmtp/msmtprc.template
 
 # Precompile bootsnap code for faster boot times.
 # -j 1 disable parallel compilation to avoid a QEMU bug: https://github.com/rails/bootsnap/issues/495
@@ -74,6 +91,13 @@ USER 1000:1000
 # Copy built artifacts: gems, application
 COPY --chown=rails:rails --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
 COPY --chown=rails:rails --from=build /rails /rails
+
+# Configure msmtp and set up sendmail symlink
+RUN mkdir -p /etc/msmtp && \
+    envsubst < /etc/msmtp/msmtprc.template > /etc/msmtp/msmtprc && \
+    ln -sf /usr/bin/msmtp /usr/sbin/sendmail && \
+    chown rails:rails /etc/msmtp/msmtprc && \
+    chmod 600 /etc/msmtp/msmtprc
 
 # Entrypoint prepares the database.
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]

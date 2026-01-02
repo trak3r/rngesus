@@ -1,17 +1,8 @@
-http://localhost:3000/rolls?tab=your_likes
-http://localhost:3000/rolls/NcbJX
-find all instances of the "like" button and DRY them into a shared view.
-add a toggle to make it read-only and set that toggle from the rolls index view.
-
-http://localhost:3000/rolls/wkauh
-clicking the like button causes it to shift locations on the page
-
-
-http://localhost:3000/rolls?tab=your_likes
-don't show the buttom row of buttons on the card unless on the "your rolls" tab
-
-http://localhost:3000/rolls/Y6Icy
-when the roll name is really long, the edit and like button overlap each other
+- add msmtp installation and configuration to the kamal deploy strategy
+- remember any changes related to environment variables should be reflected in:
+    - .kamal/secrets
+    - config/deploy.yml
+    - Dockerfile
 
 ---
 
