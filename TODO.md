@@ -1,6 +1,7 @@
 # TODO
 
 ## Must Have / Bugs
+- would this be better for extracting tables? https://github.com/rednote-hilab/dots.ocr
 - reintroduce the concept of groups/collections of rolls
     - how to make UX seamless between the two without single-table inheritance?
 - (UI) the like button and count needs some design love
